@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>{{title}}</title>
+	<link rel="stylesheet" href="/assets/css/style.css" />
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<body>
+	<div color="primary" class="sidebar">
+		<header class="sidebar__header">
+			<h1 class="t-left">
+				{{#if logo}}
+					<img style="width:100px" class="inline-block" src="{{logo}}" />
+				{{else}}
+					<div style="width:100%;" class="coffeekraken-logo"></div>
+				{{/if}}
+			</h1>
+		</header>
+		{{#if styleguide.all}}
+			<a href="#sidebar-styleguide" save-state="localStorage" toggle="true" history="false" class="h6 sidebar__separator bkg-primary" is="s-activate" id="sidebar-styleguide">
+				<s-ripple></s-ripple>
+				Styleguide
+				<i class="fa fa-caret-down pull-right"></i>
+				<i class="fa fa-caret-up pull-right"></i>
+			</a>
+			<ul class="list list--menu m-b">
+				{{#each styleguide.all}}
+					<li class="list__item">
+						<a href="/styleguide/{{@key}}">
+							{{{@key}}}
+							<s-ripple></s-ripple>
+						</a>
+						<ul class="list list--submenu">
+							{{#each this}}
+								<li class="list__item">
+									<a href="/styleguide/{{@../key}}#{{@key}}">
+										{{{@key}}}
+										<s-ripple></s-ripple>
+									</a>
+
+								</li>
+							{{/each}}
+						</ul>
+					</li>
+				{{/each}}
+			</ul>
+		{{/if}}
+		{{#if documentation.three}}
+			<a href="#sidebar-doc" save-state="localStorage" toggle="true" history="false" class="h6 sidebar__separator bkg-secondary" is="s-activate" id="sidebar-doc">
+				<s-ripple></s-ripple>
+				Documentation
+				<i class="fa fa-caret-down pull-right"></i>
+				<i class="fa fa-caret-up pull-right"></i>
+			</a>
+			{{{threeMenu documentation.three request.url}}}
+		{{/if}}
+	</div>
+	<section class="content" data-in-viewport-container>
+
+		{{{body}}}
+
+		<div class="gr-12">
+			<footer class="footer">
+				<div class="row">
+					<div class="gr-6">
+						<section class="copy s-small">
+							<div class="m-b-smaller">
+								Powered by <a class="link" href="http://github.com/coffeekraken/styleguide" title="Styleguide from Coffeekraken" target="_blank">Styleguide</a> from <a class="link" href="http://coffeekraken.io" title="Coffeekraken" target="_blank">Coffeekraken</a>
+							</div>
+							<div>
+								Shipped with love under <a class="link" href="https://opensource.org/licenses/MIT" title="MIT License" target="_blank">MIT License</a>
+							</div>
+						<section>
+					</div>
+					<div class="gr-6 t-right">
+						<a href="http://coffeekraken.io" title="Coffeekraken" target="_blank">
+							<div style="width:70px; opacity:.4" class="coffeekraken-logo"></div>
+						</a>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+	</section>
+
+	<script src="/assets/js/app.js"></script>
+
+</body>
+</html>

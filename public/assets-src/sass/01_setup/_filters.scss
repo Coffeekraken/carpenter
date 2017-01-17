@@ -1,0 +1,5 @@
+@include s-setup((
+	filters : (
+		drop-shadow : drop-shadow(rgba(0,0,0,.2) 0 0 10px)
+	)
+));

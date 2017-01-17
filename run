@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+process.title = 'coffeekraken-carpenter';
+
+const exec = require('child_process').spawn;
+const fs = require('fs');
+const path = require('path');
+const __merge = require('lodash/merge');
+
+// extend config
+const defaultConfig = require(__dirname + '/carpenter.config');
+let config = {};
+if (fs.existsSync(process.env.PWD + '/carpenter.config.js')) {
+	config = require(process.env.PWD + '/carpenter.config.js');
+}
+const finalConfig = __merge({}, defaultConfig, config);
+
+// launch the playground
+require(__dirname + '/public/app.js')(finalConfig);
+
+process.on( 'SIGINT', function() {
+	console.log('You\'ve just killed Carpenter... Shame on you! 🍺');
+	// some other closing procedures go here
+	process.exit();
+})

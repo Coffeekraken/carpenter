@@ -1,0 +1,34 @@
+{{#each styleguide.toDisplay}}
+	<section class="row styleguide">
+		<div class="gr-12">
+			<h1 class="h1">
+				{{@key}}
+			</h1>
+			<div class="row">
+				{{#each this}}
+					<div class="gr-12">
+						<h2 class="h2 vr">
+							{{@key}}
+							<a href="#{{@key}}" name="{{@key}}">
+								<i class="fa fa-link"></i>
+							</a>
+						</h2>
+						<div class="row">
+							{{#each this}}
+								{{#if this.color}}
+									<div class="gr-3">
+								{{else}}
+									<div class="gr-12">
+								{{/if}}
+									<div class="row styleguide__item">
+										{{{this._html}}}
+									</div>
+								</div>
+							{{/each}}
+						</div>
+					</div>
+				{{/each}}
+			</div>
+		</div>
+	</div>
+{{/each}}

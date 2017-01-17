@@ -1,0 +1,13 @@
+/**
+ * Navigation styling
+ */
+.nav {
+
+}
+
+/**
+ * @name 	Nav justified
+ */
+@include s-component('nav') {
+	@include s-nav-justify-classes-bare();
+}

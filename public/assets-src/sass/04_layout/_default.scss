@@ -1,0 +1,77 @@
+/**
+ * Default layout
+ */
+html, body {
+	width:100%; height:100%;
+
+}
+body {
+}
+
+/**
+ * Sidebar
+ */
+.sidebar {
+	height:100%;
+	width:250px;
+	float:left;
+	// overflow-y:auto;
+	padding-bottom : s-space(bigger);
+
+	.list--menu,
+	.list--three {
+		display:none;
+	}
+	.active + .list--menu,
+	.active + .list--three {
+		display: block;
+	}
+}
+	.sidebar__header {
+		background: darken(white,1%);
+		padding: s-space(default);
+	}
+	.sidebar__separator {
+		display: block;
+		// background-color:s-color(primary);
+		background-image:url('../img/header-bkg-grey.png');
+		background-blend-mode: hard-light;
+		padding: s-space(default);
+		color: white;
+		cursor: pointer;
+		text-decoration: none;
+
+		.fa-caret-up {
+			display:none;
+		}
+		&.active {
+			.fa-caret-up { display:block; }
+			.fa-caret-down { display: none; }
+
+			margin-bottom: s-space(small);
+		}
+	}
+
+/**
+ * Content
+ */
+.content {
+	width:calc(100% - 250px + 15px);
+	height:100%;
+	overflow-y: auto;
+	padding: s-space(bigger);
+	background:darken(white, 1%);
+	position:fixed;
+	left: 250px;
+}
+
+/**
+ * Footer
+ */
+.footer {
+	margin:s-space(bigger) * -1;
+	margin-top:0;
+	padding: s-space(bigger);
+	background: darken(white,5%);
+	background: white;
+}

@@ -1,0 +1,21 @@
+/**
+ * Preview color block
+ */
+.preview-color {
+	border: 1px solid s-color(border);
+	border-radius: s-lnf(border-radius);
+	background: white;
+	@include s-depth(10);
+	@include s-transition(fast);
+
+	&:hover {
+		transform:scale(1.01,1.01);
+		@include s-depth(20);
+	}
+}
+	.preview-color__color {
+		height:50px;
+	}
+	.preview-color__color-code {
+		opacity:.5;
+	}

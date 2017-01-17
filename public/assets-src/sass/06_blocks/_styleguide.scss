@@ -1,0 +1,37 @@
+/**
+ * Styleguide styling
+ */
+.styleguide {
+
+	.h1 {
+		background-color:s-color(title);
+		background-image:url('../img/header-bkg-grey.png');
+		background-blend-mode: luminosity;
+		background-repeat:no-repeat;
+		background-size:cover;
+		color: white;
+		margin:s-space(bigger) * -1;
+		margin-bottom:s-space(bigger);
+		padding:s-space(bigger);
+		text-shadow:rgba(0,0,0,.3) 0 0 5px;
+	}
+	.h2 {
+		a[name] {
+			font-size:.5em;
+			vertical-align:middle;
+			opacity:.1;
+			&:hover {
+				opacity:1;
+			}
+		}
+	}
+	code {
+		background:s-color(border, -lighten 5%);
+		padding:0 5px;
+		@include s-font(code);
+		text-transform:lowercase;
+	}
+}
+	.styleguide__item {
+		padding: s-space(big);
+	}

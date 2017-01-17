@@ -1,0 +1,60 @@
+/**
+ * Documentation styling
+ */
+.documentation {
+
+	h1 {
+		background-color:s-color(title);
+		background-image:url('../img/header-bkg-grey.png');
+		background-blend-mode: luminosity;
+		background-repeat:no-repeat;
+		background-size:cover;
+		color: white;
+		margin:s-space(bigger) * -1;
+		margin-bottom:s-space(bigger);
+		padding:s-space(bigger);
+		text-shadow:rgba(0,0,0,.3) 0 0 5px;
+	}
+	h2 {
+		border-bottom:1px solid s-color(border);
+		padding-bottom:1rem;
+		margin-bottom:2rem;
+		margin-top:2rem;
+	}
+
+	pre {
+		@include s-depth(10);
+		margin-top:1em !important;
+		margin-bottom:3em !important;
+		code {
+			background-color: transparent !important;
+			text-transform: none !important;
+		}
+	}
+	code {
+		background:s-color(border, -lighten 5%);
+		padding:0 5px;
+		@include s-font(code);
+		@include s-transition(fast);
+		text-transform:lowercase;
+		&:hover {
+			background: s-color(border);
+		}
+	}
+	p code {
+		padding:10px;
+		display:inline-block;
+	}
+	table {
+		@extend .table;
+		@extend .table--hover;
+		@extend .table--striped;
+	}
+	blockquote {
+		@extend .vr;
+		padding:0 s-space(medium);
+		border-left:3px solid s-color(border);
+		margin-top:2em;
+		margin-bottom:2em;
+	}
+}

@@ -1,7 +1,7 @@
 {
-  "name": "coffeekraken-styleguide",
+  "name": "coffeekraken-carpenter",
   "version": "0.0.1",
-  "description": "Powerful styleguide generator that take as source some docblocks right from your CSS codebase so it will be always reflect your actual website available styles",
+  "description": "Powerful tool that provide a nice web interface to display your website styleguide and modules/plugins documentations in one place.",
   "main": "dist/index.js",
   "bin": {
     "coffeekraken-styleguide": "./run"

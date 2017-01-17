@@ -1,16 +1,26 @@
-# Coffeekraken Carpenter <small>0.0.1</small>
+# Carpenter <small>0.0.1</small>
 
-Powerful styleguide generator that take as source some docblocks right from your CSS codebase so it will be always reflect your actual website available styles.
+Powerful tool that provide a nice web interface to display your website styleguide and modules/plugins documentations in one place.
+
+> Carpenter is like a architect plan for your website
 
 * Homepage: [Coffeekraken](http://coffeekraken.io)
 * Source: [Github](http://github.com/coffeekraken/styleguide)
 * Twitter: [Coffeekraken](https://twitter.com/coffeekrakenio)
 
-## Quick start
+## Features
+
+1. Build styleguide directly from your CSS codebase
+	- Reflect perfectly what your website looks like
+	- List all features that your CSS cover
+	- Interactive demo
+2. Aggregate markdown documentations
+	- Tell Carpenter where to look for markdown files, it take care of displaying them nicely
+	- Aggregate all the useful documentations in one interface
 
 ### Install
 
-```npm install git+https://git@github.com/Coffeekraken/styleguide.git#release/0.0.1 --save-dev```
+```npm install git+https://git@github.com/Coffeekraken/carpenter.git#release/0.0.1 --save-dev```
 
 ### Configure
 
@@ -65,7 +75,7 @@ In your ```styleguide.css``` file, you need to document your styleguide like so:
 
 ### Launch
 
-In order to launch the styleguide of your project, you just need to add this line in your ```package.json``` scripts:
+In order to launch Carpenter in your project, you just need to add this line in your ```package.json``` scripts:
 
 ```json
 {
@@ -75,16 +85,9 @@ In order to launch the styleguide of your project, you just need to add this lin
 }
 ```
 
-Then launch your styleguide with
+Then launch Carpenter with
 
-```npm run styleguide```
-
-## Features
-
-1. Parse docblocks marked with ```@styleguide``` into your codebase files
-2. Transform these docblocks into json using the [coffeekraken-docblock-parser](https://github.com/Coffeekraken/docblock-parser) package
-3. Provide a nice web interface that display your styleguide with interactive demos
-4. Provide a nice and simple [API](doc/api.md) to preparse your styleguide if wanted
+```npm run carpenter```
 
 ## Browser support
 

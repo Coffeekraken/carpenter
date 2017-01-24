@@ -4,7 +4,7 @@
   "description": "Powerful tool that provide a nice web interface to display your website styleguide and modules/plugins documentations in one place.",
   "main": "dist/index.js",
   "bin": {
-    "coffeekraken-styleguide": "./run"
+    "coffeekraken-carpenter": "./run"
   },
   "scripts": {
     "assets": "npm run assets.css && npm run assets.js && npm run assets.img",

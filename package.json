@@ -49,7 +49,6 @@
     "imagemin-cli": "^3.0.0",
     "node-sass": "^3.13.0",
     "nodemon": "^1.11.0",
-    "open": "0.0.5",
     "vinyl-named": "^1.1.0",
     "webpack": "^1.13.3"
   },
@@ -76,6 +75,7 @@
     "lodash": "^4.17.2",
     "marked": "^0.3.6",
     "material-prism-theme": "^0.1.0",
+    "open": "0.0.5",
     "prismjs": "^1.6.0",
     "webcomponents.js": "^0.7.23"
   }

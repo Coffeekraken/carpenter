@@ -19,6 +19,9 @@ module.exports = {
 	styleguide : {
 
 		// source styleguide files
-		files : []
+		files : [],
+
+		// additionnal displays files to load
+		displays : []
 	}
 }

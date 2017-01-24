@@ -7,7 +7,7 @@
     "coffeekraken-styleguide": "./run"
   },
   "scripts": {
-    "assets": "npm run assets.css && npm run asset.js && npm run assets.img",
+    "assets": "npm run assets.css && npm run assets.js && npm run assets.img",
     "assets.css": "node-sass public/assets-src/sass/style.scss public/assets/css/style.css --include-path node_modules --output-style compact",
     "assets.js": "webpack",
     "assets.img": "imagemin public/assets-src/img/* --out-dir=public/assets/img",

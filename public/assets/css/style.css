@@ -191,19 +191,19 @@
 
 .t-truncate > * { text-overflow: ellipsis; overflow: hidden; }
 
-.t-left { /** @name 		```.t-left``` Align the text to the left @styleguide 	Helpers / Text @example 	html <div class="t-left"> I'm left aligned </div> */ text-align: left; }
+.t-left { /** @name 		```.t-left``` Align the text to the left @styleguide 	Helpers / Text @example 	html <div class="t-left"> I'm left aligned </div> */ text-align: left !important; }
 
-.t-right { /** @name 		```.t-right``` Align the text to the right @styleguide 	Helpers / Text @example 	html <div class="t-right"> I'm right aligned </div> */ text-align: right; }
+.t-right { /** @name 		```.t-right``` Align the text to the right @styleguide 	Helpers / Text @example 	html <div class="t-right"> I'm right aligned </div> */ text-align: right !important; }
 
-.t-center { /** @name 		```.t-center``` Align the text to the center @styleguide 	Helpers / Text @example 	html <div class="t-center"> I'm centered </div> */ text-align: center; }
+.t-center { /** @name 		```.t-center``` Align the text to the center @styleguide 	Helpers / Text @example 	html <div class="t-center"> I'm centered </div> */ text-align: center !important; }
 
-.t-justify { /** @name 		```.t-justify``` Make the text justified @styleguide 	Helpers / Text @example 	html <div class="t-justify"> Nullam vel feugiat nunc. Phasellus facilisis, nisi sit amet viverra rhoncus, arcu risus volutpat dolor, sed euismod magna tellus ac purus. Praesent augue lorem, ullamcorper ac accumsan nec, suscipit eu. </div> */ text-align: justify; }
+.t-justify { /** @name 		```.t-justify``` Make the text justified @styleguide 	Helpers / Text @example 	html <div class="t-justify"> Nullam vel feugiat nunc. Phasellus facilisis, nisi sit amet viverra rhoncus, arcu risus volutpat dolor, sed euismod magna tellus ac purus. Praesent augue lorem, ullamcorper ac accumsan nec, suscipit eu. </div> */ text-align: justify !important; }
 
-.t-lowercase { /** @name 		```.t-lowercase``` Transform the text to lowercase @styleguide 	Helpers / Text @example 	html <div class="t-lowercase"> I'M LOWERCASE </div> */ text-transform: lowercase; }
+.t-lowercase { /** @name 		```.t-lowercase``` Transform the text to lowercase @styleguide 	Helpers / Text @example 	html <div class="t-lowercase"> I'M LOWERCASE </div> */ text-transform: lowercase !important; }
 
-.t-uppercase { /** @name 		```.t-uppercase``` Transform the text to uppercase @styleguide 	Helpers / Text @example 	html <div class="t-uppercase"> I'm uppercase </div> */ text-transform: uppercase; }
+.t-uppercase { /** @name 		```.t-uppercase``` Transform the text to uppercase @styleguide 	Helpers / Text @example 	html <div class="t-uppercase"> I'm uppercase </div> */ text-transform: uppercase !important; }
 
-.t-capitalize { /** @name 		```.t-capitalize``` Capizalize the words @styleguide 	Helpers / Text @example 	html <div class="t-capitalize"> I'm capitalized </div> */ text-transform: capitalize; }
+.t-capitalize { /** @name 		```.t-capitalize``` Capizalize the words @styleguide 	Helpers / Text @example 	html <div class="t-capitalize"> I'm capitalized </div> */ text-transform: capitalize !important; }
 
 .f-bold { /** @name 		```.f-bold``` Set the font-weight to ```bold``` @styleguide 	Helpers / Font @example 	html This <span class="f-bold">word</span> is bold */ font-weight: bold; }
 
@@ -318,14 +318,9 @@ button { line-height: 1; }
 /** Provide the styling for the quotes classes @author 		Olivier Bossel <olivier.bossel@gmail.com> */
 /** Provide the bare styling for the quotes classes @author 		Olivier Bossel <olivier.bossel@gmail.com> */
 /** Provide the style styling for the quotes classes @author 		Olivier Bossel <olivier.bossel@gmail.com> */
-/** Load all components */
-@keyframes s-ripple { 0% { opacity: 1;
-    transform: translateX(-50%) translateY(-50%) scale(0, 0); }
-  100% { opacity: 0;
-    transform: translateX(-50%) translateY(-50%) scale(1, 1); } }
-
 /** Setup Setup all the different parts/modules/libraries. */
 /** Setup Setup all the different parts/modules/libraries. */
+/** @name 	default State Here's the settings for the **default** state. @styleguide 	Gridle / States @display 	gridle-settings @gridle-name 	default @gridle-min-width 	 @gridle-max-width 	 @gridle-query 	 @gridle-classes 	true @gridle-context 	12 @gridle-gutter-width 	20px @gridle-gutter-height 	20px @gridle-gutter-top 	10px @gridle-gutter-right 	10px @gridle-gutter-bottom 	10px @gridle-gutter-left 	10px @gridle-direction 	ltr @gridle-dir-attribute 	false @gridle-name-multiplicator 	1 @gridle-states-classes 	false @gridle-classes-prefix 	 */
 /** Utils Import all the different utils functions, mixins, classes, etc... */
 /** Utils Import all the different utils functions, mixins, classes, etc... */
 /** Generic All the generic codebase for the project like typography, resets, etc... */
@@ -360,6 +355,7 @@ button { line-height: 1; }
 
 #gridle-settings { content: '{ "version" : "2.0.48", "states" : { "default":{ "name" : "default", "min-width" : null, "max-width" : null, "query" : null, "classes" : true, "context" : "12", "column-width" : null, "gutter-width" : "20px", "gutter-height" : "20px", "gutter-top" : "10px", "gutter-right" : "10px", "gutter-bottom" : "10px", "gutter-left" : "10px", "direction" : "ltr", "dir-attribute" : false, "name-multiplicator" : "1", "states-classes" : false, "classes-prefix" : null, "_" : true }} }'; }
 
+/** @name 	Columns Grid columns available @styleguide 	Gridle / Columns @example 	html <style> .row.gridle-styleguide { margin-bottom: 20px; } [class*="gr-"].gridle-styleguide { background:#eee; padding:20px; } </style> <div class="gridle-styleguide .container"> <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-1"> .gr-1 </div> </div> <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-2"> .gr-2 </div> </div> <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-3"> .gr-3 </div> </div> <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-4"> .gr-4 </div> </div> <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-5"> .gr-5 </div> </div> <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-6"> .gr-6 </div> </div> <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-7"> .gr-7 </div> </div> <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-8"> .gr-8 </div> </div> <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-9"> .gr-9 </div> </div> <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-10"> .gr-10 </div> </div> <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-11"> .gr-11 </div> </div> <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-12"> .gr-12 </div> </div> </div> */
 .gr-0 { width: 0%; }
 
 .push-0 { left: 0%; right: auto; }
@@ -639,7 +635,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 /** @styleguide 	Colors / Swatches @name 		error @color 		#d9534f @display 	color */
 /** @styleguide 	Colors / Swatches @name 		info @color 		#2199e8 @display 	color */
 /** @styleguide 	Colors / Swatches @name 		border @color 		#e5e9ea @display 	color */
-.s-settings:after { content: '{"unit": "rem", "reset": true, "border-box": true, "sizes": {"smaller": 0.3, "small": 0.6, "default": 1, "medium": 1.4, "big": 2, "bigger": 3}, "typography": {"font-family": "default", "font-size": "14px", "font-sizes": null, "line-letters-count": 55, "font-format": {"eot": "embedded-opentype", "woff2": "woff2", "woff": "woff", "ttf": "truetype", "otf": "opentype", "svg": "svg", "svgz": "svgz"}}, "look-and-feel": {"border-radius": 0, "padding-vertical": "1em", "padding-horizontal": "0.8em", "disabled-opacity": 0.5}, "spaces": {"default": "1rem"}, "colors": {"default": {"color": "#848e91", "modifiers": {"light": "#acb3b5", "dark": "#5f676a"}}, "title": {"color": "#2b3438"}, "text": {"color": "default"}, "link": {"color": "primary"}, "primary": {"color": "#f2bc2b"}, "secondary": {"color": "#2b3438"}, "success": {"color": "#5cb85c"}, "warning": {"color": "#f0ad4e"}, "error": {"color": "#d9534f"}, "info": {"color": "#2199e8"}, "border": {"color": "#e5e9ea"}}, "modular-scale": {"base": "1rem", "ratio": 1.33}, "text-format": {"scope-class": "tf"}, "vertical-rhythme": {"enabled": true, "scope-class": "vr", "no-vertical-rhythme-class": false}, "BEM": {"standelone-modifier": false, "element-separator": "__", "modifier-separator": "--"}, "fonts": {"default": {"font-family": ["Helvetica Neue", "Helvetica", "Verdana", "Arial", "sans-serif"], "font-weight": "normal", "cap-height": 0.65}, "quote": {"font-family": ["Palatino", "Times", "Georgia", "serif"], "font-weight": "normal", "cap-height": 0.65}, "code": {"font-family": ["Menlo", "Monaco", "Consolas", "Courier New", "monospace"], "font-weight": "normal", "cap-height": 0.65}}, "filters": {"drop-shadow": "drop-shadow(rgba(0, 0, 0, 0.2) 0 0 10px)"}, "transitions": {"fast": ["all", "0.1s", "ease-in-out", "0s"], "default": ["all", "0.2s", "ease-in-out", "0s"], "slow": ["all", "0.5s", "ease-in-out", "0s"]}}'; display: none; }
+.s-settings:after { content: '{"unit": "rem", "reset": true, "border-box": true, "sizes": {"smaller": 0.3, "small": 0.6, "default": 1, "medium": 1.4, "big": 2, "bigger": 3}, "typography": {"font-family": "default", "font-size": "14px", "font-sizes": null, "line-letters-count": 55, "font-format": {"eot": "embedded-opentype", "woff2": "woff2", "woff": "woff", "ttf": "truetype", "otf": "opentype", "svg": "svg", "svgz": "svgz"}}, "look-and-feel": {"border-radius": 0, "padding-vertical": "1em", "padding-horizontal": "0.8em", "disabled-opacity": 0.5}, "spaces": {"default": "1rem"}, "colors": {"default": {"color": "#848e91", "modifiers": {"light": "#acb3b5", "dark": "#5f676a"}}, "title": {"color": "#2b3438"}, "text": {"color": "default"}, "link": {"color": "primary"}, "primary": {"color": "#f2bc2b"}, "secondary": {"color": "#2b3438"}, "success": {"color": "#5cb85c"}, "warning": {"color": "#f0ad4e"}, "error": {"color": "#d9534f"}, "info": {"color": "#2199e8"}, "border": {"color": "#e5e9ea"}}, "modular-scale": {"base": "1rem", "ratio": 1.33}, "text-format": {"scope-class": "tf"}, "vertical-rhythme": {"enabled": true, "scope-class": "vr"}, "BEM": {"standelone-modifier": false, "element-separator": "__", "modifier-separator": "--"}, "fonts": {"default": {"font-family": ["Helvetica Neue", "Helvetica", "Verdana", "Arial", "sans-serif"], "font-weight": "normal", "cap-height": 0.65}, "quote": {"font-family": ["Palatino", "Times", "Georgia", "serif"], "font-weight": "normal", "cap-height": 0.65}, "code": {"font-family": ["Menlo", "Monaco", "Consolas", "Courier New", "monospace"], "font-weight": "normal", "cap-height": 0.65}}, "filters": {"drop-shadow": "drop-shadow(rgba(0, 0, 0, 0.2) 0 0 10px)"}, "transitions": {"fast": ["all", "0.1s", "ease-in-out", "0s"], "default": ["all", "0.2s", "ease-in-out", "0s"], "slow": ["all", "0.5s", "ease-in-out", "0s"]}}'; display: none; }
 
 html { box-sizing: border-box; }
 
@@ -1220,7 +1216,7 @@ html, body { width: 100%; height: 100%; }
 .content { width: calc(100% - 250px + 15px); height: 100%; overflow-y: auto; padding: 3rem; background: #fcfcfc; position: fixed; left: 250px; }
 
 /** Footer */
-.footer { margin: -3rem; margin-top: 0; padding: 3rem; background: #f2f2f2; background: white; }
+.footer { margin: -3rem; margin-top: 3rem; padding: 3rem; background: #f2f2f2; background: white; }
 
 /** Pages All the pages level specific styling. */
 /** Pages All the pages level specific styling. */
@@ -1229,7 +1225,9 @@ html, body { width: 100%; height: 100%; }
 /** Documentation styling */
 .documentation h1 { background-color: #2b3438; background-image: url("../img/header-bkg-grey.png"); background-blend-mode: luminosity; background-repeat: no-repeat; background-size: cover; color: white; margin: -3rem; margin-bottom: 3rem; padding: 3rem; text-shadow: rgba(0, 0, 0, 0.3) 0 0 5px; }
 
-.documentation h2 { border-bottom: 1px solid #e5e9ea; padding-bottom: 1rem; margin-bottom: 2rem; margin-top: 2rem; }
+.documentation h2 { border-bottom: 1px solid #e5e9ea; padding-bottom: 1rem; margin-bottom: 2rem; margin-top: 4rem; }
+
+.documentation h3 { margin-top: 4rem; }
 
 .documentation pre { box-shadow: rgba(0, 0, 0, 0.2) 0 20px 30px; margin-top: 1em !important; margin-bottom: 3em !important; }
 

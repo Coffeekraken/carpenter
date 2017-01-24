@@ -70,7 +70,7 @@ body {
  */
 .footer {
 	margin:s-space(bigger) * -1;
-	margin-top:0;
+	margin-top:s-space(bigger);
 	padding: s-space(bigger);
 	background: darken(white,5%);
 	background: white;

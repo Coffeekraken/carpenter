@@ -1,18 +1,19 @@
-const __editorDisplay = require('./displays/editor');
-const __colorDisplay = require('./displays/color');
-const __fontDisplay = require('./displays/font');
-
+const __displays = require('./displays/index');
+const __config = require('../config');
+const _merge = require('lodash/merge');
 module.exports = function renderDisplay(name, data) {
-	switch(name) {
-		case 'color':
-			return __colorDisplay(data);
-		break;
-		case 'font':
-			return __fontDisplay(data);
-		break;
-		case 'editor':
-		default:
-			return __editorDisplay(data);
-		break;
+	// additional displays
+	if (__config.styleguide.displays.length) {
+		__config.styleguide.displays.forEach(function(displaysFilePath) {
+			const additionalDisplays = require(displaysFilePath);
+			// merge into displays
+			_merge(__displays, additionalDisplays);
+		});
+	}
+
+	if ( ! __displays[name]) {
+		console.warn(`The display "${name}" does not exist...`);
+	} else {
+		return __displays[name](data);
 	}
 }

@@ -60,6 +60,7 @@
 	
 	__webpack_require__(526);
 	__webpack_require__(527);
+	__webpack_require__(528);
 	_prismjs2.default.highlightAll();
 
 /***/ },
@@ -63547,6 +63548,23 @@
 
 /***/ },
 /* 527 */
+/***/ function(module, exports) {
+
+	Prism.languages.json = {
+	    'property': /"(?:\\.|[^|"])*"(?=\s*:)/ig,
+	    'string': /"(?!:)(?:\\.|[^|"])*"(?!:)/g,
+	    'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee][+-]?\d+)?)\b/g,
+	    'punctuation': /[{}[\]);,]/g,
+	    'operator': /:/g,
+	    'boolean': /\b(true|false)\b/gi,
+	    'null': /\bnull\b/gi
+	};
+	
+	Prism.languages.jsonp = Prism.languages.json;
+
+
+/***/ },
+/* 528 */
 /***/ function(module, exports) {
 
 	(function() {

@@ -6,16 +6,54 @@
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 <body>
-	<div color="primary" class="sidebar">
-		<header class="sidebar__header">
-			<h1 class="t-left">
+	<div class="topbar">
+		<div class="row row-align-middle auto-height">
+			<div class="gr-adapt auto-height nowrap topbar__logo">
 				{{#if logo}}
-					<img style="width:100px" class="inline-block" src="{{logo}}" />
+					<img style="width:100px; max-height:30px;" class="inline-block" src="/{{logo}}" />
 				{{else}}
-					<div style="width:100%;" class="coffeekraken-logo"></div>
+					<div style="width:80px;" class="coffeekraken-logo"></div>
 				{{/if}}
+			</div>
+			<div class="gr-adapt">
+				<h1 class="h5" style="color:white">
+					{{title}}
+					{{#if packageJson.version}}
+						<span class="small">{{packageJson.version}}</span>
+					{{/if}}
+				</h1>
+			</div>
+			<div class="gr-grow">
+			</div>
+			<div class="gr-adapt">
+				<ul class="nav nav--topbar">
+					{{#if packageJson.homepage}}
+						<li class="nav__item">
+							<a href="{{packageJson.homepage}}" title="Go to website" target="_blank">
+								<i class="fa fa-globe"></i>&nbsp;&nbsp;Website
+							</a>
+						</li>
+					{{/if}}
+					{{#if packageJson.repository}}
+						<li class="nav__item">
+							<a href="{{packageJson.repository.url}}" title="Repository" target="_blank">
+								<i class="fa fa-github"></i>&nbsp;&nbsp;Repository
+							</a>
+						</li>
+					{{/if}}
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div color="primary" class="sidebar">
+		<!-- <header class="sidebar__header">
+			<h1 class="h5 m-b-small">
+				{{title}}
 			</h1>
-		</header>
+			<p class="p p--lead">
+				{{packageJson.description}}
+			</p>
+		</header> -->
 		{{#if styleguide.all}}
 			<a href="#sidebar-styleguide" save-state="localStorage" toggle="true" history="false" class="h6 sidebar__separator bkg-primary" is="s-activate" id="sidebar-styleguide">
 				<s-ripple></s-ripple>
@@ -45,8 +83,8 @@
 				{{/each}}
 			</ul>
 		{{/if}}
-		{{#if documentation.three}}
-			<a href="#sidebar-doc" save-state="localStorage" toggle="true" history="false" class="h6 sidebar__separator bkg-secondary" is="s-activate" id="sidebar-doc">
+		{{#if documentation}}
+			<a href="#sidebar-doc" save-state="localStorage" toggle="true" history="false" class="h6 sidebar__separator" is="s-activate" id="sidebar-doc">
 				<s-ripple></s-ripple>
 				Documentation
 				<i class="fa fa-caret-down pull-right"></i>
@@ -59,27 +97,25 @@
 
 		{{{body}}}
 
-		<div class="gr-12">
-			<footer class="footer">
-				<div class="row">
-					<div class="gr-6">
-						<section class="copy s-small">
-							<div class="m-b-smaller">
-								Powered by <a class="link" href="http://github.com/coffeekraken/styleguide" title="Styleguide from Coffeekraken" target="_blank">Styleguide</a> from <a class="link" href="http://coffeekraken.io" title="Coffeekraken" target="_blank">Coffeekraken</a>
-							</div>
-							<div>
-								Shipped with love under <a class="link" href="https://opensource.org/licenses/MIT" title="MIT License" target="_blank">MIT License</a>
-							</div>
-						<section>
-					</div>
-					<div class="gr-6 t-right">
-						<a href="http://coffeekraken.io" title="Coffeekraken" target="_blank">
-							<div style="width:70px; opacity:.4" class="coffeekraken-logo"></div>
-						</a>
-					</div>
+		<footer class="footer">
+			<div class="row">
+				<div class="gr-6">
+					<section class="copy s-small">
+						<div class="m-b-smaller">
+							Powered by <a class="link" href="http://github.com/coffeekraken/carpenter" title="Carpenter from Coffeekraken" target="_blank">Carpenter</a> from <a class="link" href="http://coffeekraken.io" title="Coffeekraken" target="_blank">Coffeekraken</a>
+						</div>
+						<div>
+							Shipped with love under <a class="link" href="https://opensource.org/licenses/MIT" title="MIT License" target="_blank">MIT License</a>
+						</div>
+					<section>
 				</div>
-			</footer>
-		</div>
+				<div class="gr-6 t-right">
+					<a href="http://coffeekraken.io" title="Coffeekraken" target="_blank">
+						<div style="width:70px; opacity:.4" class="coffeekraken-logo"></div>
+					</a>
+				</div>
+			</div>
+		</footer>
 
 	</section>
 

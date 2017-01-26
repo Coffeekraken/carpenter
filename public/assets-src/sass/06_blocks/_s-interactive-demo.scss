@@ -3,7 +3,7 @@
  */
 s-interactive-demo {
 	background: white;
-	@include s-depth(10);
+	// @include s-depth(10);
 }
 	.s-interactive-demo__header {
 		background: s-color(border, -lighten 5% -desaturate 50%) !important;

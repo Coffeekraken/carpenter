@@ -21,7 +21,9 @@
 				$weight : bold,
 				$color : s-color(title)
 			);
-			&:hover,
+			&:hover {
+				background:darken(white, 1%);
+			}
 			&.active {
 				text-decoration: underline;
 				border-right:5px solid s-color(secondary);
@@ -45,11 +47,11 @@
 				$decoration : none,
 				$color : s-color(text)
 			);
-			border-right:0 solid s-color(secondary);
-			&:hover,
+			&:hover {
+				background:darken(white, 1%);
+			}
 			&.active {
 				text-decoration: underline;
-				border-right-width:5px;
 				color: s-color(primary);
 			}
 		}
@@ -57,7 +59,9 @@
 }
 
 .list--three {
-	padding:0 5px;
+	// padding:0 5px;
+	overflow: visible !important;
+
 	.list--three {
 		padding:0 0;
 	}
@@ -92,9 +96,35 @@
 			i {
 				color: s-color(text) !important;
 			}
-			&:hover,
+
+			border-left: 1px solid s-color(border);
+			margin-left:-1px;
+			&:before {
+				content:'';
+				display:block;
+				position: absolute;
+				bottom:0; left:0;
+				width:15px; height:1px;
+				background: s-color(border);
+			}
+
+			&:hover {
+				background:darken(white, 1%);
+			}
 			&.active {
+				border-left: 1px solid s-color(primary);
+				&:before {
+					background: s-color(primary);
+				}
+
+				> i {
+					color: s-color(primary) !important;
+				}
+			}
+			&:first-child:last-child.active {
 				color: s-color(primary);
+				// border-right: 3px solid s-color(border);
+				background:darken(white, 1%);
 				// font-weight: bold;
 			}
 		}

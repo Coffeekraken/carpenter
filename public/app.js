@@ -15,6 +15,7 @@ const __carpenterApi = require('../dist/index');
 const __readdirRecursive = require('fs-readdir-recursive');
 const __handlebarsHelpers = require('./app/handlebarHelpers');
 const __glob = require('glob-all');
+const _size = require('lodash/size');
 
 module.exports = function(config) {
 
@@ -23,6 +24,19 @@ module.exports = function(config) {
 
 	// extend config
 	_extend(__config, config);
+
+	// index
+	if (config.index) {
+		app.get('/', function (req, res) {
+			res.redirect(config.index);
+		});
+	}
+
+	// load package.json
+	let packageJson = {};
+	if (__fs.existsSync(process.env.PWD + '/package.json')) {
+		packageJson = require(process.env.PWD + '/package.json');
+	}
 
 	// handlebars
 	app.engine('handlebars', __expressHandlebars({
@@ -148,7 +162,7 @@ module.exports = function(config) {
 		next();
 	});
 
-	// global route
+	// styleguide route
 	app.get('/styleguide/:styleguide?', function (req, res) {
 		// filter styleguide to display depending on the url
 		let styleguidesToDisplay = {};
@@ -158,24 +172,31 @@ module.exports = function(config) {
 			styleguidesToDisplay = allStyleguides;
 		}
 
-		// render the page
-		res.render('styleguide', {
+		const viewData = {
 			helpers : __handlebarsHelpers,
 			request : req,
 			title : config.title,
 			logo : config.logo,
 			url : req.url,
-			documentation : {
+			packageJson : packageJson
+		};
+		if (allStyleguides && _size(allStyleguides)) {
+			viewData.styleguide = {
+				all : allStyleguides,
+				toDisplay : styleguidesToDisplay
+			};
+		}
+		if (_size(docThree)) {
+			viewData.documentation = {
 				three : docThree
-			},
-			styleguide : {
-				toDisplay : styleguidesToDisplay,
-				all : allStyleguides
 			}
-		});
+		}
+
+		// render the page
+		res.render('styleguide', viewData);
 	});
 
-	// global route
+	// documentation route
 	app.get(/documentation\/.+/, function (req, res) {
 		const docFilePath = req.url.replace(/^\/documentation\//,'');
 
@@ -188,21 +209,28 @@ module.exports = function(config) {
 
 		let markdown = __marked(content);
 
-		// render the page
-		res.render('documentation', {
+		const viewData = {
 			helpers : __handlebarsHelpers,
 			request : req,
 			title : config.title,
 			logo : config.logo,
 			url : req.url,
-			documentation : {
+			packageJson : packageJson
+		};
+		if (allStyleguides && _size(allStyleguides)) {
+			viewData.styleguide = {
+				all : allStyleguides
+			};
+		}
+		if (_size(docThree)) {
+			viewData.documentation = {
 				three : docThree,
 				content : markdown
-			},
-			styleguide : {
-				all : allStyleguides
 			}
-		});
+		}
+
+		// render the page
+		res.render('documentation', viewData);
 
 		// // redirect the root url to the README.md file
 		// let docFile = req.url;

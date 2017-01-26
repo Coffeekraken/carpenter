@@ -50,18 +50,37 @@
 	
 	var _prismjs2 = _interopRequireDefault(_prismjs);
 	
+	var _throttle = __webpack_require__(2);
+	
+	var _throttle2 = _interopRequireDefault(_throttle);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	__webpack_require__(2);
 	__webpack_require__(3);
-	__webpack_require__(5);
+	__webpack_require__(4);
 	__webpack_require__(6);
+	__webpack_require__(7);
 	__webpack_require__(152);
 	
 	__webpack_require__(526);
 	__webpack_require__(527);
 	__webpack_require__(528);
 	_prismjs2.default.highlightAll();
+	
+	
+	// save scroll position
+	var scrollTimeout = void 0;
+	var onScroll = (0, _throttle2.default)(function (e) {
+		sessionStorage.setItem('scrollTop', document.body.scrollTop);
+	});
+	document.addEventListener('scroll', onScroll);
+	// restore scroll top if possible
+	var savedScrollTop = sessionStorage.getItem('scrollTop');
+	if (savedScrollTop) {
+		setTimeout(function () {
+			window.scrollTo(0, parseInt(savedScrollTop));
+		});
+	}
 
 /***/ },
 /* 1 */
@@ -867,6 +886,54 @@
 
 /***/ },
 /* 2 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	exports.__esModule = true;
+	exports.default = throttle;
+	/**
+	 * This utils function allows you to make sure that a function that will normally be called
+	 * several times, for example during a scroll event, to be called once each threshhold time
+	 *
+	 * @name 			throttle
+	 * @example 		js
+	 * const myThrottledFn = throttle(() => {
+	 * 		// my function content that will be
+	 * 		// executed only once each second
+	 * }, 1000);
+	 *
+	 * document.addEventListener('scroll', (e) => {
+	 * 		// call my throttled function
+	 * 		myThrottledFn();
+	 * });
+	 *
+	 * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+	 */
+	function throttle(fn, threshhold) {
+	    threshhold || (threshhold = 250);
+	    var last, deferTimer;
+	    return function () {
+	        var context = this;
+	
+	        var now = +new Date(),
+	            args = arguments;
+	        if (last && now < last + threshhold) {
+	            // hold on to it
+	            clearTimeout(deferTimer);
+	            deferTimer = setTimeout(function () {
+	                last = now;
+	                fn.apply(context, args);
+	            }, threshhold);
+	        } else {
+	            last = now;
+	            fn.apply(context, args);
+	        }
+	    };
+	}
+
+/***/ },
+/* 3 */
 /***/ function(module, exports) {
 
 	/**
@@ -3376,7 +3443,7 @@
 	})(window.WebComponents);
 
 /***/ },
-/* 3 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -3384,7 +3451,7 @@
 	
 	(function(mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(4));
+	    mod(__webpack_require__(5));
 	  else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror"], mod);
 	  else // Plain browser env
@@ -3796,7 +3863,7 @@
 
 
 /***/ },
-/* 4 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -5546,6 +5613,9 @@
 	                 col: 0, pos: 0, cm: cm,
 	                 trailingSpace: false,
 	                 splitSpaces: (ie || webkit) && cm.getOption("lineWrapping")}
+	  // hide from accessibility tree
+	  content.setAttribute("role", "presentation")
+	  builder.pre.setAttribute("role", "presentation")
 	  lineView.measure = {}
 	
 	  // Iterate over the logical lines that make up this visual line.
@@ -9384,6 +9454,7 @@
 	    // Showing up as a widget implies collapsed (widget replaces text)
 	    marker.collapsed = true
 	    marker.widgetNode = elt("span", [marker.replacedWith], "CodeMirror-widget")
+	    marker.widgetNode.setAttribute("role", "presentation") // hide from accessibility tree
 	    if (!options.handleMouseEvents) { marker.widgetNode.setAttribute("cm-ignore-events", "true") }
 	    if (options.insertLeft) { marker.widgetNode.insertLeft = true }
 	  }
@@ -9731,7 +9802,6 @@
 	  clearGutter: docMethodOp(function(gutterID) {
 	    var this$1 = this;
 	
-	    var i = this.first
 	    this.iter(function (line) {
 	      if (line.gutterMarkers && line.gutterMarkers[gutterID]) {
 	        changeLine(this$1, line, "gutter", function () {
@@ -9740,7 +9810,6 @@
 	          return true
 	        })
 	      }
-	      ++i
 	    })
 	  }),
 	
@@ -12905,14 +12974,14 @@
 	
 	addLegacyProps(CodeMirror)
 	
-	CodeMirror.version = "5.22.2"
+	CodeMirror.version = "5.23.0"
 	
 	return CodeMirror;
 	
 	})));
 
 /***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -12920,7 +12989,7 @@
 	
 	(function(mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(4));
+	    mod(__webpack_require__(5));
 	  else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror"], mod);
 	  else // Plain browser env
@@ -13506,7 +13575,7 @@
 	    "above", "absolute", "activeborder", "additive", "activecaption", "afar",
 	    "after-white-space", "ahead", "alias", "all", "all-scroll", "alphabetic", "alternate",
 	    "always", "amharic", "amharic-abegede", "antialiased", "appworkspace",
-	    "arabic-indic", "armenian", "asterisks", "attr", "auto", "avoid", "avoid-column", "avoid-page",
+	    "arabic-indic", "armenian", "asterisks", "attr", "auto", "auto-flow", "avoid", "avoid-column", "avoid-page",
 	    "avoid-region", "background", "backwards", "baseline", "below", "bidi-override", "binary",
 	    "bengali", "blink", "block", "block-axis", "bold", "bolder", "border", "border-box",
 	    "both", "bottom", "break", "break-all", "break-word", "bullets", "button", "button-bevel",
@@ -13743,16 +13812,16 @@
 
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _coffeekrakenCompileServer = __webpack_require__(7);
+	var _coffeekrakenCompileServer = __webpack_require__(8);
 	
 	var _coffeekrakenCompileServer2 = _interopRequireDefault(_coffeekrakenCompileServer);
 	
-	var _SWebComponent = __webpack_require__(90);
+	var _SWebComponent = __webpack_require__(91);
 	
 	var _SWebComponent2 = _interopRequireDefault(_SWebComponent);
 	
@@ -13777,7 +13846,7 @@
 	}, 's-trianglify');
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13786,19 +13855,19 @@
 		value: true
 	});
 	
-	var _compile = __webpack_require__(8);
+	var _compile = __webpack_require__(9);
 	
 	var _compile2 = _interopRequireDefault(_compile);
 	
-	var _sass = __webpack_require__(37);
+	var _sass = __webpack_require__(38);
 	
 	var _sass2 = _interopRequireDefault(_sass);
 	
-	var _js = __webpack_require__(9);
+	var _js = __webpack_require__(10);
 	
 	var _js2 = _interopRequireDefault(_js);
 	
-	var _setup = __webpack_require__(38);
+	var _setup = __webpack_require__(39);
 	
 	var _setup2 = _interopRequireDefault(_setup);
 	
@@ -13814,7 +13883,7 @@
 	exports.default = api;
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13824,11 +13893,11 @@
 	});
 	exports.default = compile;
 	
-	var _js = __webpack_require__(9);
+	var _js = __webpack_require__(10);
 	
 	var _js2 = _interopRequireDefault(_js);
 	
-	var _sass = __webpack_require__(37);
+	var _sass = __webpack_require__(38);
 	
 	var _sass2 = _interopRequireDefault(_sass);
 	
@@ -13855,7 +13924,7 @@
 	}
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13865,11 +13934,11 @@
 	});
 	exports.default = js;
 	
-	var _SAjax = __webpack_require__(10);
+	var _SAjax = __webpack_require__(11);
 	
 	var _SAjax2 = _interopRequireDefault(_SAjax);
 	
-	var _settings = __webpack_require__(36);
+	var _settings = __webpack_require__(37);
 	
 	var _settings2 = _interopRequireDefault(_settings);
 	
@@ -13894,7 +13963,7 @@
 	}
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13903,29 +13972,29 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _SObject2 = __webpack_require__(11);
+	var _SObject2 = __webpack_require__(12);
 	
 	var _SObject3 = _interopRequireDefault(_SObject2);
 	
-	var _simpleAjax = __webpack_require__(16);
+	var _simpleAjax = __webpack_require__(17);
 	
 	var _simpleAjax2 = _interopRequireDefault(_simpleAjax);
 	
-	var _Observable = __webpack_require__(19);
+	var _Observable = __webpack_require__(20);
 	
-	var _strToHtml = __webpack_require__(33);
+	var _strToHtml = __webpack_require__(34);
 	
 	var _strToHtml2 = _interopRequireDefault(_strToHtml);
 	
-	var _htmlToStr = __webpack_require__(34);
+	var _htmlToStr = __webpack_require__(35);
 	
 	var _htmlToStr2 = _interopRequireDefault(_htmlToStr);
 	
-	var _SAjaxRequest = __webpack_require__(35);
+	var _SAjaxRequest = __webpack_require__(36);
 	
 	var _SAjaxRequest2 = _interopRequireDefault(_SAjaxRequest);
 	
-	var _autoCast = __webpack_require__(14);
+	var _autoCast = __webpack_require__(15);
 	
 	var _autoCast2 = _interopRequireDefault(_autoCast);
 	
@@ -14235,7 +14304,7 @@
 	exports.default = SAjax;
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14244,7 +14313,7 @@
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	__webpack_require__(12);
+	__webpack_require__(13);
 	
 	/**
 	 * @class 		SObject
@@ -14265,16 +14334,16 @@
 	exports.default = SObject;
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _sTemplateIntegrator = __webpack_require__(13);
+	var _sTemplateIntegrator = __webpack_require__(14);
 	
 	var _sTemplateIntegrator2 = _interopRequireDefault(_sTemplateIntegrator);
 	
-	var _fastdom = __webpack_require__(15);
+	var _fastdom = __webpack_require__(16);
 	
 	var _fastdom2 = _interopRequireDefault(_fastdom);
 	
@@ -14331,7 +14400,7 @@
 	});
 
 /***/ },
-/* 13 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -14340,7 +14409,7 @@
 	
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 	
-	var _autoCast = __webpack_require__(14);
+	var _autoCast = __webpack_require__(15);
 	
 	var _autoCast2 = _interopRequireDefault(_autoCast);
 	
@@ -14468,7 +14537,7 @@
 	exports.default = new STemplateIntegrator();
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -14502,7 +14571,7 @@
 	}
 
 /***/ },
-/* 15 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;!(function(win) {
@@ -14750,11 +14819,11 @@
 
 
 /***/ },
-/* 16 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var EventEmitter = __webpack_require__(17).EventEmitter,
-	    queryString = __webpack_require__(18);
+	var EventEmitter = __webpack_require__(18).EventEmitter,
+	    queryString = __webpack_require__(19);
 	
 	function tryParseJson(data){
 	    try{
@@ -14904,7 +14973,7 @@
 
 
 /***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -15212,7 +15281,7 @@
 
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -15284,13 +15353,13 @@
 
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var root_1 = __webpack_require__(20);
-	var toSubscriber_1 = __webpack_require__(21);
-	var observable_1 = __webpack_require__(32);
+	var root_1 = __webpack_require__(21);
+	var toSubscriber_1 = __webpack_require__(22);
+	var observable_1 = __webpack_require__(33);
 	/**
 	 * A representation of any set of values over any amount of time. This the most basic building block
 	 * of RxJS.
@@ -15418,7 +15487,7 @@
 	//# sourceMappingURL=Observable.js.map
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {"use strict";
@@ -15437,13 +15506,13 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var Subscriber_1 = __webpack_require__(22);
-	var rxSubscriber_1 = __webpack_require__(31);
-	var Observer_1 = __webpack_require__(30);
+	var Subscriber_1 = __webpack_require__(23);
+	var rxSubscriber_1 = __webpack_require__(32);
+	var Observer_1 = __webpack_require__(31);
 	function toSubscriber(nextOrObserver, error, complete) {
 	    if (nextOrObserver) {
 	        if (nextOrObserver instanceof Subscriber_1.Subscriber) {
@@ -15462,7 +15531,7 @@
 	//# sourceMappingURL=toSubscriber.js.map
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15471,10 +15540,10 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var isFunction_1 = __webpack_require__(23);
-	var Subscription_1 = __webpack_require__(24);
-	var Observer_1 = __webpack_require__(30);
-	var rxSubscriber_1 = __webpack_require__(31);
+	var isFunction_1 = __webpack_require__(24);
+	var Subscription_1 = __webpack_require__(25);
+	var Observer_1 = __webpack_require__(31);
+	var rxSubscriber_1 = __webpack_require__(32);
 	/**
 	 * Implements the {@link Observer} interface and extends the
 	 * {@link Subscription} class. While the {@link Observer} is the public API for
@@ -15716,7 +15785,7 @@
 	//# sourceMappingURL=Subscriber.js.map
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -15727,7 +15796,7 @@
 	//# sourceMappingURL=isFunction.js.map
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15736,12 +15805,12 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var isArray_1 = __webpack_require__(25);
-	var isObject_1 = __webpack_require__(26);
-	var isFunction_1 = __webpack_require__(23);
-	var tryCatch_1 = __webpack_require__(27);
-	var errorObject_1 = __webpack_require__(28);
-	var UnsubscriptionError_1 = __webpack_require__(29);
+	var isArray_1 = __webpack_require__(26);
+	var isObject_1 = __webpack_require__(27);
+	var isFunction_1 = __webpack_require__(24);
+	var tryCatch_1 = __webpack_require__(28);
+	var errorObject_1 = __webpack_require__(29);
+	var UnsubscriptionError_1 = __webpack_require__(30);
 	/**
 	 * Represents a disposable resource, such as the execution of an Observable. A
 	 * Subscription has one important method, `unsubscribe`, that takes no argument
@@ -15910,7 +15979,7 @@
 	//# sourceMappingURL=Subscription.js.map
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -15918,7 +15987,7 @@
 	//# sourceMappingURL=isArray.js.map
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -15929,11 +15998,11 @@
 	//# sourceMappingURL=isObject.js.map
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var errorObject_1 = __webpack_require__(28);
+	var errorObject_1 = __webpack_require__(29);
 	var tryCatchTarget;
 	function tryCatcher() {
 	    try {
@@ -15953,7 +16022,7 @@
 	//# sourceMappingURL=tryCatch.js.map
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -15962,7 +16031,7 @@
 	//# sourceMappingURL=errorObject.js.map
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -15992,7 +16061,7 @@
 	//# sourceMappingURL=UnsubscriptionError.js.map
 
 /***/ },
-/* 30 */
+/* 31 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -16005,22 +16074,22 @@
 	//# sourceMappingURL=Observer.js.map
 
 /***/ },
-/* 31 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var root_1 = __webpack_require__(20);
+	var root_1 = __webpack_require__(21);
 	var Symbol = root_1.root.Symbol;
 	exports.$$rxSubscriber = (typeof Symbol === 'function' && typeof Symbol.for === 'function') ?
 	    Symbol.for('rxSubscriber') : '@@rxSubscriber';
 	//# sourceMappingURL=rxSubscriber.js.map
 
 /***/ },
-/* 32 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var root_1 = __webpack_require__(20);
+	var root_1 = __webpack_require__(21);
 	function getSymbolObservable(context) {
 	    var $$observable;
 	    var Symbol = context.Symbol;
@@ -16043,7 +16112,7 @@
 	//# sourceMappingURL=observable.js.map
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -16064,7 +16133,7 @@
 	}
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -16083,7 +16152,7 @@
 	}
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -16095,7 +16164,6 @@
 	/**
 	 * @class 		SAjaxRequest
 	 * Class that represent an ajax request that will be passed to an SAjax instance
-	 *
 	 * @example 	js
 	 * const request = new SAjaxRequest({
 	 *  	url : '/api/...',
@@ -16104,7 +16172,6 @@
 	 *  		myVar : 'myVal'
 	 *  	}
 	 * });
-	 *
 	 * @author 		Olivier Bossel<olivier.bossel@gmail.com>
 	 */
 	var SAjaxRequest = function () {
@@ -16118,28 +16185,24 @@
 		/**
 	  * Set the Authorization header
 	  * @type 		{String}
-	  * @default 	null
 	  */
 	
 	
 		/**
 	  * Set the content type header to send with the request
 	  * @type 		{String}
-	  * @default 	null
 	  */
 	
 	
 		/**
 	  * The data that will be sent with the request in JSON format
 	  * @type 		{Object}
-	  * @default 	null
 	  */
 	
 	
 		/**
 	  * Use the CORS or not (only for IE)
 	  * @type 		{Boolean}
-	  * @default 	true
 	  */
 	
 	
@@ -16177,14 +16240,12 @@
 		/**
 	  * Set additional headers to send with the request
 	  * @type 		{Object}
-	  * @default 	null
 	  */
 	
 	
 		/**
 	  * Set the X-Requested-With header
 	  * @type 		{String}
-	  * @default 	XMLHttpRequest
 	  */
 	
 	
@@ -16192,21 +16253,18 @@
 	  * The data type expected from the response
 	  * Accepted dataType are : text | json | html
 	  * @type 		{String}
-	  * @default 	text
 	  */
 	
 	
 		/**
 	  * Use the cache or not
 	  * @type 		{Boolean}
-	  * @default 	true
 	  */
 	
 	
 		/**
 	  * The request method to use like GET, POST, DELETE or PUT
 	  * @type 		{String}
-	  * @default 	GET
 	  */
 	
 	
@@ -16228,7 +16286,7 @@
 	exports.default = SAjaxRequest;
 
 /***/ },
-/* 36 */
+/* 37 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -16242,7 +16300,7 @@
 	exports.default = settings;
 
 /***/ },
-/* 37 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16252,11 +16310,11 @@
 	});
 	exports.default = sass;
 	
-	var _SAjax = __webpack_require__(10);
+	var _SAjax = __webpack_require__(11);
 	
 	var _SAjax2 = _interopRequireDefault(_SAjax);
 	
-	var _settings = __webpack_require__(36);
+	var _settings = __webpack_require__(37);
 	
 	var _settings2 = _interopRequireDefault(_settings);
 	
@@ -16280,7 +16338,7 @@
 	}
 
 /***/ },
-/* 38 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16290,11 +16348,11 @@
 	});
 	exports.default = setup;
 	
-	var _settings = __webpack_require__(36);
+	var _settings = __webpack_require__(37);
 	
 	var _settings2 = _interopRequireDefault(_settings);
 	
-	var _extend = __webpack_require__(39);
+	var _extend = __webpack_require__(40);
 	
 	var _extend2 = _interopRequireDefault(_extend);
 	
@@ -16307,19 +16365,19 @@
 	}
 
 /***/ },
-/* 39 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__(40);
-
-
-/***/ },
 /* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var copyObject = __webpack_require__(41),
-	    createAssigner = __webpack_require__(60),
-	    keysIn = __webpack_require__(73);
+	module.exports = __webpack_require__(41);
+
+
+/***/ },
+/* 41 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var copyObject = __webpack_require__(42),
+	    createAssigner = __webpack_require__(61),
+	    keysIn = __webpack_require__(74);
 	
 	/**
 	 * This method is like `_.assign` except that it iterates over own and
@@ -16360,11 +16418,11 @@
 
 
 /***/ },
-/* 41 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var assignValue = __webpack_require__(42),
-	    baseAssignValue = __webpack_require__(43);
+	var assignValue = __webpack_require__(43),
+	    baseAssignValue = __webpack_require__(44);
 	
 	/**
 	 * Copies properties of `source` to `object`.
@@ -16406,11 +16464,11 @@
 
 
 /***/ },
-/* 42 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseAssignValue = __webpack_require__(43),
-	    eq = __webpack_require__(59);
+	var baseAssignValue = __webpack_require__(44),
+	    eq = __webpack_require__(60);
 	
 	/** Used for built-in method references. */
 	var objectProto = Object.prototype;
@@ -16440,10 +16498,10 @@
 
 
 /***/ },
-/* 43 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var defineProperty = __webpack_require__(44);
+	var defineProperty = __webpack_require__(45);
 	
 	/**
 	 * The base implementation of `assignValue` and `assignMergeValue` without
@@ -16471,10 +16529,10 @@
 
 
 /***/ },
-/* 44 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(45);
+	var getNative = __webpack_require__(46);
 	
 	var defineProperty = (function() {
 	  try {
@@ -16488,11 +16546,11 @@
 
 
 /***/ },
-/* 45 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseIsNative = __webpack_require__(46),
-	    getValue = __webpack_require__(58);
+	var baseIsNative = __webpack_require__(47),
+	    getValue = __webpack_require__(59);
 	
 	/**
 	 * Gets the native function at `key` of `object`.
@@ -16511,13 +16569,13 @@
 
 
 /***/ },
-/* 46 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isFunction = __webpack_require__(47),
-	    isMasked = __webpack_require__(55),
-	    isObject = __webpack_require__(54),
-	    toSource = __webpack_require__(57);
+	var isFunction = __webpack_require__(48),
+	    isMasked = __webpack_require__(56),
+	    isObject = __webpack_require__(55),
+	    toSource = __webpack_require__(58);
 	
 	/**
 	 * Used to match `RegExp`
@@ -16564,11 +16622,11 @@
 
 
 /***/ },
-/* 47 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseGetTag = __webpack_require__(48),
-	    isObject = __webpack_require__(54);
+	var baseGetTag = __webpack_require__(49),
+	    isObject = __webpack_require__(55);
 	
 	/** `Object#toString` result references. */
 	var asyncTag = '[object AsyncFunction]',
@@ -16607,12 +16665,12 @@
 
 
 /***/ },
-/* 48 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Symbol = __webpack_require__(49),
-	    getRawTag = __webpack_require__(52),
-	    objectToString = __webpack_require__(53);
+	var Symbol = __webpack_require__(50),
+	    getRawTag = __webpack_require__(53),
+	    objectToString = __webpack_require__(54);
 	
 	/** `Object#toString` result references. */
 	var nullTag = '[object Null]',
@@ -16641,10 +16699,10 @@
 
 
 /***/ },
-/* 49 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var root = __webpack_require__(50);
+	var root = __webpack_require__(51);
 	
 	/** Built-in value references. */
 	var Symbol = root.Symbol;
@@ -16653,10 +16711,10 @@
 
 
 /***/ },
-/* 50 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var freeGlobal = __webpack_require__(51);
+	var freeGlobal = __webpack_require__(52);
 	
 	/** Detect free variable `self`. */
 	var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
@@ -16668,7 +16726,7 @@
 
 
 /***/ },
-/* 51 */
+/* 52 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
@@ -16679,10 +16737,10 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 52 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Symbol = __webpack_require__(49);
+	var Symbol = __webpack_require__(50);
 	
 	/** Used for built-in method references. */
 	var objectProto = Object.prototype;
@@ -16731,7 +16789,7 @@
 
 
 /***/ },
-/* 53 */
+/* 54 */
 /***/ function(module, exports) {
 
 	/** Used for built-in method references. */
@@ -16759,7 +16817,7 @@
 
 
 /***/ },
-/* 54 */
+/* 55 */
 /***/ function(module, exports) {
 
 	/**
@@ -16796,10 +16854,10 @@
 
 
 /***/ },
-/* 55 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var coreJsData = __webpack_require__(56);
+	var coreJsData = __webpack_require__(57);
 	
 	/** Used to detect methods masquerading as native. */
 	var maskSrcKey = (function() {
@@ -16822,10 +16880,10 @@
 
 
 /***/ },
-/* 56 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var root = __webpack_require__(50);
+	var root = __webpack_require__(51);
 	
 	/** Used to detect overreaching core-js shims. */
 	var coreJsData = root['__core-js_shared__'];
@@ -16834,7 +16892,7 @@
 
 
 /***/ },
-/* 57 */
+/* 58 */
 /***/ function(module, exports) {
 
 	/** Used for built-in method references. */
@@ -16866,7 +16924,7 @@
 
 
 /***/ },
-/* 58 */
+/* 59 */
 /***/ function(module, exports) {
 
 	/**
@@ -16885,7 +16943,7 @@
 
 
 /***/ },
-/* 59 */
+/* 60 */
 /***/ function(module, exports) {
 
 	/**
@@ -16928,11 +16986,11 @@
 
 
 /***/ },
-/* 60 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseRest = __webpack_require__(61),
-	    isIterateeCall = __webpack_require__(69);
+	var baseRest = __webpack_require__(62),
+	    isIterateeCall = __webpack_require__(70);
 	
 	/**
 	 * Creates a function like `_.assign`.
@@ -16971,12 +17029,12 @@
 
 
 /***/ },
-/* 61 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var identity = __webpack_require__(62),
-	    overRest = __webpack_require__(63),
-	    setToString = __webpack_require__(65);
+	var identity = __webpack_require__(63),
+	    overRest = __webpack_require__(64),
+	    setToString = __webpack_require__(66);
 	
 	/**
 	 * The base implementation of `_.rest` which doesn't validate or coerce arguments.
@@ -16994,7 +17052,7 @@
 
 
 /***/ },
-/* 62 */
+/* 63 */
 /***/ function(module, exports) {
 
 	/**
@@ -17021,10 +17079,10 @@
 
 
 /***/ },
-/* 63 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var apply = __webpack_require__(64);
+	var apply = __webpack_require__(65);
 	
 	/* Built-in method references for those with the same name as other `lodash` methods. */
 	var nativeMax = Math.max;
@@ -17063,7 +17121,7 @@
 
 
 /***/ },
-/* 64 */
+/* 65 */
 /***/ function(module, exports) {
 
 	/**
@@ -17090,11 +17148,11 @@
 
 
 /***/ },
-/* 65 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseSetToString = __webpack_require__(66),
-	    shortOut = __webpack_require__(68);
+	var baseSetToString = __webpack_require__(67),
+	    shortOut = __webpack_require__(69);
 	
 	/**
 	 * Sets the `toString` method of `func` to return `string`.
@@ -17110,12 +17168,12 @@
 
 
 /***/ },
-/* 66 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var constant = __webpack_require__(67),
-	    defineProperty = __webpack_require__(44),
-	    identity = __webpack_require__(62);
+	var constant = __webpack_require__(68),
+	    defineProperty = __webpack_require__(45),
+	    identity = __webpack_require__(63);
 	
 	/**
 	 * The base implementation of `setToString` without support for hot loop shorting.
@@ -17138,7 +17196,7 @@
 
 
 /***/ },
-/* 67 */
+/* 68 */
 /***/ function(module, exports) {
 
 	/**
@@ -17170,7 +17228,7 @@
 
 
 /***/ },
-/* 68 */
+/* 69 */
 /***/ function(module, exports) {
 
 	/** Used to detect hot functions by number of calls within a span of milliseconds. */
@@ -17213,13 +17271,13 @@
 
 
 /***/ },
-/* 69 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var eq = __webpack_require__(59),
-	    isArrayLike = __webpack_require__(70),
-	    isIndex = __webpack_require__(72),
-	    isObject = __webpack_require__(54);
+	var eq = __webpack_require__(60),
+	    isArrayLike = __webpack_require__(71),
+	    isIndex = __webpack_require__(73),
+	    isObject = __webpack_require__(55);
 	
 	/**
 	 * Checks if the given arguments are from an iteratee call.
@@ -17249,11 +17307,11 @@
 
 
 /***/ },
-/* 70 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isFunction = __webpack_require__(47),
-	    isLength = __webpack_require__(71);
+	var isFunction = __webpack_require__(48),
+	    isLength = __webpack_require__(72);
 	
 	/**
 	 * Checks if `value` is array-like. A value is considered array-like if it's
@@ -17288,7 +17346,7 @@
 
 
 /***/ },
-/* 71 */
+/* 72 */
 /***/ function(module, exports) {
 
 	/** Used as references for various `Number` constants. */
@@ -17329,7 +17387,7 @@
 
 
 /***/ },
-/* 72 */
+/* 73 */
 /***/ function(module, exports) {
 
 	/** Used as references for various `Number` constants. */
@@ -17357,12 +17415,12 @@
 
 
 /***/ },
-/* 73 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var arrayLikeKeys = __webpack_require__(74),
-	    baseKeysIn = __webpack_require__(87),
-	    isArrayLike = __webpack_require__(70);
+	var arrayLikeKeys = __webpack_require__(75),
+	    baseKeysIn = __webpack_require__(88),
+	    isArrayLike = __webpack_require__(71);
 	
 	/**
 	 * Creates an array of the own and inherited enumerable property names of `object`.
@@ -17395,15 +17453,15 @@
 
 
 /***/ },
-/* 74 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseTimes = __webpack_require__(75),
-	    isArguments = __webpack_require__(76),
-	    isArray = __webpack_require__(79),
-	    isBuffer = __webpack_require__(80),
-	    isIndex = __webpack_require__(72),
-	    isTypedArray = __webpack_require__(83);
+	var baseTimes = __webpack_require__(76),
+	    isArguments = __webpack_require__(77),
+	    isArray = __webpack_require__(80),
+	    isBuffer = __webpack_require__(81),
+	    isIndex = __webpack_require__(73),
+	    isTypedArray = __webpack_require__(84);
 	
 	/** Used for built-in method references. */
 	var objectProto = Object.prototype;
@@ -17450,7 +17508,7 @@
 
 
 /***/ },
-/* 75 */
+/* 76 */
 /***/ function(module, exports) {
 
 	/**
@@ -17476,11 +17534,11 @@
 
 
 /***/ },
-/* 76 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseIsArguments = __webpack_require__(77),
-	    isObjectLike = __webpack_require__(78);
+	var baseIsArguments = __webpack_require__(78),
+	    isObjectLike = __webpack_require__(79);
 	
 	/** Used for built-in method references. */
 	var objectProto = Object.prototype;
@@ -17518,11 +17576,11 @@
 
 
 /***/ },
-/* 77 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseGetTag = __webpack_require__(48),
-	    isObjectLike = __webpack_require__(78);
+	var baseGetTag = __webpack_require__(49),
+	    isObjectLike = __webpack_require__(79);
 	
 	/** `Object#toString` result references. */
 	var argsTag = '[object Arguments]';
@@ -17542,7 +17600,7 @@
 
 
 /***/ },
-/* 78 */
+/* 79 */
 /***/ function(module, exports) {
 
 	/**
@@ -17577,7 +17635,7 @@
 
 
 /***/ },
-/* 79 */
+/* 80 */
 /***/ function(module, exports) {
 
 	/**
@@ -17609,11 +17667,11 @@
 
 
 /***/ },
-/* 80 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(50),
-	    stubFalse = __webpack_require__(82);
+	/* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(51),
+	    stubFalse = __webpack_require__(83);
 	
 	/** Detect free variable `exports`. */
 	var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
@@ -17651,10 +17709,10 @@
 	
 	module.exports = isBuffer;
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(81)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(82)(module)))
 
 /***/ },
-/* 81 */
+/* 82 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -17670,7 +17728,7 @@
 
 
 /***/ },
-/* 82 */
+/* 83 */
 /***/ function(module, exports) {
 
 	/**
@@ -17694,12 +17752,12 @@
 
 
 /***/ },
-/* 83 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseIsTypedArray = __webpack_require__(84),
-	    baseUnary = __webpack_require__(85),
-	    nodeUtil = __webpack_require__(86);
+	var baseIsTypedArray = __webpack_require__(85),
+	    baseUnary = __webpack_require__(86),
+	    nodeUtil = __webpack_require__(87);
 	
 	/* Node.js helper references. */
 	var nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
@@ -17727,12 +17785,12 @@
 
 
 /***/ },
-/* 84 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseGetTag = __webpack_require__(48),
-	    isLength = __webpack_require__(71),
-	    isObjectLike = __webpack_require__(78);
+	var baseGetTag = __webpack_require__(49),
+	    isLength = __webpack_require__(72),
+	    isObjectLike = __webpack_require__(79);
 	
 	/** `Object#toString` result references. */
 	var argsTag = '[object Arguments]',
@@ -17793,7 +17851,7 @@
 
 
 /***/ },
-/* 85 */
+/* 86 */
 /***/ function(module, exports) {
 
 	/**
@@ -17813,10 +17871,10 @@
 
 
 /***/ },
-/* 86 */
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(51);
+	/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(52);
 	
 	/** Detect free variable `exports`. */
 	var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
@@ -17839,15 +17897,15 @@
 	
 	module.exports = nodeUtil;
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(81)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(82)(module)))
 
 /***/ },
-/* 87 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isObject = __webpack_require__(54),
-	    isPrototype = __webpack_require__(88),
-	    nativeKeysIn = __webpack_require__(89);
+	var isObject = __webpack_require__(55),
+	    isPrototype = __webpack_require__(89),
+	    nativeKeysIn = __webpack_require__(90);
 	
 	/** Used for built-in method references. */
 	var objectProto = Object.prototype;
@@ -17881,7 +17939,7 @@
 
 
 /***/ },
-/* 88 */
+/* 89 */
 /***/ function(module, exports) {
 
 	/** Used for built-in method references. */
@@ -17905,7 +17963,7 @@
 
 
 /***/ },
-/* 89 */
+/* 90 */
 /***/ function(module, exports) {
 
 	/**
@@ -17931,16 +17989,16 @@
 
 
 /***/ },
-/* 90 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	exports.__esModule = true;
 	
-	var _mixwith = __webpack_require__(91);
+	var _mixwith = __webpack_require__(92);
 	
-	var _SWebComponentMixin = __webpack_require__(92);
+	var _SWebComponentMixin = __webpack_require__(93);
 	
 	var _SWebComponentMixin2 = _interopRequireDefault(_SWebComponentMixin);
 	
@@ -17976,7 +18034,7 @@
 	exports.default = SWebComponent;
 
 /***/ },
-/* 91 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
@@ -18133,7 +18191,7 @@
 	});
 
 /***/ },
-/* 92 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18146,41 +18204,41 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _mixwith = __webpack_require__(91);
+	var _mixwith = __webpack_require__(92);
 	
-	var _autoCast = __webpack_require__(93);
+	var _autoCast = __webpack_require__(94);
 	
 	var _autoCast2 = _interopRequireDefault(_autoCast);
 	
-	var _camelize = __webpack_require__(94);
+	var _camelize = __webpack_require__(95);
 	
 	var _camelize2 = _interopRequireDefault(_camelize);
 	
-	var _uniqid = __webpack_require__(95);
+	var _uniqid = __webpack_require__(96);
 	
 	var _uniqid2 = _interopRequireDefault(_uniqid);
 	
-	var _upperFirst = __webpack_require__(96);
+	var _upperFirst = __webpack_require__(97);
 	
 	var _upperFirst2 = _interopRequireDefault(_upperFirst);
 	
-	var _sSettings = __webpack_require__(97);
+	var _sSettings = __webpack_require__(98);
 	
 	var _sSettings2 = _interopRequireDefault(_sSettings);
 	
-	var _fastdom = __webpack_require__(15);
+	var _fastdom = __webpack_require__(16);
 	
 	var _fastdom2 = _interopRequireDefault(_fastdom);
 	
-	var _dispatchEvent = __webpack_require__(101);
+	var _dispatchEvent = __webpack_require__(102);
 	
 	var _dispatchEvent2 = _interopRequireDefault(_dispatchEvent);
 	
-	var _whenInViewport = __webpack_require__(104);
+	var _whenInViewport = __webpack_require__(105);
 	
 	var _whenInViewport2 = _interopRequireDefault(_whenInViewport);
 	
-	var _whenVisible = __webpack_require__(105);
+	var _whenVisible = __webpack_require__(106);
 	
 	var _whenVisible2 = _interopRequireDefault(_whenVisible);
 	
@@ -18200,7 +18258,7 @@
 	
 	var _propertyProxy2 = _interopRequireDefault(_propertyProxy);
 	
-	var _domReady = __webpack_require__(98);
+	var _domReady = __webpack_require__(99);
 	
 	var _domReady2 = _interopRequireDefault(_domReady);
 	
@@ -18355,6 +18413,104 @@
 			};
 	
 			/**
+	  * When the component is created
+	  */
+			_class2.prototype.createdCallback = function createdCallback() {
+	
+				// props
+				this.props = {};
+	
+				// track the lifecyle
+				this._lifecycle = {
+					componentWillMount: false,
+					componentMount: false,
+					componentDidMount: false,
+					componentWillUnmount: false,
+					componentUnmount: false,
+					componentDidUnmount: false
+				};
+	
+				// if ( ! document.body.contains(this)) return;
+	
+				// component will mount only if part of the active document
+				this.componentWillMount();
+			};
+	
+			/**
+	  * When the element is attached
+	  */
+	
+	
+			_class2.prototype.attachedCallback = function attachedCallback() {
+				var _this2 = this;
+	
+				// check if need to launch the will mount
+				// if ( ! this._lifecycle.componentWillMount) {
+				// 	this.componentWillMount();
+				// }
+	
+				// update attached status
+				this._componentAttached = true;
+	
+				// wait until dependencies are ok
+				this._whenMountDependenciesAreOk().then(function () {
+					// switch on the mountWhen prop
+					switch (_this2.props.mountWhen) {
+						case 'inViewport':
+							(0, _whenInViewport2.default)(_this2).then(function () {
+								_this2._mountComponent();
+							});
+							break;
+						case 'mouseover':
+							_this2.addEventListener('mouseover', _this2._onMouseoverComponentMount.bind(_this2));
+							break;
+						case 'isVisible':
+							(0, _whenVisible2.default)(_this2).then(function () {
+								_this2._mountComponent();
+							});
+							break;
+						default:
+							// mount component directly
+							_this2._mountComponent();
+							break;
+					}
+				});
+			};
+	
+			/**
+	  * When any of the component attribute changes
+	  */
+	
+	
+			_class2.prototype.attributeChangedCallback = function attributeChangedCallback(attribute, oldVal, newVal) {
+	
+				// stop if component has not been mounted
+				// if ( ! this._lifecycle.componentWillMount) {
+				// 	return;
+				// }
+	
+				// cast the new val
+				newVal = (0, _autoCast2.default)(newVal);
+	
+				// keep an original attribute name
+				var _attribute = attribute;
+	
+				// process the attribute to camelCase
+				attribute = (0, _camelize2.default)(attribute);
+	
+				// handle the case when newVal is undefined (added attribute whithout any value)
+				if (newVal === undefined && this.hasAttribute(_attribute)) {
+					newVal = true;
+				}
+	
+				// do nothing if the value is already the same
+				if (this.props[attribute] === newVal) return;
+	
+				// set the new prop
+				this.setProp(attribute, newVal);
+			};
+	
+			/**
 	  * Method called before the component will be added in the dom.
 	  * You will not have access to the siblings, etc here.
 	  * This is the place to init your component, just like a constructor
@@ -18368,8 +18524,13 @@
 	  *
 	  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
 	  */
+	
+	
 			_class2.prototype.componentWillMount = function componentWillMount() {
-				var _this2 = this;
+				var _this3 = this;
+	
+				// update lifecycle state
+				this._lifecycle.componentWillMount = true;
 	
 				// dispatch event
 				this.onComponentWillMount && this.onComponentWillMount();
@@ -18389,21 +18550,21 @@
 				this._componentName = (0, _upperFirst2.default)((0, _camelize2.default)(sourceName));
 	
 				// save each instances into the element _sComponents stack
-				this._typeOf = [];
-				var comp = window.sugar._webComponentsStack[this._componentName];
-				while (comp) {
-					var funcNameRegex = /function (.{1,})\(/;
-					var res = funcNameRegex.exec(comp.toString());
-					if (res && res[1]) {
-						if (this._typeOf.indexOf(res[1]) === -1) {
-							this._typeOf.push(res[1]);
-						}
-					}
-					comp = Object.getPrototypeOf(comp);
-				}
+				// this._typeOf = [];
+				// let comp = window.sugar._webComponentsStack[this._componentName];
+				// while(comp) {
+				// 	let funcNameRegex = /function (.{1,})\(/;
+				// 	const res = (funcNameRegex).exec(comp.toString());
+				// 	if (res && res[1]) {
+				// 		if ( this._typeOf.indexOf(res[1]) === -1) {
+				// 			this._typeOf.push(res[1]);
+				// 		}
+				// 	}
+				// 	comp = Object.getPrototypeOf(comp);
+				// }
 	
 				// default props init
-				this.props = Object.assign({}, this.defaultProps);
+				this.props = Object.assign({}, this.defaultProps, this.props);
 	
 				// compute props
 				this._computeProps();
@@ -18413,8 +18574,8 @@
 	
 				// check the required props
 				this.requiredProps.forEach(function (prop) {
-					if (!_this2.props[prop]) {
-						throw 'The "' + _this2._componentNameDash + '" component need the "' + prop + '" property in order to work';
+					if (!_this3.props[prop]) {
+						throw 'The "' + _this3._componentNameDash + '" component need the "' + prop + '" property in order to work';
 					}
 				});
 			};
@@ -18436,6 +18597,8 @@
 	
 	
 			_class2.prototype.componentMount = function componentMount() {
+				// update the lifecycle state
+				this._lifecycle.componentMount = true;
 				// update the status
 				this._componentMounted = true;
 				// dispatch event
@@ -18458,6 +18621,8 @@
 	
 	
 			_class2.prototype.componentDidMount = function componentDidMount() {
+				// update lifecycle state
+				this._lifecycle.componentDidMount = true;
 				// dispatch event
 				this.onComponentDidMount && this.onComponentDidMount();
 				// this.dispatchComponentEvent('componentDidMount');
@@ -18515,12 +18680,16 @@
 			};
 	
 			_class2.prototype.componentWillUnmount = function componentWillUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentWillUnmount = true;
 				// dispatch event
 				this.onComponentWillUnmount && this.onComponentWillUnmount();
 				// this.dispatchComponentEvent('componentWillUnmount');
 			};
 	
 			_class2.prototype.componentUnmount = function componentUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentUnmount = true;
 				// update the status
 				this._componentMounted = false;
 				// dispatch event
@@ -18529,55 +18698,11 @@
 			};
 	
 			_class2.prototype.componentDidUnmount = function componentDidUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentDidUnmount = true;
 				// dispatch event
 				this.onComponentDidUnmount && this.onComponentDidUnmount();
 				// this.dispatchComponentEvent('componentDidUnmount');
-			};
-	
-			/**
-	  * When the component is created
-	  */
-	
-	
-			_class2.prototype.createdCallback = function createdCallback() {
-				// component will mount only if part of the active document
-				this.componentWillMount();
-			};
-	
-			/**
-	  * When the element is attached
-	  */
-	
-	
-			_class2.prototype.attachedCallback = function attachedCallback() {
-				var _this3 = this;
-	
-				// update attached status
-				this._componentAttached = true;
-	
-				// wait until dependencies are ok
-				this._whenMountDependenciesAreOk().then(function () {
-					// switch on the mountWhen prop
-					switch (_this3.props.mountWhen) {
-						case 'inViewport':
-							(0, _whenInViewport2.default)(_this3).then(function () {
-								_this3._mountComponent();
-							});
-							break;
-						case 'mouseover':
-							_this3.addEventListener('mouseover', _this3._onMouseoverComponentMount.bind(_this3));
-							break;
-						case 'isVisible':
-							(0, _whenVisible2.default)(_this3).then(function () {
-								_this3._mountComponent();
-							});
-							break;
-						default:
-							// mount component directly
-							_this3._mountComponent();
-							break;
-					}
-				});
 			};
 	
 			/**
@@ -18648,7 +18773,8 @@
 				var _this6 = this;
 	
 				// wait next frame
-				this.mutate(function () {
+				_fastdom2.default.clear(this._fastdomSetProp);
+				this._fastdomSetProp = this.mutate(function () {
 					// sometimes, the component has been unmounted between the
 					// fastdom execution, so we stop here if it's the case
 					if (!_this6._componentAttached) return;
@@ -18674,7 +18800,8 @@
 				// will unmount
 				this.componentWillUnmount();
 				// wait next frame
-				this.mutate(function () {
+				_fastdom2.default.clear(this._fastdomSetProp);
+				this._fastdomSetProp = this.mutate(function () {
 					// unmount only if the component is mounted
 					if (!_this7._componentMounted) return;
 					// unmount
@@ -18682,34 +18809,6 @@
 					// did unmount
 					_this7.componentDidUnmount();
 				});
-			};
-	
-			/**
-	  * When any of the component attribute changes
-	  */
-	
-	
-			_class2.prototype.attributeChangedCallback = function attributeChangedCallback(attribute, oldVal, newVal) {
-	
-				// cast the new val
-				newVal = (0, _autoCast2.default)(newVal);
-	
-				// keep an original attribute name
-				var _attribute = attribute;
-	
-				// process the attribute to camelCase
-				attribute = (0, _camelize2.default)(attribute);
-	
-				// handle the case when newVal is undefined (added attribute whithout any value)
-				if (newVal === undefined && this.hasAttribute(_attribute)) {
-					newVal = true;
-				}
-	
-				// do nothing if the value is already the same
-				if (this.props[attribute] === newVal) return;
-	
-				// set the new prop
-				this.setProp(attribute, newVal);
 			};
 	
 			/**
@@ -18806,7 +18905,7 @@
 					}
 	
 					// should component update
-					if (_this8.shouldComponentUpdate && !_this8.shouldComponentUpdate(_this8._nextPropsStack, nextPropsArray)) return;
+					if (_this8.shouldComponentUpdate && !_this8.shouldComponentUpdate(_this8._nextPropsStack, _this8._prevPropsStack)) return;
 	
 					// component will update
 					_this8.componentWillUpdate(_this8._nextPropsStack, nextPropsArray);
@@ -19220,21 +19319,20 @@
 			}, {
 				key: 'mountDependencies',
 				get: function get() {
-					// return [];
-					return [function () {
-						var _this12 = this;
-	
-						return new Promise(function (resolve, reject) {
-							var isTemplate = false;
-							if (_this12._typeOf.indexOf('STemplateWebComponent')) {
-								resolve();
-							} else {
-								setTimeout(function () {
-									resolve();
-								});
-							}
-						});
-					}];
+					return [];
+					// return [function() {
+					// 	return new Promise((resolve, reject) => {
+					// 		let isTemplate = false;
+					// 		resolve();
+					// 		if (this._typeOf.indexOf('STemplateWebComponent')) {
+					// 			resolve();
+					// 		} else {
+					// 			setTimeout(() => {
+					// 				resolve();
+					// 			});
+					// 		}
+					// 	});
+					// }];
 				}
 			}]);
 	
@@ -19243,7 +19341,7 @@
 	});
 
 /***/ },
-/* 93 */
+/* 94 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -19277,7 +19375,7 @@
 	}
 
 /***/ },
-/* 94 */
+/* 95 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -19297,7 +19395,7 @@
 	}
 
 /***/ },
-/* 95 */
+/* 96 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -19325,7 +19423,7 @@
 	}
 
 /***/ },
-/* 96 */
+/* 97 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -19340,12 +19438,12 @@
 	}
 
 /***/ },
-/* 97 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _domReady = __webpack_require__(98);
+	var _domReady = __webpack_require__(99);
 	
 	var _domReady2 = _interopRequireDefault(_domReady);
 	
@@ -19386,7 +19484,7 @@
 	module.exports = settings;
 
 /***/ },
-/* 98 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19394,7 +19492,7 @@
 	exports.__esModule = true;
 	exports.default = domReady;
 	
-	var _stylesheetsReady = __webpack_require__(99);
+	var _stylesheetsReady = __webpack_require__(100);
 	
 	var _stylesheetsReady2 = _interopRequireDefault(_stylesheetsReady);
 	
@@ -19498,7 +19596,7 @@
 	}
 
 /***/ },
-/* 99 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19506,7 +19604,7 @@
 	exports.__esModule = true;
 	exports.default = stylesheetsReady;
 	
-	var _linkLoaded = __webpack_require__(100);
+	var _linkLoaded = __webpack_require__(101);
 	
 	var _linkLoaded2 = _interopRequireDefault(_linkLoaded);
 	
@@ -19602,7 +19700,7 @@
 	}
 
 /***/ },
-/* 100 */
+/* 101 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -19684,7 +19782,7 @@
 	}
 
 /***/ },
-/* 101 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19692,7 +19790,7 @@
 	exports.__esModule = true;
 	exports.default = dispatchEvent;
 	
-	var _SEvent = __webpack_require__(102);
+	var _SEvent = __webpack_require__(103);
 	
 	var _SEvent2 = _interopRequireDefault(_SEvent);
 	
@@ -19727,7 +19825,7 @@
 	}
 
 /***/ },
-/* 102 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19735,7 +19833,7 @@
 	exports.__esModule = true;
 	exports.default = undefined;
 	
-	var _customEvent = __webpack_require__(103);
+	var _customEvent = __webpack_require__(104);
 	
 	var _customEvent2 = _interopRequireDefault(_customEvent);
 	
@@ -19793,7 +19891,7 @@
 	 */
 
 /***/ },
-/* 103 */
+/* 104 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {
@@ -19848,7 +19946,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 104 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19856,15 +19954,15 @@
 	exports.__esModule = true;
 	exports.default = whenInViewport;
 	
-	var _whenVisible = __webpack_require__(105);
+	var _whenVisible = __webpack_require__(106);
 	
 	var _whenVisible2 = _interopRequireDefault(_whenVisible);
 	
-	var _isInViewport = __webpack_require__(108);
+	var _isInViewport = __webpack_require__(109);
 	
 	var _isInViewport2 = _interopRequireDefault(_isInViewport);
 	
-	var _throttle = __webpack_require__(109);
+	var _throttle = __webpack_require__(2);
 	
 	var _throttle2 = _interopRequireDefault(_throttle);
 	
@@ -19937,7 +20035,7 @@
 	}
 
 /***/ },
-/* 105 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19945,11 +20043,11 @@
 	exports.__esModule = true;
 	exports.default = whenVisible;
 	
-	var _isVisible = __webpack_require__(106);
+	var _isVisible = __webpack_require__(107);
 	
 	var _isVisible2 = _interopRequireDefault(_isVisible);
 	
-	var _closestNotVisible = __webpack_require__(107);
+	var _closestNotVisible = __webpack_require__(108);
 	
 	var _closestNotVisible2 = _interopRequireDefault(_closestNotVisible);
 	
@@ -20097,7 +20195,7 @@
 	}
 
 /***/ },
-/* 106 */
+/* 107 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -20139,7 +20237,7 @@
 	window.__isVisible = isVisible;
 
 /***/ },
-/* 107 */
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20147,7 +20245,7 @@
 	exports.__esModule = true;
 	exports.default = closestNotVisible;
 	
-	var _isVisible = __webpack_require__(106);
+	var _isVisible = __webpack_require__(107);
 	
 	var _isVisible2 = _interopRequireDefault(_isVisible);
 	
@@ -20183,7 +20281,7 @@
 	window.__closestNotVisible = closestNotVisible;
 
 /***/ },
-/* 108 */
+/* 109 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -20232,54 +20330,6 @@
 		return rect.top - containerHeight - offset <= 0 && rect.bottom + offset >= 0 && rect.left - containerWidth - offset <= 0 && rect.right + offset >= 0;
 	}
 	window.__isInViewport = isInViewport;
-
-/***/ },
-/* 109 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	exports.__esModule = true;
-	exports.default = throttle;
-	/**
-	 * This utils function allows you to make sure that a function that will normally be called
-	 * several times, for example during a scroll event, to be called once each threshhold time
-	 *
-	 * @name 			throttle
-	 * @example 		js
-	 * const myThrottledFn = throttle(() => {
-	 * 		// my function content that will be
-	 * 		// executed only once each second
-	 * }, 1000);
-	 *
-	 * document.addEventListener('scroll', (e) => {
-	 * 		// call my throttled function
-	 * 		myThrottledFn();
-	 * });
-	 *
-	 * @author 			Olivier Bossel <olivier.bossel@gmail.com>
-	 */
-	function throttle(fn, threshhold) {
-	    threshhold || (threshhold = 250);
-	    var last, deferTimer;
-	    return function () {
-	        var context = this;
-	
-	        var now = +new Date(),
-	            args = arguments;
-	        if (last && now < last + threshhold) {
-	            // hold on to it
-	            clearTimeout(deferTimer);
-	            deferTimer = setTimeout(function () {
-	                last = now;
-	                fn.apply(context, args);
-	            }, threshhold);
-	        } else {
-	            last = now;
-	            fn.apply(context, args);
-	        }
-	    };
-	}
 
 /***/ },
 /* 110 */
@@ -20376,7 +20426,7 @@
 	
 	var _attributesObservable2 = _interopRequireDefault(_attributesObservable);
 	
-	var _autoCast = __webpack_require__(93);
+	var _autoCast = __webpack_require__(94);
 	
 	var _autoCast2 = _interopRequireDefault(_autoCast);
 	
@@ -20504,7 +20554,7 @@
 		return observable;
 	};
 	
-	var _Observable = __webpack_require__(19);
+	var _Observable = __webpack_require__(20);
 
 /***/ },
 /* 114 */
@@ -20591,7 +20641,7 @@
 					_val = descriptor.get(_val);
 				}
 				if (currentDescriptor && currentDescriptor.get) {
-					_val = descriptor.get();
+					_val = currentDescriptor.get();
 				}
 				return _val;
 			},
@@ -20683,7 +20733,7 @@
 /* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isArray = __webpack_require__(79),
+	var isArray = __webpack_require__(80),
 	    isKey = __webpack_require__(118),
 	    stringToPath = __webpack_require__(120),
 	    toString = __webpack_require__(146);
@@ -20710,7 +20760,7 @@
 /* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isArray = __webpack_require__(79),
+	var isArray = __webpack_require__(80),
 	    isSymbol = __webpack_require__(119);
 	
 	/** Used to match property names within property paths. */
@@ -20745,8 +20795,8 @@
 /* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseGetTag = __webpack_require__(48),
-	    isObjectLike = __webpack_require__(78);
+	var baseGetTag = __webpack_require__(49),
+	    isObjectLike = __webpack_require__(79);
 	
 	/** `Object#toString` result references. */
 	var symbolTag = '[object Symbol]';
@@ -21049,7 +21099,7 @@
 /* 127 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(45);
+	var getNative = __webpack_require__(46);
 	
 	/* Built-in method references that are verified to be native. */
 	var nativeCreate = getNative(Object, 'create');
@@ -21276,7 +21326,7 @@
 /* 135 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var eq = __webpack_require__(59);
+	var eq = __webpack_require__(60);
 	
 	/**
 	 * Gets the index at which the `key` is found in `array` of key-value pairs.
@@ -21382,8 +21432,8 @@
 /* 139 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(45),
-	    root = __webpack_require__(50);
+	var getNative = __webpack_require__(46),
+	    root = __webpack_require__(51);
 	
 	/* Built-in method references that are verified to be native. */
 	var Map = getNative(root, 'Map');
@@ -21570,9 +21620,9 @@
 /* 147 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Symbol = __webpack_require__(49),
+	var Symbol = __webpack_require__(50),
 	    arrayMap = __webpack_require__(148),
-	    isArray = __webpack_require__(79),
+	    isArray = __webpack_require__(80),
 	    isSymbol = __webpack_require__(119);
 	
 	/** Used as references for various `Number` constants. */
@@ -21703,11 +21753,11 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _domReady = __webpack_require__(98);
+	var _domReady = __webpack_require__(99);
 	
 	var _domReady2 = _interopRequireDefault(_domReady);
 	
-	var _sSettings = __webpack_require__(97);
+	var _sSettings = __webpack_require__(98);
 	
 	var _sSettings2 = _interopRequireDefault(_sSettings);
 	
@@ -23479,7 +23529,7 @@
 	
 	var _sSettings2 = _interopRequireDefault(_sSettings);
 	
-	var _fastdom = __webpack_require__(15);
+	var _fastdom = __webpack_require__(16);
 	
 	var _fastdom2 = _interopRequireDefault(_fastdom);
 	
@@ -23666,6 +23716,104 @@
 			};
 	
 			/**
+	  * When the component is created
+	  */
+			_class2.prototype.createdCallback = function createdCallback() {
+	
+				// props
+				this.props = {};
+	
+				// track the lifecyle
+				this._lifecycle = {
+					componentWillMount: false,
+					componentMount: false,
+					componentDidMount: false,
+					componentWillUnmount: false,
+					componentUnmount: false,
+					componentDidUnmount: false
+				};
+	
+				// if ( ! document.body.contains(this)) return;
+	
+				// component will mount only if part of the active document
+				this.componentWillMount();
+			};
+	
+			/**
+	  * When the element is attached
+	  */
+	
+	
+			_class2.prototype.attachedCallback = function attachedCallback() {
+				var _this2 = this;
+	
+				// check if need to launch the will mount
+				// if ( ! this._lifecycle.componentWillMount) {
+				// 	this.componentWillMount();
+				// }
+	
+				// update attached status
+				this._componentAttached = true;
+	
+				// wait until dependencies are ok
+				this._whenMountDependenciesAreOk().then(function () {
+					// switch on the mountWhen prop
+					switch (_this2.props.mountWhen) {
+						case 'inViewport':
+							(0, _whenInViewport2.default)(_this2).then(function () {
+								_this2._mountComponent();
+							});
+							break;
+						case 'mouseover':
+							_this2.addEventListener('mouseover', _this2._onMouseoverComponentMount.bind(_this2));
+							break;
+						case 'isVisible':
+							(0, _whenVisible2.default)(_this2).then(function () {
+								_this2._mountComponent();
+							});
+							break;
+						default:
+							// mount component directly
+							_this2._mountComponent();
+							break;
+					}
+				});
+			};
+	
+			/**
+	  * When any of the component attribute changes
+	  */
+	
+	
+			_class2.prototype.attributeChangedCallback = function attributeChangedCallback(attribute, oldVal, newVal) {
+	
+				// stop if component has not been mounted
+				// if ( ! this._lifecycle.componentWillMount) {
+				// 	return;
+				// }
+	
+				// cast the new val
+				newVal = (0, _autoCast2.default)(newVal);
+	
+				// keep an original attribute name
+				var _attribute = attribute;
+	
+				// process the attribute to camelCase
+				attribute = (0, _camelize2.default)(attribute);
+	
+				// handle the case when newVal is undefined (added attribute whithout any value)
+				if (newVal === undefined && this.hasAttribute(_attribute)) {
+					newVal = true;
+				}
+	
+				// do nothing if the value is already the same
+				if (this.props[attribute] === newVal) return;
+	
+				// set the new prop
+				this.setProp(attribute, newVal);
+			};
+	
+			/**
 	  * Method called before the component will be added in the dom.
 	  * You will not have access to the siblings, etc here.
 	  * This is the place to init your component, just like a constructor
@@ -23679,8 +23827,13 @@
 	  *
 	  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
 	  */
+	
+	
 			_class2.prototype.componentWillMount = function componentWillMount() {
-				var _this2 = this;
+				var _this3 = this;
+	
+				// update lifecycle state
+				this._lifecycle.componentWillMount = true;
 	
 				// dispatch event
 				this.onComponentWillMount && this.onComponentWillMount();
@@ -23700,21 +23853,21 @@
 				this._componentName = (0, _upperFirst2.default)((0, _camelize2.default)(sourceName));
 	
 				// save each instances into the element _sComponents stack
-				this._typeOf = [];
-				var comp = window.sugar._webComponentsStack[this._componentName];
-				while (comp) {
-					var funcNameRegex = /function (.{1,})\(/;
-					var res = funcNameRegex.exec(comp.toString());
-					if (res && res[1]) {
-						if (this._typeOf.indexOf(res[1]) === -1) {
-							this._typeOf.push(res[1]);
-						}
-					}
-					comp = Object.getPrototypeOf(comp);
-				}
+				// this._typeOf = [];
+				// let comp = window.sugar._webComponentsStack[this._componentName];
+				// while(comp) {
+				// 	let funcNameRegex = /function (.{1,})\(/;
+				// 	const res = (funcNameRegex).exec(comp.toString());
+				// 	if (res && res[1]) {
+				// 		if ( this._typeOf.indexOf(res[1]) === -1) {
+				// 			this._typeOf.push(res[1]);
+				// 		}
+				// 	}
+				// 	comp = Object.getPrototypeOf(comp);
+				// }
 	
 				// default props init
-				this.props = Object.assign({}, this.defaultProps);
+				this.props = Object.assign({}, this.defaultProps, this.props);
 	
 				// compute props
 				this._computeProps();
@@ -23724,8 +23877,8 @@
 	
 				// check the required props
 				this.requiredProps.forEach(function (prop) {
-					if (!_this2.props[prop]) {
-						throw 'The "' + _this2._componentNameDash + '" component need the "' + prop + '" property in order to work';
+					if (!_this3.props[prop]) {
+						throw 'The "' + _this3._componentNameDash + '" component need the "' + prop + '" property in order to work';
 					}
 				});
 			};
@@ -23747,6 +23900,8 @@
 	
 	
 			_class2.prototype.componentMount = function componentMount() {
+				// update the lifecycle state
+				this._lifecycle.componentMount = true;
 				// update the status
 				this._componentMounted = true;
 				// dispatch event
@@ -23769,6 +23924,8 @@
 	
 	
 			_class2.prototype.componentDidMount = function componentDidMount() {
+				// update lifecycle state
+				this._lifecycle.componentDidMount = true;
 				// dispatch event
 				this.onComponentDidMount && this.onComponentDidMount();
 				// this.dispatchComponentEvent('componentDidMount');
@@ -23826,12 +23983,16 @@
 			};
 	
 			_class2.prototype.componentWillUnmount = function componentWillUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentWillUnmount = true;
 				// dispatch event
 				this.onComponentWillUnmount && this.onComponentWillUnmount();
 				// this.dispatchComponentEvent('componentWillUnmount');
 			};
 	
 			_class2.prototype.componentUnmount = function componentUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentUnmount = true;
 				// update the status
 				this._componentMounted = false;
 				// dispatch event
@@ -23840,55 +24001,11 @@
 			};
 	
 			_class2.prototype.componentDidUnmount = function componentDidUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentDidUnmount = true;
 				// dispatch event
 				this.onComponentDidUnmount && this.onComponentDidUnmount();
 				// this.dispatchComponentEvent('componentDidUnmount');
-			};
-	
-			/**
-	  * When the component is created
-	  */
-	
-	
-			_class2.prototype.createdCallback = function createdCallback() {
-				// component will mount only if part of the active document
-				this.componentWillMount();
-			};
-	
-			/**
-	  * When the element is attached
-	  */
-	
-	
-			_class2.prototype.attachedCallback = function attachedCallback() {
-				var _this3 = this;
-	
-				// update attached status
-				this._componentAttached = true;
-	
-				// wait until dependencies are ok
-				this._whenMountDependenciesAreOk().then(function () {
-					// switch on the mountWhen prop
-					switch (_this3.props.mountWhen) {
-						case 'inViewport':
-							(0, _whenInViewport2.default)(_this3).then(function () {
-								_this3._mountComponent();
-							});
-							break;
-						case 'mouseover':
-							_this3.addEventListener('mouseover', _this3._onMouseoverComponentMount.bind(_this3));
-							break;
-						case 'isVisible':
-							(0, _whenVisible2.default)(_this3).then(function () {
-								_this3._mountComponent();
-							});
-							break;
-						default:
-							// mount component directly
-							_this3._mountComponent();
-							break;
-					}
-				});
 			};
 	
 			/**
@@ -23959,7 +24076,8 @@
 				var _this6 = this;
 	
 				// wait next frame
-				this.mutate(function () {
+				_fastdom2.default.clear(this._fastdomSetProp);
+				this._fastdomSetProp = this.mutate(function () {
 					// sometimes, the component has been unmounted between the
 					// fastdom execution, so we stop here if it's the case
 					if (!_this6._componentAttached) return;
@@ -23985,7 +24103,8 @@
 				// will unmount
 				this.componentWillUnmount();
 				// wait next frame
-				this.mutate(function () {
+				_fastdom2.default.clear(this._fastdomSetProp);
+				this._fastdomSetProp = this.mutate(function () {
 					// unmount only if the component is mounted
 					if (!_this7._componentMounted) return;
 					// unmount
@@ -23993,34 +24112,6 @@
 					// did unmount
 					_this7.componentDidUnmount();
 				});
-			};
-	
-			/**
-	  * When any of the component attribute changes
-	  */
-	
-	
-			_class2.prototype.attributeChangedCallback = function attributeChangedCallback(attribute, oldVal, newVal) {
-	
-				// cast the new val
-				newVal = (0, _autoCast2.default)(newVal);
-	
-				// keep an original attribute name
-				var _attribute = attribute;
-	
-				// process the attribute to camelCase
-				attribute = (0, _camelize2.default)(attribute);
-	
-				// handle the case when newVal is undefined (added attribute whithout any value)
-				if (newVal === undefined && this.hasAttribute(_attribute)) {
-					newVal = true;
-				}
-	
-				// do nothing if the value is already the same
-				if (this.props[attribute] === newVal) return;
-	
-				// set the new prop
-				this.setProp(attribute, newVal);
 			};
 	
 			/**
@@ -24117,7 +24208,7 @@
 					}
 	
 					// should component update
-					if (_this8.shouldComponentUpdate && !_this8.shouldComponentUpdate(_this8._nextPropsStack, nextPropsArray)) return;
+					if (_this8.shouldComponentUpdate && !_this8.shouldComponentUpdate(_this8._nextPropsStack, _this8._prevPropsStack)) return;
 	
 					// component will update
 					_this8.componentWillUpdate(_this8._nextPropsStack, nextPropsArray);
@@ -24531,21 +24622,20 @@
 			}, {
 				key: 'mountDependencies',
 				get: function get() {
-					// return [];
-					return [function () {
-						var _this12 = this;
-	
-						return new Promise(function (resolve, reject) {
-							var isTemplate = false;
-							if (_this12._typeOf.indexOf('STemplateWebComponent')) {
-								resolve();
-							} else {
-								setTimeout(function () {
-									resolve();
-								});
-							}
-						});
-					}];
+					return [];
+					// return [function() {
+					// 	return new Promise((resolve, reject) => {
+					// 		let isTemplate = false;
+					// 		resolve();
+					// 		if (this._typeOf.indexOf('STemplateWebComponent')) {
+					// 			resolve();
+					// 		} else {
+					// 			setTimeout(() => {
+					// 				resolve();
+					// 			});
+					// 		}
+					// 	});
+					// }];
 				}
 			}]);
 	
@@ -25046,7 +25136,7 @@
 	exports.__esModule = true;
 	exports.default = undefined;
 	
-	var _customEvent = __webpack_require__(103);
+	var _customEvent = __webpack_require__(104);
 	
 	var _customEvent2 = _interopRequireDefault(_customEvent);
 	
@@ -25760,7 +25850,7 @@
 		return observable;
 	};
 	
-	var _Observable = __webpack_require__(19);
+	var _Observable = __webpack_require__(20);
 
 /***/ },
 /* 178 */
@@ -25847,7 +25937,7 @@
 					_val = descriptor.get(_val);
 				}
 				if (currentDescriptor && currentDescriptor.get) {
-					_val = descriptor.get();
+					_val = currentDescriptor.get();
 				}
 				return _val;
 			},
@@ -25947,7 +26037,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var baseIteratee = __webpack_require__(182),
-	    isArrayLike = __webpack_require__(70),
+	    isArrayLike = __webpack_require__(71),
 	    keys = __webpack_require__(210);
 	
 	/**
@@ -25979,8 +26069,8 @@
 
 	var baseMatches = __webpack_require__(183),
 	    baseMatchesProperty = __webpack_require__(222),
-	    identity = __webpack_require__(62),
-	    isArray = __webpack_require__(79),
+	    identity = __webpack_require__(63),
+	    isArray = __webpack_require__(80),
 	    property = __webpack_require__(226);
 	
 	/**
@@ -26269,7 +26359,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var baseIsEqualDeep = __webpack_require__(192),
-	    isObjectLike = __webpack_require__(78);
+	    isObjectLike = __webpack_require__(79);
 	
 	/**
 	 * The base implementation of `_.isEqual` which supports partial comparisons
@@ -26307,9 +26397,9 @@
 	    equalByTag = __webpack_require__(199),
 	    equalObjects = __webpack_require__(203),
 	    getTag = __webpack_require__(214),
-	    isArray = __webpack_require__(79),
-	    isBuffer = __webpack_require__(80),
-	    isTypedArray = __webpack_require__(83);
+	    isArray = __webpack_require__(80),
+	    isBuffer = __webpack_require__(81),
+	    isTypedArray = __webpack_require__(84);
 	
 	/** Used to compose bitmasks for value comparisons. */
 	var COMPARE_PARTIAL_FLAG = 1;
@@ -26606,9 +26696,9 @@
 /* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Symbol = __webpack_require__(49),
+	var Symbol = __webpack_require__(50),
 	    Uint8Array = __webpack_require__(200),
-	    eq = __webpack_require__(59),
+	    eq = __webpack_require__(60),
 	    equalArrays = __webpack_require__(193),
 	    mapToArray = __webpack_require__(201),
 	    setToArray = __webpack_require__(202);
@@ -26724,7 +26814,7 @@
 /* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var root = __webpack_require__(50);
+	var root = __webpack_require__(51);
 	
 	/** Built-in value references. */
 	var Uint8Array = root.Uint8Array;
@@ -26902,7 +26992,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var arrayPush = __webpack_require__(206),
-	    isArray = __webpack_require__(79);
+	    isArray = __webpack_require__(80);
 	
 	/**
 	 * The base implementation of `getAllKeys` and `getAllKeysIn` which uses
@@ -27049,9 +27139,9 @@
 /* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var arrayLikeKeys = __webpack_require__(74),
+	var arrayLikeKeys = __webpack_require__(75),
 	    baseKeys = __webpack_require__(211),
-	    isArrayLike = __webpack_require__(70);
+	    isArrayLike = __webpack_require__(71);
 	
 	/**
 	 * Creates an array of the own enumerable property names of `object`.
@@ -27092,7 +27182,7 @@
 /* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isPrototype = __webpack_require__(88),
+	var isPrototype = __webpack_require__(89),
 	    nativeKeys = __webpack_require__(212);
 	
 	/** Used for built-in method references. */
@@ -27166,8 +27256,8 @@
 	    Promise = __webpack_require__(216),
 	    Set = __webpack_require__(217),
 	    WeakMap = __webpack_require__(218),
-	    baseGetTag = __webpack_require__(48),
-	    toSource = __webpack_require__(57);
+	    baseGetTag = __webpack_require__(49),
+	    toSource = __webpack_require__(58);
 	
 	/** `Object#toString` result references. */
 	var mapTag = '[object Map]',
@@ -27225,8 +27315,8 @@
 /* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(45),
-	    root = __webpack_require__(50);
+	var getNative = __webpack_require__(46),
+	    root = __webpack_require__(51);
 	
 	/* Built-in method references that are verified to be native. */
 	var DataView = getNative(root, 'DataView');
@@ -27238,8 +27328,8 @@
 /* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(45),
-	    root = __webpack_require__(50);
+	var getNative = __webpack_require__(46),
+	    root = __webpack_require__(51);
 	
 	/* Built-in method references that are verified to be native. */
 	var Promise = getNative(root, 'Promise');
@@ -27251,8 +27341,8 @@
 /* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(45),
-	    root = __webpack_require__(50);
+	var getNative = __webpack_require__(46),
+	    root = __webpack_require__(51);
 	
 	/* Built-in method references that are verified to be native. */
 	var Set = getNative(root, 'Set');
@@ -27264,8 +27354,8 @@
 /* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(45),
-	    root = __webpack_require__(50);
+	var getNative = __webpack_require__(46),
+	    root = __webpack_require__(51);
 	
 	/* Built-in method references that are verified to be native. */
 	var WeakMap = getNative(root, 'WeakMap');
@@ -27307,7 +27397,7 @@
 /* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isObject = __webpack_require__(54);
+	var isObject = __webpack_require__(55);
 	
 	/**
 	 * Checks if `value` is suitable for strict equality comparisons, i.e. `===`.
@@ -27453,10 +27543,10 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var castPath = __webpack_require__(117),
-	    isArguments = __webpack_require__(76),
-	    isArray = __webpack_require__(79),
-	    isIndex = __webpack_require__(72),
-	    isLength = __webpack_require__(71),
+	    isArguments = __webpack_require__(77),
+	    isArray = __webpack_require__(80),
+	    isIndex = __webpack_require__(73),
+	    isLength = __webpack_require__(72),
 	    toKey = __webpack_require__(149);
 	
 	/**
@@ -27758,7 +27848,7 @@
 /* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isObject = __webpack_require__(54),
+	var isObject = __webpack_require__(55),
 	    isSymbol = __webpack_require__(119);
 	
 	/** Used as references for various `Number` constants. */
@@ -28328,7 +28418,7 @@
 	
 	var _sSettings2 = _interopRequireDefault(_sSettings);
 	
-	var _fastdom = __webpack_require__(15);
+	var _fastdom = __webpack_require__(16);
 	
 	var _fastdom2 = _interopRequireDefault(_fastdom);
 	
@@ -28515,6 +28605,104 @@
 			};
 	
 			/**
+	  * When the component is created
+	  */
+			_class2.prototype.createdCallback = function createdCallback() {
+	
+				// props
+				this.props = {};
+	
+				// track the lifecyle
+				this._lifecycle = {
+					componentWillMount: false,
+					componentMount: false,
+					componentDidMount: false,
+					componentWillUnmount: false,
+					componentUnmount: false,
+					componentDidUnmount: false
+				};
+	
+				// if ( ! document.body.contains(this)) return;
+	
+				// component will mount only if part of the active document
+				this.componentWillMount();
+			};
+	
+			/**
+	  * When the element is attached
+	  */
+	
+	
+			_class2.prototype.attachedCallback = function attachedCallback() {
+				var _this2 = this;
+	
+				// check if need to launch the will mount
+				// if ( ! this._lifecycle.componentWillMount) {
+				// 	this.componentWillMount();
+				// }
+	
+				// update attached status
+				this._componentAttached = true;
+	
+				// wait until dependencies are ok
+				this._whenMountDependenciesAreOk().then(function () {
+					// switch on the mountWhen prop
+					switch (_this2.props.mountWhen) {
+						case 'inViewport':
+							(0, _whenInViewport2.default)(_this2).then(function () {
+								_this2._mountComponent();
+							});
+							break;
+						case 'mouseover':
+							_this2.addEventListener('mouseover', _this2._onMouseoverComponentMount.bind(_this2));
+							break;
+						case 'isVisible':
+							(0, _whenVisible2.default)(_this2).then(function () {
+								_this2._mountComponent();
+							});
+							break;
+						default:
+							// mount component directly
+							_this2._mountComponent();
+							break;
+					}
+				});
+			};
+	
+			/**
+	  * When any of the component attribute changes
+	  */
+	
+	
+			_class2.prototype.attributeChangedCallback = function attributeChangedCallback(attribute, oldVal, newVal) {
+	
+				// stop if component has not been mounted
+				// if ( ! this._lifecycle.componentWillMount) {
+				// 	return;
+				// }
+	
+				// cast the new val
+				newVal = (0, _autoCast2.default)(newVal);
+	
+				// keep an original attribute name
+				var _attribute = attribute;
+	
+				// process the attribute to camelCase
+				attribute = (0, _camelize2.default)(attribute);
+	
+				// handle the case when newVal is undefined (added attribute whithout any value)
+				if (newVal === undefined && this.hasAttribute(_attribute)) {
+					newVal = true;
+				}
+	
+				// do nothing if the value is already the same
+				if (this.props[attribute] === newVal) return;
+	
+				// set the new prop
+				this.setProp(attribute, newVal);
+			};
+	
+			/**
 	  * Method called before the component will be added in the dom.
 	  * You will not have access to the siblings, etc here.
 	  * This is the place to init your component, just like a constructor
@@ -28528,8 +28716,13 @@
 	  *
 	  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
 	  */
+	
+	
 			_class2.prototype.componentWillMount = function componentWillMount() {
-				var _this2 = this;
+				var _this3 = this;
+	
+				// update lifecycle state
+				this._lifecycle.componentWillMount = true;
 	
 				// dispatch event
 				this.onComponentWillMount && this.onComponentWillMount();
@@ -28549,21 +28742,21 @@
 				this._componentName = (0, _upperFirst2.default)((0, _camelize2.default)(sourceName));
 	
 				// save each instances into the element _sComponents stack
-				this._typeOf = [];
-				var comp = window.sugar._webComponentsStack[this._componentName];
-				while (comp) {
-					var funcNameRegex = /function (.{1,})\(/;
-					var res = funcNameRegex.exec(comp.toString());
-					if (res && res[1]) {
-						if (this._typeOf.indexOf(res[1]) === -1) {
-							this._typeOf.push(res[1]);
-						}
-					}
-					comp = Object.getPrototypeOf(comp);
-				}
+				// this._typeOf = [];
+				// let comp = window.sugar._webComponentsStack[this._componentName];
+				// while(comp) {
+				// 	let funcNameRegex = /function (.{1,})\(/;
+				// 	const res = (funcNameRegex).exec(comp.toString());
+				// 	if (res && res[1]) {
+				// 		if ( this._typeOf.indexOf(res[1]) === -1) {
+				// 			this._typeOf.push(res[1]);
+				// 		}
+				// 	}
+				// 	comp = Object.getPrototypeOf(comp);
+				// }
 	
 				// default props init
-				this.props = Object.assign({}, this.defaultProps);
+				this.props = Object.assign({}, this.defaultProps, this.props);
 	
 				// compute props
 				this._computeProps();
@@ -28573,8 +28766,8 @@
 	
 				// check the required props
 				this.requiredProps.forEach(function (prop) {
-					if (!_this2.props[prop]) {
-						throw 'The "' + _this2._componentNameDash + '" component need the "' + prop + '" property in order to work';
+					if (!_this3.props[prop]) {
+						throw 'The "' + _this3._componentNameDash + '" component need the "' + prop + '" property in order to work';
 					}
 				});
 			};
@@ -28596,6 +28789,8 @@
 	
 	
 			_class2.prototype.componentMount = function componentMount() {
+				// update the lifecycle state
+				this._lifecycle.componentMount = true;
 				// update the status
 				this._componentMounted = true;
 				// dispatch event
@@ -28618,6 +28813,8 @@
 	
 	
 			_class2.prototype.componentDidMount = function componentDidMount() {
+				// update lifecycle state
+				this._lifecycle.componentDidMount = true;
 				// dispatch event
 				this.onComponentDidMount && this.onComponentDidMount();
 				// this.dispatchComponentEvent('componentDidMount');
@@ -28675,12 +28872,16 @@
 			};
 	
 			_class2.prototype.componentWillUnmount = function componentWillUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentWillUnmount = true;
 				// dispatch event
 				this.onComponentWillUnmount && this.onComponentWillUnmount();
 				// this.dispatchComponentEvent('componentWillUnmount');
 			};
 	
 			_class2.prototype.componentUnmount = function componentUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentUnmount = true;
 				// update the status
 				this._componentMounted = false;
 				// dispatch event
@@ -28689,55 +28890,11 @@
 			};
 	
 			_class2.prototype.componentDidUnmount = function componentDidUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentDidUnmount = true;
 				// dispatch event
 				this.onComponentDidUnmount && this.onComponentDidUnmount();
 				// this.dispatchComponentEvent('componentDidUnmount');
-			};
-	
-			/**
-	  * When the component is created
-	  */
-	
-	
-			_class2.prototype.createdCallback = function createdCallback() {
-				// component will mount only if part of the active document
-				this.componentWillMount();
-			};
-	
-			/**
-	  * When the element is attached
-	  */
-	
-	
-			_class2.prototype.attachedCallback = function attachedCallback() {
-				var _this3 = this;
-	
-				// update attached status
-				this._componentAttached = true;
-	
-				// wait until dependencies are ok
-				this._whenMountDependenciesAreOk().then(function () {
-					// switch on the mountWhen prop
-					switch (_this3.props.mountWhen) {
-						case 'inViewport':
-							(0, _whenInViewport2.default)(_this3).then(function () {
-								_this3._mountComponent();
-							});
-							break;
-						case 'mouseover':
-							_this3.addEventListener('mouseover', _this3._onMouseoverComponentMount.bind(_this3));
-							break;
-						case 'isVisible':
-							(0, _whenVisible2.default)(_this3).then(function () {
-								_this3._mountComponent();
-							});
-							break;
-						default:
-							// mount component directly
-							_this3._mountComponent();
-							break;
-					}
-				});
 			};
 	
 			/**
@@ -28808,7 +28965,8 @@
 				var _this6 = this;
 	
 				// wait next frame
-				this.mutate(function () {
+				_fastdom2.default.clear(this._fastdomSetProp);
+				this._fastdomSetProp = this.mutate(function () {
 					// sometimes, the component has been unmounted between the
 					// fastdom execution, so we stop here if it's the case
 					if (!_this6._componentAttached) return;
@@ -28834,7 +28992,8 @@
 				// will unmount
 				this.componentWillUnmount();
 				// wait next frame
-				this.mutate(function () {
+				_fastdom2.default.clear(this._fastdomSetProp);
+				this._fastdomSetProp = this.mutate(function () {
 					// unmount only if the component is mounted
 					if (!_this7._componentMounted) return;
 					// unmount
@@ -28842,34 +29001,6 @@
 					// did unmount
 					_this7.componentDidUnmount();
 				});
-			};
-	
-			/**
-	  * When any of the component attribute changes
-	  */
-	
-	
-			_class2.prototype.attributeChangedCallback = function attributeChangedCallback(attribute, oldVal, newVal) {
-	
-				// cast the new val
-				newVal = (0, _autoCast2.default)(newVal);
-	
-				// keep an original attribute name
-				var _attribute = attribute;
-	
-				// process the attribute to camelCase
-				attribute = (0, _camelize2.default)(attribute);
-	
-				// handle the case when newVal is undefined (added attribute whithout any value)
-				if (newVal === undefined && this.hasAttribute(_attribute)) {
-					newVal = true;
-				}
-	
-				// do nothing if the value is already the same
-				if (this.props[attribute] === newVal) return;
-	
-				// set the new prop
-				this.setProp(attribute, newVal);
 			};
 	
 			/**
@@ -28966,7 +29097,7 @@
 					}
 	
 					// should component update
-					if (_this8.shouldComponentUpdate && !_this8.shouldComponentUpdate(_this8._nextPropsStack, nextPropsArray)) return;
+					if (_this8.shouldComponentUpdate && !_this8.shouldComponentUpdate(_this8._nextPropsStack, _this8._prevPropsStack)) return;
 	
 					// component will update
 					_this8.componentWillUpdate(_this8._nextPropsStack, nextPropsArray);
@@ -29380,21 +29511,20 @@
 			}, {
 				key: 'mountDependencies',
 				get: function get() {
-					// return [];
-					return [function () {
-						var _this12 = this;
-	
-						return new Promise(function (resolve, reject) {
-							var isTemplate = false;
-							if (_this12._typeOf.indexOf('STemplateWebComponent')) {
-								resolve();
-							} else {
-								setTimeout(function () {
-									resolve();
-								});
-							}
-						});
-					}];
+					return [];
+					// return [function() {
+					// 	return new Promise((resolve, reject) => {
+					// 		let isTemplate = false;
+					// 		resolve();
+					// 		if (this._typeOf.indexOf('STemplateWebComponent')) {
+					// 			resolve();
+					// 		} else {
+					// 			setTimeout(() => {
+					// 				resolve();
+					// 			});
+					// 		}
+					// 	});
+					// }];
 				}
 			}]);
 	
@@ -29895,7 +30025,7 @@
 	exports.__esModule = true;
 	exports.default = undefined;
 	
-	var _customEvent = __webpack_require__(103);
+	var _customEvent = __webpack_require__(104);
 	
 	var _customEvent2 = _interopRequireDefault(_customEvent);
 	
@@ -30609,7 +30739,7 @@
 		return observable;
 	};
 	
-	var _Observable = __webpack_require__(19);
+	var _Observable = __webpack_require__(20);
 
 /***/ },
 /* 259 */
@@ -30696,7 +30826,7 @@
 					_val = descriptor.get(_val);
 				}
 				if (currentDescriptor && currentDescriptor.get) {
-					_val = descriptor.get();
+					_val = currentDescriptor.get();
 				}
 				return _val;
 			},
@@ -31346,7 +31476,7 @@
 	
 	
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(81)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(82)(module)))
 
 /***/ },
 /* 265 */
@@ -31449,7 +31579,7 @@
 	
 	
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(81)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(82)(module)))
 
 /***/ },
 /* 268 */
@@ -31542,7 +31672,7 @@
 	
 	
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(81)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(82)(module)))
 
 /***/ },
 /* 269 */
@@ -31646,7 +31776,7 @@
 	);
 	
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(81)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(82)(module)))
 
 /***/ },
 /* 270 */
@@ -31799,7 +31929,7 @@
 	  __webpack_require__(265)   // present with an AMD loader
 	);
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(81)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(82)(module)))
 
 /***/ },
 /* 271 */
@@ -31909,7 +32039,7 @@
 	
 	
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(81)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(82)(module)))
 
 /***/ },
 /* 272 */
@@ -36751,7 +36881,7 @@
 	
 	module.exports = Stream;
 	
-	var EE = __webpack_require__(17).EventEmitter;
+	var EE = __webpack_require__(18).EventEmitter;
 	var inherits = __webpack_require__(301);
 	
 	inherits(Stream, EE);
@@ -36932,7 +37062,7 @@
 	Readable.ReadableState = ReadableState;
 	
 	/*<replacement>*/
-	var EE = __webpack_require__(17).EventEmitter;
+	var EE = __webpack_require__(18).EventEmitter;
 	
 	var EElistenerCount = function (emitter, type) {
 	  return emitter.listeners(type).length;
@@ -36945,7 +37075,7 @@
 	  try {
 	    Stream = __webpack_require__(300);
 	  } catch (_) {} finally {
-	    if (!Stream) Stream = __webpack_require__(17).EventEmitter;
+	    if (!Stream) Stream = __webpack_require__(18).EventEmitter;
 	  }
 	})();
 	/*</replacement>*/
@@ -38333,7 +38463,7 @@
 	  try {
 	    Stream = __webpack_require__(300);
 	  } catch (_) {} finally {
-	    if (!Stream) Stream = __webpack_require__(17).EventEmitter;
+	    if (!Stream) Stream = __webpack_require__(18).EventEmitter;
 	  }
 	})();
 	/*</replacement>*/
@@ -42011,7 +42141,7 @@
 	
 	}).call(this);
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(81)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(82)(module)))
 
 /***/ },
 /* 332 */
@@ -42372,7 +42502,7 @@
 	
 	var _throttle2 = _interopRequireDefault(_throttle);
 	
-	var _codemirror = __webpack_require__(4);
+	var _codemirror = __webpack_require__(5);
 	
 	var _codemirror2 = _interopRequireDefault(_codemirror);
 	
@@ -43129,7 +43259,7 @@
 	
 	var _sSettings2 = _interopRequireDefault(_sSettings);
 	
-	var _fastdom = __webpack_require__(15);
+	var _fastdom = __webpack_require__(16);
 	
 	var _fastdom2 = _interopRequireDefault(_fastdom);
 	
@@ -43316,6 +43446,104 @@
 			};
 	
 			/**
+	  * When the component is created
+	  */
+			_class2.prototype.createdCallback = function createdCallback() {
+	
+				// props
+				this.props = {};
+	
+				// track the lifecyle
+				this._lifecycle = {
+					componentWillMount: false,
+					componentMount: false,
+					componentDidMount: false,
+					componentWillUnmount: false,
+					componentUnmount: false,
+					componentDidUnmount: false
+				};
+	
+				// if ( ! document.body.contains(this)) return;
+	
+				// component will mount only if part of the active document
+				this.componentWillMount();
+			};
+	
+			/**
+	  * When the element is attached
+	  */
+	
+	
+			_class2.prototype.attachedCallback = function attachedCallback() {
+				var _this2 = this;
+	
+				// check if need to launch the will mount
+				// if ( ! this._lifecycle.componentWillMount) {
+				// 	this.componentWillMount();
+				// }
+	
+				// update attached status
+				this._componentAttached = true;
+	
+				// wait until dependencies are ok
+				this._whenMountDependenciesAreOk().then(function () {
+					// switch on the mountWhen prop
+					switch (_this2.props.mountWhen) {
+						case 'inViewport':
+							(0, _whenInViewport2.default)(_this2).then(function () {
+								_this2._mountComponent();
+							});
+							break;
+						case 'mouseover':
+							_this2.addEventListener('mouseover', _this2._onMouseoverComponentMount.bind(_this2));
+							break;
+						case 'isVisible':
+							(0, _whenVisible2.default)(_this2).then(function () {
+								_this2._mountComponent();
+							});
+							break;
+						default:
+							// mount component directly
+							_this2._mountComponent();
+							break;
+					}
+				});
+			};
+	
+			/**
+	  * When any of the component attribute changes
+	  */
+	
+	
+			_class2.prototype.attributeChangedCallback = function attributeChangedCallback(attribute, oldVal, newVal) {
+	
+				// stop if component has not been mounted
+				// if ( ! this._lifecycle.componentWillMount) {
+				// 	return;
+				// }
+	
+				// cast the new val
+				newVal = (0, _autoCast2.default)(newVal);
+	
+				// keep an original attribute name
+				var _attribute = attribute;
+	
+				// process the attribute to camelCase
+				attribute = (0, _camelize2.default)(attribute);
+	
+				// handle the case when newVal is undefined (added attribute whithout any value)
+				if (newVal === undefined && this.hasAttribute(_attribute)) {
+					newVal = true;
+				}
+	
+				// do nothing if the value is already the same
+				if (this.props[attribute] === newVal) return;
+	
+				// set the new prop
+				this.setProp(attribute, newVal);
+			};
+	
+			/**
 	  * Method called before the component will be added in the dom.
 	  * You will not have access to the siblings, etc here.
 	  * This is the place to init your component, just like a constructor
@@ -43329,8 +43557,13 @@
 	  *
 	  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
 	  */
+	
+	
 			_class2.prototype.componentWillMount = function componentWillMount() {
-				var _this2 = this;
+				var _this3 = this;
+	
+				// update lifecycle state
+				this._lifecycle.componentWillMount = true;
 	
 				// dispatch event
 				this.onComponentWillMount && this.onComponentWillMount();
@@ -43350,21 +43583,21 @@
 				this._componentName = (0, _upperFirst2.default)((0, _camelize2.default)(sourceName));
 	
 				// save each instances into the element _sComponents stack
-				this._typeOf = [];
-				var comp = window.sugar._webComponentsStack[this._componentName];
-				while (comp) {
-					var funcNameRegex = /function (.{1,})\(/;
-					var res = funcNameRegex.exec(comp.toString());
-					if (res && res[1]) {
-						if (this._typeOf.indexOf(res[1]) === -1) {
-							this._typeOf.push(res[1]);
-						}
-					}
-					comp = Object.getPrototypeOf(comp);
-				}
+				// this._typeOf = [];
+				// let comp = window.sugar._webComponentsStack[this._componentName];
+				// while(comp) {
+				// 	let funcNameRegex = /function (.{1,})\(/;
+				// 	const res = (funcNameRegex).exec(comp.toString());
+				// 	if (res && res[1]) {
+				// 		if ( this._typeOf.indexOf(res[1]) === -1) {
+				// 			this._typeOf.push(res[1]);
+				// 		}
+				// 	}
+				// 	comp = Object.getPrototypeOf(comp);
+				// }
 	
 				// default props init
-				this.props = Object.assign({}, this.defaultProps);
+				this.props = Object.assign({}, this.defaultProps, this.props);
 	
 				// compute props
 				this._computeProps();
@@ -43374,8 +43607,8 @@
 	
 				// check the required props
 				this.requiredProps.forEach(function (prop) {
-					if (!_this2.props[prop]) {
-						throw 'The "' + _this2._componentNameDash + '" component need the "' + prop + '" property in order to work';
+					if (!_this3.props[prop]) {
+						throw 'The "' + _this3._componentNameDash + '" component need the "' + prop + '" property in order to work';
 					}
 				});
 			};
@@ -43397,6 +43630,8 @@
 	
 	
 			_class2.prototype.componentMount = function componentMount() {
+				// update the lifecycle state
+				this._lifecycle.componentMount = true;
 				// update the status
 				this._componentMounted = true;
 				// dispatch event
@@ -43419,6 +43654,8 @@
 	
 	
 			_class2.prototype.componentDidMount = function componentDidMount() {
+				// update lifecycle state
+				this._lifecycle.componentDidMount = true;
 				// dispatch event
 				this.onComponentDidMount && this.onComponentDidMount();
 				// this.dispatchComponentEvent('componentDidMount');
@@ -43476,12 +43713,16 @@
 			};
 	
 			_class2.prototype.componentWillUnmount = function componentWillUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentWillUnmount = true;
 				// dispatch event
 				this.onComponentWillUnmount && this.onComponentWillUnmount();
 				// this.dispatchComponentEvent('componentWillUnmount');
 			};
 	
 			_class2.prototype.componentUnmount = function componentUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentUnmount = true;
 				// update the status
 				this._componentMounted = false;
 				// dispatch event
@@ -43490,55 +43731,11 @@
 			};
 	
 			_class2.prototype.componentDidUnmount = function componentDidUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentDidUnmount = true;
 				// dispatch event
 				this.onComponentDidUnmount && this.onComponentDidUnmount();
 				// this.dispatchComponentEvent('componentDidUnmount');
-			};
-	
-			/**
-	  * When the component is created
-	  */
-	
-	
-			_class2.prototype.createdCallback = function createdCallback() {
-				// component will mount only if part of the active document
-				this.componentWillMount();
-			};
-	
-			/**
-	  * When the element is attached
-	  */
-	
-	
-			_class2.prototype.attachedCallback = function attachedCallback() {
-				var _this3 = this;
-	
-				// update attached status
-				this._componentAttached = true;
-	
-				// wait until dependencies are ok
-				this._whenMountDependenciesAreOk().then(function () {
-					// switch on the mountWhen prop
-					switch (_this3.props.mountWhen) {
-						case 'inViewport':
-							(0, _whenInViewport2.default)(_this3).then(function () {
-								_this3._mountComponent();
-							});
-							break;
-						case 'mouseover':
-							_this3.addEventListener('mouseover', _this3._onMouseoverComponentMount.bind(_this3));
-							break;
-						case 'isVisible':
-							(0, _whenVisible2.default)(_this3).then(function () {
-								_this3._mountComponent();
-							});
-							break;
-						default:
-							// mount component directly
-							_this3._mountComponent();
-							break;
-					}
-				});
 			};
 	
 			/**
@@ -43609,7 +43806,8 @@
 				var _this6 = this;
 	
 				// wait next frame
-				this.mutate(function () {
+				_fastdom2.default.clear(this._fastdomSetProp);
+				this._fastdomSetProp = this.mutate(function () {
 					// sometimes, the component has been unmounted between the
 					// fastdom execution, so we stop here if it's the case
 					if (!_this6._componentAttached) return;
@@ -43635,7 +43833,8 @@
 				// will unmount
 				this.componentWillUnmount();
 				// wait next frame
-				this.mutate(function () {
+				_fastdom2.default.clear(this._fastdomSetProp);
+				this._fastdomSetProp = this.mutate(function () {
 					// unmount only if the component is mounted
 					if (!_this7._componentMounted) return;
 					// unmount
@@ -43643,34 +43842,6 @@
 					// did unmount
 					_this7.componentDidUnmount();
 				});
-			};
-	
-			/**
-	  * When any of the component attribute changes
-	  */
-	
-	
-			_class2.prototype.attributeChangedCallback = function attributeChangedCallback(attribute, oldVal, newVal) {
-	
-				// cast the new val
-				newVal = (0, _autoCast2.default)(newVal);
-	
-				// keep an original attribute name
-				var _attribute = attribute;
-	
-				// process the attribute to camelCase
-				attribute = (0, _camelize2.default)(attribute);
-	
-				// handle the case when newVal is undefined (added attribute whithout any value)
-				if (newVal === undefined && this.hasAttribute(_attribute)) {
-					newVal = true;
-				}
-	
-				// do nothing if the value is already the same
-				if (this.props[attribute] === newVal) return;
-	
-				// set the new prop
-				this.setProp(attribute, newVal);
 			};
 	
 			/**
@@ -43767,7 +43938,7 @@
 					}
 	
 					// should component update
-					if (_this8.shouldComponentUpdate && !_this8.shouldComponentUpdate(_this8._nextPropsStack, nextPropsArray)) return;
+					if (_this8.shouldComponentUpdate && !_this8.shouldComponentUpdate(_this8._nextPropsStack, _this8._prevPropsStack)) return;
 	
 					// component will update
 					_this8.componentWillUpdate(_this8._nextPropsStack, nextPropsArray);
@@ -44181,21 +44352,20 @@
 			}, {
 				key: 'mountDependencies',
 				get: function get() {
-					// return [];
-					return [function () {
-						var _this12 = this;
-	
-						return new Promise(function (resolve, reject) {
-							var isTemplate = false;
-							if (_this12._typeOf.indexOf('STemplateWebComponent')) {
-								resolve();
-							} else {
-								setTimeout(function () {
-									resolve();
-								});
-							}
-						});
-					}];
+					return [];
+					// return [function() {
+					// 	return new Promise((resolve, reject) => {
+					// 		let isTemplate = false;
+					// 		resolve();
+					// 		if (this._typeOf.indexOf('STemplateWebComponent')) {
+					// 			resolve();
+					// 		} else {
+					// 			setTimeout(() => {
+					// 				resolve();
+					// 			});
+					// 		}
+					// 	});
+					// }];
 				}
 			}]);
 	
@@ -44696,7 +44866,7 @@
 	exports.__esModule = true;
 	exports.default = undefined;
 	
-	var _customEvent = __webpack_require__(103);
+	var _customEvent = __webpack_require__(104);
 	
 	var _customEvent2 = _interopRequireDefault(_customEvent);
 	
@@ -45410,7 +45580,7 @@
 		return observable;
 	};
 	
-	var _Observable = __webpack_require__(19);
+	var _Observable = __webpack_require__(20);
 
 /***/ },
 /* 363 */
@@ -45497,7 +45667,7 @@
 					_val = descriptor.get(_val);
 				}
 				if (currentDescriptor && currentDescriptor.get) {
-					_val = descriptor.get();
+					_val = currentDescriptor.get();
 				}
 				return _val;
 			},
@@ -46330,7 +46500,7 @@
 	
 	(function(mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(4), __webpack_require__(374), __webpack_require__(375), __webpack_require__(5));
+	    mod(__webpack_require__(5), __webpack_require__(374), __webpack_require__(375), __webpack_require__(6));
 	  else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror", "../xml/xml", "../javascript/javascript", "../css/css"], mod);
 	  else // Plain browser env
@@ -46488,7 +46658,7 @@
 	
 	(function(mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(4));
+	    mod(__webpack_require__(5));
 	  else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror"], mod);
 	  else // Plain browser env
@@ -46888,7 +47058,7 @@
 	
 	(function(mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(4));
+	    mod(__webpack_require__(5));
 	  else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror"], mod);
 	  else // Plain browser env
@@ -47390,9 +47560,9 @@
 	    if (type == ":") return cont(expressionNoComma);
 	    if (type == "(") return pass(functiondef);
 	  }
-	  function commasep(what, end) {
+	  function commasep(what, end, sep) {
 	    function proceed(type, value) {
-	      if (type == ",") {
+	      if (sep ? sep.indexOf(type) > -1 : type == ",") {
 	        var lex = cx.state.lexical;
 	        if (lex.info == "call") lex.pos = (lex.pos || 0) + 1;
 	        return cont(function(type, value) {
@@ -47426,15 +47596,17 @@
 	  function typeexpr(type) {
 	    if (type == "variable") {cx.marked = "variable-3"; return cont(afterType);}
 	    if (type == "string" || type == "number" || type == "atom") return cont(afterType);
-	    if (type == "{") return cont(commasep(typeprop, "}"))
+	    if (type == "{") return cont(pushlex("}"), commasep(typeprop, "}", ",;"), poplex)
 	    if (type == "(") return cont(commasep(typearg, ")"), maybeReturnType)
 	  }
 	  function maybeReturnType(type) {
 	    if (type == "=>") return cont(typeexpr)
 	  }
-	  function typeprop(type) {
+	  function typeprop(type, value) {
 	    if (type == "variable" || cx.style == "keyword") {
 	      cx.marked = "property"
+	      return cont(typeprop)
+	    } else if (value == "?") {
 	      return cont(typeprop)
 	    } else if (type == ":") {
 	      return cont(typeexpr)
@@ -47684,7 +47856,7 @@
 /* 376 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _codemirror = __webpack_require__(4);
+	var _codemirror = __webpack_require__(5);
 	
 	var _codemirror2 = _interopRequireDefault(_codemirror);
 	
@@ -48171,7 +48343,7 @@
 	
 	var _sSettings2 = _interopRequireDefault(_sSettings);
 	
-	var _fastdom = __webpack_require__(15);
+	var _fastdom = __webpack_require__(16);
 	
 	var _fastdom2 = _interopRequireDefault(_fastdom);
 	
@@ -48358,6 +48530,104 @@
 			};
 	
 			/**
+	  * When the component is created
+	  */
+			_class2.prototype.createdCallback = function createdCallback() {
+	
+				// props
+				this.props = {};
+	
+				// track the lifecyle
+				this._lifecycle = {
+					componentWillMount: false,
+					componentMount: false,
+					componentDidMount: false,
+					componentWillUnmount: false,
+					componentUnmount: false,
+					componentDidUnmount: false
+				};
+	
+				// if ( ! document.body.contains(this)) return;
+	
+				// component will mount only if part of the active document
+				this.componentWillMount();
+			};
+	
+			/**
+	  * When the element is attached
+	  */
+	
+	
+			_class2.prototype.attachedCallback = function attachedCallback() {
+				var _this2 = this;
+	
+				// check if need to launch the will mount
+				// if ( ! this._lifecycle.componentWillMount) {
+				// 	this.componentWillMount();
+				// }
+	
+				// update attached status
+				this._componentAttached = true;
+	
+				// wait until dependencies are ok
+				this._whenMountDependenciesAreOk().then(function () {
+					// switch on the mountWhen prop
+					switch (_this2.props.mountWhen) {
+						case 'inViewport':
+							(0, _whenInViewport2.default)(_this2).then(function () {
+								_this2._mountComponent();
+							});
+							break;
+						case 'mouseover':
+							_this2.addEventListener('mouseover', _this2._onMouseoverComponentMount.bind(_this2));
+							break;
+						case 'isVisible':
+							(0, _whenVisible2.default)(_this2).then(function () {
+								_this2._mountComponent();
+							});
+							break;
+						default:
+							// mount component directly
+							_this2._mountComponent();
+							break;
+					}
+				});
+			};
+	
+			/**
+	  * When any of the component attribute changes
+	  */
+	
+	
+			_class2.prototype.attributeChangedCallback = function attributeChangedCallback(attribute, oldVal, newVal) {
+	
+				// stop if component has not been mounted
+				// if ( ! this._lifecycle.componentWillMount) {
+				// 	return;
+				// }
+	
+				// cast the new val
+				newVal = (0, _autoCast2.default)(newVal);
+	
+				// keep an original attribute name
+				var _attribute = attribute;
+	
+				// process the attribute to camelCase
+				attribute = (0, _camelize2.default)(attribute);
+	
+				// handle the case when newVal is undefined (added attribute whithout any value)
+				if (newVal === undefined && this.hasAttribute(_attribute)) {
+					newVal = true;
+				}
+	
+				// do nothing if the value is already the same
+				if (this.props[attribute] === newVal) return;
+	
+				// set the new prop
+				this.setProp(attribute, newVal);
+			};
+	
+			/**
 	  * Method called before the component will be added in the dom.
 	  * You will not have access to the siblings, etc here.
 	  * This is the place to init your component, just like a constructor
@@ -48371,8 +48641,13 @@
 	  *
 	  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
 	  */
+	
+	
 			_class2.prototype.componentWillMount = function componentWillMount() {
-				var _this2 = this;
+				var _this3 = this;
+	
+				// update lifecycle state
+				this._lifecycle.componentWillMount = true;
 	
 				// dispatch event
 				this.onComponentWillMount && this.onComponentWillMount();
@@ -48392,21 +48667,21 @@
 				this._componentName = (0, _upperFirst2.default)((0, _camelize2.default)(sourceName));
 	
 				// save each instances into the element _sComponents stack
-				this._typeOf = [];
-				var comp = window.sugar._webComponentsStack[this._componentName];
-				while (comp) {
-					var funcNameRegex = /function (.{1,})\(/;
-					var res = funcNameRegex.exec(comp.toString());
-					if (res && res[1]) {
-						if (this._typeOf.indexOf(res[1]) === -1) {
-							this._typeOf.push(res[1]);
-						}
-					}
-					comp = Object.getPrototypeOf(comp);
-				}
+				// this._typeOf = [];
+				// let comp = window.sugar._webComponentsStack[this._componentName];
+				// while(comp) {
+				// 	let funcNameRegex = /function (.{1,})\(/;
+				// 	const res = (funcNameRegex).exec(comp.toString());
+				// 	if (res && res[1]) {
+				// 		if ( this._typeOf.indexOf(res[1]) === -1) {
+				// 			this._typeOf.push(res[1]);
+				// 		}
+				// 	}
+				// 	comp = Object.getPrototypeOf(comp);
+				// }
 	
 				// default props init
-				this.props = Object.assign({}, this.defaultProps);
+				this.props = Object.assign({}, this.defaultProps, this.props);
 	
 				// compute props
 				this._computeProps();
@@ -48416,8 +48691,8 @@
 	
 				// check the required props
 				this.requiredProps.forEach(function (prop) {
-					if (!_this2.props[prop]) {
-						throw 'The "' + _this2._componentNameDash + '" component need the "' + prop + '" property in order to work';
+					if (!_this3.props[prop]) {
+						throw 'The "' + _this3._componentNameDash + '" component need the "' + prop + '" property in order to work';
 					}
 				});
 			};
@@ -48439,6 +48714,8 @@
 	
 	
 			_class2.prototype.componentMount = function componentMount() {
+				// update the lifecycle state
+				this._lifecycle.componentMount = true;
 				// update the status
 				this._componentMounted = true;
 				// dispatch event
@@ -48461,6 +48738,8 @@
 	
 	
 			_class2.prototype.componentDidMount = function componentDidMount() {
+				// update lifecycle state
+				this._lifecycle.componentDidMount = true;
 				// dispatch event
 				this.onComponentDidMount && this.onComponentDidMount();
 				// this.dispatchComponentEvent('componentDidMount');
@@ -48518,12 +48797,16 @@
 			};
 	
 			_class2.prototype.componentWillUnmount = function componentWillUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentWillUnmount = true;
 				// dispatch event
 				this.onComponentWillUnmount && this.onComponentWillUnmount();
 				// this.dispatchComponentEvent('componentWillUnmount');
 			};
 	
 			_class2.prototype.componentUnmount = function componentUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentUnmount = true;
 				// update the status
 				this._componentMounted = false;
 				// dispatch event
@@ -48532,55 +48815,11 @@
 			};
 	
 			_class2.prototype.componentDidUnmount = function componentDidUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentDidUnmount = true;
 				// dispatch event
 				this.onComponentDidUnmount && this.onComponentDidUnmount();
 				// this.dispatchComponentEvent('componentDidUnmount');
-			};
-	
-			/**
-	  * When the component is created
-	  */
-	
-	
-			_class2.prototype.createdCallback = function createdCallback() {
-				// component will mount only if part of the active document
-				this.componentWillMount();
-			};
-	
-			/**
-	  * When the element is attached
-	  */
-	
-	
-			_class2.prototype.attachedCallback = function attachedCallback() {
-				var _this3 = this;
-	
-				// update attached status
-				this._componentAttached = true;
-	
-				// wait until dependencies are ok
-				this._whenMountDependenciesAreOk().then(function () {
-					// switch on the mountWhen prop
-					switch (_this3.props.mountWhen) {
-						case 'inViewport':
-							(0, _whenInViewport2.default)(_this3).then(function () {
-								_this3._mountComponent();
-							});
-							break;
-						case 'mouseover':
-							_this3.addEventListener('mouseover', _this3._onMouseoverComponentMount.bind(_this3));
-							break;
-						case 'isVisible':
-							(0, _whenVisible2.default)(_this3).then(function () {
-								_this3._mountComponent();
-							});
-							break;
-						default:
-							// mount component directly
-							_this3._mountComponent();
-							break;
-					}
-				});
 			};
 	
 			/**
@@ -48651,7 +48890,8 @@
 				var _this6 = this;
 	
 				// wait next frame
-				this.mutate(function () {
+				_fastdom2.default.clear(this._fastdomSetProp);
+				this._fastdomSetProp = this.mutate(function () {
 					// sometimes, the component has been unmounted between the
 					// fastdom execution, so we stop here if it's the case
 					if (!_this6._componentAttached) return;
@@ -48677,7 +48917,8 @@
 				// will unmount
 				this.componentWillUnmount();
 				// wait next frame
-				this.mutate(function () {
+				_fastdom2.default.clear(this._fastdomSetProp);
+				this._fastdomSetProp = this.mutate(function () {
 					// unmount only if the component is mounted
 					if (!_this7._componentMounted) return;
 					// unmount
@@ -48685,34 +48926,6 @@
 					// did unmount
 					_this7.componentDidUnmount();
 				});
-			};
-	
-			/**
-	  * When any of the component attribute changes
-	  */
-	
-	
-			_class2.prototype.attributeChangedCallback = function attributeChangedCallback(attribute, oldVal, newVal) {
-	
-				// cast the new val
-				newVal = (0, _autoCast2.default)(newVal);
-	
-				// keep an original attribute name
-				var _attribute = attribute;
-	
-				// process the attribute to camelCase
-				attribute = (0, _camelize2.default)(attribute);
-	
-				// handle the case when newVal is undefined (added attribute whithout any value)
-				if (newVal === undefined && this.hasAttribute(_attribute)) {
-					newVal = true;
-				}
-	
-				// do nothing if the value is already the same
-				if (this.props[attribute] === newVal) return;
-	
-				// set the new prop
-				this.setProp(attribute, newVal);
 			};
 	
 			/**
@@ -48809,7 +49022,7 @@
 					}
 	
 					// should component update
-					if (_this8.shouldComponentUpdate && !_this8.shouldComponentUpdate(_this8._nextPropsStack, nextPropsArray)) return;
+					if (_this8.shouldComponentUpdate && !_this8.shouldComponentUpdate(_this8._nextPropsStack, _this8._prevPropsStack)) return;
 	
 					// component will update
 					_this8.componentWillUpdate(_this8._nextPropsStack, nextPropsArray);
@@ -49223,21 +49436,20 @@
 			}, {
 				key: 'mountDependencies',
 				get: function get() {
-					// return [];
-					return [function () {
-						var _this12 = this;
-	
-						return new Promise(function (resolve, reject) {
-							var isTemplate = false;
-							if (_this12._typeOf.indexOf('STemplateWebComponent')) {
-								resolve();
-							} else {
-								setTimeout(function () {
-									resolve();
-								});
-							}
-						});
-					}];
+					return [];
+					// return [function() {
+					// 	return new Promise((resolve, reject) => {
+					// 		let isTemplate = false;
+					// 		resolve();
+					// 		if (this._typeOf.indexOf('STemplateWebComponent')) {
+					// 			resolve();
+					// 		} else {
+					// 			setTimeout(() => {
+					// 				resolve();
+					// 			});
+					// 		}
+					// 	});
+					// }];
 				}
 			}]);
 	
@@ -49738,7 +49950,7 @@
 	exports.__esModule = true;
 	exports.default = undefined;
 	
-	var _customEvent = __webpack_require__(103);
+	var _customEvent = __webpack_require__(104);
 	
 	var _customEvent2 = _interopRequireDefault(_customEvent);
 	
@@ -50452,7 +50664,7 @@
 		return observable;
 	};
 	
-	var _Observable = __webpack_require__(19);
+	var _Observable = __webpack_require__(20);
 
 /***/ },
 /* 402 */
@@ -50539,7 +50751,7 @@
 					_val = descriptor.get(_val);
 				}
 				if (currentDescriptor && currentDescriptor.get) {
-					_val = descriptor.get();
+					_val = currentDescriptor.get();
 				}
 				return _val;
 			},
@@ -51122,7 +51334,7 @@
 	
 	var _sSettings2 = _interopRequireDefault(_sSettings);
 	
-	var _fastdom = __webpack_require__(15);
+	var _fastdom = __webpack_require__(16);
 	
 	var _fastdom2 = _interopRequireDefault(_fastdom);
 	
@@ -51309,6 +51521,104 @@
 			};
 	
 			/**
+	  * When the component is created
+	  */
+			_class2.prototype.createdCallback = function createdCallback() {
+	
+				// props
+				this.props = {};
+	
+				// track the lifecyle
+				this._lifecycle = {
+					componentWillMount: false,
+					componentMount: false,
+					componentDidMount: false,
+					componentWillUnmount: false,
+					componentUnmount: false,
+					componentDidUnmount: false
+				};
+	
+				// if ( ! document.body.contains(this)) return;
+	
+				// component will mount only if part of the active document
+				this.componentWillMount();
+			};
+	
+			/**
+	  * When the element is attached
+	  */
+	
+	
+			_class2.prototype.attachedCallback = function attachedCallback() {
+				var _this2 = this;
+	
+				// check if need to launch the will mount
+				// if ( ! this._lifecycle.componentWillMount) {
+				// 	this.componentWillMount();
+				// }
+	
+				// update attached status
+				this._componentAttached = true;
+	
+				// wait until dependencies are ok
+				this._whenMountDependenciesAreOk().then(function () {
+					// switch on the mountWhen prop
+					switch (_this2.props.mountWhen) {
+						case 'inViewport':
+							(0, _whenInViewport2.default)(_this2).then(function () {
+								_this2._mountComponent();
+							});
+							break;
+						case 'mouseover':
+							_this2.addEventListener('mouseover', _this2._onMouseoverComponentMount.bind(_this2));
+							break;
+						case 'isVisible':
+							(0, _whenVisible2.default)(_this2).then(function () {
+								_this2._mountComponent();
+							});
+							break;
+						default:
+							// mount component directly
+							_this2._mountComponent();
+							break;
+					}
+				});
+			};
+	
+			/**
+	  * When any of the component attribute changes
+	  */
+	
+	
+			_class2.prototype.attributeChangedCallback = function attributeChangedCallback(attribute, oldVal, newVal) {
+	
+				// stop if component has not been mounted
+				// if ( ! this._lifecycle.componentWillMount) {
+				// 	return;
+				// }
+	
+				// cast the new val
+				newVal = (0, _autoCast2.default)(newVal);
+	
+				// keep an original attribute name
+				var _attribute = attribute;
+	
+				// process the attribute to camelCase
+				attribute = (0, _camelize2.default)(attribute);
+	
+				// handle the case when newVal is undefined (added attribute whithout any value)
+				if (newVal === undefined && this.hasAttribute(_attribute)) {
+					newVal = true;
+				}
+	
+				// do nothing if the value is already the same
+				if (this.props[attribute] === newVal) return;
+	
+				// set the new prop
+				this.setProp(attribute, newVal);
+			};
+	
+			/**
 	  * Method called before the component will be added in the dom.
 	  * You will not have access to the siblings, etc here.
 	  * This is the place to init your component, just like a constructor
@@ -51322,8 +51632,13 @@
 	  *
 	  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
 	  */
+	
+	
 			_class2.prototype.componentWillMount = function componentWillMount() {
-				var _this2 = this;
+				var _this3 = this;
+	
+				// update lifecycle state
+				this._lifecycle.componentWillMount = true;
 	
 				// dispatch event
 				this.onComponentWillMount && this.onComponentWillMount();
@@ -51343,21 +51658,21 @@
 				this._componentName = (0, _upperFirst2.default)((0, _camelize2.default)(sourceName));
 	
 				// save each instances into the element _sComponents stack
-				this._typeOf = [];
-				var comp = window.sugar._webComponentsStack[this._componentName];
-				while (comp) {
-					var funcNameRegex = /function (.{1,})\(/;
-					var res = funcNameRegex.exec(comp.toString());
-					if (res && res[1]) {
-						if (this._typeOf.indexOf(res[1]) === -1) {
-							this._typeOf.push(res[1]);
-						}
-					}
-					comp = Object.getPrototypeOf(comp);
-				}
+				// this._typeOf = [];
+				// let comp = window.sugar._webComponentsStack[this._componentName];
+				// while(comp) {
+				// 	let funcNameRegex = /function (.{1,})\(/;
+				// 	const res = (funcNameRegex).exec(comp.toString());
+				// 	if (res && res[1]) {
+				// 		if ( this._typeOf.indexOf(res[1]) === -1) {
+				// 			this._typeOf.push(res[1]);
+				// 		}
+				// 	}
+				// 	comp = Object.getPrototypeOf(comp);
+				// }
 	
 				// default props init
-				this.props = Object.assign({}, this.defaultProps);
+				this.props = Object.assign({}, this.defaultProps, this.props);
 	
 				// compute props
 				this._computeProps();
@@ -51367,8 +51682,8 @@
 	
 				// check the required props
 				this.requiredProps.forEach(function (prop) {
-					if (!_this2.props[prop]) {
-						throw 'The "' + _this2._componentNameDash + '" component need the "' + prop + '" property in order to work';
+					if (!_this3.props[prop]) {
+						throw 'The "' + _this3._componentNameDash + '" component need the "' + prop + '" property in order to work';
 					}
 				});
 			};
@@ -51390,6 +51705,8 @@
 	
 	
 			_class2.prototype.componentMount = function componentMount() {
+				// update the lifecycle state
+				this._lifecycle.componentMount = true;
 				// update the status
 				this._componentMounted = true;
 				// dispatch event
@@ -51412,6 +51729,8 @@
 	
 	
 			_class2.prototype.componentDidMount = function componentDidMount() {
+				// update lifecycle state
+				this._lifecycle.componentDidMount = true;
 				// dispatch event
 				this.onComponentDidMount && this.onComponentDidMount();
 				// this.dispatchComponentEvent('componentDidMount');
@@ -51469,12 +51788,16 @@
 			};
 	
 			_class2.prototype.componentWillUnmount = function componentWillUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentWillUnmount = true;
 				// dispatch event
 				this.onComponentWillUnmount && this.onComponentWillUnmount();
 				// this.dispatchComponentEvent('componentWillUnmount');
 			};
 	
 			_class2.prototype.componentUnmount = function componentUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentUnmount = true;
 				// update the status
 				this._componentMounted = false;
 				// dispatch event
@@ -51483,55 +51806,11 @@
 			};
 	
 			_class2.prototype.componentDidUnmount = function componentDidUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentDidUnmount = true;
 				// dispatch event
 				this.onComponentDidUnmount && this.onComponentDidUnmount();
 				// this.dispatchComponentEvent('componentDidUnmount');
-			};
-	
-			/**
-	  * When the component is created
-	  */
-	
-	
-			_class2.prototype.createdCallback = function createdCallback() {
-				// component will mount only if part of the active document
-				this.componentWillMount();
-			};
-	
-			/**
-	  * When the element is attached
-	  */
-	
-	
-			_class2.prototype.attachedCallback = function attachedCallback() {
-				var _this3 = this;
-	
-				// update attached status
-				this._componentAttached = true;
-	
-				// wait until dependencies are ok
-				this._whenMountDependenciesAreOk().then(function () {
-					// switch on the mountWhen prop
-					switch (_this3.props.mountWhen) {
-						case 'inViewport':
-							(0, _whenInViewport2.default)(_this3).then(function () {
-								_this3._mountComponent();
-							});
-							break;
-						case 'mouseover':
-							_this3.addEventListener('mouseover', _this3._onMouseoverComponentMount.bind(_this3));
-							break;
-						case 'isVisible':
-							(0, _whenVisible2.default)(_this3).then(function () {
-								_this3._mountComponent();
-							});
-							break;
-						default:
-							// mount component directly
-							_this3._mountComponent();
-							break;
-					}
-				});
 			};
 	
 			/**
@@ -51602,7 +51881,8 @@
 				var _this6 = this;
 	
 				// wait next frame
-				this.mutate(function () {
+				_fastdom2.default.clear(this._fastdomSetProp);
+				this._fastdomSetProp = this.mutate(function () {
 					// sometimes, the component has been unmounted between the
 					// fastdom execution, so we stop here if it's the case
 					if (!_this6._componentAttached) return;
@@ -51628,7 +51908,8 @@
 				// will unmount
 				this.componentWillUnmount();
 				// wait next frame
-				this.mutate(function () {
+				_fastdom2.default.clear(this._fastdomSetProp);
+				this._fastdomSetProp = this.mutate(function () {
 					// unmount only if the component is mounted
 					if (!_this7._componentMounted) return;
 					// unmount
@@ -51636,34 +51917,6 @@
 					// did unmount
 					_this7.componentDidUnmount();
 				});
-			};
-	
-			/**
-	  * When any of the component attribute changes
-	  */
-	
-	
-			_class2.prototype.attributeChangedCallback = function attributeChangedCallback(attribute, oldVal, newVal) {
-	
-				// cast the new val
-				newVal = (0, _autoCast2.default)(newVal);
-	
-				// keep an original attribute name
-				var _attribute = attribute;
-	
-				// process the attribute to camelCase
-				attribute = (0, _camelize2.default)(attribute);
-	
-				// handle the case when newVal is undefined (added attribute whithout any value)
-				if (newVal === undefined && this.hasAttribute(_attribute)) {
-					newVal = true;
-				}
-	
-				// do nothing if the value is already the same
-				if (this.props[attribute] === newVal) return;
-	
-				// set the new prop
-				this.setProp(attribute, newVal);
 			};
 	
 			/**
@@ -51760,7 +52013,7 @@
 					}
 	
 					// should component update
-					if (_this8.shouldComponentUpdate && !_this8.shouldComponentUpdate(_this8._nextPropsStack, nextPropsArray)) return;
+					if (_this8.shouldComponentUpdate && !_this8.shouldComponentUpdate(_this8._nextPropsStack, _this8._prevPropsStack)) return;
 	
 					// component will update
 					_this8.componentWillUpdate(_this8._nextPropsStack, nextPropsArray);
@@ -52174,21 +52427,20 @@
 			}, {
 				key: 'mountDependencies',
 				get: function get() {
-					// return [];
-					return [function () {
-						var _this12 = this;
-	
-						return new Promise(function (resolve, reject) {
-							var isTemplate = false;
-							if (_this12._typeOf.indexOf('STemplateWebComponent')) {
-								resolve();
-							} else {
-								setTimeout(function () {
-									resolve();
-								});
-							}
-						});
-					}];
+					return [];
+					// return [function() {
+					// 	return new Promise((resolve, reject) => {
+					// 		let isTemplate = false;
+					// 		resolve();
+					// 		if (this._typeOf.indexOf('STemplateWebComponent')) {
+					// 			resolve();
+					// 		} else {
+					// 			setTimeout(() => {
+					// 				resolve();
+					// 			});
+					// 		}
+					// 	});
+					// }];
 				}
 			}]);
 	
@@ -52689,7 +52941,7 @@
 	exports.__esModule = true;
 	exports.default = undefined;
 	
-	var _customEvent = __webpack_require__(103);
+	var _customEvent = __webpack_require__(104);
 	
 	var _customEvent2 = _interopRequireDefault(_customEvent);
 	
@@ -53403,7 +53655,7 @@
 		return observable;
 	};
 	
-	var _Observable = __webpack_require__(19);
+	var _Observable = __webpack_require__(20);
 
 /***/ },
 /* 430 */
@@ -53490,7 +53742,7 @@
 					_val = descriptor.get(_val);
 				}
 				if (currentDescriptor && currentDescriptor.get) {
-					_val = descriptor.get();
+					_val = currentDescriptor.get();
 				}
 				return _val;
 			},
@@ -54051,7 +54303,7 @@
 	
 	var _sSettings2 = _interopRequireDefault(_sSettings);
 	
-	var _fastdom = __webpack_require__(15);
+	var _fastdom = __webpack_require__(16);
 	
 	var _fastdom2 = _interopRequireDefault(_fastdom);
 	
@@ -54238,6 +54490,104 @@
 			};
 	
 			/**
+	  * When the component is created
+	  */
+			_class2.prototype.createdCallback = function createdCallback() {
+	
+				// props
+				this.props = {};
+	
+				// track the lifecyle
+				this._lifecycle = {
+					componentWillMount: false,
+					componentMount: false,
+					componentDidMount: false,
+					componentWillUnmount: false,
+					componentUnmount: false,
+					componentDidUnmount: false
+				};
+	
+				// if ( ! document.body.contains(this)) return;
+	
+				// component will mount only if part of the active document
+				this.componentWillMount();
+			};
+	
+			/**
+	  * When the element is attached
+	  */
+	
+	
+			_class2.prototype.attachedCallback = function attachedCallback() {
+				var _this2 = this;
+	
+				// check if need to launch the will mount
+				// if ( ! this._lifecycle.componentWillMount) {
+				// 	this.componentWillMount();
+				// }
+	
+				// update attached status
+				this._componentAttached = true;
+	
+				// wait until dependencies are ok
+				this._whenMountDependenciesAreOk().then(function () {
+					// switch on the mountWhen prop
+					switch (_this2.props.mountWhen) {
+						case 'inViewport':
+							(0, _whenInViewport2.default)(_this2).then(function () {
+								_this2._mountComponent();
+							});
+							break;
+						case 'mouseover':
+							_this2.addEventListener('mouseover', _this2._onMouseoverComponentMount.bind(_this2));
+							break;
+						case 'isVisible':
+							(0, _whenVisible2.default)(_this2).then(function () {
+								_this2._mountComponent();
+							});
+							break;
+						default:
+							// mount component directly
+							_this2._mountComponent();
+							break;
+					}
+				});
+			};
+	
+			/**
+	  * When any of the component attribute changes
+	  */
+	
+	
+			_class2.prototype.attributeChangedCallback = function attributeChangedCallback(attribute, oldVal, newVal) {
+	
+				// stop if component has not been mounted
+				// if ( ! this._lifecycle.componentWillMount) {
+				// 	return;
+				// }
+	
+				// cast the new val
+				newVal = (0, _autoCast2.default)(newVal);
+	
+				// keep an original attribute name
+				var _attribute = attribute;
+	
+				// process the attribute to camelCase
+				attribute = (0, _camelize2.default)(attribute);
+	
+				// handle the case when newVal is undefined (added attribute whithout any value)
+				if (newVal === undefined && this.hasAttribute(_attribute)) {
+					newVal = true;
+				}
+	
+				// do nothing if the value is already the same
+				if (this.props[attribute] === newVal) return;
+	
+				// set the new prop
+				this.setProp(attribute, newVal);
+			};
+	
+			/**
 	  * Method called before the component will be added in the dom.
 	  * You will not have access to the siblings, etc here.
 	  * This is the place to init your component, just like a constructor
@@ -54251,8 +54601,13 @@
 	  *
 	  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
 	  */
+	
+	
 			_class2.prototype.componentWillMount = function componentWillMount() {
-				var _this2 = this;
+				var _this3 = this;
+	
+				// update lifecycle state
+				this._lifecycle.componentWillMount = true;
 	
 				// dispatch event
 				this.onComponentWillMount && this.onComponentWillMount();
@@ -54272,21 +54627,21 @@
 				this._componentName = (0, _upperFirst2.default)((0, _camelize2.default)(sourceName));
 	
 				// save each instances into the element _sComponents stack
-				this._typeOf = [];
-				var comp = window.sugar._webComponentsStack[this._componentName];
-				while (comp) {
-					var funcNameRegex = /function (.{1,})\(/;
-					var res = funcNameRegex.exec(comp.toString());
-					if (res && res[1]) {
-						if (this._typeOf.indexOf(res[1]) === -1) {
-							this._typeOf.push(res[1]);
-						}
-					}
-					comp = Object.getPrototypeOf(comp);
-				}
+				// this._typeOf = [];
+				// let comp = window.sugar._webComponentsStack[this._componentName];
+				// while(comp) {
+				// 	let funcNameRegex = /function (.{1,})\(/;
+				// 	const res = (funcNameRegex).exec(comp.toString());
+				// 	if (res && res[1]) {
+				// 		if ( this._typeOf.indexOf(res[1]) === -1) {
+				// 			this._typeOf.push(res[1]);
+				// 		}
+				// 	}
+				// 	comp = Object.getPrototypeOf(comp);
+				// }
 	
 				// default props init
-				this.props = Object.assign({}, this.defaultProps);
+				this.props = Object.assign({}, this.defaultProps, this.props);
 	
 				// compute props
 				this._computeProps();
@@ -54296,8 +54651,8 @@
 	
 				// check the required props
 				this.requiredProps.forEach(function (prop) {
-					if (!_this2.props[prop]) {
-						throw 'The "' + _this2._componentNameDash + '" component need the "' + prop + '" property in order to work';
+					if (!_this3.props[prop]) {
+						throw 'The "' + _this3._componentNameDash + '" component need the "' + prop + '" property in order to work';
 					}
 				});
 			};
@@ -54319,6 +54674,8 @@
 	
 	
 			_class2.prototype.componentMount = function componentMount() {
+				// update the lifecycle state
+				this._lifecycle.componentMount = true;
 				// update the status
 				this._componentMounted = true;
 				// dispatch event
@@ -54341,6 +54698,8 @@
 	
 	
 			_class2.prototype.componentDidMount = function componentDidMount() {
+				// update lifecycle state
+				this._lifecycle.componentDidMount = true;
 				// dispatch event
 				this.onComponentDidMount && this.onComponentDidMount();
 				// this.dispatchComponentEvent('componentDidMount');
@@ -54398,12 +54757,16 @@
 			};
 	
 			_class2.prototype.componentWillUnmount = function componentWillUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentWillUnmount = true;
 				// dispatch event
 				this.onComponentWillUnmount && this.onComponentWillUnmount();
 				// this.dispatchComponentEvent('componentWillUnmount');
 			};
 	
 			_class2.prototype.componentUnmount = function componentUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentUnmount = true;
 				// update the status
 				this._componentMounted = false;
 				// dispatch event
@@ -54412,55 +54775,11 @@
 			};
 	
 			_class2.prototype.componentDidUnmount = function componentDidUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentDidUnmount = true;
 				// dispatch event
 				this.onComponentDidUnmount && this.onComponentDidUnmount();
 				// this.dispatchComponentEvent('componentDidUnmount');
-			};
-	
-			/**
-	  * When the component is created
-	  */
-	
-	
-			_class2.prototype.createdCallback = function createdCallback() {
-				// component will mount only if part of the active document
-				this.componentWillMount();
-			};
-	
-			/**
-	  * When the element is attached
-	  */
-	
-	
-			_class2.prototype.attachedCallback = function attachedCallback() {
-				var _this3 = this;
-	
-				// update attached status
-				this._componentAttached = true;
-	
-				// wait until dependencies are ok
-				this._whenMountDependenciesAreOk().then(function () {
-					// switch on the mountWhen prop
-					switch (_this3.props.mountWhen) {
-						case 'inViewport':
-							(0, _whenInViewport2.default)(_this3).then(function () {
-								_this3._mountComponent();
-							});
-							break;
-						case 'mouseover':
-							_this3.addEventListener('mouseover', _this3._onMouseoverComponentMount.bind(_this3));
-							break;
-						case 'isVisible':
-							(0, _whenVisible2.default)(_this3).then(function () {
-								_this3._mountComponent();
-							});
-							break;
-						default:
-							// mount component directly
-							_this3._mountComponent();
-							break;
-					}
-				});
 			};
 	
 			/**
@@ -54531,7 +54850,8 @@
 				var _this6 = this;
 	
 				// wait next frame
-				this.mutate(function () {
+				_fastdom2.default.clear(this._fastdomSetProp);
+				this._fastdomSetProp = this.mutate(function () {
 					// sometimes, the component has been unmounted between the
 					// fastdom execution, so we stop here if it's the case
 					if (!_this6._componentAttached) return;
@@ -54557,7 +54877,8 @@
 				// will unmount
 				this.componentWillUnmount();
 				// wait next frame
-				this.mutate(function () {
+				_fastdom2.default.clear(this._fastdomSetProp);
+				this._fastdomSetProp = this.mutate(function () {
 					// unmount only if the component is mounted
 					if (!_this7._componentMounted) return;
 					// unmount
@@ -54565,34 +54886,6 @@
 					// did unmount
 					_this7.componentDidUnmount();
 				});
-			};
-	
-			/**
-	  * When any of the component attribute changes
-	  */
-	
-	
-			_class2.prototype.attributeChangedCallback = function attributeChangedCallback(attribute, oldVal, newVal) {
-	
-				// cast the new val
-				newVal = (0, _autoCast2.default)(newVal);
-	
-				// keep an original attribute name
-				var _attribute = attribute;
-	
-				// process the attribute to camelCase
-				attribute = (0, _camelize2.default)(attribute);
-	
-				// handle the case when newVal is undefined (added attribute whithout any value)
-				if (newVal === undefined && this.hasAttribute(_attribute)) {
-					newVal = true;
-				}
-	
-				// do nothing if the value is already the same
-				if (this.props[attribute] === newVal) return;
-	
-				// set the new prop
-				this.setProp(attribute, newVal);
 			};
 	
 			/**
@@ -54689,7 +54982,7 @@
 					}
 	
 					// should component update
-					if (_this8.shouldComponentUpdate && !_this8.shouldComponentUpdate(_this8._nextPropsStack, nextPropsArray)) return;
+					if (_this8.shouldComponentUpdate && !_this8.shouldComponentUpdate(_this8._nextPropsStack, _this8._prevPropsStack)) return;
 	
 					// component will update
 					_this8.componentWillUpdate(_this8._nextPropsStack, nextPropsArray);
@@ -55103,21 +55396,20 @@
 			}, {
 				key: 'mountDependencies',
 				get: function get() {
-					// return [];
-					return [function () {
-						var _this12 = this;
-	
-						return new Promise(function (resolve, reject) {
-							var isTemplate = false;
-							if (_this12._typeOf.indexOf('STemplateWebComponent')) {
-								resolve();
-							} else {
-								setTimeout(function () {
-									resolve();
-								});
-							}
-						});
-					}];
+					return [];
+					// return [function() {
+					// 	return new Promise((resolve, reject) => {
+					// 		let isTemplate = false;
+					// 		resolve();
+					// 		if (this._typeOf.indexOf('STemplateWebComponent')) {
+					// 			resolve();
+					// 		} else {
+					// 			setTimeout(() => {
+					// 				resolve();
+					// 			});
+					// 		}
+					// 	});
+					// }];
 				}
 			}]);
 	
@@ -55618,7 +55910,7 @@
 	exports.__esModule = true;
 	exports.default = undefined;
 	
-	var _customEvent = __webpack_require__(103);
+	var _customEvent = __webpack_require__(104);
 	
 	var _customEvent2 = _interopRequireDefault(_customEvent);
 	
@@ -56332,7 +56624,7 @@
 		return observable;
 	};
 	
-	var _Observable = __webpack_require__(19);
+	var _Observable = __webpack_require__(20);
 
 /***/ },
 /* 457 */
@@ -56419,7 +56711,7 @@
 					_val = descriptor.get(_val);
 				}
 				if (currentDescriptor && currentDescriptor.get) {
-					_val = descriptor.get();
+					_val = currentDescriptor.get();
 				}
 				return _val;
 			},
@@ -56817,7 +57109,7 @@
 	
 	var _sSettings2 = _interopRequireDefault(_sSettings);
 	
-	var _fastdom = __webpack_require__(15);
+	var _fastdom = __webpack_require__(16);
 	
 	var _fastdom2 = _interopRequireDefault(_fastdom);
 	
@@ -57004,6 +57296,104 @@
 			};
 	
 			/**
+	  * When the component is created
+	  */
+			_class2.prototype.createdCallback = function createdCallback() {
+	
+				// props
+				this.props = {};
+	
+				// track the lifecyle
+				this._lifecycle = {
+					componentWillMount: false,
+					componentMount: false,
+					componentDidMount: false,
+					componentWillUnmount: false,
+					componentUnmount: false,
+					componentDidUnmount: false
+				};
+	
+				// if ( ! document.body.contains(this)) return;
+	
+				// component will mount only if part of the active document
+				this.componentWillMount();
+			};
+	
+			/**
+	  * When the element is attached
+	  */
+	
+	
+			_class2.prototype.attachedCallback = function attachedCallback() {
+				var _this2 = this;
+	
+				// check if need to launch the will mount
+				// if ( ! this._lifecycle.componentWillMount) {
+				// 	this.componentWillMount();
+				// }
+	
+				// update attached status
+				this._componentAttached = true;
+	
+				// wait until dependencies are ok
+				this._whenMountDependenciesAreOk().then(function () {
+					// switch on the mountWhen prop
+					switch (_this2.props.mountWhen) {
+						case 'inViewport':
+							(0, _whenInViewport2.default)(_this2).then(function () {
+								_this2._mountComponent();
+							});
+							break;
+						case 'mouseover':
+							_this2.addEventListener('mouseover', _this2._onMouseoverComponentMount.bind(_this2));
+							break;
+						case 'isVisible':
+							(0, _whenVisible2.default)(_this2).then(function () {
+								_this2._mountComponent();
+							});
+							break;
+						default:
+							// mount component directly
+							_this2._mountComponent();
+							break;
+					}
+				});
+			};
+	
+			/**
+	  * When any of the component attribute changes
+	  */
+	
+	
+			_class2.prototype.attributeChangedCallback = function attributeChangedCallback(attribute, oldVal, newVal) {
+	
+				// stop if component has not been mounted
+				// if ( ! this._lifecycle.componentWillMount) {
+				// 	return;
+				// }
+	
+				// cast the new val
+				newVal = (0, _autoCast2.default)(newVal);
+	
+				// keep an original attribute name
+				var _attribute = attribute;
+	
+				// process the attribute to camelCase
+				attribute = (0, _camelize2.default)(attribute);
+	
+				// handle the case when newVal is undefined (added attribute whithout any value)
+				if (newVal === undefined && this.hasAttribute(_attribute)) {
+					newVal = true;
+				}
+	
+				// do nothing if the value is already the same
+				if (this.props[attribute] === newVal) return;
+	
+				// set the new prop
+				this.setProp(attribute, newVal);
+			};
+	
+			/**
 	  * Method called before the component will be added in the dom.
 	  * You will not have access to the siblings, etc here.
 	  * This is the place to init your component, just like a constructor
@@ -57017,8 +57407,13 @@
 	  *
 	  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
 	  */
+	
+	
 			_class2.prototype.componentWillMount = function componentWillMount() {
-				var _this2 = this;
+				var _this3 = this;
+	
+				// update lifecycle state
+				this._lifecycle.componentWillMount = true;
 	
 				// dispatch event
 				this.onComponentWillMount && this.onComponentWillMount();
@@ -57038,21 +57433,21 @@
 				this._componentName = (0, _upperFirst2.default)((0, _camelize2.default)(sourceName));
 	
 				// save each instances into the element _sComponents stack
-				this._typeOf = [];
-				var comp = window.sugar._webComponentsStack[this._componentName];
-				while (comp) {
-					var funcNameRegex = /function (.{1,})\(/;
-					var res = funcNameRegex.exec(comp.toString());
-					if (res && res[1]) {
-						if (this._typeOf.indexOf(res[1]) === -1) {
-							this._typeOf.push(res[1]);
-						}
-					}
-					comp = Object.getPrototypeOf(comp);
-				}
+				// this._typeOf = [];
+				// let comp = window.sugar._webComponentsStack[this._componentName];
+				// while(comp) {
+				// 	let funcNameRegex = /function (.{1,})\(/;
+				// 	const res = (funcNameRegex).exec(comp.toString());
+				// 	if (res && res[1]) {
+				// 		if ( this._typeOf.indexOf(res[1]) === -1) {
+				// 			this._typeOf.push(res[1]);
+				// 		}
+				// 	}
+				// 	comp = Object.getPrototypeOf(comp);
+				// }
 	
 				// default props init
-				this.props = Object.assign({}, this.defaultProps);
+				this.props = Object.assign({}, this.defaultProps, this.props);
 	
 				// compute props
 				this._computeProps();
@@ -57062,8 +57457,8 @@
 	
 				// check the required props
 				this.requiredProps.forEach(function (prop) {
-					if (!_this2.props[prop]) {
-						throw 'The "' + _this2._componentNameDash + '" component need the "' + prop + '" property in order to work';
+					if (!_this3.props[prop]) {
+						throw 'The "' + _this3._componentNameDash + '" component need the "' + prop + '" property in order to work';
 					}
 				});
 			};
@@ -57085,6 +57480,8 @@
 	
 	
 			_class2.prototype.componentMount = function componentMount() {
+				// update the lifecycle state
+				this._lifecycle.componentMount = true;
 				// update the status
 				this._componentMounted = true;
 				// dispatch event
@@ -57107,6 +57504,8 @@
 	
 	
 			_class2.prototype.componentDidMount = function componentDidMount() {
+				// update lifecycle state
+				this._lifecycle.componentDidMount = true;
 				// dispatch event
 				this.onComponentDidMount && this.onComponentDidMount();
 				// this.dispatchComponentEvent('componentDidMount');
@@ -57164,12 +57563,16 @@
 			};
 	
 			_class2.prototype.componentWillUnmount = function componentWillUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentWillUnmount = true;
 				// dispatch event
 				this.onComponentWillUnmount && this.onComponentWillUnmount();
 				// this.dispatchComponentEvent('componentWillUnmount');
 			};
 	
 			_class2.prototype.componentUnmount = function componentUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentUnmount = true;
 				// update the status
 				this._componentMounted = false;
 				// dispatch event
@@ -57178,55 +57581,11 @@
 			};
 	
 			_class2.prototype.componentDidUnmount = function componentDidUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentDidUnmount = true;
 				// dispatch event
 				this.onComponentDidUnmount && this.onComponentDidUnmount();
 				// this.dispatchComponentEvent('componentDidUnmount');
-			};
-	
-			/**
-	  * When the component is created
-	  */
-	
-	
-			_class2.prototype.createdCallback = function createdCallback() {
-				// component will mount only if part of the active document
-				this.componentWillMount();
-			};
-	
-			/**
-	  * When the element is attached
-	  */
-	
-	
-			_class2.prototype.attachedCallback = function attachedCallback() {
-				var _this3 = this;
-	
-				// update attached status
-				this._componentAttached = true;
-	
-				// wait until dependencies are ok
-				this._whenMountDependenciesAreOk().then(function () {
-					// switch on the mountWhen prop
-					switch (_this3.props.mountWhen) {
-						case 'inViewport':
-							(0, _whenInViewport2.default)(_this3).then(function () {
-								_this3._mountComponent();
-							});
-							break;
-						case 'mouseover':
-							_this3.addEventListener('mouseover', _this3._onMouseoverComponentMount.bind(_this3));
-							break;
-						case 'isVisible':
-							(0, _whenVisible2.default)(_this3).then(function () {
-								_this3._mountComponent();
-							});
-							break;
-						default:
-							// mount component directly
-							_this3._mountComponent();
-							break;
-					}
-				});
 			};
 	
 			/**
@@ -57297,7 +57656,8 @@
 				var _this6 = this;
 	
 				// wait next frame
-				this.mutate(function () {
+				_fastdom2.default.clear(this._fastdomSetProp);
+				this._fastdomSetProp = this.mutate(function () {
 					// sometimes, the component has been unmounted between the
 					// fastdom execution, so we stop here if it's the case
 					if (!_this6._componentAttached) return;
@@ -57323,7 +57683,8 @@
 				// will unmount
 				this.componentWillUnmount();
 				// wait next frame
-				this.mutate(function () {
+				_fastdom2.default.clear(this._fastdomSetProp);
+				this._fastdomSetProp = this.mutate(function () {
 					// unmount only if the component is mounted
 					if (!_this7._componentMounted) return;
 					// unmount
@@ -57331,34 +57692,6 @@
 					// did unmount
 					_this7.componentDidUnmount();
 				});
-			};
-	
-			/**
-	  * When any of the component attribute changes
-	  */
-	
-	
-			_class2.prototype.attributeChangedCallback = function attributeChangedCallback(attribute, oldVal, newVal) {
-	
-				// cast the new val
-				newVal = (0, _autoCast2.default)(newVal);
-	
-				// keep an original attribute name
-				var _attribute = attribute;
-	
-				// process the attribute to camelCase
-				attribute = (0, _camelize2.default)(attribute);
-	
-				// handle the case when newVal is undefined (added attribute whithout any value)
-				if (newVal === undefined && this.hasAttribute(_attribute)) {
-					newVal = true;
-				}
-	
-				// do nothing if the value is already the same
-				if (this.props[attribute] === newVal) return;
-	
-				// set the new prop
-				this.setProp(attribute, newVal);
 			};
 	
 			/**
@@ -57455,7 +57788,7 @@
 					}
 	
 					// should component update
-					if (_this8.shouldComponentUpdate && !_this8.shouldComponentUpdate(_this8._nextPropsStack, nextPropsArray)) return;
+					if (_this8.shouldComponentUpdate && !_this8.shouldComponentUpdate(_this8._nextPropsStack, _this8._prevPropsStack)) return;
 	
 					// component will update
 					_this8.componentWillUpdate(_this8._nextPropsStack, nextPropsArray);
@@ -57869,21 +58202,20 @@
 			}, {
 				key: 'mountDependencies',
 				get: function get() {
-					// return [];
-					return [function () {
-						var _this12 = this;
-	
-						return new Promise(function (resolve, reject) {
-							var isTemplate = false;
-							if (_this12._typeOf.indexOf('STemplateWebComponent')) {
-								resolve();
-							} else {
-								setTimeout(function () {
-									resolve();
-								});
-							}
-						});
-					}];
+					return [];
+					// return [function() {
+					// 	return new Promise((resolve, reject) => {
+					// 		let isTemplate = false;
+					// 		resolve();
+					// 		if (this._typeOf.indexOf('STemplateWebComponent')) {
+					// 			resolve();
+					// 		} else {
+					// 			setTimeout(() => {
+					// 				resolve();
+					// 			});
+					// 		}
+					// 	});
+					// }];
 				}
 			}]);
 	
@@ -58384,7 +58716,7 @@
 	exports.__esModule = true;
 	exports.default = undefined;
 	
-	var _customEvent = __webpack_require__(103);
+	var _customEvent = __webpack_require__(104);
 	
 	var _customEvent2 = _interopRequireDefault(_customEvent);
 	
@@ -59098,7 +59430,7 @@
 		return observable;
 	};
 	
-	var _Observable = __webpack_require__(19);
+	var _Observable = __webpack_require__(20);
 
 /***/ },
 /* 484 */
@@ -59185,7 +59517,7 @@
 					_val = descriptor.get(_val);
 				}
 				if (currentDescriptor && currentDescriptor.get) {
-					_val = descriptor.get();
+					_val = currentDescriptor.get();
 				}
 				return _val;
 			},
@@ -60914,7 +61246,7 @@
 	
 	var _sSettings2 = _interopRequireDefault(_sSettings);
 	
-	var _fastdom = __webpack_require__(15);
+	var _fastdom = __webpack_require__(16);
 	
 	var _fastdom2 = _interopRequireDefault(_fastdom);
 	
@@ -61101,6 +61433,104 @@
 			};
 	
 			/**
+	  * When the component is created
+	  */
+			_class2.prototype.createdCallback = function createdCallback() {
+	
+				// props
+				this.props = {};
+	
+				// track the lifecyle
+				this._lifecycle = {
+					componentWillMount: false,
+					componentMount: false,
+					componentDidMount: false,
+					componentWillUnmount: false,
+					componentUnmount: false,
+					componentDidUnmount: false
+				};
+	
+				// if ( ! document.body.contains(this)) return;
+	
+				// component will mount only if part of the active document
+				this.componentWillMount();
+			};
+	
+			/**
+	  * When the element is attached
+	  */
+	
+	
+			_class2.prototype.attachedCallback = function attachedCallback() {
+				var _this2 = this;
+	
+				// check if need to launch the will mount
+				// if ( ! this._lifecycle.componentWillMount) {
+				// 	this.componentWillMount();
+				// }
+	
+				// update attached status
+				this._componentAttached = true;
+	
+				// wait until dependencies are ok
+				this._whenMountDependenciesAreOk().then(function () {
+					// switch on the mountWhen prop
+					switch (_this2.props.mountWhen) {
+						case 'inViewport':
+							(0, _whenInViewport2.default)(_this2).then(function () {
+								_this2._mountComponent();
+							});
+							break;
+						case 'mouseover':
+							_this2.addEventListener('mouseover', _this2._onMouseoverComponentMount.bind(_this2));
+							break;
+						case 'isVisible':
+							(0, _whenVisible2.default)(_this2).then(function () {
+								_this2._mountComponent();
+							});
+							break;
+						default:
+							// mount component directly
+							_this2._mountComponent();
+							break;
+					}
+				});
+			};
+	
+			/**
+	  * When any of the component attribute changes
+	  */
+	
+	
+			_class2.prototype.attributeChangedCallback = function attributeChangedCallback(attribute, oldVal, newVal) {
+	
+				// stop if component has not been mounted
+				// if ( ! this._lifecycle.componentWillMount) {
+				// 	return;
+				// }
+	
+				// cast the new val
+				newVal = (0, _autoCast2.default)(newVal);
+	
+				// keep an original attribute name
+				var _attribute = attribute;
+	
+				// process the attribute to camelCase
+				attribute = (0, _camelize2.default)(attribute);
+	
+				// handle the case when newVal is undefined (added attribute whithout any value)
+				if (newVal === undefined && this.hasAttribute(_attribute)) {
+					newVal = true;
+				}
+	
+				// do nothing if the value is already the same
+				if (this.props[attribute] === newVal) return;
+	
+				// set the new prop
+				this.setProp(attribute, newVal);
+			};
+	
+			/**
 	  * Method called before the component will be added in the dom.
 	  * You will not have access to the siblings, etc here.
 	  * This is the place to init your component, just like a constructor
@@ -61114,8 +61544,13 @@
 	  *
 	  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
 	  */
+	
+	
 			_class2.prototype.componentWillMount = function componentWillMount() {
-				var _this2 = this;
+				var _this3 = this;
+	
+				// update lifecycle state
+				this._lifecycle.componentWillMount = true;
 	
 				// dispatch event
 				this.onComponentWillMount && this.onComponentWillMount();
@@ -61135,21 +61570,21 @@
 				this._componentName = (0, _upperFirst2.default)((0, _camelize2.default)(sourceName));
 	
 				// save each instances into the element _sComponents stack
-				this._typeOf = [];
-				var comp = window.sugar._webComponentsStack[this._componentName];
-				while (comp) {
-					var funcNameRegex = /function (.{1,})\(/;
-					var res = funcNameRegex.exec(comp.toString());
-					if (res && res[1]) {
-						if (this._typeOf.indexOf(res[1]) === -1) {
-							this._typeOf.push(res[1]);
-						}
-					}
-					comp = Object.getPrototypeOf(comp);
-				}
+				// this._typeOf = [];
+				// let comp = window.sugar._webComponentsStack[this._componentName];
+				// while(comp) {
+				// 	let funcNameRegex = /function (.{1,})\(/;
+				// 	const res = (funcNameRegex).exec(comp.toString());
+				// 	if (res && res[1]) {
+				// 		if ( this._typeOf.indexOf(res[1]) === -1) {
+				// 			this._typeOf.push(res[1]);
+				// 		}
+				// 	}
+				// 	comp = Object.getPrototypeOf(comp);
+				// }
 	
 				// default props init
-				this.props = Object.assign({}, this.defaultProps);
+				this.props = Object.assign({}, this.defaultProps, this.props);
 	
 				// compute props
 				this._computeProps();
@@ -61159,8 +61594,8 @@
 	
 				// check the required props
 				this.requiredProps.forEach(function (prop) {
-					if (!_this2.props[prop]) {
-						throw 'The "' + _this2._componentNameDash + '" component need the "' + prop + '" property in order to work';
+					if (!_this3.props[prop]) {
+						throw 'The "' + _this3._componentNameDash + '" component need the "' + prop + '" property in order to work';
 					}
 				});
 			};
@@ -61182,6 +61617,8 @@
 	
 	
 			_class2.prototype.componentMount = function componentMount() {
+				// update the lifecycle state
+				this._lifecycle.componentMount = true;
 				// update the status
 				this._componentMounted = true;
 				// dispatch event
@@ -61204,6 +61641,8 @@
 	
 	
 			_class2.prototype.componentDidMount = function componentDidMount() {
+				// update lifecycle state
+				this._lifecycle.componentDidMount = true;
 				// dispatch event
 				this.onComponentDidMount && this.onComponentDidMount();
 				// this.dispatchComponentEvent('componentDidMount');
@@ -61261,12 +61700,16 @@
 			};
 	
 			_class2.prototype.componentWillUnmount = function componentWillUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentWillUnmount = true;
 				// dispatch event
 				this.onComponentWillUnmount && this.onComponentWillUnmount();
 				// this.dispatchComponentEvent('componentWillUnmount');
 			};
 	
 			_class2.prototype.componentUnmount = function componentUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentUnmount = true;
 				// update the status
 				this._componentMounted = false;
 				// dispatch event
@@ -61275,55 +61718,11 @@
 			};
 	
 			_class2.prototype.componentDidUnmount = function componentDidUnmount() {
+				// update lifecycle state
+				this._lifecycle.componentDidUnmount = true;
 				// dispatch event
 				this.onComponentDidUnmount && this.onComponentDidUnmount();
 				// this.dispatchComponentEvent('componentDidUnmount');
-			};
-	
-			/**
-	  * When the component is created
-	  */
-	
-	
-			_class2.prototype.createdCallback = function createdCallback() {
-				// component will mount only if part of the active document
-				this.componentWillMount();
-			};
-	
-			/**
-	  * When the element is attached
-	  */
-	
-	
-			_class2.prototype.attachedCallback = function attachedCallback() {
-				var _this3 = this;
-	
-				// update attached status
-				this._componentAttached = true;
-	
-				// wait until dependencies are ok
-				this._whenMountDependenciesAreOk().then(function () {
-					// switch on the mountWhen prop
-					switch (_this3.props.mountWhen) {
-						case 'inViewport':
-							(0, _whenInViewport2.default)(_this3).then(function () {
-								_this3._mountComponent();
-							});
-							break;
-						case 'mouseover':
-							_this3.addEventListener('mouseover', _this3._onMouseoverComponentMount.bind(_this3));
-							break;
-						case 'isVisible':
-							(0, _whenVisible2.default)(_this3).then(function () {
-								_this3._mountComponent();
-							});
-							break;
-						default:
-							// mount component directly
-							_this3._mountComponent();
-							break;
-					}
-				});
 			};
 	
 			/**
@@ -61394,7 +61793,8 @@
 				var _this6 = this;
 	
 				// wait next frame
-				this.mutate(function () {
+				_fastdom2.default.clear(this._fastdomSetProp);
+				this._fastdomSetProp = this.mutate(function () {
 					// sometimes, the component has been unmounted between the
 					// fastdom execution, so we stop here if it's the case
 					if (!_this6._componentAttached) return;
@@ -61420,7 +61820,8 @@
 				// will unmount
 				this.componentWillUnmount();
 				// wait next frame
-				this.mutate(function () {
+				_fastdom2.default.clear(this._fastdomSetProp);
+				this._fastdomSetProp = this.mutate(function () {
 					// unmount only if the component is mounted
 					if (!_this7._componentMounted) return;
 					// unmount
@@ -61428,34 +61829,6 @@
 					// did unmount
 					_this7.componentDidUnmount();
 				});
-			};
-	
-			/**
-	  * When any of the component attribute changes
-	  */
-	
-	
-			_class2.prototype.attributeChangedCallback = function attributeChangedCallback(attribute, oldVal, newVal) {
-	
-				// cast the new val
-				newVal = (0, _autoCast2.default)(newVal);
-	
-				// keep an original attribute name
-				var _attribute = attribute;
-	
-				// process the attribute to camelCase
-				attribute = (0, _camelize2.default)(attribute);
-	
-				// handle the case when newVal is undefined (added attribute whithout any value)
-				if (newVal === undefined && this.hasAttribute(_attribute)) {
-					newVal = true;
-				}
-	
-				// do nothing if the value is already the same
-				if (this.props[attribute] === newVal) return;
-	
-				// set the new prop
-				this.setProp(attribute, newVal);
 			};
 	
 			/**
@@ -61552,7 +61925,7 @@
 					}
 	
 					// should component update
-					if (_this8.shouldComponentUpdate && !_this8.shouldComponentUpdate(_this8._nextPropsStack, nextPropsArray)) return;
+					if (_this8.shouldComponentUpdate && !_this8.shouldComponentUpdate(_this8._nextPropsStack, _this8._prevPropsStack)) return;
 	
 					// component will update
 					_this8.componentWillUpdate(_this8._nextPropsStack, nextPropsArray);
@@ -61966,21 +62339,20 @@
 			}, {
 				key: 'mountDependencies',
 				get: function get() {
-					// return [];
-					return [function () {
-						var _this12 = this;
-	
-						return new Promise(function (resolve, reject) {
-							var isTemplate = false;
-							if (_this12._typeOf.indexOf('STemplateWebComponent')) {
-								resolve();
-							} else {
-								setTimeout(function () {
-									resolve();
-								});
-							}
-						});
-					}];
+					return [];
+					// return [function() {
+					// 	return new Promise((resolve, reject) => {
+					// 		let isTemplate = false;
+					// 		resolve();
+					// 		if (this._typeOf.indexOf('STemplateWebComponent')) {
+					// 			resolve();
+					// 		} else {
+					// 			setTimeout(() => {
+					// 				resolve();
+					// 			});
+					// 		}
+					// 	});
+					// }];
 				}
 			}]);
 	
@@ -62481,7 +62853,7 @@
 	exports.__esModule = true;
 	exports.default = undefined;
 	
-	var _customEvent = __webpack_require__(103);
+	var _customEvent = __webpack_require__(104);
 	
 	var _customEvent2 = _interopRequireDefault(_customEvent);
 	
@@ -63195,7 +63567,7 @@
 		return observable;
 	};
 	
-	var _Observable = __webpack_require__(19);
+	var _Observable = __webpack_require__(20);
 
 /***/ },
 /* 523 */
@@ -63282,7 +63654,7 @@
 					_val = descriptor.get(_val);
 				}
 				if (currentDescriptor && currentDescriptor.get) {
-					_val = descriptor.get();
+					_val = currentDescriptor.get();
 				}
 				return _val;
 			},

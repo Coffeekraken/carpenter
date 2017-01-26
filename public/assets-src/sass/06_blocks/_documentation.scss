@@ -3,30 +3,40 @@
  */
 .documentation {
 
+
 	h1 {
-		background-color:s-color(title);
-		background-image:url('../img/header-bkg-grey.png');
-		background-blend-mode: luminosity;
-		background-repeat:no-repeat;
-		background-size:cover;
-		color: white;
-		margin:s-space(bigger) * -1;
-		margin-bottom:s-space(bigger);
-		padding:s-space(bigger);
-		text-shadow:rgba(0,0,0,.3) 0 0 5px;
+		// background-color:s-color(title);
+		// background-image:url('../img/header-bkg-grey.png');
+		// background-blend-mode: luminosity;
+		// background-repeat:no-repeat;
+		// background-size:cover;
+		// color: white;
+		// margin:s-space(bigger) * -1;
+		// text-shadow:rgba(0,0,0,.3) 0 0 5px;
+		//
+		& + p {
+			@extend .p;
+			@extend .p--lead;
+		}
 	}
 	h2 {
-		border-bottom:1px solid s-color(border);
-		padding-bottom:1rem;
+		border-top:10px solid darken(white,1%);
+		padding-top:6rem;
 		margin-bottom:2rem;
-		margin-top:4rem;
+		margin-top:6rem;
+		// margin-left:s-space(bigger) * -1;
+		// margin-right:s-space(bigger) * -1;
+		// padding-left:s-space(bigger);
+		// padding-right:s-space(bigger);
 	}
 	h3 {
-		margin-top:4rem;
+		margin-top:6rem;
+	}
+	p {
+		max-width: 800px;
 	}
 
 	pre {
-		@include s-depth(10);
 		margin-top:1em !important;
 		margin-bottom:3em !important;
 		code {
@@ -57,6 +67,7 @@
 		@extend .vr;
 		padding:0 s-space(medium);
 		border-left:3px solid s-color(border);
+		font-size:2em;
 		margin-top:2em;
 		margin-bottom:2em;
 	}

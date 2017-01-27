@@ -9,11 +9,13 @@
 	<div class="topbar">
 		<div class="row row-align-middle auto-height">
 			<div class="gr-adapt auto-height nowrap topbar__logo">
-				{{#if logo}}
-					<img style="width:100px; max-height:30px;" class="inline-block" src="/{{logo}}" />
-				{{else}}
-					<div style="width:80px;" class="coffeekraken-logo"></div>
-				{{/if}}
+				<a href="/">
+					{{#if logo}}
+						<img style="width:100px; max-height:30px;" class="inline-block" src="/{{logo}}" />
+					{{else}}
+						<div style="width:80px;" class="coffeekraken-logo"></div>
+					{{/if}}
+				</a>
 			</div>
 			<div class="gr-adapt">
 				<h1 class="h5" style="color:white">
@@ -64,8 +66,14 @@
 			<ul class="list list--menu m-b">
 				{{#each styleguide.all}}
 					<li class="list__item">
-						<a href="/styleguide/{{@key}}">
+						<a href="styleguide-{{@key}}"
+							class="list__item--toggle"
+							is="s-activate"
+							id="styleguide-{{@key}}"
+							save-state="localStorage" toggle="true" history="false" prevent-scroll>
 							{{{@key}}}
+							<i class="fa fa-plus pull-right" style="font-size:8px;"></i>
+							<i class="fa fa-minus pull-right" style="font-size:8px;"></i>
 							<s-ripple></s-ripple>
 						</a>
 						<ul class="list list--submenu">

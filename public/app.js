@@ -167,6 +167,7 @@ module.exports = function(config) {
 		// filter styleguide to display depending on the url
 		let styleguidesToDisplay = {};
 		if (req.params.styleguide) {
+			allStyleguides[req.params.styleguide].active = true;
 			styleguidesToDisplay[req.params.styleguide] = allStyleguides[req.params.styleguide];
 		} else {
 			styleguidesToDisplay = allStyleguides;

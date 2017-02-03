@@ -24,7 +24,7 @@ module.exports = function(data) {
 			<s-interactive-demo layout="vertical" hide="['html']" styles="/${__config.styleguide.files.filter(function(file) { return file.substr(-4) === '.css' })}">
 				<s-codemirror id="${language}" language="${language}">
 					<div class="tf vr">
-						<h3 style="font-family:${data['font-family']}">
+						<h3 style="font-family:${data['font-family']}; font-style:${data['font-style']}; font-weight:${data['font-weight']};">
 							${sentence}
 						</h3>
 						<p style="font-family:${data['font-family']}">

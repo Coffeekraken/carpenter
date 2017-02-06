@@ -55,6 +55,10 @@ module.exports = function(config) {
 			res.sendFile(process.env.PWD + req.url);
 		});
 	});
+	Object.keys(config.express.static).forEach(function(folderPath) {
+		const mapToPath = config.express.static[folderPath];
+		app.use(folderPath, __express.static(mapToPath));
+	});
 	if (config.logo) {
 		app.get('/' + config.logo, function(req, res) {
 			res.sendFile(process.env.PWD + req.url);

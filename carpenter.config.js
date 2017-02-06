@@ -8,6 +8,14 @@ module.exports = {
 	// logo
 	logo : null,
 
+	// express configs
+	express : {
+		// which folders to serve static files from
+		static : {
+			'/dist' : process.env.PWD + '/dist'
+		}
+	},
+
 	// documentation settings
 	documentation : {
 

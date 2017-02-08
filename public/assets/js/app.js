@@ -23270,7 +23270,6 @@
 				var _this4 = this;
 	
 				setTimeout(function () {
-					console.log(_this4._iframeRefs.wrapper.scrollHeight);
 					_this4._refs.iframe.removeAttribute('height');
 					_this4._refs.iframe.height = _this4._iframeRefs.wrapper.scrollHeight + 15 + 'px';
 				}, 50);

@@ -1,6 +1,6 @@
 .coffeekraken-logo {
 	@include s-coffeekraken-logo(
-		$color : white,
+		$color : s-color(secondary),
 		$accent : s-color(primary)
 	);
 	max-width:120px;

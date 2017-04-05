@@ -66,6 +66,7 @@
   },
   "dependencies": {
     "Faker": "^0.7.2",
+    "babel-polyfill": "^6.23.0",
     "codemirror": "^5.22.0",
     "coffeekraken-compile-server": "https://github.com/Coffeekraken/compile-server.git#release/0.0.1",
     "coffeekraken-docblock-parser": "https://github.com/Coffeekraken/docblock-parser.git#release/0.0.1",

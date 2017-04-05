@@ -32168,13 +32168,14 @@
 				// get the document of the iframe reference
 				this._iframeRefs.document = this._refs.iframe.contentDocument || this._refs.iframe.contentWindow.document;
 	
-				// wrapper
-				this._iframeRefs.wrapper = this._iframeRefs.document.createElement('div');
-				this._iframeRefs.wrapper.setAttribute('id', 'wrapper');
-	
 				// firefox bugfix
 				this._iframeRefs.document.open();
+				this._iframeRefs.document.write('<div id="wrapper"></div>');
+				this._iframeRefs.document.domain = document.domain;
 				this._iframeRefs.document.close();
+	
+				// wrapper
+				this._iframeRefs.wrapper = this._iframeRefs.document.getElementById('wrapper');
 	
 				// get the iframe body reference
 				this._iframeRefs.body = this._iframeRefs.document.body;

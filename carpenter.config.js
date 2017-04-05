@@ -8,6 +8,9 @@ module.exports = {
 	// logo
 	logo : null,
 
+	// home url
+	index : '/documentation/README.md',
+
 	// express configs
 	express : {
 		// which folders to serve static files from
@@ -20,14 +23,19 @@ module.exports = {
 	documentation : {
 
 		// files
-		files : []
+		files : [
+			'doc/**/*.md',
+			'README.md'
+		]
 	},
 
-	// styleguide file
+	// styleguide configuration
 	styleguide : {
 
 		// source styleguide files
-		files : [],
+		files : [
+			'public/assets/css/style.css'
+		],
 
 		// additionnal displays files to load
 		displays : []

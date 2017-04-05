@@ -3,12 +3,17 @@
   "version": "0.0.1",
   "description": "Powerful tool that provide a nice web interface to display your website styleguide and modules/plugins documentations in one place.",
   "main": "dist/index.js",
+  "homepage": "http://coffeekraken.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coffeekraken/carpenter"
+  },
   "bin": {
-    "coffeekraken-carpenter": "./run"
+    "coffeekraken-carpenter": "./bin/coffeekraken-carpenter"
   },
   "scripts": {
     "assets": "npm run assets.css && npm run assets.js && npm run assets.img",
-    "assets.css": "node-sass public/assets-src/sass/style.scss public/assets/css/style.css --include-path node_modules --output-style compact",
+    "assets.css": "node-sass public/assets-src/sass/style.scss public/assets/css/style.css --include-path node_modules --output-style expanded",
     "assets.js": "webpack",
     "assets.img": "imagemin public/assets-src/img/* --out-dir=public/assets/img",
     "assets.watch": "concurrently --kill-others \"npm run assets.watch.css\" \"npm run assets.watch.js\"",
@@ -17,7 +22,7 @@
     "assets.watch.img": "nodemon -w public/assets-src/img  -x \"npm run assets.img\"",
     "dist": "babel src -d dist",
     "dist.watch": "nodemon -w src -e js -x \"npm run dist\"",
-    "compile-server": "coffeekraken-compile-server",
+    "start": "concurrently --kill-others \"npm run assets.watch\" \"npm run dist.watch\" \"nodemon ./bin/coffeekraken-carpenter\"",
     "test": "coffeekraken-testing-stack"
   },
   "keywords": [
@@ -36,6 +41,11 @@
     "kraken"
   ],
   "author": "Coffeekraken <hello@coffeekraken.io>",
+  "contributors": [{
+    "name": "Olivier Bossel",
+    "email": "olivier.bossel@gmail.com",
+    "url": "http://olivierbossel.com"
+  }],
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.18.0",
@@ -55,15 +65,15 @@
   "dependencies": {
     "Faker": "^0.7.2",
     "codemirror": "^5.22.0",
-    "coffeekraken-gridle": "git+ssh://git@github.com/Coffeekraken/gridle.git#release/2.0.49",
-    "coffeekraken-s-custom-scrollbar-component": "git+ssh://git@github.com/Coffeekraken/s-custom-scrollbar-component.git#release/0.0.1",
-    "coffeekraken-s-interactive-demo-component": "git+ssh://git@github.com/Coffeekraken/s-interactive-demo-component.git#release/0.0.1",
-    "coffeekraken-s-activate-component": "git+ssh://git@github.com/Coffeekraken/s-activate-component.git#release/0.0.1",
-    "coffeekraken-s-ripple-component": "git+ssh://git@github.com/Coffeekraken/s-ripple-component.git#release/0.0.1",
-    "coffeekraken-s-trianglify-component": "git+ssh://git@github.com/Coffeekraken/s-trianglify-component.git#release/0.0.1",
-    "coffeekraken-sugar": "git+ssh://git@github.com/Coffeekraken/sugar.git#release/0.0.1",
-    "coffeekraken-compile-server": "git+ssh://git@github.com/Coffeekraken/compile-server.git#release/0.0.1",
-    "coffeekraken-docblock-parser": "git+ssh://git@github.com:Coffeekraken/docblock-parser.git#release/0.0.1",
+    "coffeekraken-gridle": "https://github.com/Coffeekraken/gridle.git#release/2.0.49",
+    "coffeekraken-s-custom-scrollbar-component": "https://github.com/Coffeekraken/s-custom-scrollbar-component.git#release/0.0.1",
+    "coffeekraken-s-interactive-demo-component": "https://github.com/Coffeekraken/s-interactive-demo-component.git#release/0.0.1",
+    "coffeekraken-s-activate-component": "https://github.com/Coffeekraken/s-activate-component.git#release/0.0.1",
+    "coffeekraken-s-ripple-component": "https://github.com/Coffeekraken/s-ripple-component.git#release/0.0.1",
+    "coffeekraken-s-trianglify-component": "https://github.com/Coffeekraken/s-trianglify-component.git#release/0.0.1",
+    "coffeekraken-sugar": "https://github.com/Coffeekraken/sugar.git#release/0.0.1",
+    "coffeekraken-compile-server": "https://github.com/Coffeekraken/compile-server.git#release/0.0.1",
+    "coffeekraken-docblock-parser": "https://github.com/Coffeekraken/docblock-parser.git#release/0.0.1",
     "concurrently": "^3.1.0",
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",

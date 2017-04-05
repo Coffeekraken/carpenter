@@ -1,0 +1,59 @@
+#!/usr/bin/env node
+process.title = 'coffeekraken-carpenter';
+const spawn = require('child_process').spawn;
+const __fs = require('fs');
+const __merge = require('lodash/merge');
+const app = require('commander');
+
+(function() {
+
+	app
+		.version('0.0.1')
+		.option('-p --port [port]', 'Port on which to start the server', /^\S+$/i)
+		.option('-t --title [title]', 'Title of the carpenter project', /^\S+$/i)
+		.option('-l --logo [logo]', 'Logo url to use', /^\S+$/i)
+		.option('-i --index [index]', 'Home url', /^\S+$/i)
+		.option('-c --config [config]', 'Configuration file to load', /^\S+$/i)
+		.parse(process.argv);
+
+	// extend config
+	const defaultConfig = require(__dirname + '/../carpenter.config');
+	let config = {};
+	if (app.config) {
+		if ( ! __fs.existsSync(app.config)) {
+			throw 'Carpenter : the configuration file "' + process.env.PWD + '/' + app.config + '" does not exist...';
+		}
+		// load the config file
+		config = require(process.env.PWD + '/' + app.config);
+	} else {
+		if (__fs.existsSync(process.env.PWD + '/carpenter.config.js')) {
+			config = require(process.env.PWD + '/carpenter.config.js');
+		}
+	}
+	const finalConfig = __merge({}, defaultConfig, config);
+
+	for(let key in app._events) {
+		if (app[key] !== undefined) {
+			if (typeof(app[key]) === 'function') {
+				finalConfig[key] = app[key]();
+			} else {
+				finalConfig[key] = app[key];
+			}
+		}
+	}
+
+	if ( ! finalConfig.port) {
+		console.error('Carpenter : you have to specify at least a port to run the server on...');
+		return;
+	}
+
+	// launch the playground
+	require(__dirname + '/../public/app.js')(finalConfig);
+
+	process.on( 'SIGINT', function() {
+		console.log('Carpenter : stopped');
+		// some other closing procedures go here
+		process.exit( );
+	})
+
+})();

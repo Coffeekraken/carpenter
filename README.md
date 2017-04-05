@@ -1,3 +1,5 @@
+![Coffeekraken Carpenter](/.resources/doc-header.jpg)
+
 # Carpenter <small>0.0.1</small>
 
 Powerful tool that provide a nice web interface to display your website styleguide and modules/plugins documentations in one place.
@@ -29,27 +31,13 @@ Here's a simple example:
 
 ```js
 module.exports = {
-	// server port
-	port : 3333,
-
-	// title
 	title : 'My Cool Website',
-
-	// logo
-	logo : 'dist/img/my-cool-logo.png',
-
-	// styleguide configuration
 	styleguide : {
-		// styleguide files to parse
-		// these files will be loaded into interactive demo
 		files : [
 			'dist/css/styleguide.css'
 		]
 	},
-
-	// documentation configuration
 	documentation : {
-		// markdown files to load (array of glob pattern)
 		files : [
 			'node_modules/coffeekraken-s-*/**/*.md',
 			'README.md'
@@ -57,6 +45,8 @@ module.exports = {
 	}
 }
 ```
+
+##### [Check out the full config file reference here](doc/config.md)
 
 ### Write some styleguide docblocks
 
@@ -100,7 +90,8 @@ Then launch Carpenter with
 ## Documentation
 
 - [Configuration](doc/config.md) : All the configuration properties available
-- [API](doc/api.md) : Describe all the exposed API methods
+- [Node API](doc/node-api.md) : Describe all the exposed Node API methods
+- [CLI](doc/cli.md) : CLI options reference
 - [Displays](doc/displays.md) : How to display your docblocks into the web interface
 
 ## License

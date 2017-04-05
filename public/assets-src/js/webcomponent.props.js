@@ -9,8 +9,3 @@ SWebComponent.setDefaultProps({
 	theme : 'material',
 	compile: compileServer.compile
 }, 's-codemirror');
-SWebComponent.setDefaultProps({
-	mountWhen : 'inViewport',
-	xColors : ['#435359','#111516'],
-	yColors : ['#435359','#111516']
-}, 's-trianglify');

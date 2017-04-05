@@ -19,10 +19,12 @@ module.exports = function editor(data) {
 					</a>
 				</p>
 			{{/if}}
-			<s-interactive-demo class="m-b-medium" layout="vertical" hide="['html']"
-				styles="/${__config.styleguide.files.filter(function(file) { return file.substr(-4) === '.css' })}"
-				scripts="/${__config.styleguide.files.filter(function(file) { return file.substr(-3) === '.js' })}">
-				<s-codemirror id="${language}" language="${language}">
+			<s-interactive-demo class="m-b-medium"
+				layout="top"
+				hide="['html']"
+				styles="[${__config.styleguide.files.filter(function(file) { return file.substr(-4) === '.css' }).map(function(file) { return "'/"+file+"'"; }).join(',')}]"
+				scripts="[${__config.styleguide.files.filter(function(file) { return file.substr(-3) === '.js' }).map(function(file) { return "'/"+file+"'"; }).join(',')}]">
+				<s-codemirror id="${language}" language="${language}" update-on="run">
 					{{{example.body}}}
 				</s-codemirror>
 			</s-interactive-demo>

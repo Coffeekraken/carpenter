@@ -49,6 +49,20 @@ module.exports = function(config) {
 	// static files
 	app.use('/assets', __express.static(__dirname + '/assets'));
 
+	// static files
+	app.use((req, res, next) => {
+		if (req.url === '/') {
+			next();
+			return;
+		}
+		if (__fs.existsSync(process.env.PWD + req.url)) {
+			return res.sendFile(process.env.PWD + req.url);
+		} else if (__fs.existsSync(__path.resolve(__dirname + '/../') + req.url)) {
+			return res.sendFile(__path.resolve(__dirname + '/../') + req.url);
+		}
+		next();
+	});
+
 	// loop on configuration files to serve them from the project directory
 	config.styleguide.files.forEach(function(file) {
 		app.get('/' + file, function(req, res) {
@@ -212,7 +226,16 @@ module.exports = function(config) {
 		// content = content.replace(/```([a-zA-Z]+)\n/g,'<s-codemirror id="$1" language="$1">');
 		// content = content.replace(/```/g, '</s-codemirror>');
 
-		let markdown = __marked(content);
+		const renderer = new __marked.Renderer();
+		renderer.image = function(href, title, text) {
+			return `
+				<img tabindex="0" src="${href}" title="${title}" alt="${text}" />
+				<img src="${href}" title="${title}" alt="${text}" class="img-fullscreen" />
+			`;
+		};
+		let markdown = __marked(content, {
+			renderer
+		});
 
 		const viewData = {
 			helpers : __handlebarsHelpers,

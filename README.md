@@ -6,6 +6,8 @@ Powerful tool that provide a nice web interface to display your website stylegui
 
 > Carpenter is like a architect plan for your website
 
+### **Demo** : [Coffeekraken website carpenter](http://carpenter.coffeekraken.io)
+
 * Homepage: [Coffeekraken](http://coffeekraken.io)
 * Source: [Github](http://github.com/coffeekraken/styleguide)
 * Twitter: [Coffeekraken](https://twitter.com/coffeekrakenio)

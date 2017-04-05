@@ -259,48 +259,10 @@ module.exports = function(config) {
 
 		// render the page
 		res.render('documentation', viewData);
-
-		// // redirect the root url to the README.md file
-		// let docFile = req.url;
-		// if (req.url === '/') {
-		// 	docFile = '/README.md';
-		// }
-		//
-		// // read the markdown content
-		// const content = __fs.readFileSync(`${config.docFolder}${docFile}`,'utf8');
-		//
-		// // render the page
-		// res.render('home', {
-		// 	helpers : __handlebarsHelpers,
-		// 	three,
-		// 	files,
-		// 	team : {
-		// 		title : 'Meet our team',
-		// 		intro : `Sugar is a poweful toolkit, but it's a team before all. Here's who's behind your favorite toolkit!`,
-		// 		members : [{
-		// 			name : 'Olivier Bossel',
-		// 			role : 'Lead sugar developer',
-		// 			description : `Passionate interactive web designer from Switzerland.
-		// To be always in research of new design trends, technologies and user interaction is my primary motivation.`,
-		// 			email : 'olivier.bossel@gmail.com',
-		// 			links : [{
-		// 				title : 'Facebook',
-		// 				icon : 'facebook',
-		// 				url : 'http://facebook.com'
-		// 			}, {
-		// 				title : 'Twitter',
-		// 				icon : 'twitter-bird',
-		// 				url : 'http://twitter.com'
-		// 			}]
-		// 		}]
-		// 	},
-		// 	currentUrl : req.url,
-		// 	content : __parseMarkdown(content, types)
-		// });
 	});
 
 	// start demo server
 	app.listen(config.port, function () {
-		console.log('Carpentry up and running on port ' + config.port + '!');
+		console.log('Carpenter : up and running on port ' + config.port + '!');
 	});
 }

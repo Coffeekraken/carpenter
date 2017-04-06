@@ -1771,6 +1771,11 @@
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
+ * Check if the provided color is a registered one or not
+ * @param 		{String} 		$color 		The color nane to check
+ * @return 		{Boolean} 					True if exists, false if not
+ */
+/**
  * Return the specified or calculated value of the given stack and size
  * depending on the settings.sizes ratios stack
  *
@@ -7546,6 +7551,70 @@ html, body {
  * A block can contain other blocks or objects and does not have to relay on his ancestors
  * to be properly displayed.
  */
+@keyframes dialog-overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dialog-overlay-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes dialog-content-in {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes dialog-content-out {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+}
+
+.s-dialog {
+  animation: none .2s linear;
+}
+
+.s-dialog__overlay {
+  background: rgba(43, 52, 56, 0.8);
+  animation: dialog-overlay-in .1s ease-in-out;
+}
+
+.s-dialog__content {
+  background: white;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 20px 30px;
+  max-width: 57.14286rem;
+  animation: dialog-content-in 0.4s cubic-bezier(0.1, 0.77, 0.095, 1);
+}
+
+.s-dialog--out .s-dialog__content {
+  animation: dialog-content-out 0.2s cubic-bezier(0.67, 0.01, 1, 0.425) forwards;
+}
+
+.s-dialog--out .s-dialog__overlay {
+  animation: dialog-overlay-out .2s ease-out forwards;
+}
+
 /**
  * Documentation styling
  */

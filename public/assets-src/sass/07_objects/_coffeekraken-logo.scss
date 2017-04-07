@@ -13,7 +13,7 @@
 	max-width:120px;
 }
 
-.coffeekraken--dialog {
+.coffeekraken-logo--dialog {
 	@include s-coffeekraken-logo(
 		$color : s-color(secondary),
 		$accent : white

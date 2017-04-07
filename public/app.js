@@ -32,12 +32,6 @@ module.exports = function(config) {
 		});
 	}
 
-	// load package.json
-	let packageJson = {};
-	if (__fs.existsSync(process.env.PWD + '/package.json')) {
-		packageJson = require(process.env.PWD + '/package.json');
-	}
-
 	// handlebars
 	app.engine('handlebars', __expressHandlebars({
 		layoutsDir : __dirname + '/views/layouts',
@@ -60,6 +54,26 @@ module.exports = function(config) {
 		} else if (__fs.existsSync(__path.resolve(__dirname + '/../') + req.url)) {
 			return res.sendFile(__path.resolve(__dirname + '/../') + req.url);
 		}
+		next();
+	});
+
+	// package json
+	app.use((req, res, next) => {
+
+		let packageJson;
+		// load package.json
+		if (__fs.existsSync(process.env.PWD + '/package.json')) {
+			packageJson = require(process.env.PWD + '/package.json');
+			if (packageJson.contributors) {
+				packageJson.contributors = packageJson.contributors.map((contributor) => {
+					contributor.gravatar = `https://www.gravatar.com/avatar/${__md5(contributor.email)}`;
+					return contributor;
+				});
+			}
+			// attach packageJson to req
+			req.packageJson = packageJson;
+		}
+		// next
 		next();
 	});
 
@@ -197,7 +211,7 @@ module.exports = function(config) {
 			title : config.title,
 			logo : config.logo,
 			url : req.url,
-			packageJson : packageJson
+			packageJson : req.packageJson
 		};
 		if (allStyleguides && _size(allStyleguides)) {
 			viewData.styleguide = {
@@ -243,7 +257,7 @@ module.exports = function(config) {
 			title : config.title,
 			logo : config.logo,
 			url : req.url,
-			packageJson : packageJson
+			packageJson : req.packageJson
 		};
 		if (allStyleguides && _size(allStyleguides)) {
 			viewData.styleguide = {

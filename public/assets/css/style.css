@@ -9195,6 +9195,33 @@ s-interactive-demo {
 }
 
 /**
+ * Contributors
+ */
+.list--contributors {
+  margin-left: -5px;
+  margin-right: -5px;
+}
+
+.list--contributors .list__item {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.list--contributors .list__item a {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 2.57143rem;
+  height: 2.57143rem;
+  border: 1px solid #f2bc2b;
+  display: block;
+}
+
+.list--contributors .list__item img {
+  width: 100%;
+  height: 100%;
+}
+
+/**
  * Preview color block
  */
 .preview-color {

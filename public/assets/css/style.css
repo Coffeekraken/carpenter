@@ -3892,6 +3892,17 @@ button {
  * @name 	STableComponent
  * Documentation coming soon...
  */
+.tooltip {
+  position: absolute !important;
+  pointer-events: none;
+  opacity: 0;
+}
+
+:hover > .tooltip,
+.active > .tooltip {
+  opacity: 1;
+}
+
 /**
  * @name 	STypographyComponent
  * Provide ability to generate base typography classes for:
@@ -9398,6 +9409,1375 @@ pre[class*="language-"] {
  */
 s-trianglify {
   display: block;
+}
+
+.tooltip {
+  border-radius: 0;
+  padding: 0.8em 1.4em;
+  line-height: 1.4;
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+}
+
+.tooltip {
+  box-shadow: rgba(0, 0, 0, 0.2) 0 10px 15px;
+}
+
+@keyframes s-tooltip-component {
+  0% {
+    transform: scale(0.9, 0.9);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes s-tooltip-component--c {
+  0% {
+    transform: scale(0.9, 0.9) translateX(-50%) translateY(-50%);
+  }
+  100% {
+    transform: scale(1, 1) translateX(-50%) translateY(-50%);
+  }
+}
+
+@keyframes s-tooltip-component--b {
+  0% {
+    transform: scale(0.9, 0.9) translateX(-50%);
+  }
+  100% {
+    transform: scale(1, 1) translateX(-50%);
+  }
+}
+
+@keyframes s-tooltip-component--t {
+  0% {
+    transform: scale(0.9, 0.9) translateX(-50%);
+  }
+  100% {
+    transform: scale(1, 1) translateX(-50%);
+  }
+}
+
+@keyframes s-tooltip-component--l {
+  0% {
+    transform: scale(0.9, 0.9) translateY(-50%);
+  }
+  100% {
+    transform: scale(1, 1) translateY(-50%);
+  }
+}
+
+@keyframes s-tooltip-component--r {
+  0% {
+    transform: scale(0.9, 0.9) translateY(-50%);
+  }
+  100% {
+    transform: scale(1, 1) translateY(-50%);
+  }
+}
+
+.tooltip {
+  background-color: #848e91;
+  color: white;
+  /**
+					 * @name 		<span class="c-default">Default</span> centered tooltip
+					 * Display a default centered tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--default tooltip--c">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+  /**
+					 * @name 		<span class="c-default">Default</span> top tooltip
+					 * Display a default top centered tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--default tooltip--t">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+  /**
+					 * @name 		<span class="c-default">Default</span> top left tooltip
+					 * Display a default top left tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--default tooltip--tl">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+  /**
+					 * @name 		<span class="c-default">Default</span> top right tooltip
+					 * Display a default top right tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--default tooltip--tr">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+  /**
+					 * @name 		<span class="c-default">Default</span> left tooltip
+					 * Display a default left tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--default tooltip--l">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+  /**
+					 * @name 		<span class="c-default">Default</span> right tooltip
+					 * Display a default right tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--default tooltip--r">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+  /**
+					 * @name 		<span class="c-default">Default</span> bottom left tooltip
+					 * Display a default bottom left tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--default tooltip--bl">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+  /**
+					 * @name 		<span class="c-default">Default</span> bottom tooltip
+					 * Display a default bottom tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--default tooltip--b">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+  /**
+					 * @name 		<span class="c-default">Default</span> bottom right tooltip
+					 * Display a default bottom right tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--default tooltip--br">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+}
+
+.tooltip.tooltip--c {
+  left: 50%;
+  top: 50%;
+  transform-origin: 0 0;
+  transform: translateX(-50%) translateY(-50%) translateZ(0);
+}
+
+.tooltip--active > .tooltip.tooltip--c, .tooltip.tooltip--c.active,
+.active > .tooltip.tooltip--c,
+:hover > .tooltip.tooltip--c {
+  animation: s-tooltip-component--c 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip.tooltip--t {
+  transform-origin: 0 calc(100% + 0.5em);
+  left: 50%;
+  bottom: calc(100% + 1em);
+  transform: translateX(-50%) translateY(0) translateZ(0);
+  position: relative;
+  background: #848e91;
+  border-style: solid;
+  border-width: 0;
+}
+
+.tooltip.tooltip--t:after, .tooltip.tooltip--t:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  visibility: visible;
+}
+
+.tooltip.tooltip--t:after {
+  border-width: 0.5em;
+  border-top-color: #848e91;
+  bottom: -1em;
+  right: 50%;
+  margin-right: -0.5em;
+}
+
+.tooltip.tooltip--t:before {
+  border-width: 0.5em;
+  bottom: -1em;
+  right: 50%;
+  margin-right: -0.5em;
+}
+
+.tooltip--active > .tooltip.tooltip--t, .tooltip.tooltip--t.active,
+.active > .tooltip.tooltip--t,
+:hover > .tooltip.tooltip--t {
+  animation: s-tooltip-component--t 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip.tooltip--tl {
+  transform-origin: 0 calc(100% + 0.5em);
+  left: 0;
+  bottom: calc(100% + 1em);
+  position: relative;
+  background: #848e91;
+  border-style: solid;
+  border-width: 0;
+}
+
+.tooltip.tooltip--tl:after, .tooltip.tooltip--tl:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  visibility: visible;
+}
+
+.tooltip.tooltip--tl:after {
+  border-width: 0.5em;
+  border-top-color: #848e91;
+  bottom: -1em;
+  left: 0.5em;
+}
+
+.tooltip.tooltip--tl:before {
+  border-width: 0.5em;
+  bottom: -1em;
+  left: 0.5em;
+}
+
+.tooltip--active > .tooltip.tooltip--tl, .tooltip.tooltip--tl.active,
+.active > .tooltip.tooltip--tl,
+:hover > .tooltip.tooltip--tl {
+  animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip.tooltip--tr {
+  transform-origin: 100% 100%;
+  right: 0;
+  bottom: calc(100% + 1em);
+  position: relative;
+  background: #848e91;
+  border-style: solid;
+  border-width: 0;
+}
+
+.tooltip.tooltip--tr:after, .tooltip.tooltip--tr:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  visibility: visible;
+}
+
+.tooltip.tooltip--tr:after {
+  border-width: 0.5em;
+  border-top-color: #848e91;
+  bottom: -1em;
+  right: 0.5em;
+}
+
+.tooltip.tooltip--tr:before {
+  border-width: 0.5em;
+  bottom: -1em;
+  right: 0.5em;
+}
+
+.tooltip--active > .tooltip.tooltip--tr, .tooltip.tooltip--tr.active,
+.active > .tooltip.tooltip--tr,
+:hover > .tooltip.tooltip--tr {
+  animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip.tooltip--l {
+  transform-origin: calc(100% + 0.5em) 50%;
+  right: calc(100% + 0.5em);
+  top: 50%;
+  transform: translateX(0) translateY(-50%) translateZ(0);
+  position: relative;
+  background: #848e91;
+  border-style: solid;
+  border-width: 0;
+}
+
+.tooltip.tooltip--l:after, .tooltip.tooltip--l:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  visibility: visible;
+}
+
+.tooltip.tooltip--l:after {
+  border-width: 0.5em;
+  border-left-color: #848e91;
+  right: -1em;
+}
+
+.tooltip.tooltip--l:before {
+  border-width: 0.5em;
+  right: -1em;
+}
+
+.tooltip--active > .tooltip.tooltip--l, .tooltip.tooltip--l.active,
+.active > .tooltip.tooltip--l,
+:hover > .tooltip.tooltip--l {
+  animation: s-tooltip-component--l 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip.tooltip--r {
+  transform-origin: -.5em 50%;
+  left: calc(100% + 1em);
+  top: 50%;
+  transform: translateX(0) translateY(-50%) translateZ(0);
+  position: relative;
+  background: #848e91;
+  border-style: solid;
+  border-width: 0;
+}
+
+.tooltip.tooltip--r:after, .tooltip.tooltip--r:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  visibility: visible;
+}
+
+.tooltip.tooltip--r:after {
+  border-width: 0.5em;
+  border-right-color: #848e91;
+  left: -1em;
+}
+
+.tooltip.tooltip--r:before {
+  border-width: 0.5em;
+  left: -1em;
+}
+
+.tooltip--active > .tooltip.tooltip--r, .tooltip.tooltip--r.active,
+.active > .tooltip.tooltip--r,
+:hover > .tooltip.tooltip--r {
+  animation: s-tooltip-component--r 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip.tooltip--bl {
+  transform-origin: 1em -1em;
+  left: 0;
+  top: calc(100% + 1em);
+  position: relative;
+  background: #848e91;
+  border-style: solid;
+  border-width: 0;
+}
+
+.tooltip.tooltip--bl:after, .tooltip.tooltip--bl:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  visibility: visible;
+}
+
+.tooltip.tooltip--bl:after {
+  border-width: 0.5em;
+  border-bottom-color: #848e91;
+  top: -1em;
+  left: 0.5em;
+}
+
+.tooltip.tooltip--bl:before {
+  border-width: 0.5em;
+  top: -1em;
+  left: 0.5em;
+}
+
+.tooltip--active > .tooltip.tooltip--bl, .tooltip.tooltip--bl.active,
+.active > .tooltip.tooltip--bl,
+:hover > .tooltip.tooltip--bl {
+  animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip.tooltip--b {
+  transform-origin: 0 -1em;
+  left: 50%;
+  top: calc(100% + 1em);
+  transform: translateX(-50%) translateY(0) translateZ(0);
+  position: relative;
+  background: #848e91;
+  border-style: solid;
+  border-width: 0;
+}
+
+.tooltip.tooltip--b:after, .tooltip.tooltip--b:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  visibility: visible;
+}
+
+.tooltip.tooltip--b:after {
+  border-width: 0.5em;
+  border-bottom-color: #848e91;
+  top: -1em;
+  right: 50%;
+  margin-right: -0.5em;
+}
+
+.tooltip.tooltip--b:before {
+  border-width: 0.5em;
+  top: -1em;
+  right: 50%;
+  margin-right: -0.5em;
+}
+
+.tooltip--active > .tooltip.tooltip--b, .tooltip.tooltip--b.active,
+.active > .tooltip.tooltip--b,
+:hover > .tooltip.tooltip--b {
+  animation: s-tooltip-component--b 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip.tooltip--br {
+  transform-origin: calc(100% - 1em) -1em;
+  right: 0;
+  top: calc(100% + 1em);
+  position: relative;
+  background: #848e91;
+  border-style: solid;
+  border-width: 0;
+}
+
+.tooltip.tooltip--br:after, .tooltip.tooltip--br:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  visibility: visible;
+}
+
+.tooltip.tooltip--br:after {
+  border-width: 0.5em;
+  border-bottom-color: #848e91;
+  top: -1em;
+  right: 0.5em;
+}
+
+.tooltip.tooltip--br:before {
+  border-width: 0.5em;
+  top: -1em;
+  right: 0.5em;
+}
+
+.tooltip--active > .tooltip.tooltip--br, .tooltip.tooltip--br.active,
+.active > .tooltip.tooltip--br,
+:hover > .tooltip.tooltip--br {
+  animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip--primary {
+  background-color: #f2bc2b;
+  color: white;
+  /**
+					 * @name 		<span class="c-primary">Primary</span> centered tooltip
+					 * Display a primary centered tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--primary tooltip--c">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+  /**
+					 * @name 		<span class="c-primary">Primary</span> top tooltip
+					 * Display a primary top centered tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--primary tooltip--t">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+  /**
+					 * @name 		<span class="c-primary">Primary</span> top left tooltip
+					 * Display a primary top left tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--primary tooltip--tl">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+  /**
+					 * @name 		<span class="c-primary">Primary</span> top right tooltip
+					 * Display a primary top right tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--primary tooltip--tr">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+  /**
+					 * @name 		<span class="c-primary">Primary</span> left tooltip
+					 * Display a primary left tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--primary tooltip--l">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+  /**
+					 * @name 		<span class="c-primary">Primary</span> right tooltip
+					 * Display a primary right tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--primary tooltip--r">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+  /**
+					 * @name 		<span class="c-primary">Primary</span> bottom left tooltip
+					 * Display a primary bottom left tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--primary tooltip--bl">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+  /**
+					 * @name 		<span class="c-primary">Primary</span> bottom tooltip
+					 * Display a primary bottom tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--primary tooltip--b">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+  /**
+					 * @name 		<span class="c-primary">Primary</span> bottom right tooltip
+					 * Display a primary bottom right tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--primary tooltip--br">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+}
+
+.tooltip--primary.tooltip--c {
+  left: 50%;
+  top: 50%;
+  transform-origin: 0 0;
+  transform: translateX(-50%) translateY(-50%) translateZ(0);
+}
+
+.tooltip--active > .tooltip--primary.tooltip--c, .tooltip--primary.tooltip--c.active,
+.active > .tooltip--primary.tooltip--c,
+:hover > .tooltip--primary.tooltip--c {
+  animation: s-tooltip-component--c 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip--primary.tooltip--t {
+  transform-origin: 0 calc(100% + 0.5em);
+  left: 50%;
+  bottom: calc(100% + 1em);
+  transform: translateX(-50%) translateY(0) translateZ(0);
+  position: relative;
+  background: #f2bc2b;
+  border-style: solid;
+  border-width: 0;
+}
+
+.tooltip--primary.tooltip--t:after, .tooltip--primary.tooltip--t:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  visibility: visible;
+}
+
+.tooltip--primary.tooltip--t:after {
+  border-width: 0.5em;
+  border-top-color: #f2bc2b;
+  bottom: -1em;
+  right: 50%;
+  margin-right: -0.5em;
+}
+
+.tooltip--primary.tooltip--t:before {
+  border-width: 0.5em;
+  bottom: -1em;
+  right: 50%;
+  margin-right: -0.5em;
+}
+
+.tooltip--active > .tooltip--primary.tooltip--t, .tooltip--primary.tooltip--t.active,
+.active > .tooltip--primary.tooltip--t,
+:hover > .tooltip--primary.tooltip--t {
+  animation: s-tooltip-component--t 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip--primary.tooltip--tl {
+  transform-origin: 0 calc(100% + 0.5em);
+  left: 0;
+  bottom: calc(100% + 1em);
+  position: relative;
+  background: #f2bc2b;
+  border-style: solid;
+  border-width: 0;
+}
+
+.tooltip--primary.tooltip--tl:after, .tooltip--primary.tooltip--tl:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  visibility: visible;
+}
+
+.tooltip--primary.tooltip--tl:after {
+  border-width: 0.5em;
+  border-top-color: #f2bc2b;
+  bottom: -1em;
+  left: 0.5em;
+}
+
+.tooltip--primary.tooltip--tl:before {
+  border-width: 0.5em;
+  bottom: -1em;
+  left: 0.5em;
+}
+
+.tooltip--active > .tooltip--primary.tooltip--tl, .tooltip--primary.tooltip--tl.active,
+.active > .tooltip--primary.tooltip--tl,
+:hover > .tooltip--primary.tooltip--tl {
+  animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip--primary.tooltip--tr {
+  transform-origin: 100% 100%;
+  right: 0;
+  bottom: calc(100% + 1em);
+  position: relative;
+  background: #f2bc2b;
+  border-style: solid;
+  border-width: 0;
+}
+
+.tooltip--primary.tooltip--tr:after, .tooltip--primary.tooltip--tr:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  visibility: visible;
+}
+
+.tooltip--primary.tooltip--tr:after {
+  border-width: 0.5em;
+  border-top-color: #f2bc2b;
+  bottom: -1em;
+  right: 0.5em;
+}
+
+.tooltip--primary.tooltip--tr:before {
+  border-width: 0.5em;
+  bottom: -1em;
+  right: 0.5em;
+}
+
+.tooltip--active > .tooltip--primary.tooltip--tr, .tooltip--primary.tooltip--tr.active,
+.active > .tooltip--primary.tooltip--tr,
+:hover > .tooltip--primary.tooltip--tr {
+  animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip--primary.tooltip--l {
+  transform-origin: calc(100% + 0.5em) 50%;
+  right: calc(100% + 0.5em);
+  top: 50%;
+  transform: translateX(0) translateY(-50%) translateZ(0);
+  position: relative;
+  background: #f2bc2b;
+  border-style: solid;
+  border-width: 0;
+}
+
+.tooltip--primary.tooltip--l:after, .tooltip--primary.tooltip--l:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  visibility: visible;
+}
+
+.tooltip--primary.tooltip--l:after {
+  border-width: 0.5em;
+  border-left-color: #f2bc2b;
+  right: -1em;
+}
+
+.tooltip--primary.tooltip--l:before {
+  border-width: 0.5em;
+  right: -1em;
+}
+
+.tooltip--active > .tooltip--primary.tooltip--l, .tooltip--primary.tooltip--l.active,
+.active > .tooltip--primary.tooltip--l,
+:hover > .tooltip--primary.tooltip--l {
+  animation: s-tooltip-component--l 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip--primary.tooltip--r {
+  transform-origin: -.5em 50%;
+  left: calc(100% + 1em);
+  top: 50%;
+  transform: translateX(0) translateY(-50%) translateZ(0);
+  position: relative;
+  background: #f2bc2b;
+  border-style: solid;
+  border-width: 0;
+}
+
+.tooltip--primary.tooltip--r:after, .tooltip--primary.tooltip--r:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  visibility: visible;
+}
+
+.tooltip--primary.tooltip--r:after {
+  border-width: 0.5em;
+  border-right-color: #f2bc2b;
+  left: -1em;
+}
+
+.tooltip--primary.tooltip--r:before {
+  border-width: 0.5em;
+  left: -1em;
+}
+
+.tooltip--active > .tooltip--primary.tooltip--r, .tooltip--primary.tooltip--r.active,
+.active > .tooltip--primary.tooltip--r,
+:hover > .tooltip--primary.tooltip--r {
+  animation: s-tooltip-component--r 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip--primary.tooltip--bl {
+  transform-origin: 1em -1em;
+  left: 0;
+  top: calc(100% + 1em);
+  position: relative;
+  background: #f2bc2b;
+  border-style: solid;
+  border-width: 0;
+}
+
+.tooltip--primary.tooltip--bl:after, .tooltip--primary.tooltip--bl:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  visibility: visible;
+}
+
+.tooltip--primary.tooltip--bl:after {
+  border-width: 0.5em;
+  border-bottom-color: #f2bc2b;
+  top: -1em;
+  left: 0.5em;
+}
+
+.tooltip--primary.tooltip--bl:before {
+  border-width: 0.5em;
+  top: -1em;
+  left: 0.5em;
+}
+
+.tooltip--active > .tooltip--primary.tooltip--bl, .tooltip--primary.tooltip--bl.active,
+.active > .tooltip--primary.tooltip--bl,
+:hover > .tooltip--primary.tooltip--bl {
+  animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip--primary.tooltip--b {
+  transform-origin: 0 -1em;
+  left: 50%;
+  top: calc(100% + 1em);
+  transform: translateX(-50%) translateY(0) translateZ(0);
+  position: relative;
+  background: #f2bc2b;
+  border-style: solid;
+  border-width: 0;
+}
+
+.tooltip--primary.tooltip--b:after, .tooltip--primary.tooltip--b:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  visibility: visible;
+}
+
+.tooltip--primary.tooltip--b:after {
+  border-width: 0.5em;
+  border-bottom-color: #f2bc2b;
+  top: -1em;
+  right: 50%;
+  margin-right: -0.5em;
+}
+
+.tooltip--primary.tooltip--b:before {
+  border-width: 0.5em;
+  top: -1em;
+  right: 50%;
+  margin-right: -0.5em;
+}
+
+.tooltip--active > .tooltip--primary.tooltip--b, .tooltip--primary.tooltip--b.active,
+.active > .tooltip--primary.tooltip--b,
+:hover > .tooltip--primary.tooltip--b {
+  animation: s-tooltip-component--b 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip--primary.tooltip--br {
+  transform-origin: calc(100% - 1em) -1em;
+  right: 0;
+  top: calc(100% + 1em);
+  position: relative;
+  background: #f2bc2b;
+  border-style: solid;
+  border-width: 0;
+}
+
+.tooltip--primary.tooltip--br:after, .tooltip--primary.tooltip--br:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  visibility: visible;
+}
+
+.tooltip--primary.tooltip--br:after {
+  border-width: 0.5em;
+  border-bottom-color: #f2bc2b;
+  top: -1em;
+  right: 0.5em;
+}
+
+.tooltip--primary.tooltip--br:before {
+  border-width: 0.5em;
+  top: -1em;
+  right: 0.5em;
+}
+
+.tooltip--active > .tooltip--primary.tooltip--br, .tooltip--primary.tooltip--br.active,
+.active > .tooltip--primary.tooltip--br,
+:hover > .tooltip--primary.tooltip--br {
+  animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip--secondary {
+  background-color: #2b3438;
+  color: white;
+  /**
+					 * @name 		<span class="c-secondary">Secondary</span> centered tooltip
+					 * Display a secondary centered tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--secondary tooltip--c">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+  /**
+					 * @name 		<span class="c-secondary">Secondary</span> top tooltip
+					 * Display a secondary top centered tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--secondary tooltip--t">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+  /**
+					 * @name 		<span class="c-secondary">Secondary</span> top left tooltip
+					 * Display a secondary top left tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--secondary tooltip--tl">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+  /**
+					 * @name 		<span class="c-secondary">Secondary</span> top right tooltip
+					 * Display a secondary top right tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--secondary tooltip--tr">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+  /**
+					 * @name 		<span class="c-secondary">Secondary</span> left tooltip
+					 * Display a secondary left tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--secondary tooltip--l">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+  /**
+					 * @name 		<span class="c-secondary">Secondary</span> right tooltip
+					 * Display a secondary right tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--secondary tooltip--r">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+  /**
+					 * @name 		<span class="c-secondary">Secondary</span> bottom left tooltip
+					 * Display a secondary bottom left tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--secondary tooltip--bl">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+  /**
+					 * @name 		<span class="c-secondary">Secondary</span> bottom tooltip
+					 * Display a secondary bottom tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--secondary tooltip--b">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+  /**
+					 * @name 		<span class="c-secondary">Secondary</span> bottom right tooltip
+					 * Display a secondary bottom right tooltip
+					 * @styleguide 		Objects / Tooltip
+					 * @example 	html
+					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+					 * 	<div class="tooltip tooltip--secondary tooltip--br">
+					 * 		I'm a cool tooltip
+					 * 	</div>
+					 * </div>
+					 */
+}
+
+.tooltip--secondary.tooltip--c {
+  left: 50%;
+  top: 50%;
+  transform-origin: 0 0;
+  transform: translateX(-50%) translateY(-50%) translateZ(0);
+}
+
+.tooltip--active > .tooltip--secondary.tooltip--c, .tooltip--secondary.tooltip--c.active,
+.active > .tooltip--secondary.tooltip--c,
+:hover > .tooltip--secondary.tooltip--c {
+  animation: s-tooltip-component--c 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip--secondary.tooltip--t {
+  transform-origin: 0 calc(100% + 0.5em);
+  left: 50%;
+  bottom: calc(100% + 1em);
+  transform: translateX(-50%) translateY(0) translateZ(0);
+  position: relative;
+  background: #2b3438;
+  border-style: solid;
+  border-width: 0;
+}
+
+.tooltip--secondary.tooltip--t:after, .tooltip--secondary.tooltip--t:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  visibility: visible;
+}
+
+.tooltip--secondary.tooltip--t:after {
+  border-width: 0.5em;
+  border-top-color: #2b3438;
+  bottom: -1em;
+  right: 50%;
+  margin-right: -0.5em;
+}
+
+.tooltip--secondary.tooltip--t:before {
+  border-width: 0.5em;
+  bottom: -1em;
+  right: 50%;
+  margin-right: -0.5em;
+}
+
+.tooltip--active > .tooltip--secondary.tooltip--t, .tooltip--secondary.tooltip--t.active,
+.active > .tooltip--secondary.tooltip--t,
+:hover > .tooltip--secondary.tooltip--t {
+  animation: s-tooltip-component--t 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip--secondary.tooltip--tl {
+  transform-origin: 0 calc(100% + 0.5em);
+  left: 0;
+  bottom: calc(100% + 1em);
+  position: relative;
+  background: #2b3438;
+  border-style: solid;
+  border-width: 0;
+}
+
+.tooltip--secondary.tooltip--tl:after, .tooltip--secondary.tooltip--tl:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  visibility: visible;
+}
+
+.tooltip--secondary.tooltip--tl:after {
+  border-width: 0.5em;
+  border-top-color: #2b3438;
+  bottom: -1em;
+  left: 0.5em;
+}
+
+.tooltip--secondary.tooltip--tl:before {
+  border-width: 0.5em;
+  bottom: -1em;
+  left: 0.5em;
+}
+
+.tooltip--active > .tooltip--secondary.tooltip--tl, .tooltip--secondary.tooltip--tl.active,
+.active > .tooltip--secondary.tooltip--tl,
+:hover > .tooltip--secondary.tooltip--tl {
+  animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip--secondary.tooltip--tr {
+  transform-origin: 100% 100%;
+  right: 0;
+  bottom: calc(100% + 1em);
+  position: relative;
+  background: #2b3438;
+  border-style: solid;
+  border-width: 0;
+}
+
+.tooltip--secondary.tooltip--tr:after, .tooltip--secondary.tooltip--tr:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  visibility: visible;
+}
+
+.tooltip--secondary.tooltip--tr:after {
+  border-width: 0.5em;
+  border-top-color: #2b3438;
+  bottom: -1em;
+  right: 0.5em;
+}
+
+.tooltip--secondary.tooltip--tr:before {
+  border-width: 0.5em;
+  bottom: -1em;
+  right: 0.5em;
+}
+
+.tooltip--active > .tooltip--secondary.tooltip--tr, .tooltip--secondary.tooltip--tr.active,
+.active > .tooltip--secondary.tooltip--tr,
+:hover > .tooltip--secondary.tooltip--tr {
+  animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip--secondary.tooltip--l {
+  transform-origin: calc(100% + 0.5em) 50%;
+  right: calc(100% + 0.5em);
+  top: 50%;
+  transform: translateX(0) translateY(-50%) translateZ(0);
+  position: relative;
+  background: #2b3438;
+  border-style: solid;
+  border-width: 0;
+}
+
+.tooltip--secondary.tooltip--l:after, .tooltip--secondary.tooltip--l:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  visibility: visible;
+}
+
+.tooltip--secondary.tooltip--l:after {
+  border-width: 0.5em;
+  border-left-color: #2b3438;
+  right: -1em;
+}
+
+.tooltip--secondary.tooltip--l:before {
+  border-width: 0.5em;
+  right: -1em;
+}
+
+.tooltip--active > .tooltip--secondary.tooltip--l, .tooltip--secondary.tooltip--l.active,
+.active > .tooltip--secondary.tooltip--l,
+:hover > .tooltip--secondary.tooltip--l {
+  animation: s-tooltip-component--l 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip--secondary.tooltip--r {
+  transform-origin: -.5em 50%;
+  left: calc(100% + 1em);
+  top: 50%;
+  transform: translateX(0) translateY(-50%) translateZ(0);
+  position: relative;
+  background: #2b3438;
+  border-style: solid;
+  border-width: 0;
+}
+
+.tooltip--secondary.tooltip--r:after, .tooltip--secondary.tooltip--r:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  visibility: visible;
+}
+
+.tooltip--secondary.tooltip--r:after {
+  border-width: 0.5em;
+  border-right-color: #2b3438;
+  left: -1em;
+}
+
+.tooltip--secondary.tooltip--r:before {
+  border-width: 0.5em;
+  left: -1em;
+}
+
+.tooltip--active > .tooltip--secondary.tooltip--r, .tooltip--secondary.tooltip--r.active,
+.active > .tooltip--secondary.tooltip--r,
+:hover > .tooltip--secondary.tooltip--r {
+  animation: s-tooltip-component--r 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip--secondary.tooltip--bl {
+  transform-origin: 1em -1em;
+  left: 0;
+  top: calc(100% + 1em);
+  position: relative;
+  background: #2b3438;
+  border-style: solid;
+  border-width: 0;
+}
+
+.tooltip--secondary.tooltip--bl:after, .tooltip--secondary.tooltip--bl:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  visibility: visible;
+}
+
+.tooltip--secondary.tooltip--bl:after {
+  border-width: 0.5em;
+  border-bottom-color: #2b3438;
+  top: -1em;
+  left: 0.5em;
+}
+
+.tooltip--secondary.tooltip--bl:before {
+  border-width: 0.5em;
+  top: -1em;
+  left: 0.5em;
+}
+
+.tooltip--active > .tooltip--secondary.tooltip--bl, .tooltip--secondary.tooltip--bl.active,
+.active > .tooltip--secondary.tooltip--bl,
+:hover > .tooltip--secondary.tooltip--bl {
+  animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip--secondary.tooltip--b {
+  transform-origin: 0 -1em;
+  left: 50%;
+  top: calc(100% + 1em);
+  transform: translateX(-50%) translateY(0) translateZ(0);
+  position: relative;
+  background: #2b3438;
+  border-style: solid;
+  border-width: 0;
+}
+
+.tooltip--secondary.tooltip--b:after, .tooltip--secondary.tooltip--b:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  visibility: visible;
+}
+
+.tooltip--secondary.tooltip--b:after {
+  border-width: 0.5em;
+  border-bottom-color: #2b3438;
+  top: -1em;
+  right: 50%;
+  margin-right: -0.5em;
+}
+
+.tooltip--secondary.tooltip--b:before {
+  border-width: 0.5em;
+  top: -1em;
+  right: 50%;
+  margin-right: -0.5em;
+}
+
+.tooltip--active > .tooltip--secondary.tooltip--b, .tooltip--secondary.tooltip--b.active,
+.active > .tooltip--secondary.tooltip--b,
+:hover > .tooltip--secondary.tooltip--b {
+  animation: s-tooltip-component--b 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip--secondary.tooltip--br {
+  transform-origin: calc(100% - 1em) -1em;
+  right: 0;
+  top: calc(100% + 1em);
+  position: relative;
+  background: #2b3438;
+  border-style: solid;
+  border-width: 0;
+}
+
+.tooltip--secondary.tooltip--br:after, .tooltip--secondary.tooltip--br:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  visibility: visible;
+}
+
+.tooltip--secondary.tooltip--br:after {
+  border-width: 0.5em;
+  border-bottom-color: #2b3438;
+  top: -1em;
+  right: 0.5em;
+}
+
+.tooltip--secondary.tooltip--br:before {
+  border-width: 0.5em;
+  top: -1em;
+  right: 0.5em;
+}
+
+.tooltip--active > .tooltip--secondary.tooltip--br, .tooltip--secondary.tooltip--br.active,
+.active > .tooltip--secondary.tooltip--br,
+:hover > .tooltip--secondary.tooltip--br {
+  animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
+}
+
+.tooltip {
+  white-space: nowrap;
 }
 
 /**

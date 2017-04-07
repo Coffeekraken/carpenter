@@ -12,3 +12,11 @@
 	);
 	max-width:120px;
 }
+
+.coffeekraken--dialog {
+	@include s-coffeekraken-logo(
+		$color : s-color(secondary),
+		$accent : white
+	);
+	max-width:120px;
+}

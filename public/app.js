@@ -16,6 +16,7 @@ const __readdirRecursive = require('fs-readdir-recursive');
 const __handlebarsHelpers = require('./app/handlebarHelpers');
 const __glob = require('glob-all');
 const _size = require('lodash/size');
+const __md5 = require('md5');
 
 module.exports = function(config) {
 

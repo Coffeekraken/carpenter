@@ -1,11 +1,14 @@
 // const __md5 = require('md5');
 let path = '';
+let j = 0;
 const menuLevel = (three, currentUrl) => {
 	let res = '';
 	let newDir = true;
 	let i = 0;
+
 	for(let key in three) {
 		const value = three[key];
+		j++;
 		if (typeof(value) === 'object'
 			&& ! value.filename
 		) {
@@ -26,7 +29,7 @@ const menuLevel = (three, currentUrl) => {
 				active = 'active';
 			}
 			res += '<li class="list__item">';
-			res += `<a href="#${path.replace(/^[^a-z]+|[^\w:.-]+/gi, "")}${i}" id="${path.replace(/^[^a-z]+|[^\w:.-]+/gi, "")}${i}" is="s-activate" toggle="true" history="false" save-state="localStorage" class="list__item--toggle">
+			res += `<a href="#${path.replace(/^[^a-z]+|[^\w:.-]+/gi, "")}-${i}-${j}" id="${path.replace(/^[^a-z]+|[^\w:.-]+/gi, "")}-${i}-${j}" is="s-activate" toggle="true" history="false" save-state="localStorage" class="list__item--toggle">
 				<s-ripple></s-ripple>
 				<i class="fa fa-folder-o"></i>&nbsp;&nbsp;${key}
 			</a>`;
@@ -58,6 +61,7 @@ const menuLevel = (three, currentUrl) => {
  * Menu
  */
 exports.threeMenu = (three, currentUrl) => {
+	j = 0;
 	const res = menuLevel(three, currentUrl);
 	return `<ul class="list list--three m-b-bigger">
 		${res}

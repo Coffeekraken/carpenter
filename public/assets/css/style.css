@@ -2292,6 +2292,7 @@
  * - sugar.ratio.1-1 : ```.ratio-1-1```
  * - sugar.size.abs.cover : ```.abs-cover```
  * - sugar.size.abs.contain : ```.abs-contain```
+ * - sugar.size.abs.fit : ```.abs-fit```
  * - sugar.clearfix.default : .clearfix
  * - sugar.clearfix.float : .clearfix-float
  * - sugar.clearfix.micro : .clearfix-micro
@@ -2686,6 +2687,7 @@
  * - sugar.ratio.1-1 : ```.ratio-1-1```
  * - sugar.size.abs.cover : ```.abs-cover```
  * - sugar.size.abs.contain : ```.abs-contain```
+ * - sugar.size.abs.fit : ```.abs-fit```
  * - sugar.clearfix.default : ```.clearfix```
  * - sugar.clearfix.float : ```.clearfix-float```
  * - sugar.clearfix.micro : ```.clearfix-micro```
@@ -3210,6 +3212,23 @@
   transform: translateX(-50%) translateY(-50%);
   max-width: 100%;
   max-height: 100%;
+}
+
+.abs-fit {
+  /**
+	 * @name 		```.abs-fit```
+	 * Set a size that will fit the entire parent surface by positionning it in absolute
+	 * @styleguide 	Helpers / Sizes
+	 * @example 	html
+	 * <div class="ratio-16-9">
+	 * 	<img src="http://eskipaper.com/images/landscape-3.jpg" class="abs-fit" />
+	 * </div>
+	 */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
 }
 
 .clearfix {
@@ -7549,7 +7568,7 @@ html, body {
 .footer {
   margin: -3rem;
   padding: 3rem;
-  border-top: 10px solid #fcfcfc;
+  border-top: 30px solid #fcfcfc;
   padding-top: 3rem;
   margin-top: 5rem;
 }
@@ -7642,10 +7661,14 @@ html, body {
  * Documentation styling
  */
 .documentation h2 {
-  border-top: 10px solid #fcfcfc;
+  border-top: 30px solid #fcfcfc;
   padding-top: 6rem;
   margin-bottom: 2rem;
   margin-top: 6rem;
+  margin-left: -3rem;
+  margin-right: -3rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 
 .documentation h3 {
@@ -7693,7 +7716,7 @@ html, body {
   margin-bottom: 2em;
 }
 
-.documentation img:not(.img-fullscreen) {
+.documentation img:not(.img-fullscreen)[tabindex] {
   max-width: 500px;
   max-height: 500px;
   border: solid 4px #f2bc2b;
@@ -7984,10 +8007,16 @@ s-custom-scrollbar .simplebar-track {
  */
 s-interactive-demo {
   background: white;
+  border: 15px solid #fcfcfc;
+  border-bottom: 0;
+}
+
+s-interactive-demo s-codemirror {
+  border-bottom: 15px solid #fcfcfc;
 }
 
 .s-interactive-demo__header {
-  background: #f4f4f4 !important;
+  background: #fcfcfc;
 }
 
 /**
@@ -8558,9 +8587,27 @@ s-interactive-demo {
  * Styleguide styling
  */
 .styleguide .h1 {
+  background-color: #414f55;
+  background-blend-mode: luminosity;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
   border-bottom: 1px solid #e5e9ea;
-  margin-bottom: 3rem;
+  margin: -3rem;
+  margin-bottom: -6rem;
   padding-bottom: 3rem;
+  padding: 3rem;
+}
+
+.styleguide .h2 {
+  border-top: 30px solid #fcfcfc;
+  padding-top: 6rem;
+  margin-bottom: 2rem;
+  margin-top: 6rem;
+  margin-left: -3rem;
+  margin-right: -3rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 
 .styleguide .h2 a[name] {
@@ -9236,7 +9283,7 @@ s-interactive-demo {
  * Preview color block
  */
 .preview-color {
-  border: 1px solid #e5e9ea;
+  border: 15px solid #fcfcfc;
   border-radius: 0;
   background: white;
 }
@@ -9376,6 +9423,13 @@ pre[class*="language-"] {
   cursor: help;
 }
 
+/**
+ * @name 	s-ripple
+ * This file provide all the mixins to style component
+ */
+/**
+ * Print out the bare and style component css
+ */
 @keyframes s-ripple {
   0% {
     opacity: 1;
@@ -9387,6 +9441,25 @@ pre[class*="language-"] {
   }
 }
 
+/**
+ * Print out the bare component css
+ */
+/**
+ * Print out the style component css
+ */
+/**
+ * @name 	s-ripple
+ * This file provide all the mixins to generate component classes
+ */
+/**
+ * Print out the bare and style component css
+ */
+/**
+ * Print out the bare component css
+ */
+/**
+ * Print out the style component css
+ */
 .s-ripple__particle {
   /**
 		 * @name 	Default ripple

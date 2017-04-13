@@ -50,9 +50,28 @@ module.exports = function(config) {
 			next();
 			return;
 		}
+
+		// handle images in node packages
+		switch (__path.extname(req.url).toLowerCase()) {
+			case '.jpg':
+			case '.png':
+			case '.jpeg':
+			case '.gif':
+				if (req.url.match(/node_modules\//)) {
+					const fromRootUrl = req.url.replace(/documentation\/|styleguide\//,'');
+					if (__fs.existsSync(__path.resolve('.'+fromRootUrl)	)) {
+						console.log('root', fromRootUrl);
+						return res.sendFile(__path.resolve('.'+fromRootUrl));
+					}
+				}
+			break;
+		}
+
+		// send real files
 		if (__fs.existsSync(process.env.PWD + req.url)) {
 			return res.sendFile(process.env.PWD + req.url);
 		} else if (__fs.existsSync(__path.resolve(__dirname + '/../') + req.url)) {
+			// console.log('serve', __path.resolve(__dirname + '/../') + req.url);
 			return res.sendFile(__path.resolve(__dirname + '/../') + req.url);
 		}
 		next();
@@ -200,7 +219,7 @@ module.exports = function(config) {
 		// filter styleguide to display depending on the url
 		let styleguidesToDisplay = {};
 		if (req.params.styleguide) {
-			allStyleguides[req.params.styleguide].active = true;
+			// allStyleguides[req.params.styleguide].active = true;
 			styleguidesToDisplay[req.params.styleguide] = allStyleguides[req.params.styleguide];
 		} else {
 			styleguidesToDisplay = allStyleguides;

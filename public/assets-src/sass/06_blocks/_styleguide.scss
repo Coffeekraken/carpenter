@@ -4,20 +4,29 @@
 .styleguide {
 
 	.h1 {
-		// background-color:s-color(title);
+		background-color:s-color(title, -lighten 10%);
 		// background-image:url('../img/header-bkg-grey.png');
-		// background-blend-mode: luminosity;
-		// background-repeat:no-repeat;
-		// background-size:cover;
-		// color: white;
+		background-blend-mode: luminosity;
+		background-repeat:no-repeat;
+		background-size:cover;
+		color: white;
 		border-bottom:1px solid s-color(border);
-		// margin:s-space(bigger) * -1;
-		margin-bottom:s-space(bigger);
+		margin:s-space(bigger) * -1;
+		margin-bottom: -6rem;
 		padding-bottom:s-space(bigger);
-		// padding:s-space(bigger);
-		// text-shadow:rgba(0,0,0,.3) 0 0 5px;
+		padding:s-space(bigger);
 	}
+
 	.h2 {
+		border-top:30px solid darken(white,1%);
+		padding-top:6rem;
+		margin-bottom:2rem;
+		margin-top:6rem;
+		margin-left:s-space(bigger) * -1;
+		margin-right:s-space(bigger) * -1;
+		padding-left:s-space(bigger);
+		padding-right:s-space(bigger);
+
 		a[name] {
 			font-size:.5em;
 			vertical-align:middle;

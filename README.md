@@ -27,7 +27,7 @@ Powerful tool that provide a nice web interface to display your website stylegui
 ## Install
 
 ```sh
-npm install git+https://git@github.com/Coffeekraken/carpenter.git#release/0.0.1 --save-dev
+npm install coffeekraken-carpenter --save-dev
 ```
 
 ### Configure

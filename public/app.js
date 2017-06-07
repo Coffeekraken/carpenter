@@ -60,7 +60,6 @@ module.exports = function(config) {
 				if (req.url.match(/node_modules\//)) {
 					const fromRootUrl = req.url.replace(/documentation\/|styleguide\//,'');
 					if (__fs.existsSync(__path.resolve('.'+fromRootUrl)	)) {
-						console.log('root', fromRootUrl);
 						return res.sendFile(__path.resolve('.'+fromRootUrl));
 					}
 				}
@@ -215,15 +214,32 @@ module.exports = function(config) {
 	});
 
 	// styleguide route
-	app.get('/styleguide/:styleguide?', function (req, res) {
+	app.get(/\/styleguide\/.*/, function (req, res) {
 		// filter styleguide to display depending on the url
+
+		const path = decodeURIComponent(req.originalUrl.replace('/styleguide/',''));
+
+		const toDisplay = _get(allStyleguides, path.replace('/','.'));
+
 		let styleguidesToDisplay = {};
-		if (req.params.styleguide) {
-			// allStyleguides[req.params.styleguide].active = true;
-			styleguidesToDisplay[req.params.styleguide] = allStyleguides[req.params.styleguide];
+
+		if (toDisplay) {
+			_set(styleguidesToDisplay, path.replace('/','.'), toDisplay);
 		} else {
 			styleguidesToDisplay = allStyleguides;
 		}
+
+		const allStyleguidesSortedKeys = Object.keys(allStyleguides);
+		console.log(allStyleguidesSortedKeys.sort());
+
+		// if (req.params.styleguide) {
+		// 	// allStyleguides[req.params.styleguide].active = true;
+		// 	styleguidesToDisplay[req.params.styleguide] = allStyleguides[req.params.styleguide];
+		// } else {
+		// 	styleguidesToDisplay = allStyleguides;
+		// }
+
+		console.log(styleguidesToDisplay);
 
 		const viewData = {
 			helpers : __handlebarsHelpers,
@@ -235,7 +251,13 @@ module.exports = function(config) {
 		};
 		if (allStyleguides && _size(allStyleguides)) {
 			viewData.styleguide = {
+				getSortedItems : (path) => {
+					const root = _get(allStyleguides, path);
+					console.log('root', root);
+					return Object.keys(root).sort();
+				},
 				all : allStyleguides,
+				allSortedKeys : allStyleguidesSortedKeys,
 				toDisplay : styleguidesToDisplay
 			};
 		}

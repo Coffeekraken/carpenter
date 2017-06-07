@@ -2288,6 +2288,7 @@
  * - sugar.font.style.oblique : .f-oblique
  * - sugar.font.variant.small-caps : .f-small-caps
  * - sugar.block.align.center : .block-center
+ * - sugar.ratio.21-9 : ```.ratio-21-9```
  * - sugar.ratio.16-9 : ```.ratio-16-9```
  * - sugar.ratio.4-3 : ```.ratio-4-3```
  * - sugar.ratio.1-1 : ```.ratio-1-1```
@@ -2683,6 +2684,7 @@
  * - sugar.font.style.oblique : ```.f-oblique```
  * - sugar.font.variant.small-caps : ```.f-small-caps```
  * - sugar.block.align.center : ```.block-center```
+ * - sugar.ratio.21-9 : ```.ratio-21-9```
  * - sugar.ratio.16-9 : ```.ratio-16-9```
  * - sugar.ratio.4-3 : ```.ratio-4-3```
  * - sugar.ratio.1-1 : ```.ratio-1-1```
@@ -2997,7 +2999,7 @@
   /**
 	 * @name 		```.t-left```
 	 * Align the text to the left
-	 * @styleguide 	Helpers / Text
+	 * @styleguide 	Helpers / Text Align
 	 * @example 	html
 	 * <div class="t-left">
 	 * 	I'm left aligned
@@ -3010,7 +3012,7 @@
   /**
 	 * @name 		```.t-right```
 	 * Align the text to the right
-	 * @styleguide 	Helpers / Text
+	 * @styleguide 	Helpers / Text Align
 	 * @example 	html
 	 * <div class="t-right">
 	 * 	I'm right aligned
@@ -3023,7 +3025,7 @@
   /**
 	 * @name 		```.t-center```
 	 * Align the text to the center
-	 * @styleguide 	Helpers / Text
+	 * @styleguide 	Helpers / Text Align
 	 * @example 	html
 	 * <div class="t-center">
 	 * 	I'm centered
@@ -3036,7 +3038,7 @@
   /**
 	 * @name 		```.t-justify```
 	 * Make the text justified
-	 * @styleguide 	Helpers / Text
+	 * @styleguide 	Helpers / Text Align
 	 * @example 	html
 	 * <div class="t-justify">
 	 * 	Nullam vel feugiat nunc. Phasellus facilisis, nisi sit amet viverra rhoncus, arcu risus volutpat dolor, sed euismod magna tellus ac purus. Praesent augue lorem, ullamcorper ac accumsan nec, suscipit eu.
@@ -3049,7 +3051,7 @@
   /**
 	 * @name 		```.t-lowercase```
 	 * Transform the text to lowercase
-	 * @styleguide 	Helpers / Text
+	 * @styleguide 	Helpers / Text Transform
 	 * @example 	html
 	 * <div class="t-lowercase">
 	 * 	I'M LOWERCASE
@@ -3062,7 +3064,7 @@
   /**
 	 * @name 		```.t-uppercase```
 	 * Transform the text to uppercase
-	 * @styleguide 	Helpers / Text
+	 * @styleguide 	Helpers / Text Transform
 	 * @example 	html
 	 * <div class="t-uppercase">
 	 * 	I'm uppercase
@@ -3075,7 +3077,7 @@
   /**
 	 * @name 		```.t-capitalize```
 	 * Capizalize the words
-	 * @styleguide 	Helpers / Text
+	 * @styleguide 	Helpers / Text Transform
 	 * @example 	html
 	 * <div class="t-capitalize">
 	 * 	I'm capitalized
@@ -3088,7 +3090,7 @@
   /**
 	 * @name 		```.f-bold```
 	 * Set the font-weight to ```bold```
-	 * @styleguide 	Helpers / Font
+	 * @styleguide 	Helpers / Font Weight
 	 * @example 	html
 	 * This <span class="f-bold">word</span> is bold
 	 */
@@ -3099,7 +3101,7 @@
   /**
 	 * @name 		```.f-lighter```
 	 * Set the font-weight to ```lighter```
-	 * @styleguide 	Helpers / Font
+	 * @styleguide 	Helpers / Font Weight
 	 * @example 	html
 	 * 	This <span class="f-lighter">word</span> is lighter
 	 */
@@ -3110,7 +3112,7 @@
   /**
 	 * @name 		```.f-bolder```
 	 * Set the font-weight to ```bolder```
-	 * @styleguide 	Helpers / Font
+	 * @styleguide 	Helpers / Font Weight
 	 * @example 	html
 	 * This <span class="f-bolder">word</span> is bolder
 	 */
@@ -3121,7 +3123,7 @@
   /**
 	 * @name 		```.f-normal```
 	 * Set the font-weight to ```normal```
-	 * @styleguide 	Helpers / Font
+	 * @styleguide 	Helpers / Font Weight
 	 * @example 	html
 	 * <div class="f-bold">
 	 * 	This <span class="f-normal">word</span> is normal
@@ -3146,7 +3148,7 @@
   /**
 	 * @name 		```.f-oblique```
 	 * Set the font-style to ```oblique```
-	 * @styleguide 	Helpers / Font
+	 * @styleguide 	Helpers / Font Style
 	 * @example 	html
 	 * This <span class="f-oblique">word</span> is oblique
 	 */
@@ -3157,7 +3159,7 @@
   /**
 	 * @name 		```.f-small-caps```
 	 * Set the font-variant to ```small-caps```
-	 * @styleguide 	Helpers / Font
+	 * @styleguide 	Helpers / Font Variant
 	 * @example 	html
 	 * This <span class="f-small-caps">word</span> is small-caps
 	 */
@@ -3186,7 +3188,7 @@
 	 * @styleguide 	Helpers / Sizes
 	 * @example 	html
 	 * <div class="ratio-16-9">
-	 * 	<img src="http://eskipaper.com/images/landscape-3.jpg" class="abs-cover" />
+	 * 	<img src="https://source.unsplash.com/random" class="abs-cover" />
 	 * </div>
 	 */
   position: absolute;
@@ -3204,7 +3206,7 @@
 	 * @styleguide 	Helpers / Sizes
 	 * @example 	html
 	 * <div class="ratio-16-9">
-	 * 	<img src="http://eskipaper.com/images/landscape-3.jpg" class="abs-contain" />
+	 * 	<img src="https://source.unsplash.com/random" class="abs-contain" />
 	 * </div>
 	 */
   position: absolute;
@@ -3222,7 +3224,7 @@
 	 * @styleguide 	Helpers / Sizes
 	 * @example 	html
 	 * <div class="ratio-16-9">
-	 * 	<img src="http://eskipaper.com/images/landscape-3.jpg" class="abs-fit" />
+	 * 	<img src="https://source.unsplash.com/random" class="abs-fit" />
 	 * </div>
 	 */
   position: absolute;
@@ -3307,15 +3309,32 @@
 	 */
 }
 
+.ratio-21-9 {
+  /**
+	 * @name 		```.ratio-21-9```
+	 * Keep a 16/9 ratio on a particular element. Applied by setting height to 0 and paddingtop to 100% / 16 * 9
+	 * @styleguide 	Helpers / Ratios
+	 * @example 	html
+	 * <div class="bkg-primary ratio-21-9"></div>
+	 */
+  position: relative;
+  overflow: hidden;
+}
+
+.ratio-21-9:before {
+  content: '';
+  display: block;
+  height: 0;
+  padding-top: 42.85714%;
+}
+
 .ratio-16-9 {
   /**
 	 * @name 		```.ratio-16-9```
 	 * Keep a 16/9 ratio on a particular element. Applied by setting height to 0 and paddingtop to 100% / 16 * 9
 	 * @styleguide 	Helpers / Ratios
 	 * @example 	html
-	 * <div class="ratio-16-9">
-	 * 	I will keep my ratio
-	 * </div>
+	 * <div class="bkg-primary ratio-16-9"></div>
 	 */
   position: relative;
   overflow: hidden;
@@ -3334,9 +3353,7 @@
 	 * Keep a 4/3 ratio on a particular element. Applied by setting height to 0 and paddingtop to 100% / 4 * 3
 	 * @styleguide 	Helpers / Ratios
 	 * @example 	html
-	 * <div class="ratio-4-3">
-	 * 	I will keep my ratio
-	 * </div>
+	 * <div class="bkg-primary ratio-4-3"></div>
 	 */
   position: relative;
   overflow: hidden;
@@ -3355,9 +3372,7 @@
 	 * Keep a 1/1 ratio on a particular element. Applied by setting height to 0 and paddingtop to 100%
 	 * @styleguide 	Helpers / Ratios
 	 * @example 	html
-	 * <div class="ratio-1-1">
-	 * 	I will keep my ratio
-	 * </div>
+	 * <div class="bkg-primary ratio-1-1"></div>
 	 */
   position: relative;
   overflow: hidden;
@@ -3367,7 +3382,7 @@
   content: '';
   display: block;
   height: 0;
-  padding-top: 75%;
+  padding-top: 100%;
 }
 
 .no-transitions {
@@ -3911,6 +3926,64 @@ button {
 /**
  * @name 	STableComponent
  * Documentation coming soon...
+ */
+/**
+ * Print out the responsive style for a table.
+ * This responsive style make the table display as block and take the "label" attribute on the td to display correctly the line label
+ */
+/**
+ * @name 	STableComponent Classes
+ * This file provide the mixins to generate table classes
+ */
+/**
+ * Provide all the classes of the button component like .table, .table--striped, etc...
+ * - ```.table```
+ * - ```.table--striped```
+ * - ```.table--bordered```
+ * - ```.table--hover```
+ * - ```.table--responsive```
+ * - ```.table--responsive-overflow```
+ * - ```.table--interactive```
+ * - ```.table--middle```
+ * - ```.table--center```
+ *
+ * @param 		{Color} 		[$colors=default primary secondary]	 		Specify the colors to generate
+ * @param 		{String} 		[$modifiers=striped bordered hover responsive responsive-overflow interactive middle center] 		Specify the modifiers to generate
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide all the style classes of the button component like .table, .table--striped, etc...
+ * - ```.table```
+ * - ```.table--striped```
+ * - ```.table--bordered```
+ * - ```.table--hover```
+ * - ```.table--responsive```
+ * - ```.table--responsive-overflow```
+ * - ```.table--interactive```
+ * - ```.table--middle```
+ * - ```.table--center```
+ *
+ * @param 		{Color} 		[$colors=default primary secondary]	 		Specify the colors to generate
+ * @param 		{String} 		[$modifiers=striped bordered hover responsive responsive-overflow interactive middle center] 		Specify the modifiers to generate
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide all the bare classes of the button component like .table, .table--striped, etc...
+ * - ```.table```
+ * - ```.table--striped```
+ * - ```.table--bordered```
+ * - ```.table--hover```
+ * - ```.table--responsive```
+ * - ```.table--responsive-overflow```
+ * - ```.table--interactive```
+ * - ```.table--middle```
+ * - ```.table--center```
+ *
+ * @param 		{String} 		[$modifiers=striped bordered hover responsive responsive-overflow interactive middle center] 		Specify the modifiers to generate
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 .tooltip {
   position: absolute !important;
@@ -6688,7 +6761,7 @@ body {
 }
 
 /**
-	 * @name 	h1
+	 * @name 	```.h1```
 	 * h1 title styling
 	 * @styleguide 	Typography / Titles
 	 * @example 	html
@@ -6704,7 +6777,7 @@ body {
 }
 
 /**
-	 * @name 	h2
+	 * @name 	```.h2```
 	 * h2 title styling
 	 * @styleguide 	Typography / Titles
 	 * @example 	html
@@ -6720,7 +6793,7 @@ body {
 }
 
 /**
-	 * @name 	h3
+	 * @name 	```.h3```
 	 * h3 title styling
 	 * @styleguide 	Typography / Titles
 	 * @example 	html
@@ -6736,7 +6809,7 @@ body {
 }
 
 /**
-	 * @name 	h4
+	 * @name 	```.h4```
 	 * h4 title styling
 	 * @styleguide 	Typography / Titles
 	 * @example 	html
@@ -6752,7 +6825,7 @@ body {
 }
 
 /**
-	 * @name 	h5
+	 * @name 	```.h5```
 	 * h5 title styling
 	 * @styleguide 	Typography / Titles
 	 * @example 	html
@@ -6768,7 +6841,7 @@ body {
 }
 
 /**
-	 * @name 	h6
+	 * @name 	```.h6```
 	 * h6 title styling
 	 * @styleguide 	Typography / Titles
 	 * @example 	html
@@ -6856,7 +6929,7 @@ h1.vr:last-child,
 }
 
 /**
-	 * @name 	Default
+	 * @name 	```.p```
 	 * Default paragraph styling
 	 * @styleguide 	Typography / Paragraphs
 	 * @example 	html
@@ -6876,7 +6949,7 @@ h1.vr:last-child,
 }
 
 /**
-	 * @name 	Lead
+	 * @name 	```.p--lead```
 	 * Lead paragraph styling
 	 * @styleguide 	Typography / Paragraphs
 	 * @example 	html
@@ -6918,7 +6991,7 @@ p.vr:last-child,
 }
 
 /**
-	 * @name 		Marked text
+	 * @name 		Marked text ```.mark```
 	 * For highlighting a run of text due to its relevance in another context, use the ```mark``` tag.
 	 * @styleguide 		Typography / Inline texts
 	 * @example 		html
@@ -6928,7 +7001,7 @@ p.vr:last-child,
 	 * </div>
 	 */
 /**
-	 * @name 		Deleted text
+	 * @name 		Deleted text ```.del```
 	 * For indicating blocks of text that have been deleted use the ```del``` tag.
 	 * @styleguide 		Typography / Inline texts
 	 * @example 		html
@@ -6938,7 +7011,7 @@ p.vr:last-child,
 	 * </div>
 	 */
 /**
-	 * @name 		Strikethrough text
+	 * @name 		Strikethrough text ```.s```
 	 * For indicating blocks of text that are no longer relevant use the ```s``` tag.
 	 * @styleguide 		Typography / Inline texts
 	 * @example 		html
@@ -6948,7 +7021,7 @@ p.vr:last-child,
 	 * </div>
 	 */
 /**
-	 * @name 		Inserted text
+	 * @name 		Inserted text ```.ins```
 	 * For indicating additions to the document use the ```ins``` tag.
 	 * @styleguide 		Typography / Inline texts
 	 * @example 		html
@@ -6958,7 +7031,7 @@ p.vr:last-child,
 	 * </div>
 	 */
 /**
-	 * @name 		Underlined text
+	 * @name 		Underlined text ```.u```
 	 * To underline text use the ```u``` tag.
 	 * @styleguide 		Typography / Inline texts
 	 * @example 		html
@@ -6968,7 +7041,7 @@ p.vr:last-child,
 	 * </div>
 	 */
 /**
-	 * @name 		Small text
+	 * @name 		Small text ```.small```
 	 * For de-emphasizing inline or blocks of text, use the ```small``` tag to set text at 85% the size of the parent.
 	 * @styleguide 		Typography / Inline texts
 	 * @example 		html
@@ -6978,7 +7051,7 @@ p.vr:last-child,
 	 * </div>
 	 */
 /**
-	 * @name 		Bold
+	 * @name 		Bold ```.strong```
 	 * For emphasizing a snippet of text with a heavier font-weight.
 	 * @styleguide 		Typography / Inline texts
 	 * @example 		html
@@ -6988,7 +7061,7 @@ p.vr:last-child,
 	 * </div>
 	 */
 /**
-	 * @name 		Italics
+	 * @name 		Italics ```.em```
 	 * For emphasizing a snippet of text with italics.
 	 * @styleguide 		Typography / Inline texts
 	 * @example 		html
@@ -7038,7 +7111,7 @@ p.vr:last-child,
 }
 
 /**
-	 * @name 	Description list
+	 * @name 	Description list ```.dl .dt .dd```
 	 * A list of terms with their associated descriptions.
 	 * @styleguide 		Typography / Lists
 	 * @example 	html
@@ -7072,7 +7145,7 @@ p.vr:last-child,
 }
 
 /**
-	 * @name 	Unordered list
+	 * @name 	Unordered list ```.ul .li```
 	 * A list of items in which the order does not explicitly matter.
 	 * @styleguide 		Typography / Lists
 	 * @example 	html
@@ -7133,7 +7206,7 @@ p.vr:last-child,
 }
 
 /**
-	 * @name 	Ordered list
+	 * @name 	Ordered list ```.ol .li```
 	 * A list of items in which the order does explicitly matter.
 	 * @styleguide 		Typography / Lists
 	 * @example 	html
@@ -7466,6 +7539,12 @@ html, body {
 
 .topbar__logo {
   background: #f2bc2b;
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+}
+
+.topbar__logo:hover {
+  background: black;
 }
 
 /**
@@ -7670,7 +7749,7 @@ html, body {
  * @name 	Nav justified
  */
 /**
-		 * @name 	Nav justify
+		 * @name 	```.nav--justify```
 		 * Provide a simple justify navigation component
 		 * @styleguide 	Blocks / Nav
 		 * @example 	html
@@ -7708,7 +7787,7 @@ html, body {
 }
 
 /**
-		 * @name 	Nav inline
+		 * @name 	```.nav--inline```
 		 * Provide a simple inline navigation component
 		 * @styleguide 	Blocks / Nav
 		 * @example 	html
@@ -7755,173 +7834,6 @@ html, body {
 }
 
 /**
- * Skin the scrollbar container
- * @example 	scss
- * @include s-custom-scrollbar() {
- *          // your code here...
- * }
- * @author 	Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Skin the scrollbar element
- * @example 	scss
- * @include s-custom-scrollbar-scrollbar() {
- *          // your code here...
- *          background: red;
- * }
- * @author 	Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Skin the track element
- * @example 	scss
- * @include s-custom-scrollbar-track() {
- *          // your code here...
- * }
- * @author 	Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Print out the scrollbar css bare and style
- * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Print out the scrollbar css bare
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Print out the scrollbar css style
- * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-s-custom-scrollbar .simplebar-scrollbar {
-  background-color: #848e91 !important;
-}
-
-/**
-				 * @name 		 	<span class="c-primary">Primary</span> Scrollbar
-				 * Provide a way to display a nice primary custom-scrollbar
-				 * @styleguide  	Blocks / Scrollbar
-				 * @example 		html
-				 * <s-custom-scrollbar color="primary" style="height:300px;">
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * </s-custom-scrollbar>
-				 * @see 			https://github.com/coffeekraken/s-custom-scrollbar-component
-				 * @author 			Olivier Bossel <olivier.bossel@gmail.com>
-				 */
-s-custom-scrollbar[color="primary"] .simplebar-scrollbar {
-  background-color: #f2bc2b !important;
-}
-
-/**
-				 * @name 		 	<span class="c-secondary">Secondary</span> Scrollbar
-				 * Provide a way to display a nice secondary custom-scrollbar
-				 * @styleguide  	Blocks / Scrollbar
-				 * @example 		html
-				 * <s-custom-scrollbar color="secondary" style="height:300px;">
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * </s-custom-scrollbar>
-				 * @see 			https://github.com/coffeekraken/s-custom-scrollbar-component
-				 * @author 			Olivier Bossel <olivier.bossel@gmail.com>
-				 */
-s-custom-scrollbar[color="secondary"] .simplebar-scrollbar {
-  background-color: #2b3438 !important;
-}
-
-/**
-				 * @name 		 	<span class="c-success">Success</span> Scrollbar
-				 * Provide a way to display a nice success custom-scrollbar
-				 * @styleguide  	Blocks / Scrollbar
-				 * @example 		html
-				 * <s-custom-scrollbar color="success" style="height:300px;">
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * </s-custom-scrollbar>
-				 * @see 			https://github.com/coffeekraken/s-custom-scrollbar-component
-				 * @author 			Olivier Bossel <olivier.bossel@gmail.com>
-				 */
-s-custom-scrollbar[color="success"] .simplebar-scrollbar {
-  background-color: #5cb85c !important;
-}
-
-/**
-				 * @name 		 	<span class="c-error">Error</span> Scrollbar
-				 * Provide a way to display a nice error custom-scrollbar
-				 * @styleguide  	Blocks / Scrollbar
-				 * @example 		html
-				 * <s-custom-scrollbar color="error" style="height:300px;">
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * </s-custom-scrollbar>
-				 * @see 			https://github.com/coffeekraken/s-custom-scrollbar-component
-				 * @author 			Olivier Bossel <olivier.bossel@gmail.com>
-				 */
-s-custom-scrollbar[color="error"] .simplebar-scrollbar {
-  background-color: #d9534f !important;
-}
-
-/**
-				 * @name 		 	<span class="c-warning">Warning</span> Scrollbar
-				 * Provide a way to display a nice warning custom-scrollbar
-				 * @styleguide  	Blocks / Scrollbar
-				 * @example 		html
-				 * <s-custom-scrollbar color="warning" style="height:300px;">
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * </s-custom-scrollbar>
-				 * @see 			https://github.com/coffeekraken/s-custom-scrollbar-component
-				 * @author 			Olivier Bossel <olivier.bossel@gmail.com>
-				 */
-s-custom-scrollbar[color="warning"] .simplebar-scrollbar {
-  background-color: #f0ad4e !important;
-}
-
-/**
-				 * @name 		 	<span class="c-info">Info</span> Scrollbar
-				 * Provide a way to display a nice info custom-scrollbar
-				 * @styleguide  	Blocks / Scrollbar
-				 * @example 		html
-				 * <s-custom-scrollbar color="info" style="height:300px;">
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * 	<p>Duis volutpat vehicula aliquam. Praesent aliquet ac orci et vehicula. Fusce pharetra eleifend orci, vulputate consectetur risus vehicula vitae. Pellentesque sed mauris id elit semper interdum. Pellentesque dictum sollicitudin risus tincidunt consectetur. Fusce imperdiet nec purus eu eleifend. Ut feugiat ultricies finibus. In eu enim eget libero aliquet venenatis. Praesent gravida ligula id mauris cursus mollis. Aenean lacinia ullamcorper tincidunt. Sed posuere ultrices tortor, sit amet convallis leo rutrum non.</p>
-				 * </s-custom-scrollbar>
-				 * @see 			https://github.com/coffeekraken/s-custom-scrollbar-component
-				 * @author 			Olivier Bossel <olivier.bossel@gmail.com>
-				 */
-s-custom-scrollbar[color="info"] .simplebar-scrollbar {
-  background-color: #2199e8 !important;
-}
-
-s-custom-scrollbar .simplebar-track {
-  width: 2px !important;
-}
-
-/**
  * Interactive demo styling
  */
 s-interactive-demo {
@@ -7942,23 +7854,27 @@ s-interactive-demo s-codemirror {
  * Table styling
  */
 /**
-		 * @name 		Default table
+		 * @name 		```.table```
 		 * Display table contents
 		 * @styleguide 		Objects / Table
 		 * @example 		html
 		 * <table class="table">
-		 * 	<tr>
-		 *  	<th>#</th>
-		 *  	<th>Table head 1</th>
-		 *  	<th>Table head 2</th>
-		 *  	<th>Table head 3</th>
-		 * 	</tr>
-		 * 	<tr>
-		 *  	<td>1</td>
-		 *  	<td>Table cell 1</td>
-		 *  	<td>Table cell 2</td>
-		 *  	<td>Table cell 3</td>
-		 * 	</tr>
+		 * 	<thead>
+		 * 		<tr>
+		 *  		<th>#</th>
+		 *  		<th>Table head 1</th>
+		 *  		<th>Table head 2</th>
+		 *  		<th>Table head 3</th>
+		 * 		</tr>
+		 * 	</thead>
+		 * 	<tbody>
+		 * 		<tr>
+		 *  		<td>1</td>
+		 *  		<td>Table cell 1</td>
+		 *  		<td>Table cell 2</td>
+		 *  		<td>Table cell 3</td>
+		 * 		</tr>
+		 * 	</tbody>
 		 * </table>
 		 */
 .table, .documentation table {
@@ -8049,6 +7965,30 @@ s-interactive-demo s-codemirror {
   width: 9999999px;
 }
 
+/**
+			 * @name 			```.table--responsive-overflow```
+			 * Display responsive overflow table contents
+			 * @styleguide 		Objects / Table
+			 * @example 		html
+			 * <table class="table table--responsive-overflow">
+			 * 	<thead>
+			 * 		<tr>
+			 *  		<th>#</th>
+			 *  		<th>Table head 1</th>
+			 *  		<th>Table head 2</th>
+			 *  		<th>Table head 3</th>
+			 * 		</tr>
+			 * 	</thead>
+			 * 	<tbody>
+			 * 		<tr>
+			 *  		<td>1</td>
+			 *  		<td>Table cell 1</td>
+			 *  		<td>Table cell 2</td>
+			 *  		<td>Table cell 3</td>
+			 * 		</tr>
+			 * 	</tbody>
+			 * </table>
+			 */
 .table--responsive-overflow {
   min-height: 0.01%;
   overflow-x: auto;
@@ -8056,6 +7996,30 @@ s-interactive-demo s-codemirror {
   overflow-y: hidden;
 }
 
+/**
+			 * @name 			```.table--responsive```
+			 * Display responsive table contents
+			 * @styleguide 		Objects / Table
+			 * @example 		html
+			 * <table class="table table--responsive">
+			 * 	<thead>
+			 * 		<tr>
+			 *  		<th>#</th>
+			 *  		<th>Table head 1</th>
+			 *  		<th>Table head 2</th>
+			 *  		<th>Table head 3</th>
+			 * 		</tr>
+			 * 	</thead>
+			 * 	<tbody>
+			 * 		<tr>
+			 *  		<td label="id">1</td>
+			 *  		<td label="Label #1">Table cell 1</td>
+			 *  		<td label="Label #2">Table cell 2</td>
+			 *  		<td label="Label #3">Table cell 3</td>
+			 * 		</tr>
+			 * 	</tbody>
+			 * </table>
+			 */
 @media (max-width: 640px) {
   .table--responsive {
     /* Force table to not be like tables anymore */
@@ -8088,83 +8052,99 @@ s-interactive-demo s-codemirror {
 }
 
 /**
-		 * @name 		Centered table
-		 * Display centered table contents
-		 * @styleguide 		Objects / Table
-		 * @example 		html
-		 * <table class="table table--center">
-		 * 	<tr>
-		 *  	<th>#</th>
-		 *  	<th>Table head 1</th>
-		 *  	<th>Table head 2</th>
-		 *  	<th>Table head 3</th>
-		 * 	</tr>
-		 * 	<tr>
-		 *  	<td>1</td>
-		 *  	<td>Table cell 1</td>
-		 *  	<td>Table cell 2</td>
-		 *  	<td>Table cell 3</td>
-		 * 	</tr>
-		 * </table>
-		 */
+			 * @name 		```.table--center```
+			 * Display centered table contents
+			 * @styleguide 		Objects / Table
+			 * @example 		html
+			 * <table class="table table--center">
+			 * 	<thead>
+			 * 		<tr>
+			 *  		<th>#</th>
+			 *  		<th>Table head 1</th>
+			 *  		<th>Table head 2</th>
+			 *  		<th>Table head 3</th>
+			 * 		</tr>
+			 * 	</thead>
+			 * 	<tbody>
+			 * 		<tr>
+			 *  		<td>1</td>
+			 *  		<td>Table cell 1</td>
+			 *  		<td>Table cell 2</td>
+			 *  		<td>Table cell 3</td>
+			 * 		</tr>
+			 * 	</tbody>
+			 * </table>
+			 */
 .table--center td, .table--center .td,
 .table--center th, .table--center .th {
   text-align: center;
 }
 
 /**
-		 * @name 		Middle table
-		 * Display middle aligned table contents
-		 * @styleguide 		Objects / Table
-		 * @example 		html
-		 * <table class="table table--middle">
-		 * 	<tr>
-		 *  	<th>#</th>
-		 *  	<th>Table head 1</th>
-		 *  	<th>Table head 2</th>
-		 *  	<th>Table head 3</th>
-		 * 	</tr>
-		 * 	<tr>
-		 *  	<td>1</td>
-		 *  	<td>Table cell 1</td>
-		 *  	<td>
-		 *  		Mauris sem nulla, maximus id dignissim vitae,<br>
-		 *  		ullamcorper a turpis. Vestibulum vel eros non nisl<br>
-		 *  		euismod tempus vitae non turpis.
-		 *  	</td>
-		 *  	<td>Table cell 3</td>
-		 * 	</tr>
-		 * </table>
-		 */
+			 * @name 		```.table--middle```
+			 * Display middle aligned table contents
+			 * @styleguide 		Objects / Table
+			 * @example 		html
+			 * <table class="table table--middle">
+			 * 	<thead>
+			 * 		<tr>
+			 *  		<th>#</th>
+			 *  		<th>Table head 1</th>
+			 *  		<th>Table head 2</th>
+			 *  		<th>Table head 3</th>
+			 * 		</tr>
+			 * 	</thead>
+			 * 	<tbody>
+			 * 		<tr>
+			 *  		<td>1</td>
+			 *  		<td>Table cell 1</td>
+			 *  		<td>
+			 *  			<p class="p">
+			 *  			Mauris sem nulla, maximus id dignissim vitae,<br>
+			 *  			ullamcorper a turpis. Vestibulum vel eros non nisl<br>
+			 *  			euismod tempus vitae non turpis.
+			 *  			</p>
+			 *  		</td>
+			 *  		<td>Table cell 3</td>
+			 * 		</tr>
+			 * 	</tbody>
+			 * </table>
+			 */
 .table--middle td, .table--middle .td,
 .table--middle th, .table--middle .th {
   vertical-align: middle;
 }
 
 /**
-		 * @name 		Interactive table
-		 * Display cursor on table rows contents
-		 * @styleguide 		Objects / Table
-		 * @example 		html
-		 * <table class="table table--interactive">
-		 * 	<tr>
-		 *  	<th>#</th>
-		 *  	<th>Table head 1</th>
-		 *  	<th>Table head 2</th>
-		 *  	<th>Table head 3</th>
-		 * 	</tr>
-		 * 	<tr>
-		 *  	<td>1</td>
-		 *  	<td>Table cell 1</td>
-		 *  	<td>
-		 *  		Mauris sem nulla, maximus id dignissim vitae,<br>
-		 *  		ullamcorper a turpis. Vestibulum vel eros non nisl<br>
-		 *  		euismod tempus vitae non turpis.
-		 *  	</td>
-		 *  	<td>Table cell 3</td>
-		 * 	</tr>
-		 * </table>
-		 */
+			 * @name 		```.table--interactive```
+			 * Display cursor on table rows contents
+			 * @styleguide 		Objects / Table
+			 * @example 		html
+			 * <table class="table table--interactive">
+			 * 	<thead>
+			 * 		<tr>
+			 *  		<th>#</th>
+			 *  		<th>Table head 1</th>
+			 *  		<th>Table head 2</th>
+			 *  		<th>Table head 3</th>
+			 * 		</tr>
+			 * 	</thead>
+			 * 	<tbody>
+			 * 		<tr>
+			 *  		<td>1</td>
+			 *  		<td>Table cell 1</td>
+			 *  		<td>
+			 *  			<p class="p">
+			 *  			Mauris sem nulla, maximus id dignissim vitae,<br>
+			 *  			ullamcorper a turpis. Vestibulum vel eros non nisl<br>
+			 *  			euismod tempus vitae non turpis.
+			 *  			</p>
+			 *  		</td>
+			 *  		<td>Table cell 3</td>
+			 * 		</tr>
+			 * 	</tbody>
+			 * </table>
+			 */
 .table--interactive tbody tr,
 .table--interactive tbody .tr,
 .table--interactive .tbody tr,
@@ -8174,63 +8154,75 @@ s-interactive-demo s-codemirror {
 
 .table, .documentation table {
   /**
-				 * @name 		<span class="c-default">Default</span> table
+				 * @name 		<span class="c-default">Default</span> ```.table--default```
 				 * Display default table contents
 				 * @styleguide 		Objects / Table
 				 * @example 		html
 				 * <table class="table table--default">
-				 * 	<tr>
-				 *  	<th>#</th>
-				 *  	<th>Table head 1</th>
-				 *  	<th>Table head 2</th>
-				 *  	<th>Table head 3</th>
-				 * 	</tr>
-				 * 	<tr>
-				 *  	<td>1</td>
-				 *  	<td>Table cell 1</td>
-				 *  	<td>Table cell 2</td>
-				 *  	<td>Table cell 3</td>
-				 * 	</tr>
+				 * 	<thead>
+				 * 		<tr>
+				 *  		<th>#</th>
+				 *  		<th>Table head 1</th>
+				 *  		<th>Table head 2</th>
+				 *  		<th>Table head 3</th>
+				 * 		</tr>
+				 * 	</thead>
+				 * 	<tbody>
+				 * 		<tr>
+				 *  		<td>1</td>
+				 *  		<td>Table cell 1</td>
+				 *  		<td>Table cell 2</td>
+				 *  		<td>Table cell 3</td>
+				 * 		</tr>
+				 * 	</tbody>
 				 * </table>
 				 */
   /**
-				 * @name 		<span class="c-primary">Primary</span> table
+				 * @name 		<span class="c-primary">Primary</span> ```.table--primary```
 				 * Display primary table contents
 				 * @styleguide 		Objects / Table
 				 * @example 		html
 				 * <table class="table table--primary">
-				 * 	<tr>
-				 *  	<th>#</th>
-				 *  	<th>Table head 1</th>
-				 *  	<th>Table head 2</th>
-				 *  	<th>Table head 3</th>
-				 * 	</tr>
-				 * 	<tr>
-				 *  	<td>1</td>
-				 *  	<td>Table cell 1</td>
-				 *  	<td>Table cell 2</td>
-				 *  	<td>Table cell 3</td>
-				 * 	</tr>
+				 * 	<thead>
+				 * 		<tr>
+				 *  		<th>#</th>
+				 *  		<th>Table head 1</th>
+				 *  		<th>Table head 2</th>
+				 *  		<th>Table head 3</th>
+				 * 		</tr>
+				 * 	</thead>
+				 * 	<tbody>
+				 * 		<tr>
+				 *  		<td>1</td>
+				 *  		<td>Table cell 1</td>
+				 *  		<td>Table cell 2</td>
+				 *  		<td>Table cell 3</td>
+				 * 		</tr>
+				 * 	</tbody>
 				 * </table>
 				 */
   /**
-				 * @name 		<span class="c-secondary">Secondary</span> table
+				 * @name 		<span class="c-secondary">Secondary</span> ```.table--secondary```
 				 * Display secondary table contents
 				 * @styleguide 		Objects / Table
 				 * @example 		html
 				 * <table class="table table--secondary">
-				 * 	<tr>
-				 *  	<th>#</th>
-				 *  	<th>Table head 1</th>
-				 *  	<th>Table head 2</th>
-				 *  	<th>Table head 3</th>
-				 * 	</tr>
-				 * 	<tr>
-				 *  	<td>1</td>
-				 *  	<td>Table cell 1</td>
-				 *  	<td>Table cell 2</td>
-				 *  	<td>Table cell 3</td>
-				 * 	</tr>
+				 * 	<thead>
+				 * 		<tr>
+				 *  		<th>#</th>
+				 *  		<th>Table head 1</th>
+				 *  		<th>Table head 2</th>
+				 *  		<th>Table head 3</th>
+				 * 		</tr>
+				 * 	</thead>
+				 * 	<tbody>
+				 * 		<tr>
+				 *  		<td>1</td>
+				 *  		<td>Table cell 1</td>
+				 *  		<td>Table cell 2</td>
+				 *  		<td>Table cell 3</td>
+				 * 		</tr>
+				 * 	</tbody>
 				 * </table>
 				 */
 }
@@ -8245,65 +8237,77 @@ s-interactive-demo s-codemirror {
 
 .table.table, .documentation table {
   /**
-					 * @name 		<span class="c-default">Default</span> striped table
-					 * Display default striped table contents
-					 * @styleguide 		Objects / Table
-					 * @example 		html
-					 * <table class="table table--default table--striped">
-					 * 	<tr>
-					 *  	<th>#</th>
-					 *  	<th>Table head 1</th>
-					 *  	<th>Table head 2</th>
-					 *  	<th>Table head 3</th>
-					 * 	</tr>
-					 * 	<tr>
-					 *  	<td>1</td>
-					 *  	<td>Table cell 1</td>
-					 *  	<td>Table cell 2</td>
-					 *  	<td>Table cell 3</td>
-					 * 	</tr>
-					 * </table>
-					 */
+						 * @name 		<span class="c-default">Default</span> ```.table--striped.table--default```
+						 * Display default striped table contents
+						 * @styleguide 		Objects / Table
+						 * @example 		html
+						 * <table class="table table--default table--striped">
+						 * 	<thead>
+						 * 		<tr>
+						 *  		<th>#</th>
+						 *  		<th>Table head 1</th>
+						 *  		<th>Table head 2</th>
+						 *  		<th>Table head 3</th>
+						 * 		</tr>
+						 * 	</thead>
+						 * 	<tbody>
+						 * 		<tr>
+						 *  		<td>1</td>
+						 *  		<td>Table cell 1</td>
+						 *  		<td>Table cell 2</td>
+						 *  		<td>Table cell 3</td>
+						 * 		</tr>
+						 * 	</tbody>
+						 * </table>
+						 */
   /**
-					 * @name 		<span class="c-default">Default</span> bordered table
-					 * Display default bordered table contents
-					 * @styleguide 		Objects / Table
-					 * @example 		html
-					 * <table class="table table--default table--bordered">
-					 * 	<tr>
-					 *  	<th>#</th>
-					 *  	<th>Table head 1</th>
-					 *  	<th>Table head 2</th>
-					 *  	<th>Table head 3</th>
-					 * 	</tr>
-					 * 	<tr>
-					 *  	<td>1</td>
-					 *  	<td>Table cell 1</td>
-					 *  	<td>Table cell 2</td>
-					 *  	<td>Table cell 3</td>
-					 * 	</tr>
-					 * </table>
-					 */
+						 * @name 		<span class="c-default">Default</span> ```.table--bordered.table--default```
+						 * Display default bordered table contents
+						 * @styleguide 		Objects / Table
+						 * @example 		html
+						 * <table class="table table--default table--bordered">
+						 * 	<thead>
+						 * 		<tr>
+						 *  		<th>#</th>
+						 *  		<th>Table head 1</th>
+						 *  		<th>Table head 2</th>
+						 *  		<th>Table head 3</th>
+						 * 		</tr>
+						 * 	</thead>
+						 * 	<tbody>
+						 * 		<tr>
+						 *  		<td>1</td>
+						 *  		<td>Table cell 1</td>
+						 *  		<td>Table cell 2</td>
+						 *  		<td>Table cell 3</td>
+						 * 		</tr>
+						 * 	</tbody>
+						 * </table>
+						 */
   /**
-					 * @name 		<span class="c-default">Default</span> hoverable table
-					 * Display default hoverable table contents
-					 * @styleguide 		Objects / Table
-					 * @example 		html
-					 * <table class="table table--default table--hover">
-					 * 	<tr>
-					 *  	<th>#</th>
-					 *  	<th>Table head 1</th>
-					 *  	<th>Table head 2</th>
-					 *  	<th>Table head 3</th>
-					 * 	</tr>
-					 * 	<tr>
-					 *  	<td>1</td>
-					 *  	<td>Table cell 1</td>
-					 *  	<td>Table cell 2</td>
-					 *  	<td>Table cell 3</td>
-					 * 	</tr>
-					 * </table>
-					 */
+						 * @name 		<span class="c-default">Default</span> ```.table--hover.table--default```
+						 * Display default hoverable table contents
+						 * @styleguide 		Objects / Table
+						 * @example 		html
+						 * <table class="table table--default table--hover">
+						 * 	<thead>
+						 * 		<tr>
+						 *  		<th>#</th>
+						 *  		<th>Table head 1</th>
+						 *  		<th>Table head 2</th>
+						 *  		<th>Table head 3</th>
+						 * 		</tr>
+						 * 	</thead>
+						 * 	<tbody>
+						 * 		<tr>
+						 *  		<td>1</td>
+						 *  		<td>Table cell 1</td>
+						 *  		<td>Table cell 2</td>
+						 *  		<td>Table cell 3</td>
+						 * 		</tr>
+						 * 	</tbody>
+						 * </table>
+						 */
 }
 
 .table.table th, .documentation table th {
@@ -8352,65 +8356,77 @@ s-interactive-demo s-codemirror {
 
 .table.table--primary, .documentation table.table--primary {
   /**
-					 * @name 		<span class="c-primary">Primary</span> striped table
-					 * Display primary striped table contents
-					 * @styleguide 		Objects / Table
-					 * @example 		html
-					 * <table class="table table--primary table--striped">
-					 * 	<tr>
-					 *  	<th>#</th>
-					 *  	<th>Table head 1</th>
-					 *  	<th>Table head 2</th>
-					 *  	<th>Table head 3</th>
-					 * 	</tr>
-					 * 	<tr>
-					 *  	<td>1</td>
-					 *  	<td>Table cell 1</td>
-					 *  	<td>Table cell 2</td>
-					 *  	<td>Table cell 3</td>
-					 * 	</tr>
-					 * </table>
-					 */
+						 * @name 		<span class="c-primary">Primary</span> ```.table--striped.table--primary```
+						 * Display primary striped table contents
+						 * @styleguide 		Objects / Table
+						 * @example 		html
+						 * <table class="table table--primary table--striped">
+						 * 	<thead>
+						 * 		<tr>
+						 *  		<th>#</th>
+						 *  		<th>Table head 1</th>
+						 *  		<th>Table head 2</th>
+						 *  		<th>Table head 3</th>
+						 * 		</tr>
+						 * 	</thead>
+						 * 	<tbody>
+						 * 		<tr>
+						 *  		<td>1</td>
+						 *  		<td>Table cell 1</td>
+						 *  		<td>Table cell 2</td>
+						 *  		<td>Table cell 3</td>
+						 * 		</tr>
+						 * 	</tbody>
+						 * </table>
+						 */
   /**
-					 * @name 		<span class="c-primary">Primary</span> bordered table
-					 * Display primary bordered table contents
-					 * @styleguide 		Objects / Table
-					 * @example 		html
-					 * <table class="table table--primary table--bordered">
-					 * 	<tr>
-					 *  	<th>#</th>
-					 *  	<th>Table head 1</th>
-					 *  	<th>Table head 2</th>
-					 *  	<th>Table head 3</th>
-					 * 	</tr>
-					 * 	<tr>
-					 *  	<td>1</td>
-					 *  	<td>Table cell 1</td>
-					 *  	<td>Table cell 2</td>
-					 *  	<td>Table cell 3</td>
-					 * 	</tr>
-					 * </table>
-					 */
+						 * @name 		<span class="c-primary">Primary</span> ```.table--bordered.table--primary```
+						 * Display primary bordered table contents
+						 * @styleguide 		Objects / Table
+						 * @example 		html
+						 * <table class="table table--primary table--bordered">
+						 * 	<thead>
+						 * 		<tr>
+						 *  		<th>#</th>
+						 *  		<th>Table head 1</th>
+						 *  		<th>Table head 2</th>
+						 *  		<th>Table head 3</th>
+						 * 		</tr>
+						 * 	</thead>
+						 * 	<tbody>
+						 * 		<tr>
+						 *  		<td>1</td>
+						 *  		<td>Table cell 1</td>
+						 *  		<td>Table cell 2</td>
+						 *  		<td>Table cell 3</td>
+						 * 		</tr>
+						 * 	</tbody>
+						 * </table>
+						 */
   /**
-					 * @name 		<span class="c-primary">Primary</span> hoverable table
-					 * Display primary hoverable table contents
-					 * @styleguide 		Objects / Table
-					 * @example 		html
-					 * <table class="table table--primary table--hover">
-					 * 	<tr>
-					 *  	<th>#</th>
-					 *  	<th>Table head 1</th>
-					 *  	<th>Table head 2</th>
-					 *  	<th>Table head 3</th>
-					 * 	</tr>
-					 * 	<tr>
-					 *  	<td>1</td>
-					 *  	<td>Table cell 1</td>
-					 *  	<td>Table cell 2</td>
-					 *  	<td>Table cell 3</td>
-					 * 	</tr>
-					 * </table>
-					 */
+						 * @name 		<span class="c-primary">Primary</span> ```.table--hover.table--primary```
+						 * Display primary hoverable table contents
+						 * @styleguide 		Objects / Table
+						 * @example 		html
+						 * <table class="table table--primary table--hover">
+						 * 	<thead>
+						 * 		<tr>
+						 *  		<th>#</th>
+						 *  		<th>Table head 1</th>
+						 *  		<th>Table head 2</th>
+						 *  		<th>Table head 3</th>
+						 * 		</tr>
+						 * 	</thead>
+						 * 	<tbody>
+						 * 		<tr>
+						 *  		<td>1</td>
+						 *  		<td>Table cell 1</td>
+						 *  		<td>Table cell 2</td>
+						 *  		<td>Table cell 3</td>
+						 * 		</tr>
+						 * 	</tbody>
+						 * </table>
+						 */
 }
 
 .table.table--primary th, .documentation table.table--primary th {
@@ -8459,65 +8475,77 @@ s-interactive-demo s-codemirror {
 
 .table.table--secondary, .documentation table.table--secondary {
   /**
-					 * @name 		<span class="c-secondary">Secondary</span> striped table
-					 * Display secondary striped table contents
-					 * @styleguide 		Objects / Table
-					 * @example 		html
-					 * <table class="table table--secondary table--striped">
-					 * 	<tr>
-					 *  	<th>#</th>
-					 *  	<th>Table head 1</th>
-					 *  	<th>Table head 2</th>
-					 *  	<th>Table head 3</th>
-					 * 	</tr>
-					 * 	<tr>
-					 *  	<td>1</td>
-					 *  	<td>Table cell 1</td>
-					 *  	<td>Table cell 2</td>
-					 *  	<td>Table cell 3</td>
-					 * 	</tr>
-					 * </table>
-					 */
+						 * @name 		<span class="c-secondary">Secondary</span> ```.table--striped.table--secondary```
+						 * Display secondary striped table contents
+						 * @styleguide 		Objects / Table
+						 * @example 		html
+						 * <table class="table table--secondary table--striped">
+						 * 	<thead>
+						 * 		<tr>
+						 *  		<th>#</th>
+						 *  		<th>Table head 1</th>
+						 *  		<th>Table head 2</th>
+						 *  		<th>Table head 3</th>
+						 * 		</tr>
+						 * 	</thead>
+						 * 	<tbody>
+						 * 		<tr>
+						 *  		<td>1</td>
+						 *  		<td>Table cell 1</td>
+						 *  		<td>Table cell 2</td>
+						 *  		<td>Table cell 3</td>
+						 * 		</tr>
+						 * 	</tbody>
+						 * </table>
+						 */
   /**
-					 * @name 		<span class="c-secondary">Secondary</span> bordered table
-					 * Display secondary bordered table contents
-					 * @styleguide 		Objects / Table
-					 * @example 		html
-					 * <table class="table table--secondary table--bordered">
-					 * 	<tr>
-					 *  	<th>#</th>
-					 *  	<th>Table head 1</th>
-					 *  	<th>Table head 2</th>
-					 *  	<th>Table head 3</th>
-					 * 	</tr>
-					 * 	<tr>
-					 *  	<td>1</td>
-					 *  	<td>Table cell 1</td>
-					 *  	<td>Table cell 2</td>
-					 *  	<td>Table cell 3</td>
-					 * 	</tr>
-					 * </table>
-					 */
+						 * @name 		<span class="c-secondary">Secondary</span> ```.table--bordered.table--secondary```
+						 * Display secondary bordered table contents
+						 * @styleguide 		Objects / Table
+						 * @example 		html
+						 * <table class="table table--secondary table--bordered">
+						 * 	<thead>
+						 * 		<tr>
+						 *  		<th>#</th>
+						 *  		<th>Table head 1</th>
+						 *  		<th>Table head 2</th>
+						 *  		<th>Table head 3</th>
+						 * 		</tr>
+						 * 	</thead>
+						 * 	<tbody>
+						 * 		<tr>
+						 *  		<td>1</td>
+						 *  		<td>Table cell 1</td>
+						 *  		<td>Table cell 2</td>
+						 *  		<td>Table cell 3</td>
+						 * 		</tr>
+						 * 	</tbody>
+						 * </table>
+						 */
   /**
-					 * @name 		<span class="c-secondary">Secondary</span> hoverable table
-					 * Display secondary hoverable table contents
-					 * @styleguide 		Objects / Table
-					 * @example 		html
-					 * <table class="table table--secondary table--hover">
-					 * 	<tr>
-					 *  	<th>#</th>
-					 *  	<th>Table head 1</th>
-					 *  	<th>Table head 2</th>
-					 *  	<th>Table head 3</th>
-					 * 	</tr>
-					 * 	<tr>
-					 *  	<td>1</td>
-					 *  	<td>Table cell 1</td>
-					 *  	<td>Table cell 2</td>
-					 *  	<td>Table cell 3</td>
-					 * 	</tr>
-					 * </table>
-					 */
+						 * @name 		<span class="c-secondary">Secondary</span> ```.table--hover.table--secondary```
+						 * Display secondary hoverable table contents
+						 * @styleguide 		Objects / Table
+						 * @example 		html
+						 * <table class="table table--secondary table--hover">
+						 * 	<thead>
+						 * 		<tr>
+						 *  		<th>#</th>
+						 *  		<th>Table head 1</th>
+						 *  		<th>Table head 2</th>
+						 *  		<th>Table head 3</th>
+						 * 		</tr>
+						 * 	</thead>
+						 * 	<tbody>
+						 * 		<tr>
+						 *  		<td>1</td>
+						 *  		<td>Table cell 1</td>
+						 *  		<td>Table cell 2</td>
+						 *  		<td>Table cell 3</td>
+						 * 		</tr>
+						 * 	</tbody>
+						 * </table>
+						 */
 }
 
 .table.table--secondary th, .documentation table.table--secondary th {
@@ -8627,9 +8655,9 @@ s-interactive-demo s-codemirror {
  * Buttons
  */
 /**
-		 * @name 	btn
+		 * @name 	```.btn```
 		 * Lead paragraph styling
-		 * @styleguide 	Objects / Btn
+		 * @styleguide 	Objects / Buttons
 		 * @example 	html
 		 * <a class="btn">
 		 * 	Default button
@@ -8642,9 +8670,9 @@ s-interactive-demo s-codemirror {
 }
 
 /**
-		 * @name 	btn block
+		 * @name 	```.btn--block```
 		 * Lead paragraph styling
-		 * @styleguide 	Objects / Btn
+		 * @styleguide 	Objects / Buttons
 		 * @example 	html
 		 * <a class="btn btn--block">
 		 * 	Block button
@@ -8697,9 +8725,9 @@ s-interactive-demo s-codemirror {
 }
 
 /**
-			 * @name 	<span class="c-default">Default</span> btn
+			 * @name 	<span class="c-default">Default</span> ```.btn```
 			 * Default button
-			 * @styleguide 	Objects / Btn
+			 * @styleguide 	Objects / Buttons
 			 * @example 	html
 			 * <a class="btn btn--default">
 			 * 	Default button
@@ -8710,27 +8738,27 @@ s-interactive-demo s-codemirror {
   border-color: #848e91;
   color: white;
   /**
-				 * @name 	<span class="c-default">Default</span> outline btn
+				 * @name 	<span class="c-default">Default</span> ```.btn--outline```
 				 * Outline default button
-				 * @styleguide 	Objects / Btn
+				 * @styleguide 	Objects / Buttons
 				 * @example 	html
 				 * <a class="btn btn--outline btn--default">
 				 * 	Default outlined button
 				 * </a>
 				 */
   /**
-				 * @name 	<span class="c-default">Default</span> link btn
+				 * @name 	<span class="c-default">Default</span> ```.btn--link```
 				 * Link default button
-				 * @styleguide 	Objects / Btn
+				 * @styleguide 	Objects / Buttons
 				 * @example 	html
 				 * <a class="btn btn--link btn--default">
 				 * 	Default link button
 				 * </a>
 				 */
   /**
-				 * @name 	<span class="c-default">Default</span> disabled btn
+				 * @name 	<span class="c-default">Default</span> ```.btn:disabled```
 				 * Disabled default button
-				 * @styleguide 	Objects / Btn
+				 * @styleguide 	Objects / Buttons
 				 * @example 	html
 				 * <button disabled class="btn btn--default">
 				 * 	Default disabled button
@@ -8807,9 +8835,9 @@ s-interactive-demo s-codemirror {
 }
 
 /**
-			 * @name 	<span class="c-primary">Primary</span> btn
+			 * @name 	<span class="c-primary">Primary</span> ```.btn```
 			 * Primary button
-			 * @styleguide 	Objects / Btn
+			 * @styleguide 	Objects / Buttons
 			 * @example 	html
 			 * <a class="btn btn--primary">
 			 * 	Primary button
@@ -8820,27 +8848,27 @@ s-interactive-demo s-codemirror {
   border-color: #f2bc2b;
   color: white;
   /**
-				 * @name 	<span class="c-primary">Primary</span> outline btn
+				 * @name 	<span class="c-primary">Primary</span> ```.btn--outline```
 				 * Outline primary button
-				 * @styleguide 	Objects / Btn
+				 * @styleguide 	Objects / Buttons
 				 * @example 	html
 				 * <a class="btn btn--outline btn--primary">
 				 * 	Primary outlined button
 				 * </a>
 				 */
   /**
-				 * @name 	<span class="c-primary">Primary</span> link btn
+				 * @name 	<span class="c-primary">Primary</span> ```.btn--link```
 				 * Link primary button
-				 * @styleguide 	Objects / Btn
+				 * @styleguide 	Objects / Buttons
 				 * @example 	html
 				 * <a class="btn btn--link btn--primary">
 				 * 	Primary link button
 				 * </a>
 				 */
   /**
-				 * @name 	<span class="c-primary">Primary</span> disabled btn
+				 * @name 	<span class="c-primary">Primary</span> ```.btn:disabled```
 				 * Disabled primary button
-				 * @styleguide 	Objects / Btn
+				 * @styleguide 	Objects / Buttons
 				 * @example 	html
 				 * <button disabled class="btn btn--primary">
 				 * 	Primary disabled button
@@ -8917,9 +8945,9 @@ s-interactive-demo s-codemirror {
 }
 
 /**
-			 * @name 	<span class="c-secondary">Secondary</span> btn
+			 * @name 	<span class="c-secondary">Secondary</span> ```.btn```
 			 * Secondary button
-			 * @styleguide 	Objects / Btn
+			 * @styleguide 	Objects / Buttons
 			 * @example 	html
 			 * <a class="btn btn--secondary">
 			 * 	Secondary button
@@ -8930,27 +8958,27 @@ s-interactive-demo s-codemirror {
   border-color: #2b3438;
   color: white;
   /**
-				 * @name 	<span class="c-secondary">Secondary</span> outline btn
+				 * @name 	<span class="c-secondary">Secondary</span> ```.btn--outline```
 				 * Outline secondary button
-				 * @styleguide 	Objects / Btn
+				 * @styleguide 	Objects / Buttons
 				 * @example 	html
 				 * <a class="btn btn--outline btn--secondary">
 				 * 	Secondary outlined button
 				 * </a>
 				 */
   /**
-				 * @name 	<span class="c-secondary">Secondary</span> link btn
+				 * @name 	<span class="c-secondary">Secondary</span> ```.btn--link```
 				 * Link secondary button
-				 * @styleguide 	Objects / Btn
+				 * @styleguide 	Objects / Buttons
 				 * @example 	html
 				 * <a class="btn btn--link btn--secondary">
 				 * 	Secondary link button
 				 * </a>
 				 */
   /**
-				 * @name 	<span class="c-secondary">Secondary</span> disabled btn
+				 * @name 	<span class="c-secondary">Secondary</span> ```.btn:disabled```
 				 * Disabled secondary button
-				 * @styleguide 	Objects / Btn
+				 * @styleguide 	Objects / Buttons
 				 * @example 	html
 				 * <button disabled class="btn btn--secondary">
 				 * 	Secondary disabled button
@@ -9535,7 +9563,7 @@ s-trianglify {
   background-color: #848e91;
   color: white;
   /**
-					 * @name 		<span class="c-default">Default</span> centered tooltip
+					 * @name 		<span class="c-default">Default</span> ```.tooltip--c.tooltip--default```
 					 * Display a default centered tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html
@@ -9546,7 +9574,7 @@ s-trianglify {
 					 * </div>
 					 */
   /**
-					 * @name 		<span class="c-default">Default</span> top tooltip
+					 * @name 		<span class="c-default">Default</span> ```.tooltip--t.tooltip--default```
 					 * Display a default top centered tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html
@@ -9557,7 +9585,7 @@ s-trianglify {
 					 * </div>
 					 */
   /**
-					 * @name 		<span class="c-default">Default</span> top left tooltip
+					 * @name 		<span class="c-default">Default</span> ```.tooltip--tl.tooltip--default```
 					 * Display a default top left tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html
@@ -9568,7 +9596,7 @@ s-trianglify {
 					 * </div>
 					 */
   /**
-					 * @name 		<span class="c-default">Default</span> top right tooltip
+					 * @name 		<span class="c-default">Default</span> ```.tooltip--tr.tooltip--default```
 					 * Display a default top right tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html
@@ -9579,7 +9607,7 @@ s-trianglify {
 					 * </div>
 					 */
   /**
-					 * @name 		<span class="c-default">Default</span> left tooltip
+					 * @name 		<span class="c-default">Default</span> ```.tooltip--l.tooltip--default```
 					 * Display a default left tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html
@@ -9590,7 +9618,7 @@ s-trianglify {
 					 * </div>
 					 */
   /**
-					 * @name 		<span class="c-default">Default</span> right tooltip
+					 * @name 		<span class="c-default">Default</span> ```.tooltip--r.tooltip--default```
 					 * Display a default right tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html
@@ -9601,7 +9629,7 @@ s-trianglify {
 					 * </div>
 					 */
   /**
-					 * @name 		<span class="c-default">Default</span> bottom left tooltip
+					 * @name 		<span class="c-default">Default</span> ```.tooltip--bl.tooltip--default```
 					 * Display a default bottom left tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html
@@ -9612,7 +9640,7 @@ s-trianglify {
 					 * </div>
 					 */
   /**
-					 * @name 		<span class="c-default">Default</span> bottom tooltip
+					 * @name 		<span class="c-default">Default</span> ```.tooltip--b.tooltip--default```
 					 * Display a default bottom tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html
@@ -9623,7 +9651,7 @@ s-trianglify {
 					 * </div>
 					 */
   /**
-					 * @name 		<span class="c-default">Default</span> bottom right tooltip
+					 * @name 		<span class="c-default">Default</span> ```.tooltip--br.tooltip--default```
 					 * Display a default bottom right tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html
@@ -9968,7 +9996,7 @@ s-trianglify {
   background-color: #f2bc2b;
   color: white;
   /**
-					 * @name 		<span class="c-primary">Primary</span> centered tooltip
+					 * @name 		<span class="c-primary">Primary</span> ```.tooltip--c.tooltip--primary```
 					 * Display a primary centered tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html
@@ -9979,7 +10007,7 @@ s-trianglify {
 					 * </div>
 					 */
   /**
-					 * @name 		<span class="c-primary">Primary</span> top tooltip
+					 * @name 		<span class="c-primary">Primary</span> ```.tooltip--t.tooltip--primary```
 					 * Display a primary top centered tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html
@@ -9990,7 +10018,7 @@ s-trianglify {
 					 * </div>
 					 */
   /**
-					 * @name 		<span class="c-primary">Primary</span> top left tooltip
+					 * @name 		<span class="c-primary">Primary</span> ```.tooltip--tl.tooltip--primary```
 					 * Display a primary top left tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html
@@ -10001,7 +10029,7 @@ s-trianglify {
 					 * </div>
 					 */
   /**
-					 * @name 		<span class="c-primary">Primary</span> top right tooltip
+					 * @name 		<span class="c-primary">Primary</span> ```.tooltip--tr.tooltip--primary```
 					 * Display a primary top right tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html
@@ -10012,7 +10040,7 @@ s-trianglify {
 					 * </div>
 					 */
   /**
-					 * @name 		<span class="c-primary">Primary</span> left tooltip
+					 * @name 		<span class="c-primary">Primary</span> ```.tooltip--l.tooltip--primary```
 					 * Display a primary left tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html
@@ -10023,7 +10051,7 @@ s-trianglify {
 					 * </div>
 					 */
   /**
-					 * @name 		<span class="c-primary">Primary</span> right tooltip
+					 * @name 		<span class="c-primary">Primary</span> ```.tooltip--r.tooltip--primary```
 					 * Display a primary right tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html
@@ -10034,7 +10062,7 @@ s-trianglify {
 					 * </div>
 					 */
   /**
-					 * @name 		<span class="c-primary">Primary</span> bottom left tooltip
+					 * @name 		<span class="c-primary">Primary</span> ```.tooltip--bl.tooltip--primary```
 					 * Display a primary bottom left tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html
@@ -10045,7 +10073,7 @@ s-trianglify {
 					 * </div>
 					 */
   /**
-					 * @name 		<span class="c-primary">Primary</span> bottom tooltip
+					 * @name 		<span class="c-primary">Primary</span> ```.tooltip--b.tooltip--primary```
 					 * Display a primary bottom tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html
@@ -10056,7 +10084,7 @@ s-trianglify {
 					 * </div>
 					 */
   /**
-					 * @name 		<span class="c-primary">Primary</span> bottom right tooltip
+					 * @name 		<span class="c-primary">Primary</span> ```.tooltip--br.tooltip--primary```
 					 * Display a primary bottom right tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html
@@ -10401,7 +10429,7 @@ s-trianglify {
   background-color: #2b3438;
   color: white;
   /**
-					 * @name 		<span class="c-secondary">Secondary</span> centered tooltip
+					 * @name 		<span class="c-secondary">Secondary</span> ```.tooltip--c.tooltip--secondary```
 					 * Display a secondary centered tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html
@@ -10412,7 +10440,7 @@ s-trianglify {
 					 * </div>
 					 */
   /**
-					 * @name 		<span class="c-secondary">Secondary</span> top tooltip
+					 * @name 		<span class="c-secondary">Secondary</span> ```.tooltip--t.tooltip--secondary```
 					 * Display a secondary top centered tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html
@@ -10423,7 +10451,7 @@ s-trianglify {
 					 * </div>
 					 */
   /**
-					 * @name 		<span class="c-secondary">Secondary</span> top left tooltip
+					 * @name 		<span class="c-secondary">Secondary</span> ```.tooltip--tl.tooltip--secondary```
 					 * Display a secondary top left tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html
@@ -10434,7 +10462,7 @@ s-trianglify {
 					 * </div>
 					 */
   /**
-					 * @name 		<span class="c-secondary">Secondary</span> top right tooltip
+					 * @name 		<span class="c-secondary">Secondary</span> ```.tooltip--tr.tooltip--secondary```
 					 * Display a secondary top right tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html
@@ -10445,7 +10473,7 @@ s-trianglify {
 					 * </div>
 					 */
   /**
-					 * @name 		<span class="c-secondary">Secondary</span> left tooltip
+					 * @name 		<span class="c-secondary">Secondary</span> ```.tooltip--l.tooltip--secondary```
 					 * Display a secondary left tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html
@@ -10456,7 +10484,7 @@ s-trianglify {
 					 * </div>
 					 */
   /**
-					 * @name 		<span class="c-secondary">Secondary</span> right tooltip
+					 * @name 		<span class="c-secondary">Secondary</span> ```.tooltip--r.tooltip--secondary```
 					 * Display a secondary right tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html
@@ -10467,7 +10495,7 @@ s-trianglify {
 					 * </div>
 					 */
   /**
-					 * @name 		<span class="c-secondary">Secondary</span> bottom left tooltip
+					 * @name 		<span class="c-secondary">Secondary</span> ```.tooltip--bl.tooltip--secondary```
 					 * Display a secondary bottom left tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html
@@ -10478,7 +10506,7 @@ s-trianglify {
 					 * </div>
 					 */
   /**
-					 * @name 		<span class="c-secondary">Secondary</span> bottom tooltip
+					 * @name 		<span class="c-secondary">Secondary</span> ```.tooltip--b.tooltip--secondary```
 					 * Display a secondary bottom tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html
@@ -10489,7 +10517,7 @@ s-trianglify {
 					 * </div>
 					 */
   /**
-					 * @name 		<span class="c-secondary">Secondary</span> bottom right tooltip
+					 * @name 		<span class="c-secondary">Secondary</span> ```.tooltip--br.tooltip--secondary```
 					 * Display a secondary bottom right tooltip
 					 * @styleguide 		Objects / Tooltip
 					 * @example 	html

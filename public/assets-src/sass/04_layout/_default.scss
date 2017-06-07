@@ -69,6 +69,11 @@ body {
 }
 	.topbar__logo {
 		background: s-color(primary);
+		@include s-transition(fast);
+
+		&:hover {
+			background: s-color(secondary, -darken 30%);
+		}
 	}
 
 /**

@@ -68,6 +68,14 @@ exports.threeMenu = (three, currentUrl) => {
 	</ul>`;
 }
 
+exports.eachSorted = (context, options) => {
+	var ret = ""
+	Object.keys(context).sort().forEach(function(key) {
+		ret = ret + options.fn({key: key, value: context[key]})
+	})
+	return ret
+}
+
 /**
  * Gravatar
  */

@@ -69,6 +69,11 @@ body {
 }
 	.topbar__logo {
 		background: s-color(primary);
+		@include s-transition(fast);
+
+		&:hover {
+			background: s-color(secondary, -darken 30%);
+		}
 	}
 
 /**
@@ -94,7 +99,7 @@ body {
 	padding: s-space(bigger);
 	// background: darken(white,5%);
 	// background: white;
-	border-top:10px solid darken(white,1%);
+	border-top:30px solid darken(white,1%);
 	padding-top:s-space(bigger);
 	margin-top:5rem;
 }

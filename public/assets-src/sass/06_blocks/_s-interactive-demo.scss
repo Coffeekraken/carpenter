@@ -3,8 +3,15 @@
  */
 s-interactive-demo {
 	background: white;
+	border:15px solid darken(white,1%);
+	border-bottom:0;
 	// @include s-depth(10);
+	//
+	s-codemirror {
+		border-bottom: 15px solid darken(white,1%);
+	}
 }
 	.s-interactive-demo__header {
-		background: s-color(border, -lighten 5% -desaturate 50%) !important;
+		// background: s-color(border, -lighten 5% -desaturate 50%) !important;
+		background: darken(white,1%);
 	}

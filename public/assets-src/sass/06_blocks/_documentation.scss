@@ -20,14 +20,14 @@
 		}
 	}
 	h2 {
-		border-top:10px solid darken(white,1%);
+		border-top:30px solid darken(white,1%);
 		padding-top:6rem;
 		margin-bottom:2rem;
 		margin-top:6rem;
-		// margin-left:s-space(bigger) * -1;
-		// margin-right:s-space(bigger) * -1;
-		// padding-left:s-space(bigger);
-		// padding-right:s-space(bigger);
+		margin-left:s-space(bigger) * -1;
+		margin-right:s-space(bigger) * -1;
+		padding-left:s-space(bigger);
+		padding-right:s-space(bigger);
 	}
 	h3 {
 		margin-top:6rem;
@@ -73,7 +73,7 @@
 	}
 
 	img {
-		&:not(.img-fullscreen) {
+		&:not(.img-fullscreen)[tabindex] {
 			max-width:500px;
 			max-height:500px;
 			border:solid 4px s-color(primary);

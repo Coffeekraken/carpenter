@@ -29,6 +29,69 @@
 			</div>
 			<div class="gr-adapt">
 				<ul class="nav nav--topbar">
+					{{#if packageJson.description}}
+						<li class="nav__item">
+							<s-dialog>
+								<a class="nav__link" href="#description" title="Description" target="_blank">
+									<i class="fa fa-info-circle"></i>&nbsp;&nbsp;About
+								</a>
+							</s-dialog>
+							<div class="hidden">
+								<div id="description">
+									<figure class="ratio-5-1">
+										<img class="abs-cover" src="/assets/img/header-bkg.jpg" />
+										<div style="width:150px; position:absolute; top:50%; left:40px; transform:translateY(-50%); max-width:none;">
+											{{#if logo}}
+												<img style="height:45px;" class="inline-block" src="/{{logo}}" />
+											{{else}}
+												<a href="http://coffeekraken.io" title="Coffeekraken.io" target="_blank">
+													<div style="width:150px; max-width:none;" class="coffeekraken-logo coffeekraken-logo--dialog"></div>
+												</a>
+											{{/if}}
+										</div>
+									</figure>
+									<div class="p-bigger">
+
+										<h1 class="h3 m-b">
+											{{title}}
+											{{#if packageJson.version}}
+												<span class="small">{{packageJson.version}}</span>
+											{{/if}}
+										</h1>
+										<p class="p p--lead m-b-big">
+											{{packageJson.description}}
+										</p>
+
+										{{#if packageJson.homepage}}
+											<a href="{{packageJson.homepage}}" class="btn m-r-small" target="_blank">
+												<i class="fa fa-globe"></i>&nbsp;&nbsp;Go to website
+											</a>
+										{{/if}}
+										{{#if packageJson.repository}}
+											<a href="{{packageJson.repository.url}}" class="btn m-r-small" target="_blank">
+												<i class="fa fa-github"></i>&nbsp;&nbsp;View repository
+											</a>
+										{{/if}}
+										<a class="btn btn--primary" s-dialog-ok>
+											Close
+										</a>
+										<ul class="list list--contributors m-b p-l pull-right">
+											{{#each packageJson.contributors}}
+											<li class="list__item relative">
+												<a class="block" href="{{this.url}}" title="{{this.name}}" target="_blank">
+													<img src="{{this.gravatar}}" />
+												</a>
+												<div class="tooltip tooltip--secondary tooltip--t">
+													{{this.name}}
+												</div>
+											</li>
+											{{/each}}
+										</ul>
+									</div>
+								</div>
+							</div>
+						</li>
+					{{/if}}
 					{{#if packageJson.homepage}}
 						<li class="nav__item">
 							<a href="{{packageJson.homepage}}" title="Go to website" target="_blank">
@@ -64,31 +127,31 @@
 				<i class="fa fa-caret-up pull-right"></i>
 			</a>
 			<ul class="list list--menu m-b">
-				{{#each styleguide.all}}
+				{{#eachSorted styleguide.all}}
 					<li class="list__item">
-						<a href="styleguide-{{@key}}"
+						<a href="styleguide-{{key}}"
 							class="list__item--toggle"
 							is="s-activate"
-							id="styleguide-{{@key}}"
+							id="styleguide-{{key}}"
 							save-state="localStorage" toggle="true" history="false" prevent-scroll>
-							{{{@key}}}
+							{{{key}}}
 							<i class="fa fa-plus pull-right" style="font-size:8px;"></i>
 							<i class="fa fa-minus pull-right" style="font-size:8px;"></i>
 							<s-ripple></s-ripple>
 						</a>
 						<ul class="list list--submenu">
-							{{#each this}}
+							{{#eachSorted this.value}}
 								<li class="list__item">
-									<a href="/styleguide/{{@../key}}#{{@key}}">
-										{{{@key}}}
+									<a href="/styleguide/{{../key}}/{{key}}">
+										{{{key}}}
 										<s-ripple></s-ripple>
 									</a>
 
 								</li>
-							{{/each}}
+							{{/eachSorted}}
 						</ul>
 					</li>
-				{{/each}}
+				{{/eachSorted}}
 			</ul>
 		{{/if}}
 		{{#if documentation}}

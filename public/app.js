@@ -16,6 +16,7 @@ const __readdirRecursive = require('fs-readdir-recursive');
 const __handlebarsHelpers = require('./app/handlebarHelpers');
 const __glob = require('glob-all');
 const _size = require('lodash/size');
+const __md5 = require('md5');
 
 module.exports = function(config) {
 
@@ -30,12 +31,6 @@ module.exports = function(config) {
 		app.get('/', function (req, res) {
 			res.redirect(config.index);
 		});
-	}
-
-	// load package.json
-	let packageJson = {};
-	if (__fs.existsSync(process.env.PWD + '/package.json')) {
-		packageJson = require(process.env.PWD + '/package.json');
 	}
 
 	// handlebars
@@ -55,11 +50,49 @@ module.exports = function(config) {
 			next();
 			return;
 		}
+
+		// handle images in node packages
+		switch (__path.extname(req.url).toLowerCase()) {
+			case '.jpg':
+			case '.png':
+			case '.jpeg':
+			case '.gif':
+				if (req.url.match(/node_modules\//)) {
+					const fromRootUrl = req.url.replace(/documentation\/|styleguide\//,'');
+					if (__fs.existsSync(__path.resolve('.'+fromRootUrl)	)) {
+						return res.sendFile(__path.resolve('.'+fromRootUrl));
+					}
+				}
+			break;
+		}
+
+		// send real files
 		if (__fs.existsSync(process.env.PWD + req.url)) {
 			return res.sendFile(process.env.PWD + req.url);
 		} else if (__fs.existsSync(__path.resolve(__dirname + '/../') + req.url)) {
+			// console.log('serve', __path.resolve(__dirname + '/../') + req.url);
 			return res.sendFile(__path.resolve(__dirname + '/../') + req.url);
 		}
+		next();
+	});
+
+	// package json
+	app.use((req, res, next) => {
+
+		let packageJson;
+		// load package.json
+		if (__fs.existsSync(process.env.PWD + '/package.json')) {
+			packageJson = require(process.env.PWD + '/package.json');
+			if (packageJson.contributors) {
+				packageJson.contributors = packageJson.contributors.map((contributor) => {
+					contributor.gravatar = `https://www.gravatar.com/avatar/${__md5(contributor.email)}`;
+					return contributor;
+				});
+			}
+			// attach packageJson to req
+			req.packageJson = packageJson;
+		}
+		// next
 		next();
 	});
 
@@ -181,15 +214,32 @@ module.exports = function(config) {
 	});
 
 	// styleguide route
-	app.get('/styleguide/:styleguide?', function (req, res) {
+	app.get(/\/styleguide\/.*/, function (req, res) {
 		// filter styleguide to display depending on the url
+
+		const path = decodeURIComponent(req.originalUrl.replace('/styleguide/',''));
+
+		const toDisplay = _get(allStyleguides, path.replace('/','.'));
+
 		let styleguidesToDisplay = {};
-		if (req.params.styleguide) {
-			allStyleguides[req.params.styleguide].active = true;
-			styleguidesToDisplay[req.params.styleguide] = allStyleguides[req.params.styleguide];
+
+		if (toDisplay) {
+			_set(styleguidesToDisplay, path.replace('/','.'), toDisplay);
 		} else {
 			styleguidesToDisplay = allStyleguides;
 		}
+
+		const allStyleguidesSortedKeys = Object.keys(allStyleguides);
+		console.log(allStyleguidesSortedKeys.sort());
+
+		// if (req.params.styleguide) {
+		// 	// allStyleguides[req.params.styleguide].active = true;
+		// 	styleguidesToDisplay[req.params.styleguide] = allStyleguides[req.params.styleguide];
+		// } else {
+		// 	styleguidesToDisplay = allStyleguides;
+		// }
+
+		console.log(styleguidesToDisplay);
 
 		const viewData = {
 			helpers : __handlebarsHelpers,
@@ -197,11 +247,17 @@ module.exports = function(config) {
 			title : config.title,
 			logo : config.logo,
 			url : req.url,
-			packageJson : packageJson
+			packageJson : req.packageJson
 		};
 		if (allStyleguides && _size(allStyleguides)) {
 			viewData.styleguide = {
+				getSortedItems : (path) => {
+					const root = _get(allStyleguides, path);
+					console.log('root', root);
+					return Object.keys(root).sort();
+				},
 				all : allStyleguides,
+				allSortedKeys : allStyleguidesSortedKeys,
 				toDisplay : styleguidesToDisplay
 			};
 		}
@@ -243,7 +299,7 @@ module.exports = function(config) {
 			title : config.title,
 			logo : config.logo,
 			url : req.url,
-			packageJson : packageJson
+			packageJson : req.packageJson
 		};
 		if (allStyleguides && _size(allStyleguides)) {
 			viewData.styleguide = {
@@ -259,48 +315,10 @@ module.exports = function(config) {
 
 		// render the page
 		res.render('documentation', viewData);
-
-		// // redirect the root url to the README.md file
-		// let docFile = req.url;
-		// if (req.url === '/') {
-		// 	docFile = '/README.md';
-		// }
-		//
-		// // read the markdown content
-		// const content = __fs.readFileSync(`${config.docFolder}${docFile}`,'utf8');
-		//
-		// // render the page
-		// res.render('home', {
-		// 	helpers : __handlebarsHelpers,
-		// 	three,
-		// 	files,
-		// 	team : {
-		// 		title : 'Meet our team',
-		// 		intro : `Sugar is a poweful toolkit, but it's a team before all. Here's who's behind your favorite toolkit!`,
-		// 		members : [{
-		// 			name : 'Olivier Bossel',
-		// 			role : 'Lead sugar developer',
-		// 			description : `Passionate interactive web designer from Switzerland.
-		// To be always in research of new design trends, technologies and user interaction is my primary motivation.`,
-		// 			email : 'olivier.bossel@gmail.com',
-		// 			links : [{
-		// 				title : 'Facebook',
-		// 				icon : 'facebook',
-		// 				url : 'http://facebook.com'
-		// 			}, {
-		// 				title : 'Twitter',
-		// 				icon : 'twitter-bird',
-		// 				url : 'http://twitter.com'
-		// 			}]
-		// 		}]
-		// 	},
-		// 	currentUrl : req.url,
-		// 	content : __parseMarkdown(content, types)
-		// });
 	});
 
 	// start demo server
 	app.listen(config.port, function () {
-		console.log('Carpentry up and running on port ' + config.port + '!');
+		console.log('Carpenter : up and running on port ' + config.port + '!');
 	});
 }

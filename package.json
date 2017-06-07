@@ -23,7 +23,8 @@
     "dist": "babel src -d dist",
     "dist.watch": "nodemon -w src -e js -x \"npm run dist\"",
     "start": "concurrently --kill-others \"npm run assets.watch\" \"npm run dist.watch\" \"nodemon ./bin/coffeekraken-carpenter\"",
-    "test": "coffeekraken-testing-stack"
+    "test": "coffeekraken-testing-stack",
+    "changelog": "git-changelog --version_name $npm_package_version  --app_name $npm_package_name --intro \"$npm_package_description\" --logo \".resources/coffeekraken-logo.jpg\""
   },
   "keywords": [
     "styleguide",
@@ -59,6 +60,7 @@
     "babel-preset-es2015-loose": "^8.0.0",
     "babel-preset-es2015-node": "^6.1.1",
     "babel-preset-stage-0": "^6.16.0",
+    "git-changelog": "^1.1.2",
     "imagemin-cli": "^3.0.0",
     "node-sass": "^3.13.0",
     "nodemon": "^1.11.0",

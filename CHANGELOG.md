@@ -1,7 +1,5 @@
 ### HEAD
 
-* {update}
+### 1.0.0 (june 7, 2017)
 
-### {version} ({month} {day}, {year})
-
-* {update}
+* First release

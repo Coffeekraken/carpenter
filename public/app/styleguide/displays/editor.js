@@ -25,7 +25,9 @@ module.exports = function editor(data) {
 				styles="[${__config.styleguide.files.filter(function(file) { return file.substr(-4) === '.css' }).map(function(file) { return "'/"+file+"'"; }).join(',')}]"
 				scripts="[${__config.styleguide.files.filter(function(file) { return file.substr(-3) === '.js' }).map(function(file) { return "'/"+file+"'"; }).join(',')}]">
 				<s-codemirror id="${language}" language="${language}" update-on="run">
-					{{{example.body}}}
+					<template>
+						{{{example.body}}}
+					</template>
 				</s-codemirror>
 			</s-interactive-demo>
 		</div>

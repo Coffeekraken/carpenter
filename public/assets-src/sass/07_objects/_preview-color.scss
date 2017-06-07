@@ -2,7 +2,7 @@
  * Preview color block
  */
 .preview-color {
-	border: 1px solid s-color(border);
+	border: 15px solid darken(white,1%);
 	border-radius: s-lnf(border-radius);
 	background: white;
 	// @include s-depth(10);

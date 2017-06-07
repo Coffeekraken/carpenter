@@ -2,6 +2,7 @@
 process.title = 'coffeekraken-carpenter';
 const spawn = require('child_process').spawn;
 const __fs = require('fs');
+const __path = require('path');
 const __merge = require('lodash/merge');
 const app = require('commander');
 
@@ -19,12 +20,14 @@ const app = require('commander');
 	// extend config
 	const defaultConfig = require(__dirname + '/../carpenter.config');
 	let config = {};
+
 	if (app.config) {
+		app.config = __path.resolve(app.config);
 		if ( ! __fs.existsSync(app.config)) {
-			throw 'Carpenter : the configuration file "' + process.env.PWD + '/' + app.config + '" does not exist...';
+			throw 'Carpenter : the configuration file "' + app.config + '" does not exist...';
 		}
 		// load the config file
-		config = require(process.env.PWD + '/' + app.config);
+		config = require(app.config);
 	} else {
 		if (__fs.existsSync(process.env.PWD + '/carpenter.config.js')) {
 			config = require(process.env.PWD + '/carpenter.config.js');

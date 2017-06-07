@@ -1,15 +1,15 @@
-<img width="300px" src="https://github.com/rafinskipg/git-changelog/raw/master/images/git-changelog-logo.png" />
+<img width="300px" src=".resources/coffeekraken-logo.jpg" />
 
-# Git Changelog
+# coffeekraken-carpenter
 
-_Git changelog is a utility tool for generating changelogs. It is free and opensource. :)_
+_Powerful tool that provide a nice web interface to display your website styleguide and modules/plugins documentations in one place._
 
-## v1.0.0  ( Wed Jun 07 2017 14:55:47 GMT+0200 (CEST) )
+## 1.0.0  ( Wed Jun 07 2017 15:15:46 GMT+0200 (CEST) )
 
 
-## Branchs merged
-  - Merge branch 'release/1.0.0'
-  ([802c509b](https://github.com/Coffeekraken/carpenter/commit/802c509beb0adc613ac941d689f0ea60e9fd896c))
+## Chore
+  - Adding git-changelog
+  ([593de4d2](https://github.com/Coffeekraken/carpenter/commit/593de4d2d08b90ffacfcde71eb992ff932d3e068))
 
 
 

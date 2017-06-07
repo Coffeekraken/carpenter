@@ -24,7 +24,7 @@
     "dist.watch": "nodemon -w src -e js -x \"npm run dist\"",
     "start": "concurrently --kill-others \"npm run assets.watch\" \"npm run dist.watch\" \"nodemon ./bin/coffeekraken-carpenter\"",
     "test": "coffeekraken-testing-stack",
-    "changelog": "git-changelog"
+    "changelog": "git-changelog --version_name $npm_package_version  --app_name $npm_package_name --intro \"$npm_package_description\" --logo \".resources/coffeekraken-logo.jpg\""
   },
   "keywords": [
     "styleguide",

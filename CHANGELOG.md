@@ -4,12 +4,12 @@
 
 _Powerful tool that provide a nice web interface to display your website styleguide and modules/plugins documentations in one place._
 
-## 1.0.0  ( Wed Jun 07 2017 15:15:46 GMT+0200 (CEST) )
+## 1.0.1  ( Wed Aug 02 2017 13:39:14 GMT+0200 (CEST) )
 
 
-## Chore
-  - Adding git-changelog
-  ([593de4d2](https://github.com/Coffeekraken/carpenter/commit/593de4d2d08b90ffacfcde71eb992ff932d3e068))
+## Bug Fixes
+  - fix config extend by using deep-extend in place of _merge to avoid array merging
+  ([8cc98992](https://github.com/Coffeekraken/carpenter/commit/8cc9899268cc7b524a0bdbbcb9b13d36cc013d33))
 
 
 

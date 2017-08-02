@@ -3,8 +3,10 @@ process.title = 'coffeekraken-carpenter';
 const spawn = require('child_process').spawn;
 const __fs = require('fs');
 const __path = require('path');
-const __merge = require('lodash/merge');
+const __extend = require('lodash/extend');
 const app = require('commander');
+const __deepExtend = require('deep-extend');
+const __cloneDeep = require('lodash/cloneDeep');
 
 (function() {
 
@@ -33,7 +35,7 @@ const app = require('commander');
 			config = require(process.env.PWD + '/carpenter.config.js');
 		}
 	}
-	const finalConfig = __merge({}, defaultConfig, config);
+	const finalConfig = __deepExtend(__cloneDeep(defaultConfig), config);
 
 	for(let key in app._events) {
 		if (app[key] !== undefined) {

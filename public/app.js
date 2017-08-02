@@ -97,11 +97,13 @@ module.exports = function(config) {
 	});
 
 	// loop on configuration files to serve them from the project directory
-	config.styleguide.files.forEach(function(file) {
-		app.get('/' + file, function(req, res) {
-			res.sendFile(process.env.PWD + req.url);
+	if (config.styleguide && config.styleguide.files.length) {
+		config.styleguide.files.forEach(function(file) {
+			app.get('/' + file, function(req, res) {
+				res.sendFile(process.env.PWD + req.url);
+			});
 		});
-	});
+	}
 	Object.keys(config.express.static).forEach(function(folderPath) {
 		const mapToPath = config.express.static[folderPath];
 		app.use(folderPath, __express.static(mapToPath));
@@ -122,6 +124,10 @@ module.exports = function(config) {
 	// grab the needed files
 	let docThree = {};
 	app.use(function(req, res, next) {
+		if ( ! config.documentation || ! config.documentation.files.length) {
+			next();
+			return;
+		}
 		docThree = {};
 		docFiles = __glob.sync([].concat(config.documentation.files));
 		docFiles.forEach((docFilePath, i) => {
@@ -160,6 +166,10 @@ module.exports = function(config) {
 	let allStyleguides = {};
 	app.use(function(req, res, next) {
 		allStyleguides = {};
+		if ( ! config.styleguide || ! config.styleguide.files.length) {
+			next();
+			return;
+		}
 		// parse dobclock
 		const styleguideFiles = [].concat(config.styleguide.files).map(function(file) {
 			return process.env.PWD + '/' + file;
@@ -230,7 +240,7 @@ module.exports = function(config) {
 		}
 
 		const allStyleguidesSortedKeys = Object.keys(allStyleguides);
-		console.log(allStyleguidesSortedKeys.sort());
+		allStyleguidesSortedKeys.sort();
 
 		// if (req.params.styleguide) {
 		// 	// allStyleguides[req.params.styleguide].active = true;
@@ -238,8 +248,6 @@ module.exports = function(config) {
 		// } else {
 		// 	styleguidesToDisplay = allStyleguides;
 		// }
-
-		console.log(styleguidesToDisplay);
 
 		const viewData = {
 			helpers : __handlebarsHelpers,
@@ -253,7 +261,6 @@ module.exports = function(config) {
 			viewData.styleguide = {
 				getSortedItems : (path) => {
 					const root = _get(allStyleguides, path);
-					console.log('root', root);
 					return Object.keys(root).sort();
 				},
 				all : allStyleguides,

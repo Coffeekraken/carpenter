@@ -4,6 +4,14 @@ Here the full configuration file reference
 
 ```js
 module.exports = {
+
+	// basic auth
+	// auth : {
+	// 	username : 'something',
+	// 	password : 'some-password'
+	// },
+	auth : false,
+
 	// server port
 	port : 3333,
 

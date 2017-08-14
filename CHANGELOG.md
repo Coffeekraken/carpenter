@@ -4,12 +4,12 @@
 
 _Powerful tool that provide a nice web interface to display your website styleguide and modules/plugins documentations in one place._
 
-## 1.0.1  ( Wed Aug 02 2017 13:39:14 GMT+0200 (CEST) )
+## 1.0.2  ( Mon Aug 14 2017 15:23:38 GMT+0200 (CEST) )
 
 
-## Bug Fixes
-  - fix config extend by using deep-extend in place of _merge to avoid array merging
-  ([8cc98992](https://github.com/Coffeekraken/carpenter/commit/8cc9899268cc7b524a0bdbbcb9b13d36cc013d33))
+## Features
+  - Add basic authentication support
+  ([790cf5a6](https://github.com/Coffeekraken/carpenter/commit/790cf5a64e476fa8e563cec7004e1404c0aa5862))
 
 
 

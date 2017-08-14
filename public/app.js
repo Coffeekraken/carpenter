@@ -4,6 +4,7 @@ const _groupBy = require('lodash/groupBy');
 const _extend = require('lodash/extend');
 const __express = require('express');
 const __expressHandlebars = require('express-handlebars');
+const __basicAuth = require('basic-auth-connect');
 const __path = require('path');
 const __fs = require('fs');
 const __open = require('open');
@@ -40,6 +41,11 @@ module.exports = function(config) {
 	}));
 	app.set('views',__dirname + '/views');
 	app.set('view engine', 'handlebars');
+
+	// if need auth
+	if (config.auth && config.auth.username && config.auth.password) {
+		app.use(__basicAuth(config.auth.username, config.auth.password));
+	}
 
 	// static files
 	app.use('/assets', __express.static(__dirname + '/assets'));

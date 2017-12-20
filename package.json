@@ -68,7 +68,7 @@
     "webpack": "^1.13.3"
   },
   "dependencies": {
-    "Faker": "^0.7.2",
+    "faker": "^4.0.0",
     "babel-polyfill": "^6.23.0",
     "basic-auth-connect": "^1.0.0",
     "codemirror": "^5.22.0",

@@ -1,5 +1,5 @@
 const __handlebars = require('handlebars');
-const __faker = require('Faker');
+const __faker = require('faker');
 const __config = require('../../config');
 module.exports = function(data) {
 	const language = data.language || 'html';

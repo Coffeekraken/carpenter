@@ -765,11 +765,11 @@
  *
  * @example 	scss
  * // generate all the classes
- * \@include g-generate-classes();
+ * \@include g-classes();
  * // generate only certain states
- * \@include g-generate-classes(mobile tablet);
+ * \@include g-classes(mobile tablet);
  * // generate only the helpers for all the states
- * \@include g-generate-classes(all, helpers);
+ * \@include g-classes(all, helpers);
  *
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
@@ -3685,6 +3685,133 @@
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
+ * @name 	SAnimationComponent Classes
+ * This file provide the mixins to generate animation classes
+ */
+/**
+ * Provide the classes for the anim="letters-in-reveal" animation
+ * - ```[anim="letters-in-reveal"]```
+ * @param 		{Integer} 		[$words-letters-count=100] 		The max letters count of words that the animation will handle
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the bare styling for the anim="letters-in-reveal" classes
+ * - ```[anim="letters-in-reveal"]```
+ * @param 		{Integer} 		[$words-letters-count=100] 		The max letters count of words that the animation will handle
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the style styling for the anim="letters-in-reveal" classes
+ * - ```[anim="letters-in-reveal"]```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * @name 	SAnimationComponent Classes
+ * This file provide the mixins to generate animation classes
+ */
+/**
+ * Provide the classes for the anim="lines-in-boxes" animation
+ * - ```[anim="lines-in-boxes"]```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+@keyframes lines-in-boxes {
+  0% {
+    width: 0;
+    transform: translateX(200vw);
+  }
+  49.99999% {
+    transform: translateX(200vw);
+  }
+  50% {
+    width: 100%;
+    left: 0;
+    transform: translateX(0);
+  }
+  100% {
+    width: 0;
+    left: 100%;
+    transform: translateX(0);
+  }
+}
+
+@keyframes lines-in-boxes-hover {
+  0% {
+    width: 0;
+    transform: translateX(200vw);
+  }
+  49.99999% {
+    transform: translateX(200vw);
+  }
+  50% {
+    width: 100%;
+    left: 0;
+    transform: translateX(0);
+  }
+  80% {
+    width: 0;
+    left: 100%;
+    transform: translateX(0);
+  }
+  100% {
+    width: 0;
+    left: 100%;
+    transform: translateX(0);
+  }
+}
+
+@keyframes lines-in-boxes-text {
+  0% {
+    transform: translateX(-200vw);
+  }
+  49.99999% {
+    transform: translateX(-200vw);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/**
+* Provide the bare styling for the anim="lines-in-boxes" classes
+* - ```[anim="lines-in-boxes"]```
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+* Provide the style styling for the anim="lines-in-boxes" classes
+* - ```[anim="lines-in-boxes"]```
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+ * @name 	SAnimationComponent Classes
+ * This file provide the mixins to generate animation classes
+ */
+/**
+ * Provide the classes for the anim="slide-in" animation
+ * - ```[anim="slide-in-up"]```
+ * - ```[anim="slide-in-right"]```
+ * - ```[anim="slide-in-bottom"]```
+ * - ```[anim="slide-in-left"]```
+ * @param 	{List} 		[$directions=up right down left]		Specify the directions to generate the classes for
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the bare styling for the anim="slide-in" classes
+ * - ```[anim="slide-in-up"]```
+ * - ```[anim="slide-in-right"]```
+ * - ```[anim="slide-in-bottom"]```
+ * - ```[anim="slide-in-left"]```
+ * @param 	{List} 		[$directions=up right down left]		Specify the directions to generate the classes for
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+ * Provide the style styling for the anim="slide-in" classes
+ * - ```[anim="slide-in"]```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
  * @name 	SButtonComponent
  * Provide ability to generate buttons that follow your settings like colors, look and feel, etc...
  *
@@ -3747,10 +3874,6 @@
 
 .btn:not(button):not(input), .btn--block:not(button):not(input) {
   line-height: 0.9;
-}
-
-.btn > *, .btn--block > * {
-  vertical-align: middle;
 }
 
 button {
@@ -3913,16 +4036,162 @@ button {
  * Documentation coming soon...
  */
 /**
+ * @name 	SFormComponent
+ * This file provide the mixins and functions to create form elements
+ */
+.s-select, .s-select .s-select__search-field {
+  display: inline-block;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 1em;
+}
+
+.s-select, select[is="s-select"][color="default"] + .s-select, select[is="s-select"][color="primary"] + .s-select,
+.s-select--primary, select[is="s-select"][color="secondary"] + .s-select,
+.s-select--secondary {
+  border-width: 1px;
+  border-style: solid;
+}
+
+.s-select:disabled, select[is="s-select"][color="default"] + .s-select:disabled, select[is="s-select"][color="primary"] + .s-select:disabled,
+.s-select--primary:disabled, select[is="s-select"][color="secondary"] + .s-select:disabled,
+.s-select--secondary:disabled {
+  cursor: not-allowed;
+}
+
+/**
+ * Set the styling for field sizes like padding, height, etc...
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Set the styling for field color like borders
+ * @param 		{Color} 		$color 		The color wanted for the field
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the bare and style css for input field (text, email, etc...)
+ * @param 		{Color} 		[$color=default] 		The color wanted for the field
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the bare css for input field (text, email, etc...)
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the style css for input field (text, email, etc...)
+ * @param 		{Color} 		[$color=default] 		The color wanted for the field
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the bare and style css for textarea
+ * @param 		{Color} 		[$color=default] 		The color wanted for the textarea
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Set the styling for textarea sizes like padding, etc...
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the bare css for textarea
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the style css for textarea
+ * @param 		{Color} 		[$color=default] 		The color wanted for the textarea
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+* Apply the bare and style css for select
+* @param 		{Color} 		[$color=default] 		The color wanted for the select
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+ * Set the styling for select colors like background arrow, etc...
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+* Apply the bare css for select
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+* Apply the style css for select
+* @param 		{Color} 		[$color=default] 		The color wanted for the select
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+* Apply the bare and style css for form group
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+* Apply the bare css for form group
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+* Apply the style css for form group
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+* Apply the bare and style css for form addon
+* @param 		{Color} 		[$color=default] 		The color wanted for the form addon
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+* Apply the bare css for form group
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+* Apply the bare and style css for form group
+* @param 		{Color} 		[$color=default] 		The color wanted for the select
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+ * @name 	SFormComponent Classes
+ * This file provide the mixins to generate form classes
+ */
+/**
+ * Provide all the classes of the form component like .form-input, .form-textarea, etc...
+ * - ```.form-input```
+ * - ```.form-input--{color}```
+ * - ```.form-textarea```
+ * - ```.form-textarea--{color}```
+ * - ```.form-select```
+ * - ```.form-select--{color}```
+ * - ```.form-group````
+ * - ```.form-addon```
+ * - ```.form-addon--{color}```
+ * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide all the bare classes of the form component like .form-input, .form-textarea, etc...
+ * - ```.form-input```
+ * - ```.form-textarea```
+ * - ```.form-select```
+ * - ```.form-group````
+ * - ```.form-addon```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide all the style classes of the form component like .form-input, .form-textarea, etc...
+ * - ```.form-input```
+ * - ```.form-input--{color}```
+ * - ```.form-textarea```
+ * - ```.form-textarea--{color}```
+ * - ```.form-select```
+ * - ```.form-select--{color}```
+ * - ```.form-group````
+ * - ```.form-addon```
+ * - ```.form-addon--{color}```
+ * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
  * @name 	SNavComponent
  * Documentation coming soon...
  */
-.nav--justify, .nav--inline, .nav--topbar {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  user-select: none;
-}
-
 /**
  * @name 	STableComponent
  * Documentation coming soon...
@@ -3985,17 +4254,6 @@ button {
  *
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
-.tooltip {
-  position: absolute !important;
-  pointer-events: none;
-  opacity: 0;
-}
-
-:hover > .tooltip,
-.active > .tooltip {
-  opacity: 1;
-}
-
 /**
  * @name 	STypographyComponent
  * Provide ability to generate base typography classes for:
@@ -4840,6 +5098,10 @@ button {
   margin-right: 100%;
 }
 
+body {
+  direction: ltr;
+}
+
 .float-left {
   float: left;
 }
@@ -5166,10 +5428,6 @@ button {
   background: linear-gradient(to right, transparent 50%, rgba(0, 0, 0, 0.02) 50%);
   background-size: 16.66667% 100%;
   z-index: 99999;
-}
-
-body {
-  direction: ltr;
 }
 
 [class*="gr-"] > [class^="row"],
@@ -6898,36 +7156,6 @@ h1.vr:last-child,
   margin-bottom: 0;
 }
 
-.h1,
-.tf h1 {
-  color: #2b3438;
-}
-
-.h2,
-.tf h2 {
-  color: #2b3438;
-}
-
-.h3,
-.tf h3 {
-  color: #2b3438;
-}
-
-.h4,
-.tf h4 {
-  color: #2b3438;
-}
-
-.h5,
-.tf h5 {
-  color: #2b3438;
-}
-
-.h6,
-.tf h6 {
-  color: #2b3438;
-}
-
 /**
 	 * @name 	```.p```
 	 * Default paragraph styling
@@ -7745,76 +7973,8 @@ html, body {
 /**
  * Navigation styling
  */
-/**
- * @name 	Nav justified
- */
-/**
-		 * @name 	```.nav--justify```
-		 * Provide a simple justify navigation component
-		 * @styleguide 	Blocks / Nav
-		 * @example 	html
-		 * <ul class="nav nav--justify">
-		 * 	<li class="nav__item">
-		 *  	Item 1
-		 * 	</li>
-		 * 	<li class="nav__item">
-		 *  	Item 2
-		 * 	</li>
-		 * 	<li class="nav__item">
-		 *  	Item 3
-		 * 	</li>
-		 * </ul>
-		 */
-.nav--justify {
-  display: table;
-  width: 100%;
-}
-
-.nav--justify > li,
-.nav--justify > .nav__item {
-  display: table-cell;
-  vertical-align: middle;
-}
-
-.nav--justify > li, .nav--justify > li a,
-.nav--justify > .nav__item,
-.nav--justify > .nav__item a {
-  text-align: center;
-}
-
-.nav--right {
-  text-align: right;
-}
-
-/**
-		 * @name 	```.nav--inline```
-		 * Provide a simple inline navigation component
-		 * @styleguide 	Blocks / Nav
-		 * @example 	html
-		 * <ul class="nav nav--inline">
-		 * 	<li class="nav__item">
-		 *  	Item 1
-		 * 	</li>
-		 * 	<li class="nav__item">
-		 *  	Item 2
-		 * 	</li>
-		 * 	<li class="nav__item">
-		 *  	Item 3
-		 * 	</li>
-		 * </ul>
-		 */
-.nav--inline, .nav--topbar {
-  display: block;
-}
-
-.nav--inline > li, .nav--topbar > li,
-.nav--inline > .nav__item, .nav--topbar > .nav__item {
-  position: relative;
+.nav--inline .nav__item, .nav--topbar .nav__item {
   display: inline-block;
-}
-
-.nav--right {
-  text-align: right;
 }
 
 /**
@@ -7854,9 +8014,67 @@ s-interactive-demo s-codemirror {
  * Table styling
  */
 /**
+ * Print out the responsive style for a table.
+ * This responsive style make the table display as block and take the "label" attribute on the td to display correctly the line label
+ */
+/**
+ * @name 	STableComponent Classes
+ * This file provide the mixins to generate table classes
+ */
+/**
+ * Provide all the classes of the button component like .table, .table--striped, etc...
+ * - ```.table```
+ * - ```.table--striped```
+ * - ```.table--bordered```
+ * - ```.table--hover```
+ * - ```.table--responsive```
+ * - ```.table--responsive-overflow```
+ * - ```.table--interactive```
+ * - ```.table--middle```
+ * - ```.table--center```
+ *
+ * @param 		{Color} 		[$colors=default primary secondary]	 		Specify the colors to generate
+ * @param 		{String} 		[$modifiers=striped bordered hover responsive responsive-overflow interactive middle center] 		Specify the modifiers to generate
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide all the style classes of the button component like .table, .table--striped, etc...
+ * - ```.table```
+ * - ```.table--striped```
+ * - ```.table--bordered```
+ * - ```.table--hover```
+ * - ```.table--responsive```
+ * - ```.table--responsive-overflow```
+ * - ```.table--interactive```
+ * - ```.table--middle```
+ * - ```.table--center```
+ *
+ * @param 		{Color} 		[$colors=default primary secondary]	 		Specify the colors to generate
+ * @param 		{String} 		[$modifiers=striped bordered hover responsive responsive-overflow interactive middle center] 		Specify the modifiers to generate
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide all the bare classes of the button component like .table, .table--striped, etc...
+ * - ```.table```
+ * - ```.table--striped```
+ * - ```.table--bordered```
+ * - ```.table--hover```
+ * - ```.table--responsive```
+ * - ```.table--responsive-overflow```
+ * - ```.table--interactive```
+ * - ```.table--middle```
+ * - ```.table--center```
+ *
+ * @param 		{String} 		[$modifiers=striped bordered hover responsive responsive-overflow interactive middle center] 		Specify the modifiers to generate
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
 		 * @name 		```.table```
 		 * Display table contents
-		 * @styleguide 		Objects / Table
+		 * @styleguide 		Atoms / Table
 		 * @example 		html
 		 * <table class="table">
 		 * 	<thead>
@@ -7968,7 +8186,7 @@ s-interactive-demo s-codemirror {
 /**
 			 * @name 			```.table--responsive-overflow```
 			 * Display responsive overflow table contents
-			 * @styleguide 		Objects / Table
+			 * @styleguide 		Atoms / Table
 			 * @example 		html
 			 * <table class="table table--responsive-overflow">
 			 * 	<thead>
@@ -7999,7 +8217,7 @@ s-interactive-demo s-codemirror {
 /**
 			 * @name 			```.table--responsive```
 			 * Display responsive table contents
-			 * @styleguide 		Objects / Table
+			 * @styleguide 		Atoms / Table
 			 * @example 		html
 			 * <table class="table table--responsive">
 			 * 	<thead>
@@ -8020,7 +8238,7 @@ s-interactive-demo s-codemirror {
 			 * 	</tbody>
 			 * </table>
 			 */
-@media (max-width: 640px) {
+@media all and (max-width: 640px) {
   .table--responsive {
     /* Force table to not be like tables anymore */
     /* Hide table headers (but not display: none;, for accessibility) */
@@ -8048,13 +8266,14 @@ s-interactive-demo s-codemirror {
     padding: 0.8em 1.4em;
     white-space: nowrap;
     content: attr(label);
+    font-weight: bold;
   }
 }
 
 /**
 			 * @name 		```.table--center```
 			 * Display centered table contents
-			 * @styleguide 		Objects / Table
+			 * @styleguide 		Atoms / Table
 			 * @example 		html
 			 * <table class="table table--center">
 			 * 	<thead>
@@ -8083,7 +8302,7 @@ s-interactive-demo s-codemirror {
 /**
 			 * @name 		```.table--middle```
 			 * Display middle aligned table contents
-			 * @styleguide 		Objects / Table
+			 * @styleguide 		Atoms / Table
 			 * @example 		html
 			 * <table class="table table--middle">
 			 * 	<thead>
@@ -8118,7 +8337,7 @@ s-interactive-demo s-codemirror {
 /**
 			 * @name 		```.table--interactive```
 			 * Display cursor on table rows contents
-			 * @styleguide 		Objects / Table
+			 * @styleguide 		Atoms / Table
 			 * @example 		html
 			 * <table class="table table--interactive">
 			 * 	<thead>
@@ -8156,7 +8375,7 @@ s-interactive-demo s-codemirror {
   /**
 				 * @name 		<span class="c-default">Default</span> ```.table--default```
 				 * Display default table contents
-				 * @styleguide 		Objects / Table
+				 * @styleguide 		Atoms / Table
 				 * @example 		html
 				 * <table class="table table--default">
 				 * 	<thead>
@@ -8180,7 +8399,7 @@ s-interactive-demo s-codemirror {
   /**
 				 * @name 		<span class="c-primary">Primary</span> ```.table--primary```
 				 * Display primary table contents
-				 * @styleguide 		Objects / Table
+				 * @styleguide 		Atoms / Table
 				 * @example 		html
 				 * <table class="table table--primary">
 				 * 	<thead>
@@ -8204,7 +8423,7 @@ s-interactive-demo s-codemirror {
   /**
 				 * @name 		<span class="c-secondary">Secondary</span> ```.table--secondary```
 				 * Display secondary table contents
-				 * @styleguide 		Objects / Table
+				 * @styleguide 		Atoms / Table
 				 * @example 		html
 				 * <table class="table table--secondary">
 				 * 	<thead>
@@ -8239,7 +8458,7 @@ s-interactive-demo s-codemirror {
   /**
 						 * @name 		<span class="c-default">Default</span> ```.table--striped.table--default```
 						 * Display default striped table contents
-						 * @styleguide 		Objects / Table
+						 * @styleguide 		Atoms / Table
 						 * @example 		html
 						 * <table class="table table--default table--striped">
 						 * 	<thead>
@@ -8263,7 +8482,7 @@ s-interactive-demo s-codemirror {
   /**
 						 * @name 		<span class="c-default">Default</span> ```.table--bordered.table--default```
 						 * Display default bordered table contents
-						 * @styleguide 		Objects / Table
+						 * @styleguide 		Atoms / Table
 						 * @example 		html
 						 * <table class="table table--default table--bordered">
 						 * 	<thead>
@@ -8287,7 +8506,7 @@ s-interactive-demo s-codemirror {
   /**
 						 * @name 		<span class="c-default">Default</span> ```.table--hover.table--default```
 						 * Display default hoverable table contents
-						 * @styleguide 		Objects / Table
+						 * @styleguide 		Atoms / Table
 						 * @example 		html
 						 * <table class="table table--default table--hover">
 						 * 	<thead>
@@ -8329,20 +8548,16 @@ s-interactive-demo s-codemirror {
 }
 
 .table.table.table--bordered, .documentation table.table--bordered {
-  border: 1px solid rgba(132, 142, 145, 0.1);
+  border: 1px solid rgba(132, 142, 145, 0.2);
 }
 
 .table.table.table--bordered tr, .documentation table.table--bordered tr {
-  border-bottom: 1px solid rgba(132, 142, 145, 0.1);
-}
-
-.table.table.table--bordered tr:last-of-type, .documentation table.table--bordered tr:last-of-type {
-  border-bottom: none;
+  border-bottom: 1px solid rgba(132, 142, 145, 0.2);
 }
 
 .table.table.table--bordered td, .documentation table.table--bordered td,
 .table.table.table--bordered th, .documentation table.table--bordered th {
-  border-right: 1px solid rgba(132, 142, 145, 0.1);
+  border-right: 1px solid rgba(132, 142, 145, 0.2);
 }
 
 .table.table.table--hover > tbody > .tr:hover td, .documentation table > tbody > .tr:hover td, .table.table.table--hover > tbody > .tr:hover .td, .documentation table > tbody > .tr:hover .td,
@@ -8358,7 +8573,7 @@ s-interactive-demo s-codemirror {
   /**
 						 * @name 		<span class="c-primary">Primary</span> ```.table--striped.table--primary```
 						 * Display primary striped table contents
-						 * @styleguide 		Objects / Table
+						 * @styleguide 		Atoms / Table
 						 * @example 		html
 						 * <table class="table table--primary table--striped">
 						 * 	<thead>
@@ -8382,7 +8597,7 @@ s-interactive-demo s-codemirror {
   /**
 						 * @name 		<span class="c-primary">Primary</span> ```.table--bordered.table--primary```
 						 * Display primary bordered table contents
-						 * @styleguide 		Objects / Table
+						 * @styleguide 		Atoms / Table
 						 * @example 		html
 						 * <table class="table table--primary table--bordered">
 						 * 	<thead>
@@ -8406,7 +8621,7 @@ s-interactive-demo s-codemirror {
   /**
 						 * @name 		<span class="c-primary">Primary</span> ```.table--hover.table--primary```
 						 * Display primary hoverable table contents
-						 * @styleguide 		Objects / Table
+						 * @styleguide 		Atoms / Table
 						 * @example 		html
 						 * <table class="table table--primary table--hover">
 						 * 	<thead>
@@ -8448,20 +8663,16 @@ s-interactive-demo s-codemirror {
 }
 
 .table.table--primary.table--bordered, .documentation table.table--primary.table--bordered {
-  border: 1px solid rgba(242, 188, 43, 0.1);
+  border: 1px solid rgba(242, 188, 43, 0.2);
 }
 
 .table.table--primary.table--bordered tr, .documentation table.table--primary.table--bordered tr {
-  border-bottom: 1px solid rgba(242, 188, 43, 0.1);
-}
-
-.table.table--primary.table--bordered tr:last-of-type, .documentation table.table--primary.table--bordered tr:last-of-type {
-  border-bottom: none;
+  border-bottom: 1px solid rgba(242, 188, 43, 0.2);
 }
 
 .table.table--primary.table--bordered td, .documentation table.table--primary.table--bordered td,
 .table.table--primary.table--bordered th, .documentation table.table--primary.table--bordered th {
-  border-right: 1px solid rgba(242, 188, 43, 0.1);
+  border-right: 1px solid rgba(242, 188, 43, 0.2);
 }
 
 .table.table--primary.table--hover > tbody > .tr:hover td, .documentation table.table--primary > tbody > .tr:hover td, .table.table--primary.table--hover > tbody > .tr:hover .td, .documentation table.table--primary > tbody > .tr:hover .td,
@@ -8477,7 +8688,7 @@ s-interactive-demo s-codemirror {
   /**
 						 * @name 		<span class="c-secondary">Secondary</span> ```.table--striped.table--secondary```
 						 * Display secondary striped table contents
-						 * @styleguide 		Objects / Table
+						 * @styleguide 		Atoms / Table
 						 * @example 		html
 						 * <table class="table table--secondary table--striped">
 						 * 	<thead>
@@ -8501,7 +8712,7 @@ s-interactive-demo s-codemirror {
   /**
 						 * @name 		<span class="c-secondary">Secondary</span> ```.table--bordered.table--secondary```
 						 * Display secondary bordered table contents
-						 * @styleguide 		Objects / Table
+						 * @styleguide 		Atoms / Table
 						 * @example 		html
 						 * <table class="table table--secondary table--bordered">
 						 * 	<thead>
@@ -8525,7 +8736,7 @@ s-interactive-demo s-codemirror {
   /**
 						 * @name 		<span class="c-secondary">Secondary</span> ```.table--hover.table--secondary```
 						 * Display secondary hoverable table contents
-						 * @styleguide 		Objects / Table
+						 * @styleguide 		Atoms / Table
 						 * @example 		html
 						 * <table class="table table--secondary table--hover">
 						 * 	<thead>
@@ -8567,20 +8778,16 @@ s-interactive-demo s-codemirror {
 }
 
 .table.table--secondary.table--bordered, .documentation table.table--secondary.table--bordered {
-  border: 1px solid rgba(43, 52, 56, 0.1);
+  border: 1px solid rgba(43, 52, 56, 0.2);
 }
 
 .table.table--secondary.table--bordered tr, .documentation table.table--secondary.table--bordered tr {
-  border-bottom: 1px solid rgba(43, 52, 56, 0.1);
-}
-
-.table.table--secondary.table--bordered tr:last-of-type, .documentation table.table--secondary.table--bordered tr:last-of-type {
-  border-bottom: none;
+  border-bottom: 1px solid rgba(43, 52, 56, 0.2);
 }
 
 .table.table--secondary.table--bordered td, .documentation table.table--secondary.table--bordered td,
 .table.table--secondary.table--bordered th, .documentation table.table--secondary.table--bordered th {
-  border-right: 1px solid rgba(43, 52, 56, 0.1);
+  border-right: 1px solid rgba(43, 52, 56, 0.2);
 }
 
 .table.table--secondary.table--hover > tbody > .tr:hover td, .documentation table.table--secondary > tbody > .tr:hover td, .table.table--secondary.table--hover > tbody > .tr:hover .td, .documentation table.table--secondary > tbody > .tr:hover .td,
@@ -8655,9 +8862,86 @@ s-interactive-demo s-codemirror {
  * Buttons
  */
 /**
+ * @name 	SButtonComponent
+ * This file provide the mixins to create buttons
+ */
+.btn, .btn--block {
+  display: inline-block;
+  border-style: solid;
+  border-width: 1px;
+  border-color: transparent;
+  cursor: pointer;
+  outline-width: 0;
+  -webkit-appearance: none;
+  line-height: 0;
+  text-decoration: none;
+  font-size: 1em;
+  user-select: none;
+}
+
+.btn:not(button):not(input), .btn--block:not(button):not(input) {
+  line-height: 0.9;
+}
+
+button {
+  line-height: 1;
+}
+
+/**
+ * Apply the button css
+ * @param 		{Number} 		[$modifiers=null] 			The modifiers that represent the button you want. Available : {color} outline link
+ * @param 		{Integer}		[$state=null] 				The state of the button you want like. Available : disabled
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the button bare css
+ * @param 		{Number} 		[$modifiers=null] 			The modifiers that represent the button you want. Available : {color} outline link
+ * @param 		{Integer}		[$state=null] 				The state of the button you want like. Available : disabled
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the button style css
+ * @param 		{Number} 		[$modifiers=null] 			The modifiers that represent the button you want. Available : {color} outline link
+ * @param 		{Integer}		[$state=null] 				The state of the button you want like. Available : disabled
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * @name 	SButtonComponent Classes
+ * This file provide the mixins to generate button classes
+ */
+/**
+ * Provide all the classes of the button component like .btn, .btn--outline, etc...
+ * - ```.btn```
+ * - ```.btn--{color}```
+ * - ```.btn--outline```
+ * - ```.btn--link```
+ * - ```.btn--block```
+ * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
+ * @param 		{List<String>} 		[$types=default outline link block hover disabled] 	 The button types to generate. Available: default outline link block hover disabled
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the bare styling for the buttons classes
+ * - ```.btn```
+ * - ```.btn--block```
+ * @param 		{List<String>} 		[$types=default outline link block hover disabled] 	 The button types to generate. Available: default outline link block hover disabled
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the style styling for the buttons classes
+ * - ```.button--{color}```
+ * - ```.button--outline```
+ * - ```.button--link```
+ * - ```.button:disabled```
+ * - ```.button--hover-{$color}```
+ * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
+ * @param 		{List<String>} 		[$types=default outline link block hover disabled] 	 The button types to generate. Available: default outline link block hover disabled
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
 		 * @name 	```.btn```
 		 * Lead paragraph styling
-		 * @styleguide 	Objects / Buttons
+		 * @styleguide 	Atoms / Buttons
 		 * @example 	html
 		 * <a class="btn">
 		 * 	Default button
@@ -8670,14 +8954,14 @@ s-interactive-demo s-codemirror {
 }
 
 /**
-		 * @name 	```.btn--block```
-		 * Lead paragraph styling
-		 * @styleguide 	Objects / Buttons
-		 * @example 	html
-		 * <a class="btn btn--block">
-		 * 	Block button
-		 * </a>
-		 */
+			* @name 	```.btn--block```
+			* Lead paragraph styling
+			* @styleguide 	Atoms / Buttons
+			* @example 	html
+			* <a class="btn btn--block">
+			* 	Block button
+			* </a>
+			*/
 .btn--block {
   border-radius: 0;
   padding: 0.8em 1.4em;
@@ -8727,71 +9011,71 @@ s-interactive-demo s-codemirror {
 /**
 			 * @name 	<span class="c-default">Default</span> ```.btn```
 			 * Default button
-			 * @styleguide 	Objects / Buttons
+			 * @styleguide 	Atoms / Buttons
 			 * @example 	html
 			 * <a class="btn btn--default">
 			 * 	Default button
 			 * </a>
 			 */
-.btn--default {
+.btn {
   background-color: #848e91;
   border-color: #848e91;
   color: white;
   /**
-				 * @name 	<span class="c-default">Default</span> ```.btn--outline```
-				 * Outline default button
-				 * @styleguide 	Objects / Buttons
-				 * @example 	html
-				 * <a class="btn btn--outline btn--default">
-				 * 	Default outlined button
-				 * </a>
-				 */
+					* @name 	<span class="c-default">Default</span> ```.btn--outline```
+					* Outline default button
+					* @styleguide 	Atoms / Buttons
+					* @example 	html
+					* <a class="btn btn--outline btn--default">
+					* 	Default outlined button
+					* </a>
+					*/
   /**
-				 * @name 	<span class="c-default">Default</span> ```.btn--link```
-				 * Link default button
-				 * @styleguide 	Objects / Buttons
-				 * @example 	html
-				 * <a class="btn btn--link btn--default">
-				 * 	Default link button
-				 * </a>
-				 */
+					* @name 	<span class="c-default">Default</span> ```.btn--link```
+					* Link default button
+					* @styleguide 	Atoms / Buttons
+					* @example 	html
+					* <a class="btn btn--link btn--default">
+					* 	Default link button
+					* </a>
+					*/
   /**
-				 * @name 	<span class="c-default">Default</span> ```.btn:disabled```
-				 * Disabled default button
-				 * @styleguide 	Objects / Buttons
-				 * @example 	html
-				 * <button disabled class="btn btn--default">
-				 * 	Default disabled button
-				 * </button>
-				 */
+					* @name 	<span class="c-default">Default</span> ```.btn:disabled```
+					* Disabled default button
+					* @styleguide 	Atoms / Buttons
+					* @example 	html
+					* <button disabled class="btn btn--default">
+					* 	Default disabled button
+					* </button>
+					*/
 }
 
-.btn--default[active]:not(:disabled), .btn--default.active:not(:disabled), .btn--default:active:not(:disabled), .btn--default:hover:not(:disabled) {
+.btn[active]:not(:disabled), .btn.active:not(:disabled), .btn:active:not(:disabled), .btn:hover:not(:disabled) {
   background-color: #5f676a;
   border-color: #5f676a;
 }
 
-.btn--default.btn--outline {
+.btn.btn--outline {
   color: #848e91;
   background-color: transparent;
   border-color: #848e91;
 }
 
-.btn--default.btn--outline:active:not(:disabled), .btn--default.btn--outline:hover:not(:disabled), .btn--default.btn--outline.active:not(:disabled),
-:checked + .btn--default.btn--outline:not(:disabled) {
+.btn.btn--outline:active:not(:disabled), .btn.btn--outline:hover:not(:disabled), .btn.btn--outline.active:not(:disabled),
+:checked + .btn.btn--outline:not(:disabled) {
   background-color: #848e91;
   border-color: #848e91;
   color: white;
 }
 
-.btn--default.btn--link {
+.btn.btn--link {
   background-color: transparent !important;
   color: #848e91 !important;
   border-color: transparent !important;
   position: relative;
 }
 
-.btn--default.btn--link:after {
+.btn.btn--link:after {
   content: '';
   position: absolute;
   display: block;
@@ -8805,11 +9089,11 @@ s-interactive-demo s-codemirror {
   background: #848e91;
 }
 
-.btn--default.btn--link[active]:not(:disabled):after, .btn--default.btn--link.active:not(:disabled):after, .btn--default.btn--link:active:not(:disabled):after, .btn--default.btn--link:hover:not(:disabled):after {
+.btn.btn--link[active]:not(:disabled):after, .btn.btn--link.active:not(:disabled):after, .btn.btn--link:active:not(:disabled):after, .btn.btn--link:hover:not(:disabled):after {
   width: calc(100% - 2.8em);
 }
 
-.btn--default.btn:disabled {
+.btn.btn:disabled {
   background-color: #848e91;
   border-color: #848e91;
   color: white;
@@ -8818,7 +9102,7 @@ s-interactive-demo s-codemirror {
   pointer-events: none;
 }
 
-.btn--default.btn:disabled[active]:not(:disabled), .btn--default.btn:disabled.active:not(:disabled), .btn--default.btn:disabled:active:not(:disabled), .btn--default.btn:disabled:hover:not(:disabled) {
+.btn.btn:disabled[active]:not(:disabled), .btn.btn:disabled.active:not(:disabled), .btn.btn:disabled:active:not(:disabled), .btn.btn:disabled:hover:not(:disabled) {
   background-color: #5f676a;
   border-color: #5f676a;
 }
@@ -8837,7 +9121,7 @@ s-interactive-demo s-codemirror {
 /**
 			 * @name 	<span class="c-primary">Primary</span> ```.btn```
 			 * Primary button
-			 * @styleguide 	Objects / Buttons
+			 * @styleguide 	Atoms / Buttons
 			 * @example 	html
 			 * <a class="btn btn--primary">
 			 * 	Primary button
@@ -8848,32 +9132,32 @@ s-interactive-demo s-codemirror {
   border-color: #f2bc2b;
   color: white;
   /**
-				 * @name 	<span class="c-primary">Primary</span> ```.btn--outline```
-				 * Outline primary button
-				 * @styleguide 	Objects / Buttons
-				 * @example 	html
-				 * <a class="btn btn--outline btn--primary">
-				 * 	Primary outlined button
-				 * </a>
-				 */
+					* @name 	<span class="c-primary">Primary</span> ```.btn--outline```
+					* Outline primary button
+					* @styleguide 	Atoms / Buttons
+					* @example 	html
+					* <a class="btn btn--outline btn--primary">
+					* 	Primary outlined button
+					* </a>
+					*/
   /**
-				 * @name 	<span class="c-primary">Primary</span> ```.btn--link```
-				 * Link primary button
-				 * @styleguide 	Objects / Buttons
-				 * @example 	html
-				 * <a class="btn btn--link btn--primary">
-				 * 	Primary link button
-				 * </a>
-				 */
+					* @name 	<span class="c-primary">Primary</span> ```.btn--link```
+					* Link primary button
+					* @styleguide 	Atoms / Buttons
+					* @example 	html
+					* <a class="btn btn--link btn--primary">
+					* 	Primary link button
+					* </a>
+					*/
   /**
-				 * @name 	<span class="c-primary">Primary</span> ```.btn:disabled```
-				 * Disabled primary button
-				 * @styleguide 	Objects / Buttons
-				 * @example 	html
-				 * <button disabled class="btn btn--primary">
-				 * 	Primary disabled button
-				 * </button>
-				 */
+					* @name 	<span class="c-primary">Primary</span> ```.btn:disabled```
+					* Disabled primary button
+					* @styleguide 	Atoms / Buttons
+					* @example 	html
+					* <button disabled class="btn btn--primary">
+					* 	Primary disabled button
+					* </button>
+					*/
 }
 
 .btn--primary[active]:not(:disabled), .btn--primary.active:not(:disabled), .btn--primary:active:not(:disabled), .btn--primary:hover:not(:disabled) {
@@ -8947,7 +9231,7 @@ s-interactive-demo s-codemirror {
 /**
 			 * @name 	<span class="c-secondary">Secondary</span> ```.btn```
 			 * Secondary button
-			 * @styleguide 	Objects / Buttons
+			 * @styleguide 	Atoms / Buttons
 			 * @example 	html
 			 * <a class="btn btn--secondary">
 			 * 	Secondary button
@@ -8958,32 +9242,32 @@ s-interactive-demo s-codemirror {
   border-color: #2b3438;
   color: white;
   /**
-				 * @name 	<span class="c-secondary">Secondary</span> ```.btn--outline```
-				 * Outline secondary button
-				 * @styleguide 	Objects / Buttons
-				 * @example 	html
-				 * <a class="btn btn--outline btn--secondary">
-				 * 	Secondary outlined button
-				 * </a>
-				 */
+					* @name 	<span class="c-secondary">Secondary</span> ```.btn--outline```
+					* Outline secondary button
+					* @styleguide 	Atoms / Buttons
+					* @example 	html
+					* <a class="btn btn--outline btn--secondary">
+					* 	Secondary outlined button
+					* </a>
+					*/
   /**
-				 * @name 	<span class="c-secondary">Secondary</span> ```.btn--link```
-				 * Link secondary button
-				 * @styleguide 	Objects / Buttons
-				 * @example 	html
-				 * <a class="btn btn--link btn--secondary">
-				 * 	Secondary link button
-				 * </a>
-				 */
+					* @name 	<span class="c-secondary">Secondary</span> ```.btn--link```
+					* Link secondary button
+					* @styleguide 	Atoms / Buttons
+					* @example 	html
+					* <a class="btn btn--link btn--secondary">
+					* 	Secondary link button
+					* </a>
+					*/
   /**
-				 * @name 	<span class="c-secondary">Secondary</span> ```.btn:disabled```
-				 * Disabled secondary button
-				 * @styleguide 	Objects / Buttons
-				 * @example 	html
-				 * <button disabled class="btn btn--secondary">
-				 * 	Secondary disabled button
-				 * </button>
-				 */
+					* @name 	<span class="c-secondary">Secondary</span> ```.btn:disabled```
+					* Disabled secondary button
+					* @styleguide 	Atoms / Buttons
+					* @example 	html
+					* <button disabled class="btn btn--secondary">
+					* 	Secondary disabled button
+					* </button>
+					*/
 }
 
 .btn--secondary[active]:not(:disabled), .btn--secondary.active:not(:disabled), .btn--secondary:active:not(:disabled), .btn--secondary:hover:not(:disabled) {
@@ -9493,16 +9777,846 @@ s-trianglify {
   display: block;
 }
 
-.tooltip {
+/**
+ * @name 	SSelectComponent Classes
+ * This file provide the mixins to generate s-select classes
+ */
+.s-select__selection-tag {
+  display: inline-block;
+}
+
+.s-select__reset {
+  background-size: 100% 100%;
+  background-color: transparent;
+  border: none;
+  position: absolute;
+}
+
+.s-select__selection-tag-close {
+  background-size: 100% 100%;
+}
+
+/**
+ * Provide all the classes of the s-select component for a default style
+ * Styling options:
+ * - ```[color="{$color}"]``` : apply a color to the select component
+ * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the bare styling for the s-select classes
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide all the style classes of the s-select component for a default style
+ * Styling options:
+ * - ```[color="{$color}"]``` : apply a color to the select component
+ * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+.s-select__option--disabled {
+  opacity: 0.5;
+}
+
+.s-select__selection-tag-close {
+  height: 0.8em;
+  width: 0.8em;
+  vertical-align: middle;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.s-select__reset {
+  right: 3.5em;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 1em;
+  width: 1em;
+  vertical-align: middle;
+  cursor: pointer;
+  outline: none;
+  font-size: .8em;
+}
+
+.s-select__search-field {
   border-radius: 0;
   padding: 0.8em 1.4em;
-  line-height: 1.4;
+}
+
+.s-select {
+  font-family: "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
+  font-weight: normal;
+  background-size: 9px 6px;
+  background-position: right center;
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  background-color: white;
+  border-radius: 0;
+  padding: 0 1.4em;
+  height: 2.6em;
+}
+
+.s-select:not(input):not(select) {
+  padding: 0.8em 1.4em;
+}
+
+.s-select::-ms-expand {
+  display: none;
+}
+
+.s-select.s-select--multiple {
+  transition: none;
+}
+
+.s-select.s-select--multiple:not(.s-select--placeholder) {
+  padding: 0.24em 1.4em;
+  height: auto !important;
+}
+
+.s-select .s-select__dropdown {
+  border-radius: 0;
+}
+
+.s-select .s-select__search-container {
+  padding: 0.8em;
+}
+
+.s-select .s-select__search-field {
+  font-family: "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
+  font-weight: normal;
+  border-radius: 0;
+  padding: 0 1.4em;
+  height: 2.6em;
+  border-radius: 0;
+}
+
+.s-select .s-select__search-field:not(input):not(select) {
+  padding: 0.8em 1.4em;
+}
+
+.s-select .s-select__search-field::-webkit-contacts-auto-fill-button {
+  visibility: hidden;
+  display: none !important;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+
+.s-select .s-select__search-field::-ms-clear {
+  display: none;
+}
+
+.s-select .s-select__selection-tag {
+  border-radius: 0;
+  font-size: 0.9em;
+  margin-right: 0.46667em;
+  margin-top: 0.24em;
+  margin-bottom: 0.24em;
+  height: calc(0.8em + 0.9em);
+  line-height: calc(0.8em + 0.9em + 0.1em);
+  padding: 0 0.7em;
+  position: relative;
+  left: -0.7em;
+}
+
+.s-select .s-select__selection-tag-close {
+  margin-left: 0.46667em;
+}
+
+.s-select .s-select__option:not(.s-select__option--custom),
+.s-select .s-select__optgroup:not(.s-select__optgroup--custom) {
+  padding: 0.8em 1.4em;
+}
+
+.s-select .s-select__option--in-optgroup {
+  padding-left: 2.1em !important;
+}
+
+.s-select {
+  background-color: white;
+  color: #848e91;
+  transition: border 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  border-color: rgba(132, 142, 145, 0.1);
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'%3E%3Cpolygon points='0,0 32,0 16,24' style='fill:%23848e91'%3E%3C/polygon%3E%3C/svg%3E");
+}
+
+.s-select::-webkit-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.s-select:-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.s-select::-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.s-select:-ms-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.input--placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.s-select:disabled {
+  opacity: 0.5;
+}
+
+[data-input-activator]:focus ~ .s-select,
+[data-input-activator]:checked ~ .s-select, .s-select:hover:not(:disabled) {
+  border-bottom-color: rgba(132, 142, 145, 0.6);
+}
+
+[data-input-activator]:focus ~ .s-select,
+[data-input-activator]:checked ~ .s-select, .s-select:focus:not(:disabled), .s-select.active:not(:disabled) {
+  border-color: rgba(132, 142, 145, 0.6);
+}
+
+.s-select.vr, .documentation blockquote.s-select,
+.vr .s-select, .documentation blockquote .s-select {
+  margin-bottom: 1rem;
+}
+
+select:disabled + .s-select {
+  opacity: 0.5;
+}
+
+.s-select__search-field {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  color: #848e91;
+  background-color: white;
+  border: 1px solid rgba(132, 142, 145, 0.5);
+}
+
+.s-select__search-field::-webkit-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.s-select__search-field:-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.s-select__search-field::-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.s-select__search-field:-ms-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.input--placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.s-select__dropdown {
+  top: calc(100% + 3px);
+  margin-top: -20px;
   transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
   outline-color: black;
+  background: white;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 20px 30px;
+}
+
+.s-select--opened .s-select__dropdown {
+  margin-top: 0;
+}
+
+.s-select .s-select__optgroup:not(.s-select__optgroup--custom) {
+  font-weight: bold;
+}
+
+.s-select__option {
+  color: #848e91;
+  transition: background 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+}
+
+select[required] + .s-select--placeholder .s-select__selection:after {
+  content: ' *';
+  color: #d9534f;
+  font-size: .7em;
+}
+
+select[is="s-select"][color="default"] + .s-select,
+.s-select {
+  color: #848e91;
+  transition: border 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  border-color: rgba(132, 142, 145, 0.1);
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'%3E%3Cpolygon points='0,0 32,0 16,24' style='fill:%23848e91'%3E%3C/polygon%3E%3C/svg%3E");
+}
+
+select[is="s-select"][color="default"] + .s-select::-webkit-input-placeholder,
+.s-select::-webkit-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+select[is="s-select"][color="default"] + .s-select:-moz-placeholder,
+.s-select:-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+select[is="s-select"][color="default"] + .s-select::-moz-placeholder,
+.s-select::-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+select[is="s-select"][color="default"] + .s-select:-ms-input-placeholder,
+.s-select:-ms-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.input--placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+select[is="s-select"][color="default"] + .s-select:disabled,
+.s-select:disabled {
+  opacity: 0.5;
+}
+
+[data-input-activator]:focus ~ select[is="s-select"][color="default"] + .s-select,
+[data-input-activator]:checked ~ select[is="s-select"][color="default"] + .s-select, select[is="s-select"][color="default"] + .s-select:hover:not(:disabled), [data-input-activator]:focus ~
+.s-select,
+[data-input-activator]:checked ~
+.s-select,
+.s-select:hover:not(:disabled) {
+  border-bottom-color: rgba(132, 142, 145, 0.6);
+}
+
+[data-input-activator]:focus ~ select[is="s-select"][color="default"] + .s-select,
+[data-input-activator]:checked ~ select[is="s-select"][color="default"] + .s-select, select[is="s-select"][color="default"] + .s-select:focus:not(:disabled), select[is="s-select"][color="default"] + .s-select.active:not(:disabled), [data-input-activator]:focus ~
+.s-select,
+[data-input-activator]:checked ~
+.s-select,
+.s-select:focus:not(:disabled),
+.s-select.active:not(:disabled) {
+  border-color: rgba(132, 142, 145, 0.6);
+}
+
+select[is="s-select"][color="default"] + .s-select .s-select__search-container,
+.s-select .s-select__search-container {
+  background: rgba(132, 142, 145, 0.1);
+  border-bottom: 1px solid rgba(132, 142, 145, 0.2);
+}
+
+select[is="s-select"][color="default"] + .s-select .s-select__selection-tag,
+.s-select .s-select__selection-tag {
+  background: rgba(132, 142, 145, 0.6);
+  color: white;
+}
+
+select[is="s-select"][color="default"] + .s-select .s-select__reset,
+select[is="s-select"][color="default"] + .s-select .s-select__selection-tag-close,
+.s-select .s-select__reset,
+.s-select .s-select__selection-tag-close {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><style>path{fill%3A%23848e91;}</style><path d="M443.6,387.1L312.4,255.4l131.5-130c5.4-5.4,5.4-14.2,0-19.6l-37.4-37.6c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4  L256,197.8L124.9,68.3c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4L68,105.9c-5.4,5.4-5.4,14.2,0,19.6l131.5,130L68.4,387.1  c-2.6,2.6-4.1,6.1-4.1,9.8c0,3.7,1.4,7.2,4.1,9.8l37.4,37.6c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1L256,313.1l130.7,131.1  c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1l37.4-37.6c2.6-2.6,4.1-6.1,4.1-9.8C447.7,393.2,446.2,389.7,443.6,387.1z"/></svg>');
+  opacity: .65;
+}
+
+select[is="s-select"][color="default"] + .s-select .s-select__reset:hover,
+select[is="s-select"][color="default"] + .s-select .s-select__selection-tag-close:hover,
+.s-select .s-select__reset:hover,
+.s-select .s-select__selection-tag-close:hover {
+  opacity: 1;
+}
+
+select[is="s-select"][color="default"] + .s-select .s-select__option--selected,
+.s-select .s-select__option--selected {
+  background: rgba(132, 142, 145, 0.2);
+}
+
+select[is="s-select"][color="default"] + .s-select .s-select__option.active,
+.s-select .s-select__option.active {
+  background: rgba(132, 142, 145, 0.3);
+}
+
+select[is="s-select"][color="default"] + .s-select .s-select__option:hover, select[is="s-select"][color="default"] + .s-select .s-select__option:active,
+.s-select .s-select__option:hover,
+.s-select .s-select__option:active {
+  background: rgba(132, 142, 145, 0.6);
+  color: white;
+}
+
+select[is="s-select"][color="default"] + .s-select .s-select__search-result,
+.s-select .s-select__search-result {
+  background: #848e91;
+  color: white;
+}
+
+select[is="s-select"][color="primary"] + .s-select,
+.s-select--primary {
+  color: #848e91;
+  transition: border 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  border-color: rgba(242, 188, 43, 0.1);
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'%3E%3Cpolygon points='0,0 32,0 16,24' style='fill:%23f2bc2b'%3E%3C/polygon%3E%3C/svg%3E");
+}
+
+select[is="s-select"][color="primary"] + .s-select::-webkit-input-placeholder,
+.s-select--primary::-webkit-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+select[is="s-select"][color="primary"] + .s-select:-moz-placeholder,
+.s-select--primary:-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+select[is="s-select"][color="primary"] + .s-select::-moz-placeholder,
+.s-select--primary::-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+select[is="s-select"][color="primary"] + .s-select:-ms-input-placeholder,
+.s-select--primary:-ms-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.input--placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+select[is="s-select"][color="primary"] + .s-select:disabled,
+.s-select--primary:disabled {
+  opacity: 0.5;
+}
+
+[data-input-activator]:focus ~ select[is="s-select"][color="primary"] + .s-select,
+[data-input-activator]:checked ~ select[is="s-select"][color="primary"] + .s-select, select[is="s-select"][color="primary"] + .s-select:hover:not(:disabled), [data-input-activator]:focus ~
+.s-select--primary,
+[data-input-activator]:checked ~
+.s-select--primary,
+.s-select--primary:hover:not(:disabled) {
+  border-bottom-color: rgba(242, 188, 43, 0.6);
+}
+
+[data-input-activator]:focus ~ select[is="s-select"][color="primary"] + .s-select,
+[data-input-activator]:checked ~ select[is="s-select"][color="primary"] + .s-select, select[is="s-select"][color="primary"] + .s-select:focus:not(:disabled), select[is="s-select"][color="primary"] + .s-select.active:not(:disabled), [data-input-activator]:focus ~
+.s-select--primary,
+[data-input-activator]:checked ~
+.s-select--primary,
+.s-select--primary:focus:not(:disabled),
+.s-select--primary.active:not(:disabled) {
+  border-color: rgba(242, 188, 43, 0.6);
+}
+
+select[is="s-select"][color="primary"] + .s-select .s-select__search-container,
+.s-select--primary .s-select__search-container {
+  background: rgba(242, 188, 43, 0.1);
+  border-bottom: 1px solid rgba(242, 188, 43, 0.2);
+}
+
+select[is="s-select"][color="primary"] + .s-select .s-select__selection-tag,
+.s-select--primary .s-select__selection-tag {
+  background: rgba(242, 188, 43, 0.6);
+  color: white;
+}
+
+select[is="s-select"][color="primary"] + .s-select .s-select__reset,
+select[is="s-select"][color="primary"] + .s-select .s-select__selection-tag-close,
+.s-select--primary .s-select__reset,
+.s-select--primary .s-select__selection-tag-close {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><style>path{fill%3A%23f2bc2b;}</style><path d="M443.6,387.1L312.4,255.4l131.5-130c5.4-5.4,5.4-14.2,0-19.6l-37.4-37.6c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4  L256,197.8L124.9,68.3c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4L68,105.9c-5.4,5.4-5.4,14.2,0,19.6l131.5,130L68.4,387.1  c-2.6,2.6-4.1,6.1-4.1,9.8c0,3.7,1.4,7.2,4.1,9.8l37.4,37.6c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1L256,313.1l130.7,131.1  c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1l37.4-37.6c2.6-2.6,4.1-6.1,4.1-9.8C447.7,393.2,446.2,389.7,443.6,387.1z"/></svg>');
+  opacity: .65;
+}
+
+select[is="s-select"][color="primary"] + .s-select .s-select__reset:hover,
+select[is="s-select"][color="primary"] + .s-select .s-select__selection-tag-close:hover,
+.s-select--primary .s-select__reset:hover,
+.s-select--primary .s-select__selection-tag-close:hover {
+  opacity: 1;
+}
+
+select[is="s-select"][color="primary"] + .s-select .s-select__option--selected,
+.s-select--primary .s-select__option--selected {
+  background: rgba(242, 188, 43, 0.2);
+}
+
+select[is="s-select"][color="primary"] + .s-select .s-select__option.active,
+.s-select--primary .s-select__option.active {
+  background: rgba(242, 188, 43, 0.3);
+}
+
+select[is="s-select"][color="primary"] + .s-select .s-select__option:hover, select[is="s-select"][color="primary"] + .s-select .s-select__option:active,
+.s-select--primary .s-select__option:hover,
+.s-select--primary .s-select__option:active {
+  background: rgba(242, 188, 43, 0.6);
+  color: white;
+}
+
+select[is="s-select"][color="primary"] + .s-select .s-select__search-result,
+.s-select--primary .s-select__search-result {
+  background: #f2bc2b;
+  color: white;
+}
+
+select[is="s-select"][color="secondary"] + .s-select,
+.s-select--secondary {
+  color: #848e91;
+  transition: border 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  border-color: rgba(43, 52, 56, 0.1);
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'%3E%3Cpolygon points='0,0 32,0 16,24' style='fill:%232b3438'%3E%3C/polygon%3E%3C/svg%3E");
+}
+
+select[is="s-select"][color="secondary"] + .s-select::-webkit-input-placeholder,
+.s-select--secondary::-webkit-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+select[is="s-select"][color="secondary"] + .s-select:-moz-placeholder,
+.s-select--secondary:-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+select[is="s-select"][color="secondary"] + .s-select::-moz-placeholder,
+.s-select--secondary::-moz-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+select[is="s-select"][color="secondary"] + .s-select:-ms-input-placeholder,
+.s-select--secondary:-ms-input-placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+.input--placeholder {
+  color: rgba(132, 142, 145, 0.4);
+}
+
+select[is="s-select"][color="secondary"] + .s-select:disabled,
+.s-select--secondary:disabled {
+  opacity: 0.5;
+}
+
+[data-input-activator]:focus ~ select[is="s-select"][color="secondary"] + .s-select,
+[data-input-activator]:checked ~ select[is="s-select"][color="secondary"] + .s-select, select[is="s-select"][color="secondary"] + .s-select:hover:not(:disabled), [data-input-activator]:focus ~
+.s-select--secondary,
+[data-input-activator]:checked ~
+.s-select--secondary,
+.s-select--secondary:hover:not(:disabled) {
+  border-bottom-color: rgba(43, 52, 56, 0.6);
+}
+
+[data-input-activator]:focus ~ select[is="s-select"][color="secondary"] + .s-select,
+[data-input-activator]:checked ~ select[is="s-select"][color="secondary"] + .s-select, select[is="s-select"][color="secondary"] + .s-select:focus:not(:disabled), select[is="s-select"][color="secondary"] + .s-select.active:not(:disabled), [data-input-activator]:focus ~
+.s-select--secondary,
+[data-input-activator]:checked ~
+.s-select--secondary,
+.s-select--secondary:focus:not(:disabled),
+.s-select--secondary.active:not(:disabled) {
+  border-color: rgba(43, 52, 56, 0.6);
+}
+
+select[is="s-select"][color="secondary"] + .s-select .s-select__search-container,
+.s-select--secondary .s-select__search-container {
+  background: rgba(43, 52, 56, 0.1);
+  border-bottom: 1px solid rgba(43, 52, 56, 0.2);
+}
+
+select[is="s-select"][color="secondary"] + .s-select .s-select__selection-tag,
+.s-select--secondary .s-select__selection-tag {
+  background: rgba(43, 52, 56, 0.6);
+  color: white;
+}
+
+select[is="s-select"][color="secondary"] + .s-select .s-select__reset,
+select[is="s-select"][color="secondary"] + .s-select .s-select__selection-tag-close,
+.s-select--secondary .s-select__reset,
+.s-select--secondary .s-select__selection-tag-close {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><style>path{fill%3A%232b3438;}</style><path d="M443.6,387.1L312.4,255.4l131.5-130c5.4-5.4,5.4-14.2,0-19.6l-37.4-37.6c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4  L256,197.8L124.9,68.3c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4L68,105.9c-5.4,5.4-5.4,14.2,0,19.6l131.5,130L68.4,387.1  c-2.6,2.6-4.1,6.1-4.1,9.8c0,3.7,1.4,7.2,4.1,9.8l37.4,37.6c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1L256,313.1l130.7,131.1  c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1l37.4-37.6c2.6-2.6,4.1-6.1,4.1-9.8C447.7,393.2,446.2,389.7,443.6,387.1z"/></svg>');
+  opacity: .65;
+}
+
+select[is="s-select"][color="secondary"] + .s-select .s-select__reset:hover,
+select[is="s-select"][color="secondary"] + .s-select .s-select__selection-tag-close:hover,
+.s-select--secondary .s-select__reset:hover,
+.s-select--secondary .s-select__selection-tag-close:hover {
+  opacity: 1;
+}
+
+select[is="s-select"][color="secondary"] + .s-select .s-select__option--selected,
+.s-select--secondary .s-select__option--selected {
+  background: rgba(43, 52, 56, 0.2);
+}
+
+select[is="s-select"][color="secondary"] + .s-select .s-select__option.active,
+.s-select--secondary .s-select__option.active {
+  background: rgba(43, 52, 56, 0.3);
+}
+
+select[is="s-select"][color="secondary"] + .s-select .s-select__option:hover, select[is="s-select"][color="secondary"] + .s-select .s-select__option:active,
+.s-select--secondary .s-select__option:hover,
+.s-select--secondary .s-select__option:active {
+  background: rgba(43, 52, 56, 0.6);
+  color: white;
+}
+
+select[is="s-select"][color="secondary"] + .s-select .s-select__search-result,
+.s-select--secondary .s-select__search-result {
+  background: #2b3438;
+  color: white;
+}
+
+/**
+ * @name 	STooltipComponent Classes
+ * This file provide the mixins to generate tooltip classes
+ */
+/**
+ * Print out the bare and style tooltip css
+ * Generated classes:
+ * - `.tooltip`
+ * - `.tooltip--tl`
+ * - `.tooltip--t`
+ * - `.tooltip--tr`
+ * - `.tooltip--l`
+ * - `.tooltip--r`
+ * - `.tooltip--bl`
+ * - `.tooltip--b`
+ * - `.tooltip--br`
+ * - `.tooltip--c`
+ * - `.tooltip--{color}`
+ * - `.tooltip--active, .tooltip.active, .tooltip[active], :hover > .tooltip, .active > .tooltip, [active] > .tooltip`
+ * @param 	{List<Color>} 		[$color=default primary secondary] 		The colors to generate
+ * @param 	{List<String>} 		[$sides=tl t tr l r bl b br c] 			The sides to generate
+ */
+/**
+ * Print out the bare tooltip css
+ * Generated classed
+ * - `.tooltip`
+ * - `.tooltip--tl`
+ * - `.tooltip--t`
+ * - `.tooltip--tr`
+ * - `.tooltip--l`
+ * - `.tooltip--r`
+ * - `.tooltip--bl`
+ * - `.tooltip--b`
+ * - `.tooltip--br`
+ * - `.tooltip--c`
+ * - `.tooltip.active, .tooltip[active], :hover > .tooltip, .active > .tooltip, [active] > .tooltip`
+ * @param 	{List<String>} 		[$sides=tl t tr l r bl b br c] 			The sides to generate
+ */
+/**
+ * Print out the style tooltip css
+ * Generated classes:
+ * - `.tooltip`
+ * - `.tooltip--tl`
+ * - `.tooltip--t`
+ * - `.tooltip--tr`
+ * - `.tooltip--l`
+ * - `.tooltip--r`
+ * - `.tooltip--bl`
+ * - `.tooltip--b`
+ * - `.tooltip--br`
+ * - `.tooltip--c`
+ * - `.tooltip--{color}`
+ * - `.tooltip--active, .tooltip.active, .tooltip[active], :hover > .tooltip, .active > .tooltip, [active] > .tooltip`
+ * @param 	{List<Color>} 		[$color=default primary secondary] 		The colors to generate
+ * @param 	{List<String>} 		[$sides=tl t tr l r bl b br c] 			The sides to generate
+ */
+.tooltip {
+  position: absolute !important;
+  pointer-events: none;
+  opacity: 0;
+  padding: 0.8em 1.4em;
+  line-height: 1.4;
+}
+
+.tooltip.tooltip--active,
+:hover > .tooltip,
+[active] > .tooltip,
+.active > .tooltip, .tooltip.active, .tooltip[active] {
+  opacity: 1;
+  z-index: 1;
+}
+
+/**
+			 * @name 		```.tooltip--c```
+			 * Display a centered tooltip
+			 * @styleguide 		Atoms / Tooltip
+			 * @example 	html
+			 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+			 * 	<div class="tooltip tooltip--c">
+			 * 		I'm a cool tooltip
+			 * 	</div>
+			 * </div>
+			 */
+.tooltip--c {
+  left: 50%;
+  top: 50%;
+  bottom: auto;
+  right: auto;
+  transform-origin: 0 0;
+  transform: translateX(-50%) translateY(-50%) translateZ(0);
+}
+
+/**
+			 * @name 		```.tooltip--t```
+			 * Display a top centered tooltip
+			 * @styleguide 		Atoms / Tooltip
+			 * @example 	html
+			 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+			 * 	<div class="tooltip tooltip--t">
+			 * 		I'm a cool tooltip
+			 * 	</div>
+			 * </div>
+			 */
+.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c),
+.tooltip--t {
+  transform-origin: 0 calc(100% + 0.5em);
+  left: 50%;
+  bottom: calc(100% + 1em);
+  top: auto;
+  right: auto;
+  transform: translateX(-50%) translateY(0) translateZ(0);
+}
+
+/**
+			 * @name 		```.tooltip--tl```
+			 * Display a top left tooltip
+			 * @styleguide 		Atoms / Tooltip
+			 * @example 	html
+			 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+			 * 	<div class="tooltip tooltip--tl">
+			 * 		I'm a cool tooltip
+			 * 	</div>
+			 * </div>
+			 */
+.tooltip--tl {
+  transform-origin: 0 calc(100% + 0.5em);
+  left: 0;
+  bottom: calc(100% + 1em);
+  top: auto;
+  right: auto;
+}
+
+/**
+			 * @name 		```.tooltip--tr```
+			 * Display a top right tooltip
+			 * @styleguide 		Atoms / Tooltip
+			 * @example 	html
+			 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+			 * 	<div class="tooltip tooltip--tr">
+			 * 		I'm a cool tooltip
+			 * 	</div>
+			 * </div>
+			 */
+.tooltip--tr {
+  transform-origin: 100% 100%;
+  right: 0;
+  bottom: calc(100% + 1em);
+  left: auto;
+  top: auto;
+}
+
+/**
+			 * @name 		```.tooltip--l```
+			 * Display a left tooltip
+			 * @styleguide 		Atoms / Tooltip
+			 * @example 	html
+			 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+			 * 	<div class="tooltip tooltip--l">
+			 * 		I'm a cool tooltip
+			 * 	</div>
+			 * </div>
+			 */
+.tooltip--l {
+  transform-origin: calc(100% + 0.5em) 50%;
+  right: calc(100% + 0.5em);
+  top: 50%;
+  left: auto;
+  bottom: auto;
+  transform: translateX(0) translateY(-50%) translateZ(0);
+}
+
+/**
+			 * @name 		```.tooltip--r```
+			 * Display a right tooltip
+			 * @styleguide 		Atoms / Tooltip
+			 * @example 	html
+			 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+			 * 	<div class="tooltip tooltip--r">
+			 * 		I'm a cool tooltip
+			 * 	</div>
+			 * </div>
+			 */
+.tooltip--r {
+  transform-origin: -.5em 50%;
+  left: calc(100% + 1em);
+  top: 50%;
+  bottom: auto;
+  right: auto;
+  transform: translateX(0) translateY(-50%) translateZ(0);
+}
+
+/**
+			 * @name 		```.tooltip--bl```
+			 * Display a bottom left tooltip
+			 * @styleguide 		Atoms / Tooltip
+			 * @example 	html
+			 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+			 * 	<div class="tooltip tooltip--bl">
+			 * 		I'm a cool tooltip
+			 * 	</div>
+			 * </div>
+			 */
+.tooltip--bl {
+  transform-origin: 1em -1em;
+  left: 0;
+  top: calc(100% + 1em);
+  bottom: auto;
+  right: auto;
+}
+
+/**
+			 * @name 		```.tooltip--b```
+			 * Display a bottom tooltip
+			 * @styleguide 		Atoms / Tooltip
+			 * @example 	html
+			 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+			 * 	<div class="tooltip tooltip--b">
+			 * 		I'm a cool tooltip
+			 * 	</div>
+			 * </div>
+			 */
+.tooltip--b {
+  transform-origin: 0 -1em;
+  left: 50%;
+  top: calc(100% + 1em);
+  bottom: auto;
+  right: auto;
+  transform: translateX(-50%) translateY(0) translateZ(0);
+}
+
+/**
+			 * @name 		```.tooltip--br```
+			 * Display a bottom right tooltip
+			 * @styleguide 		Atoms / Tooltip
+			 * @example 	html
+			 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
+			 * 	<div class="tooltip tooltip--br">
+			 * 		I'm a cool tooltip
+			 * 	</div>
+			 * </div>
+			 */
+.tooltip--br {
+  transform-origin: calc(100% - 1em) -1em;
+  right: 0;
+  top: calc(100% + 1em);
+  left: auto;
+  bottom: auto;
 }
 
 .tooltip {
   box-shadow: rgba(0, 0, 0, 0.2) 0 10px 15px;
+  border-radius: 0;
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
 }
 
 @keyframes s-tooltip-component {
@@ -9565,7 +10679,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-default">Default</span> ```.tooltip--c.tooltip--default```
 					 * Display a default centered tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--default tooltip--c">
@@ -9576,7 +10690,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-default">Default</span> ```.tooltip--t.tooltip--default```
 					 * Display a default top centered tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--default tooltip--t">
@@ -9587,7 +10701,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-default">Default</span> ```.tooltip--tl.tooltip--default```
 					 * Display a default top left tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--default tooltip--tl">
@@ -9598,7 +10712,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-default">Default</span> ```.tooltip--tr.tooltip--default```
 					 * Display a default top right tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--default tooltip--tr">
@@ -9609,7 +10723,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-default">Default</span> ```.tooltip--l.tooltip--default```
 					 * Display a default left tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--default tooltip--l">
@@ -9620,7 +10734,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-default">Default</span> ```.tooltip--r.tooltip--default```
 					 * Display a default right tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--default tooltip--r">
@@ -9631,7 +10745,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-default">Default</span> ```.tooltip--bl.tooltip--default```
 					 * Display a default bottom left tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--default tooltip--bl">
@@ -9642,7 +10756,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-default">Default</span> ```.tooltip--b.tooltip--default```
 					 * Display a default bottom tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--default tooltip--b">
@@ -9653,7 +10767,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-default">Default</span> ```.tooltip--br.tooltip--default```
 					 * Display a default bottom right tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--default tooltip--br">
@@ -9663,31 +10777,21 @@ s-trianglify {
 					 */
 }
 
-.tooltip.tooltip--c {
-  left: 50%;
-  top: 50%;
-  transform-origin: 0 0;
-  transform: translateX(-50%) translateY(-50%) translateZ(0);
-}
-
-.tooltip--active > .tooltip.tooltip--c, .tooltip.tooltip--c.active,
+.tooltip.tooltip--c.tooltip--active, .tooltip.tooltip--c.active,
+.tooltip.tooltip--c[active] [active] > .tooltip.tooltip--c,
 .active > .tooltip.tooltip--c,
 :hover > .tooltip.tooltip--c {
   animation: s-tooltip-component--c 0.1s 0s ease-in-out 1 normal forwards;
 }
 
-.tooltip.tooltip--t {
-  transform-origin: 0 calc(100% + 0.5em);
-  left: 50%;
-  bottom: calc(100% + 1em);
-  transform: translateX(-50%) translateY(0) translateZ(0);
+.tooltip.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c), .tooltip.tooltip--t {
   position: relative;
   background: #848e91;
   border-style: solid;
   border-width: 0;
 }
 
-.tooltip.tooltip--t:after, .tooltip.tooltip--t:before {
+.tooltip.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c):after, .tooltip.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c):before, .tooltip.tooltip--t:after, .tooltip.tooltip--t:before {
   border: solid transparent;
   content: " ";
   height: 0;
@@ -9697,7 +10801,7 @@ s-trianglify {
   visibility: visible;
 }
 
-.tooltip.tooltip--t:after {
+.tooltip.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c):after, .tooltip.tooltip--t:after {
   border-width: 0.5em;
   border-top-color: #848e91;
   bottom: -1em;
@@ -9705,23 +10809,26 @@ s-trianglify {
   margin-right: -0.5em;
 }
 
-.tooltip.tooltip--t:before {
+.tooltip.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c):before, .tooltip.tooltip--t:before {
   border-width: 0.5em;
   bottom: -1em;
   right: 50%;
   margin-right: -0.5em;
 }
 
-.tooltip--active > .tooltip.tooltip--t, .tooltip.tooltip--t.active,
+.tooltip.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c).tooltip--active, .tooltip.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c).active,
+.tooltip.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c)[active] [active] > .tooltip.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c),
+.active > .tooltip.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c),
+:hover > .tooltip.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c), .tooltip.tooltip--t.tooltip--active, .tooltip.tooltip--t.active,
+.tooltip.tooltip--t[active] [active] > .tooltip.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c),
 .active > .tooltip.tooltip--t,
-:hover > .tooltip.tooltip--t {
+:hover > .tooltip.tooltip--t,
+.tooltip.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c)[active] [active] > .tooltip.tooltip--t,
+.tooltip.tooltip--t[active] [active] > .tooltip.tooltip--t {
   animation: s-tooltip-component--t 0.1s 0s ease-in-out 1 normal forwards;
 }
 
 .tooltip.tooltip--tl {
-  transform-origin: 0 calc(100% + 0.5em);
-  left: 0;
-  bottom: calc(100% + 1em);
   position: relative;
   background: #848e91;
   border-style: solid;
@@ -9751,16 +10858,14 @@ s-trianglify {
   left: 0.5em;
 }
 
-.tooltip--active > .tooltip.tooltip--tl, .tooltip.tooltip--tl.active,
+.tooltip.tooltip--tl.tooltip--active, .tooltip.tooltip--tl.active,
+.tooltip.tooltip--tl[active] [active] > .tooltip.tooltip--tl,
 .active > .tooltip.tooltip--tl,
 :hover > .tooltip.tooltip--tl {
   animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
 }
 
 .tooltip.tooltip--tr {
-  transform-origin: 100% 100%;
-  right: 0;
-  bottom: calc(100% + 1em);
   position: relative;
   background: #848e91;
   border-style: solid;
@@ -9790,17 +10895,14 @@ s-trianglify {
   right: 0.5em;
 }
 
-.tooltip--active > .tooltip.tooltip--tr, .tooltip.tooltip--tr.active,
+.tooltip.tooltip--tr.tooltip--active, .tooltip.tooltip--tr.active,
+.tooltip.tooltip--tr[active] [active] > .tooltip.tooltip--tr,
 .active > .tooltip.tooltip--tr,
 :hover > .tooltip.tooltip--tr {
   animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
 }
 
 .tooltip.tooltip--l {
-  transform-origin: calc(100% + 0.5em) 50%;
-  right: calc(100% + 0.5em);
-  top: 50%;
-  transform: translateX(0) translateY(-50%) translateZ(0);
   position: relative;
   background: #848e91;
   border-style: solid;
@@ -9828,17 +10930,14 @@ s-trianglify {
   right: -1em;
 }
 
-.tooltip--active > .tooltip.tooltip--l, .tooltip.tooltip--l.active,
+.tooltip.tooltip--l.tooltip--active, .tooltip.tooltip--l.active,
+.tooltip.tooltip--l[active] [active] > .tooltip.tooltip--l,
 .active > .tooltip.tooltip--l,
 :hover > .tooltip.tooltip--l {
   animation: s-tooltip-component--l 0.1s 0s ease-in-out 1 normal forwards;
 }
 
 .tooltip.tooltip--r {
-  transform-origin: -.5em 50%;
-  left: calc(100% + 1em);
-  top: 50%;
-  transform: translateX(0) translateY(-50%) translateZ(0);
   position: relative;
   background: #848e91;
   border-style: solid;
@@ -9866,16 +10965,14 @@ s-trianglify {
   left: -1em;
 }
 
-.tooltip--active > .tooltip.tooltip--r, .tooltip.tooltip--r.active,
+.tooltip.tooltip--r.tooltip--active, .tooltip.tooltip--r.active,
+.tooltip.tooltip--r[active] [active] > .tooltip.tooltip--r,
 .active > .tooltip.tooltip--r,
 :hover > .tooltip.tooltip--r {
   animation: s-tooltip-component--r 0.1s 0s ease-in-out 1 normal forwards;
 }
 
 .tooltip.tooltip--bl {
-  transform-origin: 1em -1em;
-  left: 0;
-  top: calc(100% + 1em);
   position: relative;
   background: #848e91;
   border-style: solid;
@@ -9905,17 +11002,14 @@ s-trianglify {
   left: 0.5em;
 }
 
-.tooltip--active > .tooltip.tooltip--bl, .tooltip.tooltip--bl.active,
+.tooltip.tooltip--bl.tooltip--active, .tooltip.tooltip--bl.active,
+.tooltip.tooltip--bl[active] [active] > .tooltip.tooltip--bl,
 .active > .tooltip.tooltip--bl,
 :hover > .tooltip.tooltip--bl {
   animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
 }
 
 .tooltip.tooltip--b {
-  transform-origin: 0 -1em;
-  left: 50%;
-  top: calc(100% + 1em);
-  transform: translateX(-50%) translateY(0) translateZ(0);
   position: relative;
   background: #848e91;
   border-style: solid;
@@ -9947,16 +11041,14 @@ s-trianglify {
   margin-right: -0.5em;
 }
 
-.tooltip--active > .tooltip.tooltip--b, .tooltip.tooltip--b.active,
+.tooltip.tooltip--b.tooltip--active, .tooltip.tooltip--b.active,
+.tooltip.tooltip--b[active] [active] > .tooltip.tooltip--b,
 .active > .tooltip.tooltip--b,
 :hover > .tooltip.tooltip--b {
   animation: s-tooltip-component--b 0.1s 0s ease-in-out 1 normal forwards;
 }
 
 .tooltip.tooltip--br {
-  transform-origin: calc(100% - 1em) -1em;
-  right: 0;
-  top: calc(100% + 1em);
   position: relative;
   background: #848e91;
   border-style: solid;
@@ -9986,7 +11078,8 @@ s-trianglify {
   right: 0.5em;
 }
 
-.tooltip--active > .tooltip.tooltip--br, .tooltip.tooltip--br.active,
+.tooltip.tooltip--br.tooltip--active, .tooltip.tooltip--br.active,
+.tooltip.tooltip--br[active] [active] > .tooltip.tooltip--br,
 .active > .tooltip.tooltip--br,
 :hover > .tooltip.tooltip--br {
   animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
@@ -9998,7 +11091,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-primary">Primary</span> ```.tooltip--c.tooltip--primary```
 					 * Display a primary centered tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--primary tooltip--c">
@@ -10009,7 +11102,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-primary">Primary</span> ```.tooltip--t.tooltip--primary```
 					 * Display a primary top centered tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--primary tooltip--t">
@@ -10020,7 +11113,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-primary">Primary</span> ```.tooltip--tl.tooltip--primary```
 					 * Display a primary top left tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--primary tooltip--tl">
@@ -10031,7 +11124,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-primary">Primary</span> ```.tooltip--tr.tooltip--primary```
 					 * Display a primary top right tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--primary tooltip--tr">
@@ -10042,7 +11135,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-primary">Primary</span> ```.tooltip--l.tooltip--primary```
 					 * Display a primary left tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--primary tooltip--l">
@@ -10053,7 +11146,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-primary">Primary</span> ```.tooltip--r.tooltip--primary```
 					 * Display a primary right tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--primary tooltip--r">
@@ -10064,7 +11157,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-primary">Primary</span> ```.tooltip--bl.tooltip--primary```
 					 * Display a primary bottom left tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--primary tooltip--bl">
@@ -10075,7 +11168,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-primary">Primary</span> ```.tooltip--b.tooltip--primary```
 					 * Display a primary bottom tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--primary tooltip--b">
@@ -10086,7 +11179,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-primary">Primary</span> ```.tooltip--br.tooltip--primary```
 					 * Display a primary bottom right tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--primary tooltip--br">
@@ -10096,31 +11189,21 @@ s-trianglify {
 					 */
 }
 
-.tooltip--primary.tooltip--c {
-  left: 50%;
-  top: 50%;
-  transform-origin: 0 0;
-  transform: translateX(-50%) translateY(-50%) translateZ(0);
-}
-
-.tooltip--active > .tooltip--primary.tooltip--c, .tooltip--primary.tooltip--c.active,
+.tooltip--primary.tooltip--c.tooltip--active, .tooltip--primary.tooltip--c.active,
+.tooltip--primary.tooltip--c[active] [active] > .tooltip--primary.tooltip--c,
 .active > .tooltip--primary.tooltip--c,
 :hover > .tooltip--primary.tooltip--c {
   animation: s-tooltip-component--c 0.1s 0s ease-in-out 1 normal forwards;
 }
 
-.tooltip--primary.tooltip--t {
-  transform-origin: 0 calc(100% + 0.5em);
-  left: 50%;
-  bottom: calc(100% + 1em);
-  transform: translateX(-50%) translateY(0) translateZ(0);
+.tooltip--primary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c), .tooltip--primary.tooltip--t {
   position: relative;
   background: #f2bc2b;
   border-style: solid;
   border-width: 0;
 }
 
-.tooltip--primary.tooltip--t:after, .tooltip--primary.tooltip--t:before {
+.tooltip--primary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c):after, .tooltip--primary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c):before, .tooltip--primary.tooltip--t:after, .tooltip--primary.tooltip--t:before {
   border: solid transparent;
   content: " ";
   height: 0;
@@ -10130,7 +11213,7 @@ s-trianglify {
   visibility: visible;
 }
 
-.tooltip--primary.tooltip--t:after {
+.tooltip--primary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c):after, .tooltip--primary.tooltip--t:after {
   border-width: 0.5em;
   border-top-color: #f2bc2b;
   bottom: -1em;
@@ -10138,23 +11221,26 @@ s-trianglify {
   margin-right: -0.5em;
 }
 
-.tooltip--primary.tooltip--t:before {
+.tooltip--primary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c):before, .tooltip--primary.tooltip--t:before {
   border-width: 0.5em;
   bottom: -1em;
   right: 50%;
   margin-right: -0.5em;
 }
 
-.tooltip--active > .tooltip--primary.tooltip--t, .tooltip--primary.tooltip--t.active,
+.tooltip--primary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c).tooltip--active, .tooltip--primary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c).active,
+.tooltip--primary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c)[active] [active] > .tooltip--primary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c),
+.active > .tooltip--primary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c),
+:hover > .tooltip--primary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c), .tooltip--primary.tooltip--t.tooltip--active, .tooltip--primary.tooltip--t.active,
+.tooltip--primary.tooltip--t[active] [active] > .tooltip--primary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c),
 .active > .tooltip--primary.tooltip--t,
-:hover > .tooltip--primary.tooltip--t {
+:hover > .tooltip--primary.tooltip--t,
+.tooltip--primary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c)[active] [active] > .tooltip--primary.tooltip--t,
+.tooltip--primary.tooltip--t[active] [active] > .tooltip--primary.tooltip--t {
   animation: s-tooltip-component--t 0.1s 0s ease-in-out 1 normal forwards;
 }
 
 .tooltip--primary.tooltip--tl {
-  transform-origin: 0 calc(100% + 0.5em);
-  left: 0;
-  bottom: calc(100% + 1em);
   position: relative;
   background: #f2bc2b;
   border-style: solid;
@@ -10184,16 +11270,14 @@ s-trianglify {
   left: 0.5em;
 }
 
-.tooltip--active > .tooltip--primary.tooltip--tl, .tooltip--primary.tooltip--tl.active,
+.tooltip--primary.tooltip--tl.tooltip--active, .tooltip--primary.tooltip--tl.active,
+.tooltip--primary.tooltip--tl[active] [active] > .tooltip--primary.tooltip--tl,
 .active > .tooltip--primary.tooltip--tl,
 :hover > .tooltip--primary.tooltip--tl {
   animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
 }
 
 .tooltip--primary.tooltip--tr {
-  transform-origin: 100% 100%;
-  right: 0;
-  bottom: calc(100% + 1em);
   position: relative;
   background: #f2bc2b;
   border-style: solid;
@@ -10223,17 +11307,14 @@ s-trianglify {
   right: 0.5em;
 }
 
-.tooltip--active > .tooltip--primary.tooltip--tr, .tooltip--primary.tooltip--tr.active,
+.tooltip--primary.tooltip--tr.tooltip--active, .tooltip--primary.tooltip--tr.active,
+.tooltip--primary.tooltip--tr[active] [active] > .tooltip--primary.tooltip--tr,
 .active > .tooltip--primary.tooltip--tr,
 :hover > .tooltip--primary.tooltip--tr {
   animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
 }
 
 .tooltip--primary.tooltip--l {
-  transform-origin: calc(100% + 0.5em) 50%;
-  right: calc(100% + 0.5em);
-  top: 50%;
-  transform: translateX(0) translateY(-50%) translateZ(0);
   position: relative;
   background: #f2bc2b;
   border-style: solid;
@@ -10261,17 +11342,14 @@ s-trianglify {
   right: -1em;
 }
 
-.tooltip--active > .tooltip--primary.tooltip--l, .tooltip--primary.tooltip--l.active,
+.tooltip--primary.tooltip--l.tooltip--active, .tooltip--primary.tooltip--l.active,
+.tooltip--primary.tooltip--l[active] [active] > .tooltip--primary.tooltip--l,
 .active > .tooltip--primary.tooltip--l,
 :hover > .tooltip--primary.tooltip--l {
   animation: s-tooltip-component--l 0.1s 0s ease-in-out 1 normal forwards;
 }
 
 .tooltip--primary.tooltip--r {
-  transform-origin: -.5em 50%;
-  left: calc(100% + 1em);
-  top: 50%;
-  transform: translateX(0) translateY(-50%) translateZ(0);
   position: relative;
   background: #f2bc2b;
   border-style: solid;
@@ -10299,16 +11377,14 @@ s-trianglify {
   left: -1em;
 }
 
-.tooltip--active > .tooltip--primary.tooltip--r, .tooltip--primary.tooltip--r.active,
+.tooltip--primary.tooltip--r.tooltip--active, .tooltip--primary.tooltip--r.active,
+.tooltip--primary.tooltip--r[active] [active] > .tooltip--primary.tooltip--r,
 .active > .tooltip--primary.tooltip--r,
 :hover > .tooltip--primary.tooltip--r {
   animation: s-tooltip-component--r 0.1s 0s ease-in-out 1 normal forwards;
 }
 
 .tooltip--primary.tooltip--bl {
-  transform-origin: 1em -1em;
-  left: 0;
-  top: calc(100% + 1em);
   position: relative;
   background: #f2bc2b;
   border-style: solid;
@@ -10338,17 +11414,14 @@ s-trianglify {
   left: 0.5em;
 }
 
-.tooltip--active > .tooltip--primary.tooltip--bl, .tooltip--primary.tooltip--bl.active,
+.tooltip--primary.tooltip--bl.tooltip--active, .tooltip--primary.tooltip--bl.active,
+.tooltip--primary.tooltip--bl[active] [active] > .tooltip--primary.tooltip--bl,
 .active > .tooltip--primary.tooltip--bl,
 :hover > .tooltip--primary.tooltip--bl {
   animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
 }
 
 .tooltip--primary.tooltip--b {
-  transform-origin: 0 -1em;
-  left: 50%;
-  top: calc(100% + 1em);
-  transform: translateX(-50%) translateY(0) translateZ(0);
   position: relative;
   background: #f2bc2b;
   border-style: solid;
@@ -10380,16 +11453,14 @@ s-trianglify {
   margin-right: -0.5em;
 }
 
-.tooltip--active > .tooltip--primary.tooltip--b, .tooltip--primary.tooltip--b.active,
+.tooltip--primary.tooltip--b.tooltip--active, .tooltip--primary.tooltip--b.active,
+.tooltip--primary.tooltip--b[active] [active] > .tooltip--primary.tooltip--b,
 .active > .tooltip--primary.tooltip--b,
 :hover > .tooltip--primary.tooltip--b {
   animation: s-tooltip-component--b 0.1s 0s ease-in-out 1 normal forwards;
 }
 
 .tooltip--primary.tooltip--br {
-  transform-origin: calc(100% - 1em) -1em;
-  right: 0;
-  top: calc(100% + 1em);
   position: relative;
   background: #f2bc2b;
   border-style: solid;
@@ -10419,7 +11490,8 @@ s-trianglify {
   right: 0.5em;
 }
 
-.tooltip--active > .tooltip--primary.tooltip--br, .tooltip--primary.tooltip--br.active,
+.tooltip--primary.tooltip--br.tooltip--active, .tooltip--primary.tooltip--br.active,
+.tooltip--primary.tooltip--br[active] [active] > .tooltip--primary.tooltip--br,
 .active > .tooltip--primary.tooltip--br,
 :hover > .tooltip--primary.tooltip--br {
   animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
@@ -10431,7 +11503,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-secondary">Secondary</span> ```.tooltip--c.tooltip--secondary```
 					 * Display a secondary centered tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--secondary tooltip--c">
@@ -10442,7 +11514,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-secondary">Secondary</span> ```.tooltip--t.tooltip--secondary```
 					 * Display a secondary top centered tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--secondary tooltip--t">
@@ -10453,7 +11525,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-secondary">Secondary</span> ```.tooltip--tl.tooltip--secondary```
 					 * Display a secondary top left tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--secondary tooltip--tl">
@@ -10464,7 +11536,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-secondary">Secondary</span> ```.tooltip--tr.tooltip--secondary```
 					 * Display a secondary top right tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--secondary tooltip--tr">
@@ -10475,7 +11547,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-secondary">Secondary</span> ```.tooltip--l.tooltip--secondary```
 					 * Display a secondary left tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--secondary tooltip--l">
@@ -10486,7 +11558,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-secondary">Secondary</span> ```.tooltip--r.tooltip--secondary```
 					 * Display a secondary right tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--secondary tooltip--r">
@@ -10497,7 +11569,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-secondary">Secondary</span> ```.tooltip--bl.tooltip--secondary```
 					 * Display a secondary bottom left tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--secondary tooltip--bl">
@@ -10508,7 +11580,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-secondary">Secondary</span> ```.tooltip--b.tooltip--secondary```
 					 * Display a secondary bottom tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--secondary tooltip--b">
@@ -10519,7 +11591,7 @@ s-trianglify {
   /**
 					 * @name 		<span class="c-secondary">Secondary</span> ```.tooltip--br.tooltip--secondary```
 					 * Display a secondary bottom right tooltip
-					 * @styleguide 		Objects / Tooltip
+					 * @styleguide 		Atoms / Tooltip
 					 * @example 	html
 					 * <div class="active bkg-primary" style="display: block; width: 10px; height: 10px; position: relative; margin: 50px auto;">
 					 * 	<div class="tooltip tooltip--secondary tooltip--br">
@@ -10529,31 +11601,21 @@ s-trianglify {
 					 */
 }
 
-.tooltip--secondary.tooltip--c {
-  left: 50%;
-  top: 50%;
-  transform-origin: 0 0;
-  transform: translateX(-50%) translateY(-50%) translateZ(0);
-}
-
-.tooltip--active > .tooltip--secondary.tooltip--c, .tooltip--secondary.tooltip--c.active,
+.tooltip--secondary.tooltip--c.tooltip--active, .tooltip--secondary.tooltip--c.active,
+.tooltip--secondary.tooltip--c[active] [active] > .tooltip--secondary.tooltip--c,
 .active > .tooltip--secondary.tooltip--c,
 :hover > .tooltip--secondary.tooltip--c {
   animation: s-tooltip-component--c 0.1s 0s ease-in-out 1 normal forwards;
 }
 
-.tooltip--secondary.tooltip--t {
-  transform-origin: 0 calc(100% + 0.5em);
-  left: 50%;
-  bottom: calc(100% + 1em);
-  transform: translateX(-50%) translateY(0) translateZ(0);
+.tooltip--secondary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c), .tooltip--secondary.tooltip--t {
   position: relative;
   background: #2b3438;
   border-style: solid;
   border-width: 0;
 }
 
-.tooltip--secondary.tooltip--t:after, .tooltip--secondary.tooltip--t:before {
+.tooltip--secondary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c):after, .tooltip--secondary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c):before, .tooltip--secondary.tooltip--t:after, .tooltip--secondary.tooltip--t:before {
   border: solid transparent;
   content: " ";
   height: 0;
@@ -10563,7 +11625,7 @@ s-trianglify {
   visibility: visible;
 }
 
-.tooltip--secondary.tooltip--t:after {
+.tooltip--secondary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c):after, .tooltip--secondary.tooltip--t:after {
   border-width: 0.5em;
   border-top-color: #2b3438;
   bottom: -1em;
@@ -10571,23 +11633,26 @@ s-trianglify {
   margin-right: -0.5em;
 }
 
-.tooltip--secondary.tooltip--t:before {
+.tooltip--secondary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c):before, .tooltip--secondary.tooltip--t:before {
   border-width: 0.5em;
   bottom: -1em;
   right: 50%;
   margin-right: -0.5em;
 }
 
-.tooltip--active > .tooltip--secondary.tooltip--t, .tooltip--secondary.tooltip--t.active,
+.tooltip--secondary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c).tooltip--active, .tooltip--secondary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c).active,
+.tooltip--secondary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c)[active] [active] > .tooltip--secondary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c),
+.active > .tooltip--secondary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c),
+:hover > .tooltip--secondary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c), .tooltip--secondary.tooltip--t.tooltip--active, .tooltip--secondary.tooltip--t.active,
+.tooltip--secondary.tooltip--t[active] [active] > .tooltip--secondary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c),
 .active > .tooltip--secondary.tooltip--t,
-:hover > .tooltip--secondary.tooltip--t {
+:hover > .tooltip--secondary.tooltip--t,
+.tooltip--secondary.tooltip:not(.tooltip--tr):not(.tooltip--tl):not(.tooltip--l):not(.tooltip--r):not(.tooltip--bl):not(.tooltip--b):not(.tooltip--br):not(.tooltip--c)[active] [active] > .tooltip--secondary.tooltip--t,
+.tooltip--secondary.tooltip--t[active] [active] > .tooltip--secondary.tooltip--t {
   animation: s-tooltip-component--t 0.1s 0s ease-in-out 1 normal forwards;
 }
 
 .tooltip--secondary.tooltip--tl {
-  transform-origin: 0 calc(100% + 0.5em);
-  left: 0;
-  bottom: calc(100% + 1em);
   position: relative;
   background: #2b3438;
   border-style: solid;
@@ -10617,16 +11682,14 @@ s-trianglify {
   left: 0.5em;
 }
 
-.tooltip--active > .tooltip--secondary.tooltip--tl, .tooltip--secondary.tooltip--tl.active,
+.tooltip--secondary.tooltip--tl.tooltip--active, .tooltip--secondary.tooltip--tl.active,
+.tooltip--secondary.tooltip--tl[active] [active] > .tooltip--secondary.tooltip--tl,
 .active > .tooltip--secondary.tooltip--tl,
 :hover > .tooltip--secondary.tooltip--tl {
   animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
 }
 
 .tooltip--secondary.tooltip--tr {
-  transform-origin: 100% 100%;
-  right: 0;
-  bottom: calc(100% + 1em);
   position: relative;
   background: #2b3438;
   border-style: solid;
@@ -10656,17 +11719,14 @@ s-trianglify {
   right: 0.5em;
 }
 
-.tooltip--active > .tooltip--secondary.tooltip--tr, .tooltip--secondary.tooltip--tr.active,
+.tooltip--secondary.tooltip--tr.tooltip--active, .tooltip--secondary.tooltip--tr.active,
+.tooltip--secondary.tooltip--tr[active] [active] > .tooltip--secondary.tooltip--tr,
 .active > .tooltip--secondary.tooltip--tr,
 :hover > .tooltip--secondary.tooltip--tr {
   animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
 }
 
 .tooltip--secondary.tooltip--l {
-  transform-origin: calc(100% + 0.5em) 50%;
-  right: calc(100% + 0.5em);
-  top: 50%;
-  transform: translateX(0) translateY(-50%) translateZ(0);
   position: relative;
   background: #2b3438;
   border-style: solid;
@@ -10694,17 +11754,14 @@ s-trianglify {
   right: -1em;
 }
 
-.tooltip--active > .tooltip--secondary.tooltip--l, .tooltip--secondary.tooltip--l.active,
+.tooltip--secondary.tooltip--l.tooltip--active, .tooltip--secondary.tooltip--l.active,
+.tooltip--secondary.tooltip--l[active] [active] > .tooltip--secondary.tooltip--l,
 .active > .tooltip--secondary.tooltip--l,
 :hover > .tooltip--secondary.tooltip--l {
   animation: s-tooltip-component--l 0.1s 0s ease-in-out 1 normal forwards;
 }
 
 .tooltip--secondary.tooltip--r {
-  transform-origin: -.5em 50%;
-  left: calc(100% + 1em);
-  top: 50%;
-  transform: translateX(0) translateY(-50%) translateZ(0);
   position: relative;
   background: #2b3438;
   border-style: solid;
@@ -10732,16 +11789,14 @@ s-trianglify {
   left: -1em;
 }
 
-.tooltip--active > .tooltip--secondary.tooltip--r, .tooltip--secondary.tooltip--r.active,
+.tooltip--secondary.tooltip--r.tooltip--active, .tooltip--secondary.tooltip--r.active,
+.tooltip--secondary.tooltip--r[active] [active] > .tooltip--secondary.tooltip--r,
 .active > .tooltip--secondary.tooltip--r,
 :hover > .tooltip--secondary.tooltip--r {
   animation: s-tooltip-component--r 0.1s 0s ease-in-out 1 normal forwards;
 }
 
 .tooltip--secondary.tooltip--bl {
-  transform-origin: 1em -1em;
-  left: 0;
-  top: calc(100% + 1em);
   position: relative;
   background: #2b3438;
   border-style: solid;
@@ -10771,17 +11826,14 @@ s-trianglify {
   left: 0.5em;
 }
 
-.tooltip--active > .tooltip--secondary.tooltip--bl, .tooltip--secondary.tooltip--bl.active,
+.tooltip--secondary.tooltip--bl.tooltip--active, .tooltip--secondary.tooltip--bl.active,
+.tooltip--secondary.tooltip--bl[active] [active] > .tooltip--secondary.tooltip--bl,
 .active > .tooltip--secondary.tooltip--bl,
 :hover > .tooltip--secondary.tooltip--bl {
   animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;
 }
 
 .tooltip--secondary.tooltip--b {
-  transform-origin: 0 -1em;
-  left: 50%;
-  top: calc(100% + 1em);
-  transform: translateX(-50%) translateY(0) translateZ(0);
   position: relative;
   background: #2b3438;
   border-style: solid;
@@ -10813,16 +11865,14 @@ s-trianglify {
   margin-right: -0.5em;
 }
 
-.tooltip--active > .tooltip--secondary.tooltip--b, .tooltip--secondary.tooltip--b.active,
+.tooltip--secondary.tooltip--b.tooltip--active, .tooltip--secondary.tooltip--b.active,
+.tooltip--secondary.tooltip--b[active] [active] > .tooltip--secondary.tooltip--b,
 .active > .tooltip--secondary.tooltip--b,
 :hover > .tooltip--secondary.tooltip--b {
   animation: s-tooltip-component--b 0.1s 0s ease-in-out 1 normal forwards;
 }
 
 .tooltip--secondary.tooltip--br {
-  transform-origin: calc(100% - 1em) -1em;
-  right: 0;
-  top: calc(100% + 1em);
   position: relative;
   background: #2b3438;
   border-style: solid;
@@ -10852,7 +11902,8 @@ s-trianglify {
   right: 0.5em;
 }
 
-.tooltip--active > .tooltip--secondary.tooltip--br, .tooltip--secondary.tooltip--br.active,
+.tooltip--secondary.tooltip--br.tooltip--active, .tooltip--secondary.tooltip--br.active,
+.tooltip--secondary.tooltip--br[active] [active] > .tooltip--secondary.tooltip--br,
 .active > .tooltip--secondary.tooltip--br,
 :hover > .tooltip--secondary.tooltip--br {
   animation: s-tooltip-component 0.1s 0s ease-in-out 1 normal forwards;

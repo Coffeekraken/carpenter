@@ -3,11 +3,11 @@ module.exports = {
 		'public/assets/js/app.js' : './public/assets-src/js/app.js'
 	},
 	output: {
-		path: '.',
+		path: require('path').resolve('.'),
 		filename: '[name]',
 	},
 	module: {
-		loaders: [{
+		rules: [{
 			test: /\.js$/,
 			exclude: /(bower_components|node_modules)/,
 			loader: 'babel-loader'

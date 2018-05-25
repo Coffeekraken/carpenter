@@ -5,12 +5,11 @@
 
 }
 
-/**
- * @name 	Nav justified
- */
-@include s-component('nav') {
-	@include s-nav-justify-classes-bare();
-	@include s-nav-inline-classes-bare();
+.nav--inline {
+
+	.nav__item {
+		display:inline-block;
+	}
 }
 
 

@@ -1,4 +1,19 @@
 {
-	"presets" : ["es2015","stage-0"],
-	"plugins": ["transform-remove-strict-mode","add-module-exports"]
+	"presets": [["env", {
+		"targets": {
+			"browsers": [
+				"Chrome >= 52",
+				"FireFox >= 44",
+				"Safari >= 9",
+				"Explorer 11",
+				"last 4 Edge versions"
+			]
+		}
+  }]],
+  "plugins": [
+		"transform-class-properties",
+		"transform-object-rest-spread",
+		"transform-export-default",
+		"add-module-exports"
+  ]
 }

@@ -1,3 +1,6 @@
+const flattenkeys = require('flattenkeys')
+const _uniq = require('lodash/uniq')
+
 // const __md5 = require('md5');
 let path = '';
 let j = 0;
@@ -66,6 +69,28 @@ exports.threeMenu = (three, currentUrl) => {
 	return `<ul class="list list--three m-b-bigger">
 		${res}
 	</ul>`;
+}
+
+
+
+exports.optionsMenu = (three, currentUrl) => {
+	// prepare three
+	const newThree = Object.assign({}, three);
+
+	let paths = flattenkeys(newThree);
+	paths = paths.map((item) => {
+		const it = item.split('.');
+		it.pop();
+		return it.join('.');
+	});
+	paths = _uniq(paths);
+
+	const options = [];
+	paths.forEach((path) => {
+		path = path.replace(/\./g,'/').replace('/md','.md');
+		options.push(`<option value="/documentation/${path}">${path}</option>`);
+	});
+	return options.join('');
 }
 
 exports.eachSorted = (context, options) => {

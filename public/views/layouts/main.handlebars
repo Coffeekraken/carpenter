@@ -25,7 +25,20 @@
 					{{/if}}
 				</h1>
 			</div>
-			<div class="gr-grow">
+			<div class="gr-grow" style="font-size:11px">
+				<select is="s-select" name="search" onchange="document.location.href = this.value">
+					<option value="/">Search...</option>
+					<optgroup label="Styleguide">
+						{{#eachSorted styleguide.all}}
+							{{#eachSorted this.value}}
+								<option value="/styleguide/{{../key}}/{{key}}">{{../key}}/{{key}}</option>
+							{{/eachSorted}}
+						{{/eachSorted}}
+					</optgroup>
+					<optgroup label="documentation">
+						{{{optionsMenu documentation.three request.url}}}
+					</optgroup>
+				</select>
 			</div>
 			<div class="gr-adapt">
 				<ul class="nav nav--topbar">
@@ -111,14 +124,6 @@
 		</div>
 	</div>
 	<div color="primary" class="sidebar">
-		<!-- <header class="sidebar__header">
-			<h1 class="h5 m-b-small">
-				{{title}}
-			</h1>
-			<p class="p p--lead">
-				{{packageJson.description}}
-			</p>
-		</header> -->
 		{{#if styleguide.all}}
 			<a href="#sidebar-styleguide" save-state="localStorage" toggle="true" history="false" class="h6 sidebar__separator bkg-primary" is="s-activate" id="sidebar-styleguide">
 				<s-ripple></s-ripple>

@@ -1,4 +1,5 @@
 module.exports = {
+	mode: 'development',
 	entry: {
 		'public/assets/js/app.js' : './public/assets-src/js/app.js'
 	},

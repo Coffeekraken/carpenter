@@ -51,7 +51,7 @@
 }
 
 .cm-s-material .CodeMirror-activeline-background {
-  background: transparent;
+  background: rgba(0, 0, 0, 0);
 }
 
 .cm-s-material .cm-keyword {
@@ -905,7 +905,7 @@
  * @return 		{Map} 								The Map represenration of the border
  *
  * @example
- * s-border(1px solid white);
+ * s-border-map(1px solid white);
  * // return
  * // (
  * // 	width : 1px,
@@ -929,7 +929,7 @@
  * @return 		{Map} 										The map representation or the columns properties
  *
  * @example
- * s-columns(2, 20px);
+ * s-columns-map(2, 20px);
  * // return
  * // (
  * // 	column-count : 2,
@@ -946,9 +946,9 @@
  * @return 			{Map} 										The map representation
  *
  * @example
- * s-margin(10px); // => ( top:10px, right:10px, bottom:10px, left:10px )
- * s-margin(10px 20px); // => ( top:10px, right:20px, bottom:10px, left:20px )
- * s-margin(5px 10px 15px 20px); // => ( top:5px, right:10px, bottom:15px, left:20px )
+ * s-margin-map(10px); // => ( top:10px, right:10px, bottom:10px, left:10px )
+ * s-margin-map(10px 20px); // => ( top:10px, right:20px, bottom:10px, left:20px )
+ * s-margin-map(5px 10px 15px 20px); // => ( top:5px, right:10px, bottom:15px, left:20px )
  *
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
  */
@@ -966,10 +966,10 @@
  * @return 		{Map} 												The map representation of the position wanted
  *
  * @example
- * s-position(absolute, top, right);
- * s-position(absolute, middle, center);
- * s-position(relative, bottom, right);
- * s-position(absolute, bottom, center);
+ * s-position-map(absolute, top, right);
+ * s-position-map(absolute, middle, center);
+ * s-position-map(relative, bottom, right);
+ * s-position-map(absolute, bottom, center);
  * // etc...
  *
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
@@ -982,7 +982,7 @@
  * @return 			{Map} 																		The Map properties representation
  *
  * @example
- * s-rhythme-width(50);
+ * s-rhythm-width(50);
  * // return
  * // (
  * // 	display : block,
@@ -1000,18 +1000,11 @@
  * @return 			{Map} 								The translate Map representation
  *
  * @example
- * s-translate(10px,20px);
+ * s-translate-map(10px,20px);
  * // return
  * // (
  * // 	transform: translateX(10px) translateY(20px) translateZ(0)
  * // )
- *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Return the settings.vertical-rhythme.scope-class value
- *
- * @return 			{String} 			The settings.vertical-rhythme.scope-class value
  *
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
  */
@@ -1044,51 +1037,6 @@
  * }
  *
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * @name 	BEM mixins
- * Some useful mixins to work with BEM methodology
- */
-/**
- * BEM block selector
- * @param 		{String} 				$name 		The block name
- * @param 		{String|List<String>} 	[$extend=false] 	The list of item to extends
- * @example 	scss
- * \@include s-Bem('card') {
- *  	background: white;
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * BEM element selector
- * @param 		{String} 				$name 		The block name
- * @param 		{String|List<String>} 	[$extend=false] 	The list of item to extends
- * @example 	scss
- * \@include s-Bem(card) {
- * 	background:white;
- *
- * 	\@include s-bEm(title) {
- * 		font-size:20px;
- * 	}
- * }
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * BEM modifier selector
- * @param 		{String} 				$name 		The block name
- * @param 		{String|List<String>} 	[$extend=false] 	The list of item to extends
- * @param 		{Boolean} 				[$standelone=s-setting('BEM.standelone')] 		If true, will automatically extends the base element
- * @example 	scss
- * \@include s-Bem(card) {
- * 	background:white;
- *
- * 	\@include s-beM(blue) {
- * 		background: blue;
- * 	}
- * }
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
  * Apply some border radius
@@ -1230,15 +1178,6 @@
  *
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
-@keyframes s-DOMNodeInserted {
-  from {
-    opacity: .99;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 /**
  * Make the element fit his container.
  * @param 	{String} 			[$position=null] 		The position how to fit the element.
@@ -1407,7 +1346,7 @@
  *
  * @example 	scss
  * h1 {
- * 	\@include s-rhythme-width(45);
+ * 	\@include s-rhythm-width(45);
  * }
  *
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
@@ -1527,34 +1466,6 @@
  * $my-color : s-color-modifier(outline primary); // => primary
  *
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Return the css class selector for the current component setted by the [core/mixins/_s-component.scss] mixin
- * and build with the passed arguments.
- *
- * @param 			{String} 			[$element=null] 		The element name of the class selector | '&' if target the same element like `&s-component-selector("&", ) {}`
- * @param 			{String} 			[$modifier=null] 		The modifier name of the class selector
- * @param 			{String} 			[$state=null] 			The state name of the class selector
- * @return 			{String} 									The generated class selector
- *
- * @example
- * \@incluse s-component('my-component') {
- * 		// if settings.selector.method === 'BEM'
- * 		s-component-selector('item') // => '.my-component__item'
- * 		s-component-selector(null, 'red') // => '.my-component--red'
- * 		s-component-selector('coco',null,'active') // => '.my-component__coco--active'
- * }
- *
- * // if target the same element with & :
- * \@include s-component('my-component') {
- * 		s-component-selector(, red, , "color") {
- * 			&s-component-selector("&", , "active") {
- * 				// something here...
- * 			}
- * 		}
- * }
- *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
  * Return the name of the top level component setted with the [../mixins/_s-component.scss] mixin
@@ -2158,33 +2069,8 @@
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
- * Return the generated vertical rhythme properties map calculated depending on the passed arguments
- *
- * @param 			{Number} 				[$font-size=settings.typography.font-size] 			The font size wanted
- * @param 			{String} 				[$font-family=settings.typography.font-family] 		The font family to use
- * @param 			{Number} 				[$line-height=null] 							The line height to use
- * @param 			{Number} 				[$margin-top=0] 								The targeted margin-top
- * @param 			{Number} 				[$margin-bottom=0] 								The targeted margin-bottom
- * @param 			{Number} 				[$padding-top=0] 								The targeted padding-top
- * @param 			{Number} 				[$padding-bottom=0] 							The targeted padding-bottom
- * @param 			{List} 					[$margin=null] 									The targeted margin property
- * @param 			{List} 					[$padding=null] 								The targeted padding property
- * @param 			{List} 					[$border-top=null] 								The targeted border-top property
- * @param 			{List} 					[$border-bottom=null] 							The targeted border-bottom property
- * @param 			{Number} 				[$border-top-width=0] 							The targeted border-top-width property
- * @param 			{Number} 				[$border-bottom-width=0] 						The targeted border-bottom-width property
- * @param 			{Number} 				[$border=null] 									The targeted border property
- * @param 			{Number} 				[$cap-height=null] 								The font cap-height used to calculate the vertical ryhthme
- * @param 			{Boolean|String} 		[$calculate-height=false] 						If true|min-height|max-height|height, will return the corresponding absolute height value in the map
- *
- * @TODO example
- *
- * @see 			https://medium.com/written-in-code/aligning-type-to-baseline-the-right-way-using-sass-e258fce47a9b#.lck2lgbni
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Return the vertical-rhythme setting scope class
- * @return 		{String} 		The vertical-rhythme scope class from settings.vertical-rhythme.scope-class
+ * Return the vertical-rhythm setting scope class
+ * @return 		{String} 		The vertical-rhythm scope class from settings.vertical-rhythm.scope-class
  * @author 		Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
@@ -2528,10 +2414,10 @@
  * @param 			{String} 		$namespace 		The dots separated namespace under which the class will live
  *
  * @example
- * \@include s-register-class(my-cool-class, 'my.cool.namespace') {
+ * \@include s-register-helper-class(my-cool-class, 'my.cool.namespace') {
  * 		background : pink;
  * }
- * \@include s-register-class(another-cool-class, 'my.another.namespace') {
+ * \@include s-register-helper-class(another-cool-class, 'my.another.namespace') {
  * 		background : red;
  * }
  *
@@ -2569,7 +2455,7 @@
  *
  * @example
  * body {
- * 		@include s-show-vertical-rhythme();
+ * 		@include s-show-vertical-rhythm();
  * }
  *
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
@@ -2622,27 +2508,14 @@
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
- * @name 	s-vertical-rhythme
- * Print out the vertical rhythme properties map calculated depending on the passed arguments
+ * @name 	s-vertical-rhythm
+ * Scope the content inside the `settings.vertical-rhythm.scope-class` class
  *
- * @param 			{Number} 				[$font-size=settings.typography.font-size] 			The font size wanted
- * @param 			{String} 				[$font-family=settings.typography.font-family] 		The font family to use
- * @param 			{Number} 				[$line-height=null] 							The line height to use
- * @param 			{Number} 				[$margin-top=0] 								The targeted margin-top
- * @param 			{Number} 				[$margin-bottom=0] 								The targeted margin-bottom
- * @param 			{Number} 				[$padding-top=0] 								The targeted padding-top
- * @param 			{Number} 				[$padding-bottom=0] 							The targeted padding-bottom
- * @param 			{List} 					[$margin=null] 									The targeted margin property
- * @param 			{List} 					[$padding=null] 								The targeted padding property
- * @param 			{List} 					[$border-top=null] 								The targeted border-top property
- * @param 			{List} 					[$border-bottom=null] 							The targeted border-bottom property
- * @param 			{Number} 				[$border-top-width=0] 							The targeted border-top-width property
- * @param 			{Number} 				[$border-bottom-width=0] 						The targeted border-bottom-width property
- * @param 			{Number} 				[$border=null] 									The targeted border property
- * @param 			{Number} 				[$cap-height=null] 								The font cap-height used to calculate the vertical ryhthme
- * @param 			{Boolean|String} 		[$calculate-height=false] 						If true|min-height|max-height|height, will return the corresponding absolute height value in the map
- *
- * @TODO example
+ * .my-cool-item {
+ * 	@include s-vertical-rhythm() {
+ * 		margin-bottom: 2em; // will be applied only if .my-cool-item is in the .vr scope
+ * 	}
+ * }
  *
  * @see 			https://medium.com/written-in-code/aligning-type-to-baseline-the-right-way-using-sass-e258fce47a9b#.lck2lgbni
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
@@ -3415,7 +3288,8 @@
 	 */
 }
 
-.clear-transitions, .clear-transitions:before, .clear-transitions:after, .clear-transitions *, .clear-transitions *:before, .clear-transitions *:after {
+.clear-transitions, .clear-transitions:before, .clear-transitions:after,
+.clear-transitions *, .clear-transitions *:before, .clear-transitions *:after {
   transition: none !important;
 }
 
@@ -3449,7 +3323,8 @@
 	 */
 }
 
-.clear-animations, .clear-animations:before, .clear-animations:after, .clear-animations *, .clear-animations *:before, .clear-animations *:after {
+.clear-animations, .clear-animations:before, .clear-animations:after,
+.clear-animations *, .clear-animations *:before, .clear-animations *:after {
   animation: none !important;
 }
 
@@ -3484,7 +3359,8 @@
 	 */
 }
 
-.clear-transmations, .clear-transmations:before, .clear-transmations:after, .clear-transmations *, .clear-transmations *:before, .clear-transmations *:after {
+.clear-transmations, .clear-transmations:before, .clear-transmations:after,
+.clear-transmations *, .clear-transmations *:before, .clear-transmations *:after {
   transition: none !important;
   animation: none !important;
 }
@@ -3685,904 +3561,6 @@
  * @author 			Olivier Bossel <olivier.bossel@gmail.com>
  */
 /**
- * @name 	SAnimationComponent Classes
- * This file provide the mixins to generate animation classes
- */
-/**
- * Provide the classes for the anim="letters-in-reveal" animation
- * - ```[anim="letters-in-reveal"]```
- * @param 		{Integer} 		[$words-letters-count=100] 		The max letters count of words that the animation will handle
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the bare styling for the anim="letters-in-reveal" classes
- * - ```[anim="letters-in-reveal"]```
- * @param 		{Integer} 		[$words-letters-count=100] 		The max letters count of words that the animation will handle
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the style styling for the anim="letters-in-reveal" classes
- * - ```[anim="letters-in-reveal"]```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * @name 	SAnimationComponent Classes
- * This file provide the mixins to generate animation classes
- */
-/**
- * Provide the classes for the anim="lines-in-boxes" animation
- * - ```[anim="lines-in-boxes"]```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-@keyframes lines-in-boxes {
-  0% {
-    width: 0;
-    transform: translateX(200vw);
-  }
-  49.99999% {
-    transform: translateX(200vw);
-  }
-  50% {
-    width: 100%;
-    left: 0;
-    transform: translateX(0);
-  }
-  100% {
-    width: 0;
-    left: 100%;
-    transform: translateX(0);
-  }
-}
-
-@keyframes lines-in-boxes-hover {
-  0% {
-    width: 0;
-    transform: translateX(200vw);
-  }
-  49.99999% {
-    transform: translateX(200vw);
-  }
-  50% {
-    width: 100%;
-    left: 0;
-    transform: translateX(0);
-  }
-  80% {
-    width: 0;
-    left: 100%;
-    transform: translateX(0);
-  }
-  100% {
-    width: 0;
-    left: 100%;
-    transform: translateX(0);
-  }
-}
-
-@keyframes lines-in-boxes-text {
-  0% {
-    transform: translateX(-200vw);
-  }
-  49.99999% {
-    transform: translateX(-200vw);
-  }
-  50% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-/**
-* Provide the bare styling for the anim="lines-in-boxes" classes
-* - ```[anim="lines-in-boxes"]```
-* @author 		Olivier Bossel <olivier.bossel@gmail.com>
-*/
-/**
-* Provide the style styling for the anim="lines-in-boxes" classes
-* - ```[anim="lines-in-boxes"]```
-* @author 		Olivier Bossel <olivier.bossel@gmail.com>
-*/
-/**
- * @name 	SAnimationComponent Classes
- * This file provide the mixins to generate animation classes
- */
-/**
- * Provide the classes for the anim="slide-in" animation
- * - ```[anim="slide-in-up"]```
- * - ```[anim="slide-in-right"]```
- * - ```[anim="slide-in-bottom"]```
- * - ```[anim="slide-in-left"]```
- * @param 	{List} 		[$directions=up right down left]		Specify the directions to generate the classes for
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the bare styling for the anim="slide-in" classes
- * - ```[anim="slide-in-up"]```
- * - ```[anim="slide-in-right"]```
- * - ```[anim="slide-in-bottom"]```
- * - ```[anim="slide-in-left"]```
- * @param 	{List} 		[$directions=up right down left]		Specify the directions to generate the classes for
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
-*/
-/**
- * Provide the style styling for the anim="slide-in" classes
- * - ```[anim="slide-in"]```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * @name 	SButtonComponent
- * Provide ability to generate buttons that follow your settings like colors, look and feel, etc...
- *
- * - ```.btn```
- * - ```.btn--block```
- * - ```.btn--{color}```
- * - ```.btn--outline```
- * - ```.btn--link```
- * - ```.btn:disabled```
- * - ```.btn--hover-{$color}```
- *
- * See:
- * - [Element level mixins API](./sass/_main.md)
- * - [Classes level mixins API](./sass/_classes.md)
- *
- * @example 	scss
- * // apply the button bare and style to my custom element
- * .my-cool-element {
- * 	\@include s-button();
- * }
- * // apply only the bare styling to my custom element
- * .my-cool-element {
- * 	\@include s-button-bare();
- * }
- * // apply only the style styling to my custom element
- * .my-cool-element {
- * 	\@include s-button-style();
- * }
-
- * // will print out classes for the button including bare and style part
- * \@include s-button-classes(
- * 	$colors : default primary secondary
- * );
- * // will print out classes for the button including only bare part
- * \@include s-button-classes-bare();
- * // will print out classes for the button including only style part
- * \@include s-button-classes-style(
- * 	$colors : default primary secondary
- * );
- *
- * @author 	Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * @name 	SButtonComponent
- * This file provide the mixins to create buttons
- */
-.btn, .btn--block {
-  display: inline-block;
-  border-style: solid;
-  border-width: 1px;
-  border-color: transparent;
-  cursor: pointer;
-  outline-width: 0;
-  -webkit-appearance: none;
-  line-height: 0;
-  text-decoration: none;
-  font-size: 1em;
-  user-select: none;
-}
-
-.btn:not(button):not(input), .btn--block:not(button):not(input) {
-  line-height: 0.9;
-}
-
-button {
-  line-height: 1;
-}
-
-/**
- * Apply the button css
- * @param 		{Number} 		[$modifiers=null] 			The modifiers that represent the button you want. Available : {color} outline link
- * @param 		{Integer}		[$state=null] 				The state of the button you want like. Available : disabled
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the button bare css
- * @param 		{Number} 		[$modifiers=null] 			The modifiers that represent the button you want. Available : {color} outline link
- * @param 		{Integer}		[$state=null] 				The state of the button you want like. Available : disabled
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the button style css
- * @param 		{Number} 		[$modifiers=null] 			The modifiers that represent the button you want. Available : {color} outline link
- * @param 		{Integer}		[$state=null] 				The state of the button you want like. Available : disabled
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * @name 	SButtonComponent Classes
- * This file provide the mixins to generate button classes
- */
-/**
- * Provide all the classes of the button component like .btn, .btn--outline, etc...
- * - ```.btn```
- * - ```.btn--{color}```
- * - ```.btn--outline```
- * - ```.btn--link```
- * - ```.btn--block```
- * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the bare styling for the buttons classes
- * - ```.btn```
- * - ```.btn--block```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the style styling for the buttons classes
- * - ```.btn--{color}```
- * - ```.btn--outline```
- * - ```.btn--link```
- * - ```.btn:disabled```
- * - ```.btn--hover-{$color}```
- * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * @name 	SCornerBadgeComponent
- * Provide ability to generate corner badges that follow your settings like colors.
- *
- * - ```.corner-badge```
- * - ```.corner-badge--tl```
- * - ```.corner-badge--tr```
- * - ```.corner-badge--bl```
- * - ```.corner-badge--br```
- * - ```.corner-badge--{color}```
- *
- * See:
- * - [Element level mixins API](./sass/_main.md)
- * - [Classes level mixins API](./sass/_classes.md)
- *
- * @example 	scss
- * // apply the corner badge bare and style to my custom element
- * .my-cool-element {
- * 	\@include s-corner-badge(primary tr);
- * }
- * // apply only the bare styling to my custom element
- * .my-cool-element {
- * 	\@include s-corner-badge-bare(tr);
- * }
- * // apply only the style styling to my custom element
- * .my-cool-element {
- * 	\@include s-corner-badge-style(primary);
- * }
-
- * // will print out classes for the corner badges including bare and style part
- * \@include s-corner-badge-classes(
- * 	$corners : tr tl br bl,
- * 	$colors : default primary secondary
- * );
- * // will print out classes for the button including only bare part
- * \@include s-button-classes-bare(
- * 	$corners : tr tl br bl
- * );
- * // will print out classes for the button including only style part
- * \@include s-button-classes-style(
- * 	$colors : default primary secondary
- * );
- *
- * @author 	Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * @name 	SCornerBadgeComponent
- * This file provide the mixins to create corner badges
- */
-/**
- * Apply the corner badge css
- * @param 		{Number} 		[$modifiers=default tr] 			The modifiers that represent the corner badge you want. Available : {color} tl tr bl br
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the corner badge bare css
- * @param 		{Number} 		[$modifiers=tr] 			The modifiers that represent the corner badge you want. Available : tl tr bl br
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the corner badge style css
- * @param 		{Number} 		[$modifiers=default] 			The modifiers that represent the corner badge you want. Available : {color}
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * @name 	SCornerBadgeComponent Classes
- * This file provide the mixins to generate corner badge classes
- */
-/**
- * Provide all the classes of the corner badge component like:
- * - ```.corner-badge```
- * - ```.corner-badge--tl```
- * - ```.corner-badge--tr```
- * - ```.corner-badge--bl```
- * - ```.corner-badge--br```
- * - ```.corner-badge--{color}```
- *
- * @param 		{List<String>} 		[$corners=tl tr bl br] 						The corners to generate
- * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide all the bare classes of the corner badge component like:
- * - ```.corner-badge```
- * - ```.corner-badge--tl```
- * - ```.corner-badge--tr```
- * - ```.corner-badge--bl```
- * - ```.corner-badge--br```
- *
- * @param 		{List<String>} 		[$corners=tl tr bl br] 						The corners to generate
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide all the style classes of the corner badge component like:
- * - ```.corner-badge--{color}```
- *
- * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * @name 	SDropdownComponent
- * Documentation coming soon...
- */
-/**
- * @name 	SFormComponent
- * Documentation coming soon...
- */
-/**
- * @name 	SFormComponent
- * This file provide the mixins and functions to create form elements
- */
-.s-select, .s-select .s-select__search-field {
-  display: inline-block;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  border: none;
-  outline: none;
-  width: 100%;
-  font-size: 1em;
-}
-
-.s-select, select[is="s-select"][color="default"] + .s-select, select[is="s-select"][color="primary"] + .s-select,
-.s-select--primary, select[is="s-select"][color="secondary"] + .s-select,
-.s-select--secondary {
-  border-width: 1px;
-  border-style: solid;
-}
-
-.s-select:disabled, select[is="s-select"][color="default"] + .s-select:disabled, select[is="s-select"][color="primary"] + .s-select:disabled,
-.s-select--primary:disabled, select[is="s-select"][color="secondary"] + .s-select:disabled,
-.s-select--secondary:disabled {
-  cursor: not-allowed;
-}
-
-/**
- * Set the styling for field sizes like padding, height, etc...
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Set the styling for field color like borders
- * @param 		{Color} 		$color 		The color wanted for the field
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the bare and style css for input field (text, email, etc...)
- * @param 		{Color} 		[$color=default] 		The color wanted for the field
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the bare css for input field (text, email, etc...)
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the style css for input field (text, email, etc...)
- * @param 		{Color} 		[$color=default] 		The color wanted for the field
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the bare and style css for textarea
- * @param 		{Color} 		[$color=default] 		The color wanted for the textarea
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Set the styling for textarea sizes like padding, etc...
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the bare css for textarea
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the style css for textarea
- * @param 		{Color} 		[$color=default] 		The color wanted for the textarea
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
-* Apply the bare and style css for select
-* @param 		{Color} 		[$color=default] 		The color wanted for the select
-* @author 		Olivier Bossel <olivier.bossel@gmail.com>
-*/
-/**
- * Set the styling for select colors like background arrow, etc...
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
-* Apply the bare css for select
-* @author 		Olivier Bossel <olivier.bossel@gmail.com>
-*/
-/**
-* Apply the style css for select
-* @param 		{Color} 		[$color=default] 		The color wanted for the select
-* @author 		Olivier Bossel <olivier.bossel@gmail.com>
-*/
-/**
-* Apply the bare and style css for form group
-* @author 		Olivier Bossel <olivier.bossel@gmail.com>
-*/
-/**
-* Apply the bare css for form group
-* @author 		Olivier Bossel <olivier.bossel@gmail.com>
-*/
-/**
-* Apply the style css for form group
-* @author 		Olivier Bossel <olivier.bossel@gmail.com>
-*/
-/**
-* Apply the bare and style css for form addon
-* @param 		{Color} 		[$color=default] 		The color wanted for the form addon
-* @author 		Olivier Bossel <olivier.bossel@gmail.com>
-*/
-/**
-* Apply the bare css for form group
-* @author 		Olivier Bossel <olivier.bossel@gmail.com>
-*/
-/**
-* Apply the bare and style css for form group
-* @param 		{Color} 		[$color=default] 		The color wanted for the select
-* @author 		Olivier Bossel <olivier.bossel@gmail.com>
-*/
-/**
- * @name 	SFormComponent Classes
- * This file provide the mixins to generate form classes
- */
-/**
- * Provide all the classes of the form component like .form-input, .form-textarea, etc...
- * - ```.form-input```
- * - ```.form-input--{color}```
- * - ```.form-textarea```
- * - ```.form-textarea--{color}```
- * - ```.form-select```
- * - ```.form-select--{color}```
- * - ```.form-group````
- * - ```.form-addon```
- * - ```.form-addon--{color}```
- * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide all the bare classes of the form component like .form-input, .form-textarea, etc...
- * - ```.form-input```
- * - ```.form-textarea```
- * - ```.form-select```
- * - ```.form-group````
- * - ```.form-addon```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide all the style classes of the form component like .form-input, .form-textarea, etc...
- * - ```.form-input```
- * - ```.form-input--{color}```
- * - ```.form-textarea```
- * - ```.form-textarea--{color}```
- * - ```.form-select```
- * - ```.form-select--{color}```
- * - ```.form-group````
- * - ```.form-addon```
- * - ```.form-addon--{color}```
- * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * @name 	SNavComponent
- * Documentation coming soon...
- */
-/**
- * @name 	STableComponent
- * Documentation coming soon...
- */
-/**
- * Print out the responsive style for a table.
- * This responsive style make the table display as block and take the "label" attribute on the td to display correctly the line label
- */
-/**
- * @name 	STableComponent Classes
- * This file provide the mixins to generate table classes
- */
-/**
- * Provide all the classes of the button component like .table, .table--striped, etc...
- * - ```.table```
- * - ```.table--striped```
- * - ```.table--bordered```
- * - ```.table--hover```
- * - ```.table--responsive```
- * - ```.table--responsive-overflow```
- * - ```.table--interactive```
- * - ```.table--middle```
- * - ```.table--center```
- *
- * @param 		{Color} 		[$colors=default primary secondary]	 		Specify the colors to generate
- * @param 		{String} 		[$modifiers=striped bordered hover responsive responsive-overflow interactive middle center] 		Specify the modifiers to generate
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide all the style classes of the button component like .table, .table--striped, etc...
- * - ```.table```
- * - ```.table--striped```
- * - ```.table--bordered```
- * - ```.table--hover```
- * - ```.table--responsive```
- * - ```.table--responsive-overflow```
- * - ```.table--interactive```
- * - ```.table--middle```
- * - ```.table--center```
- *
- * @param 		{Color} 		[$colors=default primary secondary]	 		Specify the colors to generate
- * @param 		{String} 		[$modifiers=striped bordered hover responsive responsive-overflow interactive middle center] 		Specify the modifiers to generate
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide all the bare classes of the button component like .table, .table--striped, etc...
- * - ```.table```
- * - ```.table--striped```
- * - ```.table--bordered```
- * - ```.table--hover```
- * - ```.table--responsive```
- * - ```.table--responsive-overflow```
- * - ```.table--interactive```
- * - ```.table--middle```
- * - ```.table--center```
- *
- * @param 		{String} 		[$modifiers=striped bordered hover responsive responsive-overflow interactive middle center] 		Specify the modifiers to generate
- *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * @name 	STypographyComponent
- * Provide ability to generate base typography classes for:
- * - Titles:
- * 	- ```.h1-h6```
- * 	- ```.tf h1-h6```
- * - Paragraphs
- * 	- ```.p```, ```.tf p```
- * 	- ```.p--lead```, ```.tf p.p--lead```
- * - Links
- * 	- ```.link```, ```.tf a```
- * - Inline text elements
- *  - ```.mark```, ```.tf mark```
- *  - ```.del```, ```.tf del```
- *  - ```.s```, ```.tf s```
- *  - ```.ins```, ```.tf ins```
- *  - ```.u```, ```.tf u```
- *  - ```.small```, ```.tf small```
- *  - ```.strong```, ```.tf strong```
- *  - ```.em```, ```.tf em```
- * - Lists
- * 	- ```.dl```, ```.tf dl```
- * 		- ```.dt```, ```.tf dt```
- * 		- ```.dd```, ```.tf dd```
- * 	- ```.ul```, ```.tf ul```
- * 		- ```.li```, ```.tf li```
- * 	- ```.ol```, ```.tf ol```
- * 		- ```.li```, ```.tf li```
- * - Captions
- * 	- ```.caption```, ```.tf caption```, ```.tf figcaption```
- * - Quotes
- * 	- ```.quote```, ```.tf quote```
- * 	- ```.blockquote```, ```.tf blockquote```
- *
- * See:
- * - [Element level mixins API](./sass/_main.md)
- * - [Classes level mixins API](./sass/_classes.md)
- *
- * @example 	scss
- * // apply the title bare and style to my custom element
- * h1 {
- * 	\@include s-typography-title(4em);
- * }
- * // apply only the bare styling to my custom title
- * h1 {
- * 	\@include s-typography-title-bare(4em);
- * }
- * // apply only the style styling to my custom title
- * h1 {
- * 	\@include s-typography-title-style(4em);
- * }
- *
- * // provide classes for all the typography elements
- * \@include s-typography-classes();
- *
- * @author 	Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * @name 	STypographyComponent
- * This file provide the mixins to create typography elements
- */
-/**
- * Apply the title css
- * @param 		{Number} 		$size 		The size wanted. If unitless, will use modular scale to calculate size
- * @param 		{Integer}		[$base=null] 		The base on which to calculate the modular scale if needed
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the title bare css
- * @param 		{Number} 		$size 				The size wanted. If unitless, will use modular scale to calculate size
- * @param 		{Integer}		[$base=null] 		The base on which to calculate the modular scale if needed
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the title style css
- * @param 		{Number} 		$size 				The size wanted. If unitless, will use modular scale to calculate size
- * @param 		{Integer}		[$base=null] 		The base on which to calculate the modular scale if needed
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the paragraph bare css
- * @param 		{Number} 		$size 				The size wanted
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the paragraph style css
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the link css
- * @param 		{Color} 		[$color=primary] 		The color used to style link
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the link bare css
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the link style css
- * @param 		{Color} 		[$color=primary] 		The color used to style link
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the inline-text css
- * @param 		{String} 		$tag 		The tag to use the style for
- * @param 		{Color} 		[$color=primary] 		The color used to style different inline text elements
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the inline-text bare css
- * @param 		{String} 		$tag 		The tag to use the style for
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the inline-text css
- * @param 		{String} 		$tag 		The tag to use the style for
- * @param 		{Color} 		[$color=primary] 		The color used to style different inline text elements
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the list css
- * @param 		{String|List} 		$tag 				The tag to style like "ul", "ol li" or "dl dt"
- * @param 		{Color} 			[$color=primary] 	The color used for styling bullets
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the list bare css
- * @param 		{String|List} 		$tag 				The tag to style like "ul", "ol li" or "dl dt"
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the list style css
- * @param 		{String|List} 		$tag 				The tag to style like "ul", "ol li" or "dl dt"
- * @param 		{Color} 			[$color=primary] 	The color used for styling bullets
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the caption css
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the caption bare css
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the caption style css
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the quote css
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the quote bare css
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Apply the quote style css
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * @name 	STypographyComponent Classes
- * This file provide the mixins to generate typography classes
- */
-/**
- * Provide all the classes of the typography component like titles, paragraphs, lists, etc..
- * @param 		{Color} 	[$color=primary] 		The main color used to generate the texts styles
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the styling for the titles classes:
- * - ```.h1-h6```
- * - ```.tf h1-h6```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the bare styling for the titles classes
- * - ```.h1-h6```
- * - ```.tf h1-h6```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the style styling for the titles classes
- * - ```.h1-h6```
- * - ```.tf h1-h6```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the styling for the paragraphs classes
- * - ```.p```, ```.tf p```
- * - ```.p--lead```, ```.tf p.p--lead```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the bare styling for the ```.p``` and ```.p--lead``` classes
- * - ```.p```, ```.tf p```
- * - ```.p--lead```, ```.tf p.p--lead```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the bare styling for the ```.p``` class
- * - ```.p```, ```.tf p```
- * - ```.p--lead```, ```.tf p.p--lead```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the styling for the links classes
- * - ```.link```, ```.tf a```
- * @param 		{Color} 		[$color=primary] 		The color used to style links
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the bare styling for the links classes
- * - ```.link```, ```.tf a```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the style styling for the links classes
- * - ```.link```, ```.tf a```
- * @param 		{Color} 		[$color=primary] 		The color used to style links
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the styling for the inline-text classes
- * - ```.mark```, ```.tf mark```
- * - ```.del```, ```.tf del```
- * - ```.s```, ```.tf s```
- * - ```.ins```, ```.tf ins```
- * - ```.u```, ```.tf u```
- * - ```.small```, ```.tf small```
- * - ```.strong```, ```.tf strong```
- * - ```.em```, ```.tf em```
- * @param 		{Color} 		[$color=primary] 		The color used to style different inline text elements
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the bare styling for the inline-text classes
- * - ```.mark```, ```.tf mark```
- * - ```.del```, ```.tf del```
- * - ```.s```, ```.tf s```
- * - ```.ins```, ```.tf ins```
- * - ```.u```, ```.tf u```
- * - ```.small```, ```.tf small```
- * - ```.strong```, ```.tf strong```
- * - ```.em```, ```.tf em```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the style styling for the inline-text classes
- * - ```.mark```, ```.tf mark```
- * - ```.del```, ```.tf del```
- * - ```.s```, ```.tf s```
- * - ```.ins```, ```.tf ins```
- * - ```.u```, ```.tf u```
- * - ```.small```, ```.tf small```
- * - ```.strong```, ```.tf strong```
- * - ```.em```, ```.tf em```
- * @param 		{Color} 		[$color=primary] 		The color used to style different inline text elements
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the styling for the lists classes
- * - ```.dl```, ```.tf dl```
- * 	- ```.dt```, ```.tf dt```
- * 	- ```.dd```, ```.tf dd```
- * - ```.ul```, ```.tf ul```
- * 	- ```.li```, ```.tf li```
- * - ```.ol```, ```.tf ol```
- * 	- ```.li```, ```.tf li```
- * @param 		{Color} 		[$color=primary] 		The color used to style bullets
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the bare styling for the lists classes
- * - ```.dl```, ```.tf dl```
- * 	- ```.dt```, ```.tf dt```
- * 	- ```.dd```, ```.tf dd```
- * - ```.ul```, ```.tf ul```
- * 	- ```.li```, ```.tf li```
- * - ```.ol```, ```.tf ol```
- * 	- ```.li```, ```.tf li```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the style styling for the lists classes
- * - ```.dl```, ```.tf dl```
- * 	- ```.dt```, ```.tf dt```
- * 	- ```.dd```, ```.tf dd```
- * - ```.ul```, ```.tf ul```
- * 	- ```.li```, ```.tf li```
- * - ```.ol```, ```.tf ol```
- * 	- ```.li```, ```.tf li```
- * @param 		{Color} 		[$color=primary] 		The color used to style bullets
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the styling for the captions classes
- * - ```.caption```, ```.figcaption```, ```.tf caption```, ```.tf figcaption```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the bare styling for the captions classes
- * - ```.caption```, ```.figcaption```, ```.tf caption```, ```.tf figcaption```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the style styling for the captions classes
- * - ```.caption```, ```.figcaption```, ```.tf caption```, ```.tf figcaption```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the styling for the quotes classes
- * - ```.quote```, ```.tf quote```
- * - ```.blockquote```, ```.tf blockquote```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the bare styling for the quotes classes
- * - ```.quote```, ```.tf quote```
- * - ```.blockquote```, ```.tf blockquote```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
- * Provide the style styling for the quotes classes
- * - ```.quote```, ```.tf quote```
- * - ```.blockquote```, ```.tf blockquote```
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
- */
-/**
  * Setup
  * Setup all the different parts/modules/libraries.
  */
@@ -4737,79 +3715,7 @@ button {
 	 * }
 	 * </style>
 	 * <div class="gridle-styleguide .container">
-	 *  
-<div class="gridle-styleguide row row-debug">
-<div class="gridle-styleguide gr-1">
-.gr-1
-</div>
-</div>
- 
-<div class="gridle-styleguide row row-debug">
-<div class="gridle-styleguide gr-2">
-.gr-2
-</div>
-</div>
- 
-<div class="gridle-styleguide row row-debug">
-<div class="gridle-styleguide gr-3">
-.gr-3
-</div>
-</div>
- 
-<div class="gridle-styleguide row row-debug">
-<div class="gridle-styleguide gr-4">
-.gr-4
-</div>
-</div>
- 
-<div class="gridle-styleguide row row-debug">
-<div class="gridle-styleguide gr-5">
-.gr-5
-</div>
-</div>
- 
-<div class="gridle-styleguide row row-debug">
-<div class="gridle-styleguide gr-6">
-.gr-6
-</div>
-</div>
- 
-<div class="gridle-styleguide row row-debug">
-<div class="gridle-styleguide gr-7">
-.gr-7
-</div>
-</div>
- 
-<div class="gridle-styleguide row row-debug">
-<div class="gridle-styleguide gr-8">
-.gr-8
-</div>
-</div>
- 
-<div class="gridle-styleguide row row-debug">
-<div class="gridle-styleguide gr-9">
-.gr-9
-</div>
-</div>
- 
-<div class="gridle-styleguide row row-debug">
-<div class="gridle-styleguide gr-10">
-.gr-10
-</div>
-</div>
- 
-<div class="gridle-styleguide row row-debug">
-<div class="gridle-styleguide gr-11">
-.gr-11
-</div>
-</div>
- 
-<div class="gridle-styleguide row row-debug">
-<div class="gridle-styleguide gr-12">
-.gr-12
-</div>
-</div>
-
+	 *   <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-1"> .gr-1 </div> </div>   <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-2"> .gr-2 </div> </div>   <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-3"> .gr-3 </div> </div>   <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-4"> .gr-4 </div> </div>   <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-5"> .gr-5 </div> </div>   <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-6"> .gr-6 </div> </div>   <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-7"> .gr-7 </div> </div>   <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-8"> .gr-8 </div> </div>   <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-9"> .gr-9 </div> </div>   <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-10"> .gr-10 </div> </div>   <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-11"> .gr-11 </div> </div>   <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-12"> .gr-12 </div> </div> 
 	 * </div>
 	 */
 .gr-0 {
@@ -5425,7 +4331,7 @@ body {
   left: 0;
   width: 100%;
   height: 99999px;
-  background: linear-gradient(to right, transparent 50%, rgba(0, 0, 0, 0.02) 50%);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.02) 50%);
   background-size: 16.66667% 100%;
   z-index: 99999;
 }
@@ -5559,7 +4465,7 @@ table {
 		 * @display 	color
 		 */
 .s-settings:after {
-  content: '{"unit": "rem", "reset": true, "border-box": true, "sizes": {"smaller": 0.3, "small": 0.6, "default": 1, "medium": 1.4, "big": 2, "bigger": 3}, "typography": {"font-family": "default", "font-size": "14px", "font-sizes": null, "line-letters-count": 55, "font-format": {"eot": "embedded-opentype", "woff2": "woff2", "woff": "woff", "ttf": "truetype", "otf": "opentype", "svg": "svg", "svgz": "svgz"}}, "look-and-feel": {"border-radius": 0, "padding-vertical": "1.4em", "padding-horizontal": "0.8em", "disabled-opacity": 0.5, "line-height": 1.4}, "spaces": {"default": "1rem"}, "colors": {"default": {"color": "#848e91"}, "title": {"color": "#2b3438"}, "text": {"color": "default"}, "link": {"color": "primary"}, "primary": {"color": "#f2bc2b"}, "secondary": {"color": "#2b3438"}, "success": {"color": "#5cb85c"}, "warning": {"color": "#f0ad4e"}, "error": {"color": "#d9534f"}, "info": {"color": "#2199e8"}, "border": {"color": "#e5e9ea"}}, "modular-scale": {"base": "1rem", "ratio": 1.33}, "text-format": {"scope-class": "tf"}, "vertical-rhythme": {"enabled": true, "scope-class": "vr"}, "BEM": {"standelone-modifier": false, "element-separator": "__", "modifier-separator": "--"}, "fonts": {"default": {"font-family": ["Helvetica Neue", "Helvetica", "Verdana", "Arial", "sans-serif"], "font-weight": "normal", "cap-height": 0.65}, "quote": {"font-family": ["Palatino", "Times", "Georgia", "serif"], "font-weight": "normal", "cap-height": 0.65}, "code": {"font-family": ["Menlo", "Monaco", "Consolas", "Courier New", "monospace"], "font-weight": "normal", "cap-height": 0.65}}, "filters": {"drop-shadow": "drop-shadow(rgba(0, 0, 0, 0.2) 0 0 10px)"}, "transitions": {"fast": ["all", "0.1s", "ease-in-out", "0s"], "default": ["all", "0.2s", "ease-in-out", "0s"], "slow": ["all", "0.5s", "ease-in-out", "0s"]}}';
+  content: '{"unit": "rem", "reset": true, "border-box": true, "sizes": {"smaller": 0.3, "small": 0.6, "default": 1, "medium": 1.4, "big": 2, "bigger": 3}, "typography": {"font-family": "default", "font-size": "14px", "font-sizes": null, "line-letters-count": 55, "font-format": {"eot": "embedded-opentype", "woff2": "woff2", "woff": "woff", "ttf": "truetype", "otf": "opentype", "svg": "svg", "svgz": "svgz"}}, "look-and-feel": {"border-radius": 0, "padding-vertical": "1.4em", "padding-horizontal": "0.8em", "disabled-opacity": 0.5, "line-height": 1.4}, "spaces": {"default": "1rem"}, "colors": {"default": {"color": "#848e91"}, "title": {"color": "#2b3438"}, "text": {"color": "default"}, "link": {"color": "primary"}, "primary": {"color": "#f2bc2b"}, "secondary": {"color": "#2b3438"}, "success": {"color": "#5cb85c"}, "warning": {"color": "#f0ad4e"}, "error": {"color": "#d9534f"}, "info": {"color": "#2199e8"}, "border": {"color": "#e5e9ea"}}, "modular-scale": {"base": "1rem", "ratio": 1.33}, "text-format": {"scope-class": "tf"}, "vertical-rhythm": {"scope-class": "vr"}, "fonts": {"default": {"font-family": ["Helvetica Neue", "Helvetica", "Verdana", "Arial", "sans-serif"], "font-weight": "normal", "cap-height": 0.65}, "quote": {"font-family": ["Palatino", "Times", "Georgia", "serif"], "font-weight": "normal", "cap-height": 0.65}, "code": {"font-family": ["Menlo", "Monaco", "Consolas", "Courier New", "monospace"], "font-weight": "normal", "cap-height": 0.65}}, "filters": {"drop-shadow": "drop-shadow(rgba(0, 0, 0, 0.2) 0 0 10px)"}, "transitions": {"fast": ["all", "0.1s", "ease-in-out", "0s"], "default": ["all", "0.2s", "ease-in-out", "0s"], "slow": ["all", "0.5s", "ease-in-out", "0s"]}}';
   display: none;
 }
 
@@ -7019,6 +5925,277 @@ body {
 }
 
 /**
+ * @name 	STypographyComponent
+ * This file provide the mixins to create typography elements
+ */
+/**
+ * Apply the title css
+ * @param 		{Number} 		$size 		The size wanted. If unitless, will use modular scale to calculate size
+ * @param 		{Integer}		[$base=null] 		The base on which to calculate the modular scale if needed
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the title bare css
+ * @param 		{Number} 		$size 				The size wanted. If unitless, will use modular scale to calculate size
+ * @param 		{Integer}		[$base=null] 		The base on which to calculate the modular scale if needed
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the title style css
+ * @param 		{Number} 		$size 				The size wanted. If unitless, will use modular scale to calculate size
+ * @param 		{Integer}		[$base=null] 		The base on which to calculate the modular scale if needed
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the paragraph bare css
+ * @param 		{Number} 		$size 				The size wanted
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the paragraph style css
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the link css
+ * @param 		{Color} 		[$color=primary] 		The color used to style link
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the link bare css
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the link style css
+ * @param 		{Color} 		[$color=primary] 		The color used to style link
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the inline-text css
+ * @param 		{String} 		$tag 		The tag to use the style for
+ * @param 		{Color} 		[$color=primary] 		The color used to style different inline text elements
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the inline-text bare css
+ * @param 		{String} 		$tag 		The tag to use the style for
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the inline-text css
+ * @param 		{String} 		$tag 		The tag to use the style for
+ * @param 		{Color} 		[$color=primary] 		The color used to style different inline text elements
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the list css
+ * @param 		{String|List} 		$tag 				The tag to style like "ul", "ol li" or "dl dt"
+ * @param 		{Color} 			[$color=primary] 	The color used for styling bullets
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the list bare css
+ * @param 		{String|List} 		$tag 				The tag to style like "ul", "ol li" or "dl dt"
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the list style css
+ * @param 		{String|List} 		$tag 				The tag to style like "ul", "ol li" or "dl dt"
+ * @param 		{Color} 			[$color=primary] 	The color used for styling bullets
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the caption css
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the caption bare css
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the caption style css
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the quote css
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the quote bare css
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the quote style css
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * @name 	STypographyComponent Classes
+ * This file provide the mixins to generate typography classes
+ */
+/**
+ * Provide all the classes of the typography component like titles, paragraphs, lists, etc..
+ * @param 		{Color} 	[$color=primary] 		The main color used to generate the texts styles
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the styling for the titles classes:
+ * - ```.h1-h6```
+ * - ```.tf h1-h6```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the bare styling for the titles classes
+ * - ```.h1-h6```
+ * - ```.tf h1-h6```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the style styling for the titles classes
+ * - ```.h1-h6```
+ * - ```.tf h1-h6```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the styling for the paragraphs classes
+ * - ```.p```, ```.tf p```
+ * - ```.p--lead```, ```.tf p.p--lead```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the bare styling for the ```.p``` and ```.p--lead``` classes
+ * - ```.p```, ```.tf p```
+ * - ```.p--lead```, ```.tf p.p--lead```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the bare styling for the ```.p``` class
+ * - ```.p```, ```.tf p```
+ * - ```.p--lead```, ```.tf p.p--lead```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the styling for the links classes
+ * - ```.link```, ```.tf a```
+ * @param 		{Color} 		[$color=primary] 		The color used to style links
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the bare styling for the links classes
+ * - ```.link```, ```.tf a```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the style styling for the links classes
+ * - ```.link```, ```.tf a```
+ * @param 		{Color} 		[$color=primary] 		The color used to style links
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the styling for the inline-text classes
+ * - ```.mark```, ```.tf mark```
+ * - ```.del```, ```.tf del```
+ * - ```.s```, ```.tf s```
+ * - ```.ins```, ```.tf ins```
+ * - ```.u```, ```.tf u```
+ * - ```.small```, ```.tf small```
+ * - ```.strong```, ```.tf strong```
+ * - ```.em```, ```.tf em```
+ * @param 		{Color} 		[$color=primary] 		The color used to style different inline text elements
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the bare styling for the inline-text classes
+ * - ```.mark```, ```.tf mark```
+ * - ```.del```, ```.tf del```
+ * - ```.s```, ```.tf s```
+ * - ```.ins```, ```.tf ins```
+ * - ```.u```, ```.tf u```
+ * - ```.small```, ```.tf small```
+ * - ```.strong```, ```.tf strong```
+ * - ```.em```, ```.tf em```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the style styling for the inline-text classes
+ * - ```.mark```, ```.tf mark```
+ * - ```.del```, ```.tf del```
+ * - ```.s```, ```.tf s```
+ * - ```.ins```, ```.tf ins```
+ * - ```.u```, ```.tf u```
+ * - ```.small```, ```.tf small```
+ * - ```.strong```, ```.tf strong```
+ * - ```.em```, ```.tf em```
+ * @param 		{Color} 		[$color=primary] 		The color used to style different inline text elements
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the styling for the lists classes
+ * - ```.dl```, ```.tf dl```
+ * 	- ```.dt```, ```.tf dt```
+ * 	- ```.dd```, ```.tf dd```
+ * - ```.ul```, ```.tf ul```
+ * 	- ```.li```, ```.tf li```
+ * - ```.ol```, ```.tf ol```
+ * 	- ```.li```, ```.tf li```
+ * @param 		{Color} 		[$color=primary] 		The color used to style bullets
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the bare styling for the lists classes
+ * - ```.dl```, ```.tf dl```
+ * 	- ```.dt```, ```.tf dt```
+ * 	- ```.dd```, ```.tf dd```
+ * - ```.ul```, ```.tf ul```
+ * 	- ```.li```, ```.tf li```
+ * - ```.ol```, ```.tf ol```
+ * 	- ```.li```, ```.tf li```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the style styling for the lists classes
+ * - ```.dl```, ```.tf dl```
+ * 	- ```.dt```, ```.tf dt```
+ * 	- ```.dd```, ```.tf dd```
+ * - ```.ul```, ```.tf ul```
+ * 	- ```.li```, ```.tf li```
+ * - ```.ol```, ```.tf ol```
+ * 	- ```.li```, ```.tf li```
+ * @param 		{Color} 		[$color=primary] 		The color used to style bullets
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the styling for the captions classes
+ * - ```.caption```, ```.figcaption```, ```.tf caption```, ```.tf figcaption```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the bare styling for the captions classes
+ * - ```.caption```, ```.figcaption```, ```.tf caption```, ```.tf figcaption```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the style styling for the captions classes
+ * - ```.caption```, ```.figcaption```, ```.tf caption```, ```.tf figcaption```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the styling for the quotes classes
+ * - ```.quote```, ```.tf quote```
+ * - ```.blockquote```, ```.tf blockquote```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the bare styling for the quotes classes
+ * - ```.quote```, ```.tf quote```
+ * - ```.blockquote```, ```.tf blockquote```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide the style styling for the quotes classes
+ * - ```.quote```, ```.tf quote```
+ * - ```.blockquote```, ```.tf blockquote```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
 	 * @name 	```.h1```
 	 * h1 title styling
 	 * @styleguide 	Typography / Titles
@@ -7115,44 +6292,62 @@ body {
 }
 
 h1.vr,
-.vr h1, .documentation blockquote h1, h2.vr,
-.vr h2, .documentation blockquote h2, h3.vr,
-.vr h3, .documentation blockquote h3, h4.vr,
-.vr h4, .documentation blockquote h4, h5.vr,
-.vr h5, .documentation blockquote h5, h6.vr,
-.vr h6, .documentation blockquote h6,
+.vr h1,
+.documentation blockquote h1, h2.vr,
+.vr h2,
+.documentation blockquote h2, h3.vr,
+.vr h3,
+.documentation blockquote h3, h4.vr,
+.vr h4,
+.documentation blockquote h4, h5.vr,
+.vr h5,
+.documentation blockquote h5, h6.vr,
+.vr h6,
+.documentation blockquote h6,
 .h1.vr,
 .documentation blockquote.h1,
-.vr
-.h1,
-.documentation blockquote
-.h1, .h2.vr, .documentation blockquote.h2,
-.vr .h2, .documentation blockquote .h2, .h3.vr, .documentation blockquote.h3,
-.vr .h3, .documentation blockquote .h3, .h4.vr, .documentation blockquote.h4,
-.vr .h4, .documentation blockquote .h4, .h5.vr, .documentation blockquote.h5,
-.vr .h5, .documentation blockquote .h5, .h6.vr, .documentation blockquote.h6,
-.vr .h6, .documentation blockquote .h6 {
+.vr .h1,
+.documentation blockquote .h1, .h2.vr, .documentation blockquote.h2,
+.vr .h2,
+.documentation blockquote .h2, .h3.vr, .documentation blockquote.h3,
+.vr .h3,
+.documentation blockquote .h3, .h4.vr, .documentation blockquote.h4,
+.vr .h4,
+.documentation blockquote .h4, .h5.vr, .documentation blockquote.h5,
+.vr .h5,
+.documentation blockquote .h5, .h6.vr, .documentation blockquote.h6,
+.vr .h6,
+.documentation blockquote .h6 {
   margin-bottom: 1rem;
 }
 
 h1.vr:last-child,
-.vr h1:last-child, .documentation blockquote h1:last-child, h2.vr:last-child,
-.vr h2:last-child, .documentation blockquote h2:last-child, h3.vr:last-child,
-.vr h3:last-child, .documentation blockquote h3:last-child, h4.vr:last-child,
-.vr h4:last-child, .documentation blockquote h4:last-child, h5.vr:last-child,
-.vr h5:last-child, .documentation blockquote h5:last-child, h6.vr:last-child,
-.vr h6:last-child, .documentation blockquote h6:last-child,
+.vr h1:last-child,
+.documentation blockquote h1:last-child, h2.vr:last-child,
+.vr h2:last-child,
+.documentation blockquote h2:last-child, h3.vr:last-child,
+.vr h3:last-child,
+.documentation blockquote h3:last-child, h4.vr:last-child,
+.vr h4:last-child,
+.documentation blockquote h4:last-child, h5.vr:last-child,
+.vr h5:last-child,
+.documentation blockquote h5:last-child, h6.vr:last-child,
+.vr h6:last-child,
+.documentation blockquote h6:last-child,
 .h1.vr:last-child,
 .documentation blockquote.h1:last-child,
-.vr
-.h1:last-child,
-.documentation blockquote
-.h1:last-child, .h2.vr:last-child, .documentation blockquote.h2:last-child,
-.vr .h2:last-child, .documentation blockquote .h2:last-child, .h3.vr:last-child, .documentation blockquote.h3:last-child,
-.vr .h3:last-child, .documentation blockquote .h3:last-child, .h4.vr:last-child, .documentation blockquote.h4:last-child,
-.vr .h4:last-child, .documentation blockquote .h4:last-child, .h5.vr:last-child, .documentation blockquote.h5:last-child,
-.vr .h5:last-child, .documentation blockquote .h5:last-child, .h6.vr:last-child, .documentation blockquote.h6:last-child,
-.vr .h6:last-child, .documentation blockquote .h6:last-child {
+.vr .h1:last-child,
+.documentation blockquote .h1:last-child, .h2.vr:last-child, .documentation blockquote.h2:last-child,
+.vr .h2:last-child,
+.documentation blockquote .h2:last-child, .h3.vr:last-child, .documentation blockquote.h3:last-child,
+.vr .h3:last-child,
+.documentation blockquote .h3:last-child, .h4.vr:last-child, .documentation blockquote.h4:last-child,
+.vr .h4:last-child,
+.documentation blockquote .h4:last-child, .h5.vr:last-child, .documentation blockquote.h5:last-child,
+.vr .h5:last-child,
+.documentation blockquote .h5:last-child, .h6.vr:last-child, .documentation blockquote.h6:last-child,
+.vr .h6:last-child,
+.documentation blockquote .h6:last-child {
   margin-bottom: 0;
 }
 
@@ -7161,10 +6356,10 @@ h1.vr:last-child,
 	 * Default paragraph styling
 	 * @styleguide 	Typography / Paragraphs
 	 * @example 	html
-	 * <p class="p vr">
+	 * <p class="p ">
 	 * 	Duis gravida justo at urna interdum blandit. Sed venenatis, eros dictum gravida dictum, mauris sapien feugiat libero, at fermentum quam tellus dignissim nunc. Donec eu rutrum dui, in rhoncus lacus.
 	 * </p>
-	 * <div class="tf vr">
+	 * <div class="tf ">
 	 * 	<p>
 	 * 		Duis gravida justo at urna interdum blandit. Sed venenatis, eros dictum gravida dictum, mauris sapien feugiat libero, at fermentum quam tellus dignissim nunc. Donec eu rutrum dui, in rhoncus lacus.
 	 *   </p>
@@ -7181,10 +6376,10 @@ h1.vr:last-child,
 	 * Lead paragraph styling
 	 * @styleguide 	Typography / Paragraphs
 	 * @example 	html
-	 * <p class="p p--lead vr">
+	 * <p class="p p--lead ">
 	 * 	Duis gravida justo at urna interdum blandit. Sed venenatis, eros dictum gravida dictum, mauris sapien feugiat libero, at fermentum quam tellus dignissim nunc. Donec eu rutrum dui, in rhoncus lacus.
 	 * </p>
-	 * <div class="tf vr">
+	 * <div class="tf ">
 	 * 	<p class="lead">
 	 * 		Duis gravida justo at urna interdum blandit. Sed venenatis, eros dictum gravida dictum, mauris sapien feugiat libero, at fermentum quam tellus dignissim nunc. Donec eu rutrum dui, in rhoncus lacus.
 	 *   </p>
@@ -7192,23 +6387,29 @@ h1.vr:last-child,
 	 */
 .p--lead, .documentation h1 + p,
 .tf p.lead {
-  font-size: 1.3em;
+  font-size: 1.3em !important;
   font-weight: lighter;
 }
 
 p.vr,
-.vr p, .documentation blockquote p, .p.vr, .documentation h1 + p.vr, .documentation blockquote.p,
-.vr .p, .documentation blockquote .p,
-.vr .documentation h1 + p, .documentation
-.vr h1 + p, .documentation blockquote h1 + p {
+.vr p,
+.documentation blockquote p, .p.vr, .documentation h1 + p.vr, .documentation blockquote.p,
+.vr .p,
+.documentation blockquote .p,
+.vr .documentation h1 + p,
+.documentation .vr h1 + p,
+.documentation blockquote h1 + p {
   margin-bottom: 1rem;
 }
 
 p.vr:last-child,
-.vr p:last-child, .documentation blockquote p:last-child, .p.vr:last-child, .documentation h1 + p.vr:last-child, .documentation blockquote.p:last-child,
-.vr .p:last-child, .documentation blockquote .p:last-child,
-.vr .documentation h1 + p:last-child, .documentation
-.vr h1 + p:last-child, .documentation blockquote h1 + p:last-child {
+.vr p:last-child,
+.documentation blockquote p:last-child, .p.vr:last-child, .documentation h1 + p.vr:last-child, .documentation blockquote.p:last-child,
+.vr .p:last-child,
+.documentation blockquote .p:last-child,
+.vr .documentation h1 + p:last-child,
+.documentation .vr h1 + p:last-child,
+.documentation blockquote h1 + p:last-child {
   margin-bottom: 0;
 }
 
@@ -7497,95 +6698,133 @@ p.vr:last-child,
 }
 
 dl.vr,
-.vr dl, .documentation blockquote dl, ul.vr,
-.vr ul, .documentation blockquote ul, ol.vr,
-.vr ol, .documentation blockquote ol,
+.vr dl,
+.documentation blockquote dl, ul.vr,
+.vr ul,
+.documentation blockquote ul, ol.vr,
+.vr ol,
+.documentation blockquote ol,
 .dl.vr,
 .documentation blockquote.dl,
-.vr
-.dl,
-.documentation blockquote
-.dl, .ul.vr, .documentation blockquote.ul,
-.vr .ul, .documentation blockquote .ul, .ol.vr, .documentation blockquote.ol,
-.vr .ol, .documentation blockquote .ol {
+.vr .dl,
+.documentation blockquote .dl, .ul.vr, .documentation blockquote.ul,
+.vr .ul,
+.documentation blockquote .ul, .ol.vr, .documentation blockquote.ol,
+.vr .ol,
+.documentation blockquote .ol {
   margin-bottom: 1rem;
 }
 
 dl.vr:last-child,
-.vr dl:last-child, .documentation blockquote dl:last-child, ul.vr:last-child,
-.vr ul:last-child, .documentation blockquote ul:last-child, ol.vr:last-child,
-.vr ol:last-child, .documentation blockquote ol:last-child,
+.vr dl:last-child,
+.documentation blockquote dl:last-child, ul.vr:last-child,
+.vr ul:last-child,
+.documentation blockquote ul:last-child, ol.vr:last-child,
+.vr ol:last-child,
+.documentation blockquote ol:last-child,
 .dl.vr:last-child,
 .documentation blockquote.dl:last-child,
-.vr
-.dl:last-child,
-.documentation blockquote
-.dl:last-child, .ul.vr:last-child, .documentation blockquote.ul:last-child,
-.vr .ul:last-child, .documentation blockquote .ul:last-child, .ol.vr:last-child, .documentation blockquote.ol:last-child,
-.vr .ol:last-child, .documentation blockquote .ol:last-child {
+.vr .dl:last-child,
+.documentation blockquote .dl:last-child, .ul.vr:last-child, .documentation blockquote.ul:last-child,
+.vr .ul:last-child,
+.documentation blockquote .ul:last-child, .ol.vr:last-child, .documentation blockquote.ol:last-child,
+.vr .ol:last-child,
+.documentation blockquote .ol:last-child {
   margin-bottom: 0;
 }
 
 dl.vr dl, dl.vr ul, dl.vr ol,
 dl.vr .dl, dl.vr .ul, dl.vr .ol,
-.vr dl dl, .documentation blockquote dl dl,
-.vr dl ul, .documentation blockquote dl ul,
-.vr dl ol, .documentation blockquote dl ol,
-.vr dl .dl, .documentation blockquote dl .dl,
-.vr dl .ul, .documentation blockquote dl .ul,
-.vr dl .ol, .documentation blockquote dl .ol, ul.vr dl, ul.vr ul, ul.vr ol,
+.vr dl dl,
+.documentation blockquote dl dl,
+.vr dl ul,
+.documentation blockquote dl ul,
+.vr dl ol,
+.documentation blockquote dl ol,
+.vr dl .dl,
+.documentation blockquote dl .dl,
+.vr dl .ul,
+.documentation blockquote dl .ul,
+.vr dl .ol,
+.documentation blockquote dl .ol, ul.vr dl, ul.vr ul, ul.vr ol,
 ul.vr .dl, ul.vr .ul, ul.vr .ol,
-.vr ul dl, .documentation blockquote ul dl,
-.vr ul ul, .documentation blockquote ul ul,
-.vr ul ol, .documentation blockquote ul ol,
-.vr ul .dl, .documentation blockquote ul .dl,
-.vr ul .ul, .documentation blockquote ul .ul,
-.vr ul .ol, .documentation blockquote ul .ol, ol.vr dl, ol.vr ul, ol.vr ol,
+.vr ul dl,
+.documentation blockquote ul dl,
+.vr ul ul,
+.documentation blockquote ul ul,
+.vr ul ol,
+.documentation blockquote ul ol,
+.vr ul .dl,
+.documentation blockquote ul .dl,
+.vr ul .ul,
+.documentation blockquote ul .ul,
+.vr ul .ol,
+.documentation blockquote ul .ol, ol.vr dl, ol.vr ul, ol.vr ol,
 ol.vr .dl, ol.vr .ul, ol.vr .ol,
-.vr ol dl, .documentation blockquote ol dl,
-.vr ol ul, .documentation blockquote ol ul,
-.vr ol ol, .documentation blockquote ol ol,
-.vr ol .dl, .documentation blockquote ol .dl,
-.vr ol .ul, .documentation blockquote ol .ul,
-.vr ol .ol, .documentation blockquote ol .ol,
-.dl.vr dl, .documentation blockquote.dl dl,
-.dl.vr ul, .documentation blockquote.dl ul,
-.dl.vr ol, .documentation blockquote.dl ol,
-.dl.vr .dl, .documentation blockquote.dl .dl,
-.dl.vr .ul, .documentation blockquote.dl .ul,
-.dl.vr .ol, .documentation blockquote.dl .ol,
-.vr
-.dl dl, .documentation blockquote
-.dl dl,
-.vr
-.dl ul, .documentation blockquote
-.dl ul,
-.vr
-.dl ol, .documentation blockquote
-.dl ol,
-.vr
-.dl .dl, .documentation blockquote
-.dl .dl,
-.vr
-.dl .ul, .documentation blockquote
-.dl .ul,
-.vr
-.dl .ol, .documentation blockquote
-.dl .ol, .ul.vr dl, .documentation blockquote.ul dl, .ul.vr ul, .documentation blockquote.ul ul, .ul.vr ol, .documentation blockquote.ul ol,
-.ul.vr .dl, .documentation blockquote.ul .dl, .ul.vr .ul, .documentation blockquote.ul .ul, .ul.vr .ol, .documentation blockquote.ul .ol,
-.vr .ul dl, .documentation blockquote .ul dl,
-.vr .ul ul, .documentation blockquote .ul ul,
-.vr .ul ol, .documentation blockquote .ul ol,
-.vr .ul .dl, .documentation blockquote .ul .dl,
-.vr .ul .ul, .documentation blockquote .ul .ul,
-.vr .ul .ol, .documentation blockquote .ul .ol, .ol.vr dl, .documentation blockquote.ol dl, .ol.vr ul, .documentation blockquote.ol ul, .ol.vr ol, .documentation blockquote.ol ol,
-.ol.vr .dl, .documentation blockquote.ol .dl, .ol.vr .ul, .documentation blockquote.ol .ul, .ol.vr .ol, .documentation blockquote.ol .ol,
-.vr .ol dl, .documentation blockquote .ol dl,
-.vr .ol ul, .documentation blockquote .ol ul,
-.vr .ol ol, .documentation blockquote .ol ol,
-.vr .ol .dl, .documentation blockquote .ol .dl,
-.vr .ol .ul, .documentation blockquote .ol .ul,
-.vr .ol .ol, .documentation blockquote .ol .ol {
+.vr ol dl,
+.documentation blockquote ol dl,
+.vr ol ul,
+.documentation blockquote ol ul,
+.vr ol ol,
+.documentation blockquote ol ol,
+.vr ol .dl,
+.documentation blockquote ol .dl,
+.vr ol .ul,
+.documentation blockquote ol .ul,
+.vr ol .ol,
+.documentation blockquote ol .ol,
+.dl.vr dl,
+.documentation blockquote.dl dl,
+.dl.vr ul,
+.documentation blockquote.dl ul,
+.dl.vr ol,
+.documentation blockquote.dl ol,
+.dl.vr .dl,
+.documentation blockquote.dl .dl,
+.dl.vr .ul,
+.documentation blockquote.dl .ul,
+.dl.vr .ol,
+.documentation blockquote.dl .ol,
+.vr .dl dl,
+.documentation blockquote .dl dl,
+.vr .dl ul,
+.documentation blockquote .dl ul,
+.vr .dl ol,
+.documentation blockquote .dl ol,
+.vr .dl .dl,
+.documentation blockquote .dl .dl,
+.vr .dl .ul,
+.documentation blockquote .dl .ul,
+.vr .dl .ol,
+.documentation blockquote .dl .ol, .ul.vr dl, .documentation blockquote.ul dl, .ul.vr ul, .documentation blockquote.ul ul, .ul.vr ol, .documentation blockquote.ul ol,
+.ul.vr .dl,
+.documentation blockquote.ul .dl, .ul.vr .ul, .documentation blockquote.ul .ul, .ul.vr .ol, .documentation blockquote.ul .ol,
+.vr .ul dl,
+.documentation blockquote .ul dl,
+.vr .ul ul,
+.documentation blockquote .ul ul,
+.vr .ul ol,
+.documentation blockquote .ul ol,
+.vr .ul .dl,
+.documentation blockquote .ul .dl,
+.vr .ul .ul,
+.documentation blockquote .ul .ul,
+.vr .ul .ol,
+.documentation blockquote .ul .ol, .ol.vr dl, .documentation blockquote.ol dl, .ol.vr ul, .documentation blockquote.ol ul, .ol.vr ol, .documentation blockquote.ol ol,
+.ol.vr .dl,
+.documentation blockquote.ol .dl, .ol.vr .ul, .documentation blockquote.ol .ul, .ol.vr .ol, .documentation blockquote.ol .ol,
+.vr .ol dl,
+.documentation blockquote .ol dl,
+.vr .ol ul,
+.documentation blockquote .ol ul,
+.vr .ol ol,
+.documentation blockquote .ol ol,
+.vr .ol .dl,
+.documentation blockquote .ol .dl,
+.vr .ol .ul,
+.documentation blockquote .ol .ul,
+.vr .ol .ol,
+.documentation blockquote .ol .ol {
   margin-top: .5em;
   margin-bottom: .5em;
 }
@@ -8100,9 +7339,11 @@ s-interactive-demo s-codemirror {
 }
 
 .table.vr, .documentation table.vr, .documentation blockquote.table,
-.vr .table, .documentation blockquote .table,
-.vr .documentation table, .documentation
-.vr table, .documentation blockquote table {
+.vr .table,
+.documentation blockquote .table,
+.vr .documentation table,
+.documentation .vr table,
+.documentation blockquote table {
   margin-bottom: 2em;
 }
 
@@ -8111,18 +7352,21 @@ s-interactive-demo s-codemirror {
 }
 
 .table .th, .documentation table .th, .table th, .documentation table th,
-.table .td, .documentation table .td, .table td, .documentation table td {
+.table .td,
+.documentation table .td, .table td, .documentation table td {
   padding: 0.8em 1.4em;
   position: relative;
 }
 
 .table .th:last-child, .documentation table .th:last-child, .table th:last-child, .documentation table th:last-child,
-.table .td:last-child, .documentation table .td:last-child, .table td:last-child, .documentation table td:last-child {
+.table .td:last-child,
+.documentation table .td:last-child, .table td:last-child, .documentation table td:last-child {
   border-right: none;
 }
 
 .table .th:before, .documentation table .th:before, .table th:before, .documentation table th:before,
-.table .td:before, .documentation table .td:before, .table td:before, .documentation table td:before {
+.table .td:before,
+.documentation table .td:before, .table td:before, .documentation table td:before {
   content: '';
   display: block;
   position: absolute;
@@ -8142,12 +7386,14 @@ s-interactive-demo s-codemirror {
 }
 
 .table .th:last-child:before, .documentation table .th:last-child:before, .table th:last-child:before, .documentation table th:last-child:before,
-.table .td:last-child:before, .documentation table .td:last-child:before, .table td:last-child:before, .documentation table td:last-child:before {
+.table .td:last-child:before,
+.documentation table .td:last-child:before, .table td:last-child:before, .documentation table td:last-child:before {
   border-right-width: 1px;
 }
 
 .table .th:first-child:before, .documentation table .th:first-child:before, .table th:first-child:before, .documentation table th:first-child:before,
-.table .td:first-child:before, .documentation table .td:first-child:before, .table td:first-child:before, .documentation table td:first-child:before {
+.table .td:first-child:before,
+.documentation table .td:first-child:before, .table td:first-child:before, .documentation table td:first-child:before {
   border-left-width: 1px;
 }
 
@@ -8157,29 +7403,39 @@ s-interactive-demo s-codemirror {
 }
 
 .table .tr:last-child .td, .documentation table .tr:last-child .td,
-.table tr:last-child td, .documentation table tr:last-child td,
-.table .tr:last-child:not(:first-child) .th, .documentation table .tr:last-child:not(:first-child) .th,
-.table tr:last-child:not(:first-child) th, .documentation table tr:last-child:not(:first-child) th {
+.table tr:last-child td,
+.documentation table tr:last-child td,
+.table .tr:last-child:not(:first-child) .th,
+.documentation table .tr:last-child:not(:first-child) .th,
+.table tr:last-child:not(:first-child) th,
+.documentation table tr:last-child:not(:first-child) th {
   border-bottom: none !important;
 }
 
 .table .caption:before, .documentation table .caption:before,
-.table caption:before, .documentation table caption:before {
+.table caption:before,
+.documentation table caption:before {
   content: "\2014 \00A0";
 }
 
 .table .td.adapt, .documentation table .td.adapt,
-.table td.adapt, .documentation table td.adapt,
-.table .th.adapt, .documentation table .th.adapt,
-.table th.adapt, .documentation table th.adapt {
+.table td.adapt,
+.documentation table td.adapt,
+.table .th.adapt,
+.documentation table .th.adapt,
+.table th.adapt,
+.documentation table th.adapt {
   width: 1px;
   white-space: nowrap;
 }
 
 .table .td.grow, .documentation table .td.grow,
-.table td.grow, .documentation table td.grow,
-.table .th.grow, .documentation table .th.grow,
-.table th.grow, .documentation table th.grow {
+.table td.grow,
+.documentation table td.grow,
+.table .th.grow,
+.documentation table .th.grow,
+.table th.grow,
+.documentation table th.grow {
   width: 9999999px;
 }
 
@@ -8534,16 +7790,22 @@ s-interactive-demo s-codemirror {
 }
 
 .table.table.table--striped > thead > .tr:nth-of-type(odd) > td, .documentation table > thead > .tr:nth-of-type(odd) > td,
-.table.table.table--striped > thead > .tr:nth-of-type(odd) > th, .documentation table > thead > .tr:nth-of-type(odd) > th,
-.table.table.table--striped > thead > tr:nth-of-type(odd) > td, .documentation table > thead > tr:nth-of-type(odd) > td,
-.table.table.table--striped > thead > tr:nth-of-type(odd) > th, .documentation table > thead > tr:nth-of-type(odd) > th {
+.table.table.table--striped > thead > .tr:nth-of-type(odd) > th,
+.documentation table > thead > .tr:nth-of-type(odd) > th,
+.table.table.table--striped > thead > tr:nth-of-type(odd) > td,
+.documentation table > thead > tr:nth-of-type(odd) > td,
+.table.table.table--striped > thead > tr:nth-of-type(odd) > th,
+.documentation table > thead > tr:nth-of-type(odd) > th {
   background-color: rgba(132, 142, 145, 0.2);
 }
 
 .table.table.table--striped > tbody > .tr:nth-of-type(even) > td, .documentation table > tbody > .tr:nth-of-type(even) > td,
-.table.table.table--striped > tbody > .tr:nth-of-type(even) > th, .documentation table > tbody > .tr:nth-of-type(even) > th,
-.table.table.table--striped > tbody > tr:nth-of-type(even) > td, .documentation table > tbody > tr:nth-of-type(even) > td,
-.table.table.table--striped > tbody > tr:nth-of-type(even) > th, .documentation table > tbody > tr:nth-of-type(even) > th {
+.table.table.table--striped > tbody > .tr:nth-of-type(even) > th,
+.documentation table > tbody > .tr:nth-of-type(even) > th,
+.table.table.table--striped > tbody > tr:nth-of-type(even) > td,
+.documentation table > tbody > tr:nth-of-type(even) > td,
+.table.table.table--striped > tbody > tr:nth-of-type(even) > th,
+.documentation table > tbody > tr:nth-of-type(even) > th {
   background-color: rgba(132, 142, 145, 0.05);
 }
 
@@ -8556,16 +7818,22 @@ s-interactive-demo s-codemirror {
 }
 
 .table.table.table--bordered td, .documentation table.table--bordered td,
-.table.table.table--bordered th, .documentation table.table--bordered th {
+.table.table.table--bordered th,
+.documentation table.table--bordered th {
   border-right: 1px solid rgba(132, 142, 145, 0.2);
 }
 
 .table.table.table--hover > tbody > .tr:hover td, .documentation table > tbody > .tr:hover td, .table.table.table--hover > tbody > .tr:hover .td, .documentation table > tbody > .tr:hover .td,
-.table.table.table--hover > tbody > .tr:hover th, .documentation table > tbody > .tr:hover th, .table.table.table--hover > tbody > .tr:hover .th, .documentation table > tbody > .tr:hover .th,
-.table.table.table--hover > tbody > tr:hover td, .documentation table > tbody > tr:hover td,
-.table.table.table--hover > tbody > tr:hover .td, .documentation table > tbody > tr:hover .td,
-.table.table.table--hover > tbody > tr:hover th, .documentation table > tbody > tr:hover th,
-.table.table.table--hover > tbody > tr:hover .th, .documentation table > tbody > tr:hover .th {
+.table.table.table--hover > tbody > .tr:hover th,
+.documentation table > tbody > .tr:hover th, .table.table.table--hover > tbody > .tr:hover .th, .documentation table > tbody > .tr:hover .th,
+.table.table.table--hover > tbody > tr:hover td,
+.documentation table > tbody > tr:hover td,
+.table.table.table--hover > tbody > tr:hover .td,
+.documentation table > tbody > tr:hover .td,
+.table.table.table--hover > tbody > tr:hover th,
+.documentation table > tbody > tr:hover th,
+.table.table.table--hover > tbody > tr:hover .th,
+.documentation table > tbody > tr:hover .th {
   background-color: rgba(132, 142, 145, 0.1);
 }
 
@@ -8649,16 +7917,22 @@ s-interactive-demo s-codemirror {
 }
 
 .table.table--primary.table--striped > thead > .tr:nth-of-type(odd) > td, .documentation table.table--primary > thead > .tr:nth-of-type(odd) > td,
-.table.table--primary.table--striped > thead > .tr:nth-of-type(odd) > th, .documentation table.table--primary > thead > .tr:nth-of-type(odd) > th,
-.table.table--primary.table--striped > thead > tr:nth-of-type(odd) > td, .documentation table.table--primary > thead > tr:nth-of-type(odd) > td,
-.table.table--primary.table--striped > thead > tr:nth-of-type(odd) > th, .documentation table.table--primary > thead > tr:nth-of-type(odd) > th {
+.table.table--primary.table--striped > thead > .tr:nth-of-type(odd) > th,
+.documentation table.table--primary > thead > .tr:nth-of-type(odd) > th,
+.table.table--primary.table--striped > thead > tr:nth-of-type(odd) > td,
+.documentation table.table--primary > thead > tr:nth-of-type(odd) > td,
+.table.table--primary.table--striped > thead > tr:nth-of-type(odd) > th,
+.documentation table.table--primary > thead > tr:nth-of-type(odd) > th {
   background-color: rgba(242, 188, 43, 0.2);
 }
 
 .table.table--primary.table--striped > tbody > .tr:nth-of-type(even) > td, .documentation table.table--primary > tbody > .tr:nth-of-type(even) > td,
-.table.table--primary.table--striped > tbody > .tr:nth-of-type(even) > th, .documentation table.table--primary > tbody > .tr:nth-of-type(even) > th,
-.table.table--primary.table--striped > tbody > tr:nth-of-type(even) > td, .documentation table.table--primary > tbody > tr:nth-of-type(even) > td,
-.table.table--primary.table--striped > tbody > tr:nth-of-type(even) > th, .documentation table.table--primary > tbody > tr:nth-of-type(even) > th {
+.table.table--primary.table--striped > tbody > .tr:nth-of-type(even) > th,
+.documentation table.table--primary > tbody > .tr:nth-of-type(even) > th,
+.table.table--primary.table--striped > tbody > tr:nth-of-type(even) > td,
+.documentation table.table--primary > tbody > tr:nth-of-type(even) > td,
+.table.table--primary.table--striped > tbody > tr:nth-of-type(even) > th,
+.documentation table.table--primary > tbody > tr:nth-of-type(even) > th {
   background-color: rgba(242, 188, 43, 0.05);
 }
 
@@ -8671,16 +7945,22 @@ s-interactive-demo s-codemirror {
 }
 
 .table.table--primary.table--bordered td, .documentation table.table--primary.table--bordered td,
-.table.table--primary.table--bordered th, .documentation table.table--primary.table--bordered th {
+.table.table--primary.table--bordered th,
+.documentation table.table--primary.table--bordered th {
   border-right: 1px solid rgba(242, 188, 43, 0.2);
 }
 
 .table.table--primary.table--hover > tbody > .tr:hover td, .documentation table.table--primary > tbody > .tr:hover td, .table.table--primary.table--hover > tbody > .tr:hover .td, .documentation table.table--primary > tbody > .tr:hover .td,
-.table.table--primary.table--hover > tbody > .tr:hover th, .documentation table.table--primary > tbody > .tr:hover th, .table.table--primary.table--hover > tbody > .tr:hover .th, .documentation table.table--primary > tbody > .tr:hover .th,
-.table.table--primary.table--hover > tbody > tr:hover td, .documentation table.table--primary > tbody > tr:hover td,
-.table.table--primary.table--hover > tbody > tr:hover .td, .documentation table.table--primary > tbody > tr:hover .td,
-.table.table--primary.table--hover > tbody > tr:hover th, .documentation table.table--primary > tbody > tr:hover th,
-.table.table--primary.table--hover > tbody > tr:hover .th, .documentation table.table--primary > tbody > tr:hover .th {
+.table.table--primary.table--hover > tbody > .tr:hover th,
+.documentation table.table--primary > tbody > .tr:hover th, .table.table--primary.table--hover > tbody > .tr:hover .th, .documentation table.table--primary > tbody > .tr:hover .th,
+.table.table--primary.table--hover > tbody > tr:hover td,
+.documentation table.table--primary > tbody > tr:hover td,
+.table.table--primary.table--hover > tbody > tr:hover .td,
+.documentation table.table--primary > tbody > tr:hover .td,
+.table.table--primary.table--hover > tbody > tr:hover th,
+.documentation table.table--primary > tbody > tr:hover th,
+.table.table--primary.table--hover > tbody > tr:hover .th,
+.documentation table.table--primary > tbody > tr:hover .th {
   background-color: rgba(242, 188, 43, 0.1);
 }
 
@@ -8764,16 +8044,22 @@ s-interactive-demo s-codemirror {
 }
 
 .table.table--secondary.table--striped > thead > .tr:nth-of-type(odd) > td, .documentation table.table--secondary > thead > .tr:nth-of-type(odd) > td,
-.table.table--secondary.table--striped > thead > .tr:nth-of-type(odd) > th, .documentation table.table--secondary > thead > .tr:nth-of-type(odd) > th,
-.table.table--secondary.table--striped > thead > tr:nth-of-type(odd) > td, .documentation table.table--secondary > thead > tr:nth-of-type(odd) > td,
-.table.table--secondary.table--striped > thead > tr:nth-of-type(odd) > th, .documentation table.table--secondary > thead > tr:nth-of-type(odd) > th {
+.table.table--secondary.table--striped > thead > .tr:nth-of-type(odd) > th,
+.documentation table.table--secondary > thead > .tr:nth-of-type(odd) > th,
+.table.table--secondary.table--striped > thead > tr:nth-of-type(odd) > td,
+.documentation table.table--secondary > thead > tr:nth-of-type(odd) > td,
+.table.table--secondary.table--striped > thead > tr:nth-of-type(odd) > th,
+.documentation table.table--secondary > thead > tr:nth-of-type(odd) > th {
   background-color: rgba(43, 52, 56, 0.2);
 }
 
 .table.table--secondary.table--striped > tbody > .tr:nth-of-type(even) > td, .documentation table.table--secondary > tbody > .tr:nth-of-type(even) > td,
-.table.table--secondary.table--striped > tbody > .tr:nth-of-type(even) > th, .documentation table.table--secondary > tbody > .tr:nth-of-type(even) > th,
-.table.table--secondary.table--striped > tbody > tr:nth-of-type(even) > td, .documentation table.table--secondary > tbody > tr:nth-of-type(even) > td,
-.table.table--secondary.table--striped > tbody > tr:nth-of-type(even) > th, .documentation table.table--secondary > tbody > tr:nth-of-type(even) > th {
+.table.table--secondary.table--striped > tbody > .tr:nth-of-type(even) > th,
+.documentation table.table--secondary > tbody > .tr:nth-of-type(even) > th,
+.table.table--secondary.table--striped > tbody > tr:nth-of-type(even) > td,
+.documentation table.table--secondary > tbody > tr:nth-of-type(even) > td,
+.table.table--secondary.table--striped > tbody > tr:nth-of-type(even) > th,
+.documentation table.table--secondary > tbody > tr:nth-of-type(even) > th {
   background-color: rgba(43, 52, 56, 0.05);
 }
 
@@ -8786,16 +8072,22 @@ s-interactive-demo s-codemirror {
 }
 
 .table.table--secondary.table--bordered td, .documentation table.table--secondary.table--bordered td,
-.table.table--secondary.table--bordered th, .documentation table.table--secondary.table--bordered th {
+.table.table--secondary.table--bordered th,
+.documentation table.table--secondary.table--bordered th {
   border-right: 1px solid rgba(43, 52, 56, 0.2);
 }
 
 .table.table--secondary.table--hover > tbody > .tr:hover td, .documentation table.table--secondary > tbody > .tr:hover td, .table.table--secondary.table--hover > tbody > .tr:hover .td, .documentation table.table--secondary > tbody > .tr:hover .td,
-.table.table--secondary.table--hover > tbody > .tr:hover th, .documentation table.table--secondary > tbody > .tr:hover th, .table.table--secondary.table--hover > tbody > .tr:hover .th, .documentation table.table--secondary > tbody > .tr:hover .th,
-.table.table--secondary.table--hover > tbody > tr:hover td, .documentation table.table--secondary > tbody > tr:hover td,
-.table.table--secondary.table--hover > tbody > tr:hover .td, .documentation table.table--secondary > tbody > tr:hover .td,
-.table.table--secondary.table--hover > tbody > tr:hover th, .documentation table.table--secondary > tbody > tr:hover th,
-.table.table--secondary.table--hover > tbody > tr:hover .th, .documentation table.table--secondary > tbody > tr:hover .th {
+.table.table--secondary.table--hover > tbody > .tr:hover th,
+.documentation table.table--secondary > tbody > .tr:hover th, .table.table--secondary.table--hover > tbody > .tr:hover .th, .documentation table.table--secondary > tbody > .tr:hover .th,
+.table.table--secondary.table--hover > tbody > tr:hover td,
+.documentation table.table--secondary > tbody > tr:hover td,
+.table.table--secondary.table--hover > tbody > tr:hover .td,
+.documentation table.table--secondary > tbody > tr:hover .td,
+.table.table--secondary.table--hover > tbody > tr:hover th,
+.documentation table.table--secondary > tbody > tr:hover th,
+.table.table--secondary.table--hover > tbody > tr:hover .th,
+.documentation table.table--secondary > tbody > tr:hover .th {
   background-color: rgba(43, 52, 56, 0.1);
 }
 
@@ -8869,7 +8161,7 @@ s-interactive-demo s-codemirror {
   display: inline-block;
   border-style: solid;
   border-width: 1px;
-  border-color: transparent;
+  border-color: rgba(0, 0, 0, 0);
   cursor: pointer;
   outline-width: 0;
   -webkit-appearance: none;
@@ -8986,7 +8278,7 @@ button {
 .btn--link {
   background-color: transparent !important;
   color: #f2bc2b !important;
-  border-color: transparent !important;
+  border-color: rgba(0, 0, 0, 0) !important;
   position: relative;
 }
 
@@ -9071,7 +8363,7 @@ button {
 .btn.btn--link {
   background-color: transparent !important;
   color: #848e91 !important;
-  border-color: transparent !important;
+  border-color: rgba(0, 0, 0, 0) !important;
   position: relative;
 }
 
@@ -9181,7 +8473,7 @@ button {
 .btn--primary.btn--link {
   background-color: transparent !important;
   color: #f2bc2b !important;
-  border-color: transparent !important;
+  border-color: rgba(0, 0, 0, 0) !important;
   position: relative;
 }
 
@@ -9291,7 +8583,7 @@ button {
 .btn--secondary.btn--link {
   background-color: transparent !important;
   color: #2b3438 !important;
-  border-color: transparent !important;
+  border-color: rgba(0, 0, 0, 0) !important;
   position: relative;
 }
 
@@ -9778,6 +9070,159 @@ s-trianglify {
 }
 
 /**
+ * @name 	SFormComponent
+ * This file provide the mixins and functions to create form elements
+ */
+.s-select, .s-select .s-select__search-field {
+  display: inline-block;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 1em;
+}
+
+.s-select, select[is="s-select"][color="default"] + .s-select, select[is="s-select"][color="primary"] + .s-select,
+.s-select--primary, select[is="s-select"][color="secondary"] + .s-select,
+.s-select--secondary {
+  border-width: 1px;
+  border-style: solid;
+}
+
+.s-select:disabled, select[is="s-select"][color="default"] + .s-select:disabled, select[is="s-select"][color="primary"] + .s-select:disabled,
+.s-select--primary:disabled, select[is="s-select"][color="secondary"] + .s-select:disabled,
+.s-select--secondary:disabled {
+  cursor: not-allowed;
+}
+
+/**
+ * Set the styling for field sizes like padding, height, etc...
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Set the styling for field color like borders
+ * @param 		{Color} 		$color 		The color wanted for the field
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the bare and style css for input field (text, email, etc...)
+ * @param 		{Color} 		[$color=default] 		The color wanted for the field
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the bare css for input field (text, email, etc...)
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the style css for input field (text, email, etc...)
+ * @param 		{Color} 		[$color=default] 		The color wanted for the field
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the bare and style css for textarea
+ * @param 		{Color} 		[$color=default] 		The color wanted for the textarea
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Set the styling for textarea sizes like padding, etc...
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the bare css for textarea
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Apply the style css for textarea
+ * @param 		{Color} 		[$color=default] 		The color wanted for the textarea
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+* Apply the bare and style css for select
+* @param 		{Color} 		[$color=default] 		The color wanted for the select
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+ * Set the styling for select colors like background arrow, etc...
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+* Apply the bare css for select
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+* Apply the style css for select
+* @param 		{Color} 		[$color=default] 		The color wanted for the select
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+* Apply the bare and style css for form group
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+* Apply the bare css for form group
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+* Apply the style css for form group
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+* Apply the bare and style css for form addon
+* @param 		{Color} 		[$color=default] 		The color wanted for the form addon
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+* Apply the bare css for form group
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+* Apply the bare and style css for form group
+* @param 		{Color} 		[$color=default] 		The color wanted for the select
+* @author 		Olivier Bossel <olivier.bossel@gmail.com>
+*/
+/**
+ * @name 	SFormComponent Classes
+ * This file provide the mixins to generate form classes
+ */
+/**
+ * Provide all the classes of the form component like .form-input, .form-textarea, etc...
+ * - ```.form-input```
+ * - ```.form-input--{color}```
+ * - ```.form-textarea```
+ * - ```.form-textarea--{color}```
+ * - ```.form-select```
+ * - ```.form-select--{color}```
+ * - ```.form-group````
+ * - ```.form-addon```
+ * - ```.form-addon--{color}```
+ * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide all the bare classes of the form component like .form-input, .form-textarea, etc...
+ * - ```.form-input```
+ * - ```.form-textarea```
+ * - ```.form-select```
+ * - ```.form-group````
+ * - ```.form-addon```
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
+ * Provide all the style classes of the form component like .form-input, .form-textarea, etc...
+ * - ```.form-input```
+ * - ```.form-input--{color}```
+ * - ```.form-textarea```
+ * - ```.form-textarea--{color}```
+ * - ```.form-select```
+ * - ```.form-select--{color}```
+ * - ```.form-group````
+ * - ```.form-addon```
+ * - ```.form-addon--{color}```
+ * @param 		{List<Color>} 		[$colors=default primary secondary] 		The colors to generate
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+/**
  * @name 	SSelectComponent Classes
  * This file provide the mixins to generate s-select classes
  */
@@ -9975,8 +9420,17 @@ s-trianglify {
   border-color: rgba(132, 142, 145, 0.6);
 }
 
+.s-select[dirty]:invalid, .s-select[dirty][invalid] {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'%3E%3Cpolygon points='0,0 32,0 16,24' style='fill:%23d9534f'%3E%3C/polygon%3E%3C/svg%3E");
+}
+
+.s-select[dirty]:invalid, .s-select[dirty][invalid] {
+  border-color: #d9534f !important;
+}
+
 .s-select.vr, .documentation blockquote.s-select,
-.vr .s-select, .documentation blockquote .s-select {
+.vr .s-select,
+.documentation blockquote .s-select {
   margin-bottom: 1rem;
 }
 
@@ -10099,6 +9553,18 @@ select[is="s-select"][color="default"] + .s-select:disabled,
   border-color: rgba(132, 142, 145, 0.6);
 }
 
+select[is="s-select"][color="default"] + .s-select[dirty]:invalid, select[is="s-select"][color="default"] + .s-select[dirty][invalid],
+.s-select[dirty]:invalid,
+.s-select[dirty][invalid] {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'%3E%3Cpolygon points='0,0 32,0 16,24' style='fill:%23d9534f'%3E%3C/polygon%3E%3C/svg%3E");
+}
+
+select[is="s-select"][color="default"] + .s-select[dirty]:invalid, select[is="s-select"][color="default"] + .s-select[dirty][invalid],
+.s-select[dirty]:invalid,
+.s-select[dirty][invalid] {
+  border-color: #d9534f !important;
+}
+
 select[is="s-select"][color="default"] + .s-select .s-select__search-container,
 .s-select .s-select__search-container {
   background: rgba(132, 142, 145, 0.1);
@@ -10206,6 +9672,18 @@ select[is="s-select"][color="primary"] + .s-select:disabled,
   border-color: rgba(242, 188, 43, 0.6);
 }
 
+select[is="s-select"][color="primary"] + .s-select[dirty]:invalid, select[is="s-select"][color="primary"] + .s-select[dirty][invalid],
+.s-select--primary[dirty]:invalid,
+.s-select--primary[dirty][invalid] {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'%3E%3Cpolygon points='0,0 32,0 16,24' style='fill:%23d9534f'%3E%3C/polygon%3E%3C/svg%3E");
+}
+
+select[is="s-select"][color="primary"] + .s-select[dirty]:invalid, select[is="s-select"][color="primary"] + .s-select[dirty][invalid],
+.s-select--primary[dirty]:invalid,
+.s-select--primary[dirty][invalid] {
+  border-color: #d9534f !important;
+}
+
 select[is="s-select"][color="primary"] + .s-select .s-select__search-container,
 .s-select--primary .s-select__search-container {
   background: rgba(242, 188, 43, 0.1);
@@ -10311,6 +9789,18 @@ select[is="s-select"][color="secondary"] + .s-select:disabled,
 .s-select--secondary:focus:not(:disabled),
 .s-select--secondary.active:not(:disabled) {
   border-color: rgba(43, 52, 56, 0.6);
+}
+
+select[is="s-select"][color="secondary"] + .s-select[dirty]:invalid, select[is="s-select"][color="secondary"] + .s-select[dirty][invalid],
+.s-select--secondary[dirty]:invalid,
+.s-select--secondary[dirty][invalid] {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'%3E%3Cpolygon points='0,0 32,0 16,24' style='fill:%23d9534f'%3E%3C/polygon%3E%3C/svg%3E");
+}
+
+select[is="s-select"][color="secondary"] + .s-select[dirty]:invalid, select[is="s-select"][color="secondary"] + .s-select[dirty][invalid],
+.s-select--secondary[dirty]:invalid,
+.s-select--secondary[dirty][invalid] {
+  border-color: #d9534f !important;
 }
 
 select[is="s-select"][color="secondary"] + .s-select .s-select__search-container,
@@ -10489,7 +9979,7 @@ select[is="s-select"][color="secondary"] + .s-select .s-select__search-result,
 			 */
 .tooltip--tl {
   transform-origin: 0 calc(100% + 0.5em);
-  left: 0;
+  left: -.5em;
   bottom: calc(100% + 1em);
   top: auto;
   right: auto;
@@ -10508,7 +9998,7 @@ select[is="s-select"][color="secondary"] + .s-select .s-select__search-result,
 			 */
 .tooltip--tr {
   transform-origin: 100% 100%;
-  right: 0;
+  right: -.5em;
   bottom: calc(100% + 1em);
   left: auto;
   top: auto;
@@ -10567,7 +10057,7 @@ select[is="s-select"][color="secondary"] + .s-select .s-select__search-result,
 			 */
 .tooltip--bl {
   transform-origin: 1em -1em;
-  left: 0;
+  left: -.5em;
   top: calc(100% + 1em);
   bottom: auto;
   right: auto;
@@ -10606,7 +10096,7 @@ select[is="s-select"][color="secondary"] + .s-select .s-select__search-result,
 			 */
 .tooltip--br {
   transform-origin: calc(100% - 1em) -1em;
-  right: 0;
+  right: -.5em;
   top: calc(100% + 1em);
   left: auto;
   bottom: auto;
@@ -10923,11 +10413,15 @@ select[is="s-select"][color="secondary"] + .s-select .s-select__search-result,
   border-width: 0.5em;
   border-left-color: #848e91;
   right: -1em;
+  top: 50%;
+  margin-top: -0.5em;
 }
 
 .tooltip.tooltip--l:before {
   border-width: 0.5em;
   right: -1em;
+  top: 50%;
+  margin-top: -0.5em;
 }
 
 .tooltip.tooltip--l.tooltip--active, .tooltip.tooltip--l.active,
@@ -10958,11 +10452,15 @@ select[is="s-select"][color="secondary"] + .s-select .s-select__search-result,
   border-width: 0.5em;
   border-right-color: #848e91;
   left: -1em;
+  top: 50%;
+  margin-top: -0.5em;
 }
 
 .tooltip.tooltip--r:before {
   border-width: 0.5em;
   left: -1em;
+  top: 50%;
+  margin-top: -0.5em;
 }
 
 .tooltip.tooltip--r.tooltip--active, .tooltip.tooltip--r.active,
@@ -11335,11 +10833,15 @@ select[is="s-select"][color="secondary"] + .s-select .s-select__search-result,
   border-width: 0.5em;
   border-left-color: #f2bc2b;
   right: -1em;
+  top: 50%;
+  margin-top: -0.5em;
 }
 
 .tooltip--primary.tooltip--l:before {
   border-width: 0.5em;
   right: -1em;
+  top: 50%;
+  margin-top: -0.5em;
 }
 
 .tooltip--primary.tooltip--l.tooltip--active, .tooltip--primary.tooltip--l.active,
@@ -11370,11 +10872,15 @@ select[is="s-select"][color="secondary"] + .s-select .s-select__search-result,
   border-width: 0.5em;
   border-right-color: #f2bc2b;
   left: -1em;
+  top: 50%;
+  margin-top: -0.5em;
 }
 
 .tooltip--primary.tooltip--r:before {
   border-width: 0.5em;
   left: -1em;
+  top: 50%;
+  margin-top: -0.5em;
 }
 
 .tooltip--primary.tooltip--r.tooltip--active, .tooltip--primary.tooltip--r.active,
@@ -11747,11 +11253,15 @@ select[is="s-select"][color="secondary"] + .s-select .s-select__search-result,
   border-width: 0.5em;
   border-left-color: #2b3438;
   right: -1em;
+  top: 50%;
+  margin-top: -0.5em;
 }
 
 .tooltip--secondary.tooltip--l:before {
   border-width: 0.5em;
   right: -1em;
+  top: 50%;
+  margin-top: -0.5em;
 }
 
 .tooltip--secondary.tooltip--l.tooltip--active, .tooltip--secondary.tooltip--l.active,
@@ -11782,11 +11292,15 @@ select[is="s-select"][color="secondary"] + .s-select .s-select__search-result,
   border-width: 0.5em;
   border-right-color: #2b3438;
   left: -1em;
+  top: 50%;
+  margin-top: -0.5em;
 }
 
 .tooltip--secondary.tooltip--r:before {
   border-width: 0.5em;
   left: -1em;
+  top: 50%;
+  margin-top: -0.5em;
 }
 
 .tooltip--secondary.tooltip--r.tooltip--active, .tooltip--secondary.tooltip--r.active,

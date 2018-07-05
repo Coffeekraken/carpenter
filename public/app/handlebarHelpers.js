@@ -32,7 +32,7 @@ const menuLevel = (three, currentUrl) => {
 				active = 'active';
 			}
 			res += '<li class="list__item">';
-			res += `<a href="#${path.replace(/^[^a-z]+|[^\w:.-]+/gi, "")}-${i}-${j}" id="${path.replace(/^[^a-z]+|[^\w:.-]+/gi, "")}-${i}-${j}" is="s-activate" toggle="true" history="false" save-state="localStorage" class="list__item--toggle">
+			res += `<a href="#${path.replace(/^[^a-z]+|[^\w:.-]+/gi, "")}-${i}-${j}" id="${path.replace(/^[^a-z]+|[^\w:.-]+/gi, "")}-${i}-${j}" is="s-activate" toggle="true" save-state="localStorage" class="list__item--toggle">
 				<s-ripple></s-ripple>
 				<i class="fa fa-folder-o"></i>&nbsp;&nbsp;${key}
 			</a>`;

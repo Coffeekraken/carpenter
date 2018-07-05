@@ -4,7 +4,7 @@
 
 _Powerful tool that provide a nice web interface to display your website styleguide and modules/plugins documentations in one place._
 
-## 1.1.0  ( Fri Jun 01 2018 11:40:20 GMT+0200 (CEST) )
+## 1.1.1  ( Thu Jul 05 2018 16:29:35 GMT+0200 (CEST) )
 
 
 

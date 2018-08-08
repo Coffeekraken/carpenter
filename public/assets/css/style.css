@@ -913,7 +913,7 @@
  * // 	style : solid
  * // )
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Return the Map representation of a columns properties
@@ -936,7 +936,7 @@
  * // 	column-gap : 20px
  * // )
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Parse and return the Map respresentation of a margin property
@@ -950,7 +950,7 @@
  * s-margin-map(10px 20px); // => ( top:10px, right:20px, bottom:10px, left:20px )
  * s-margin-map(5px 10px 15px 20px); // => ( top:5px, right:10px, bottom:15px, left:20px )
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Return the representation of a position styling like position:absolute; top:0; left:100%; etc...
@@ -972,7 +972,7 @@
  * s-position-map(absolute, bottom, center);
  * // etc...
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Return the Map properties representation for the rhythme width
@@ -989,7 +989,7 @@
  * // 	max-width : 50ex
  * // )
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Return the Map properties representation of a translate x,y and z
@@ -1006,7 +1006,7 @@
  * // 	transform: translateX(10px) translateY(20px) translateZ(0)
  * // )
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Helper mixin to set a background image
@@ -1036,7 +1036,7 @@
  * 		);
  * }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Apply some border radius
@@ -1061,7 +1061,7 @@
  * 	// etc...
  * }
  *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Center a block element using margins etc...
@@ -1070,7 +1070,7 @@
  * 	\@include s-center-block();
  * }
  *
- * @author 	Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 	Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * @name 	s-clearfix
@@ -1088,7 +1088,7 @@
  *  \@include s-clearfix();
  * }
  *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 .clearfix-overflow {
   overflow: hidden;
@@ -1128,7 +1128,7 @@
  * 	\@include s-coffeekraken-logo();
  * }
  *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Create a column layout my setting each columns properties at once
@@ -1151,7 +1151,7 @@
  * 	);
  * }
  *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Apply some border radius
@@ -1176,7 +1176,7 @@
  * 	// etc...
  * }
  *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Make the element fit his container.
@@ -1187,7 +1187,7 @@
  * 	\@include s-fit(absolute);
  * }
  *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Hide the contained text
@@ -1197,7 +1197,7 @@
  * 	\@include s-hide-text();
  * }
  *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Apply an icon on the element. This mixin support font-awesome and custom icons systems that have an icon name formated like "icon-{name}"
@@ -1208,7 +1208,7 @@
  * 	\@include s-icon(fa-user);
  * }
  *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Set how to render the image
@@ -1219,7 +1219,7 @@
  * 	\@include s-image-rendering(crips-edges);
  * }
  *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Set how the list bullet has to be displayed.
@@ -1242,12 +1242,12 @@
  * 	);
  * }
  *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Start a new list
  * @param 		{String} 		[$counter-reset=s-list] 		A counter name to reset
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Easy to use media query mixin that support cssua classes to target specific browsers
@@ -1278,7 +1278,7 @@
  * 	// custom css here
  * }
  *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Set the placeholder style for inputs, etc...
@@ -1290,7 +1290,7 @@
  * 	}
  * }
  *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Set a complexe position styling like position:absolute; top:0; left:100%; etc...
@@ -1317,7 +1317,7 @@
  * 	// etc...
  * }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Apply a ratio css styling. This will apply a before or after content that will make the element keep the specified ratio.
@@ -1331,7 +1331,7 @@
  * 	\@include s-ratio(16/9);
  * }
  *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Print out a reset css
@@ -1339,7 +1339,7 @@
  *
  * \@include s-reset();
  *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Print out the css on a container that will make the lines displays a maximum number of characters.
@@ -1349,7 +1349,7 @@
  * 	\@include s-rhythm-width(45);
  * }
  *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Apply some css to have a rounded element with already an overflow on it
@@ -1378,7 +1378,7 @@
  * 	\@include s-size(cover);
  * }
  *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Quicky set some translates
@@ -1391,7 +1391,7 @@
  * 	\@include s-translate(50%, 20px);
  * }
  *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Print out the style to truncate the text if needed
@@ -1401,7 +1401,7 @@
  * 	\@include s-truncate-text();
  * }
  *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Vertically align content by using the inline-block middle trick
@@ -1411,7 +1411,7 @@
  * 	\@include s-vertical-aligner();
  * }
  *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Hide an element only visually. This ensure that the element is still correctly displayed in the page for SEO
@@ -1422,7 +1422,7 @@
  * 	\@include s-visually-hidden();
  * }
  *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Get a registered color by name or wrap a new color into a s-color call
@@ -1455,7 +1455,7 @@
  * // $name as list
  * $modified primary : s-color((primary, -darken 10%));
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Return the color in a modifier list
@@ -1465,7 +1465,7 @@
  * @example
  * $my-color : s-color-modifier(outline primary); // => primary
  *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Return the name of the top level component setted with the [../mixins/_s-component.scss] mixin
@@ -1482,7 +1482,7 @@
  * 		}
  * }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>;
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com);
  */
 /**
  * Convert a passed value to the wanted unit
@@ -1523,7 +1523,7 @@
  * s-convert(24px, rem) // 1.5rem
  * s-convert(3rem, pt) // 36pt
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Transform a dash notation value into a map
@@ -1540,7 +1540,7 @@
  * // 	coco : universe
  * // )
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Convert the passed value to em
@@ -1548,7 +1548,7 @@
  * @param 			{Number} 		$value 		The value to convert
  * @return 			{Number} 					The em converted value
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Convert the passed value to the closest even value
@@ -1556,7 +1556,7 @@
  * @param 			{Number} 		$value 		The value to convert
  * @return 			{Number} 					The closest even converted value
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Take a filter as parameter and parse it to return the {Map} corresponding
@@ -1587,7 +1587,7 @@
  * // 	blur : 10px
  * // }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Return a list with all the filters that are passed as argument
@@ -1617,7 +1617,7 @@
  * 		// filter : box-shadow(#000 0 0 10px) blur(30px) invert(100%);
  * }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Return the font-family string or a registered font
@@ -1644,7 +1644,7 @@
  * 		// font-family : 'Helvetica Neue';
  * }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Return the font {Map} that correspond to the passed arguments
@@ -1679,7 +1679,7 @@
  * 		word-wrap : nowrap
  * // )
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Check if the provided color is a registered one or not
@@ -1713,7 +1713,7 @@
  * s-interpolate($myStack, big) // 6rem cause specified in the $myStack value
  * s-interpolate($myStack, small) // 1.5rem => calculated like : 3rem * 0.5 = 1.5rem
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Check if the passed value is of a certain type
@@ -1760,7 +1760,7 @@
  * s-is(#fff #ddd, list-color) // => true
  * // etc...
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Alias to the [./_s-look-and-feel.scss] function
@@ -1775,7 +1775,7 @@
  * 		padding : s-lnf(padding-horizontal) s-lnf(padding-vertical);
  * }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Return a settings.look-and-feel stack value
@@ -1788,7 +1788,7 @@
  * 		padding : s-look-and-feel(padding-horizontal) s-look-and-feel(padding-vertical);
  * }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Return the modular scale value based on the settings ```modular-scale.base``` and ```modular-scale.ratio```.
@@ -1797,7 +1797,7 @@
  * @param 			{Number} 		[$base=settings.modular-scale.base] 	The base of calculation
  * @return 			{Number} 					The calculated resulting value
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Convert the passed value to the closest odd value
@@ -1805,7 +1805,7 @@
  * @param 			{Number} 		$value 		The value to convert
  * @return 			{Number} 					The closest odd converted value
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Parse a given string/list properties and return the Map corresponding to the Map description
@@ -1828,7 +1828,7 @@
  * // 	delay : 20s
  * // )
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Convert the passed value to %
@@ -1836,7 +1836,7 @@
  * @param 			{Number} 		$value 		The value to convert
  * @return 			{Number} 					The % converted value
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Convert the passed value to pt
@@ -1844,7 +1844,7 @@
  * @param 			{Number} 		$value 		The value to convert
  * @return 			{Number} 					The pt converted value
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Convert the passed value to px
@@ -1852,7 +1852,7 @@
  * @param 			{Number} 		$value 		The value to convert
  * @return 			{Number} 					The px converted value
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Convert the passed value to rem
@@ -1860,7 +1860,7 @@
  * @param 			{Number} 		$value 		The value to convert
  * @return 			{Number} 					The rem converted value
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Return the passed values in the same unit but that has been even rounded on the corresponding px value
@@ -1876,7 +1876,7 @@
  * // 2. round even the px value : 84px
  * // 3. transform to passed unit value : 84px / 16px = 5.25rem
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Return the passed values in the same unit but that has been odd rounded on the corresponding px value
@@ -1892,7 +1892,7 @@
  * // 2. round odd the px value : 83px
  * // 3. transform to passed unit value : 84px / 16px = 5.1875rem
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Return the passed values in the same unit but that has been rounded on the corresponding px value
@@ -1908,7 +1908,7 @@
  * // 2. round even the px value : 83px
  * // 3. transform to passed unit value : 84px / 16px = 5.1875rem
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Search and replace tokens like colors #primary in a passed string, list or map
@@ -1918,7 +1918,7 @@
  * @example
  * s-replace-tokens(12px #primary hello #secondary); // > 12px #ddd hello #fff;
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Process selector to avoid having --default, etc...
@@ -1941,7 +1941,7 @@
  * $font-size : s-setting('typography.font-size');
  * // etc...
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Return a value interpolated from the settings.spaces stack
@@ -1954,7 +1954,7 @@
  * 		padding : s-pace(big);
  * }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Return a number without any units
@@ -1966,7 +1966,7 @@
  * s-strip-units(12px); // => 12
  * s-strip-units(30rem); // => 30
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Test an argument passed to a function or a mixin to ensure his type, value, etc...
@@ -1988,12 +1988,12 @@
  * \@mixin my-cool-mixin(hello, universe); // throw an error
  * \@mixin my-cool-mixin(12, world); // throw an error
  *
- * @author 				Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 				Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Return the text-format setting scope class
  * @return 		{String} 		The text-format scope class from settings.text-format.scope-class
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Take a transition as parameter and parse it to return the {Map} corresponding
@@ -2029,7 +2029,7 @@
  * // 	delay : .5s
  * // }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Take a transition as parameter and parse it to return the {List} corresponding
@@ -2060,18 +2060,18 @@
  *  	// transition : all .2s ease-in-out .5s, width .2s ease-in 0s;
  * }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Return the unit context if has been set by the [s-unit-context mixin](../mixins/_s-unit-context.scss)
  *
  * @return 		{String} 				The unit context setted
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Return the vertical-rhythm setting scope class
  * @return 		{String} 		The vertical-rhythm scope class from settings.vertical-rhythm.scope-class
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Generic sugar function can return multiple settings types like:
@@ -2089,7 +2089,7 @@
  * $my-font-size : s('settings.typography.font.size')
  * // etc...
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Print out the animation property calculated with the passed arguments
@@ -2106,7 +2106,7 @@
  * 		// animation : my-animation 1s 0s ease-in-out 1 normal forwards, another-animation 4s 1s ease-in-out 1 normal forwards;
  * }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Print out all wanted registered classes like padding helpers, margin helpers, font helpers, etc...
@@ -2201,7 +2201,7 @@
  * \@include s-classes('sugar.clearfix' 'sugar.pull'); // the clearfixes and the pull classes
  * // etc...
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Print out the scoped color schema css
@@ -2231,7 +2231,7 @@
  * 		color : white;
  * }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Set the name of the component that will be handled inside the mixin
@@ -2247,7 +2247,7 @@
  * 		}
  * }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>;
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com);
  */
 /**
  * Register a context with a name to use it later
@@ -2269,7 +2269,7 @@
  * 		s-look-and-feel(padding-vertical); // => 0.6em
  * }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Set a context to be used inside the mixin
@@ -2302,7 +2302,7 @@
  * 		// your code here...
  * }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Print out a list with all the filters that are passed as argument
@@ -2331,7 +2331,7 @@
  * 		// filter : box-shadow(#000 0 0 10px) blur(30px) invert(100%);
  * }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Helper to print a font-face
@@ -2350,7 +2350,7 @@
  * 		$extensions : eot woff woff2
  * )
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Print all the fonts properties that correspond to the passed arguments
@@ -2386,7 +2386,7 @@
  * 		word-wrap : nowrap
  * }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Init the sugar toolkit.
@@ -2396,7 +2396,7 @@
  * @example
  * \@include s-init();
  *
- * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Register all the dynamic helper classes that depends on the settings, etc...
@@ -2405,7 +2405,7 @@
  * @example
  * \@include s-init-classes();
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Register a helper class under a certain namespace
@@ -2424,7 +2424,7 @@
  * // print out my helpers classes
  * \@include s-classes('my');
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Setup sugar toolkit by overriding the default [settings](../_settings.scss)
@@ -2446,7 +2446,7 @@
  * // this allows you to separate your configs setup into multiple
  * // files...
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Display the vertical rhythme
@@ -2458,7 +2458,7 @@
  * 		@include s-show-vertical-rhythm();
  * }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Take a transition as parameter and print the corresponding transition property
@@ -2489,7 +2489,7 @@
  *  	// transition : all .2s ease-in-out .5s, width .2s ease-in 0s;
  * }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Set the unit context to use inside the mixin.
@@ -2505,7 +2505,7 @@
  * 		s-setting('typography.font-size'); // => 1rem
  * }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * @name 	s-vertical-rhythm
@@ -2518,7 +2518,7 @@
  * }
  *
  * @see 			https://medium.com/written-in-code/aligning-type-to-baseline-the-right-way-using-sass-e258fce47a9b#.lck2lgbni
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * @name 	Helper Classes
@@ -2576,7 +2576,7 @@
  * - sugar.no-transmations : ```.no-transmations```
  * - sugar.clear-transmations : ```.clear-transmations```
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 .pull-left {
   /**
@@ -3368,7 +3368,7 @@
 /**
  * This file contains all the default settings that can be overrided by the [s-setup mixin](./mixins/_s-setup.scss).
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Create an arrow bubble effect
@@ -3390,7 +3390,7 @@
  * }
  *
  * @see 			https://codepen.io/kirkas/pen/otqyJ
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Generate a drop shadow depending on the depth specified
@@ -3403,7 +3403,7 @@
  * 		\@include s-depth(2);
  * }
  *
- * @author 	 		Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 	 		Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Create a poping dot effect to catch user attention on a particular item
@@ -3429,7 +3429,7 @@
  * 		);
  * }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Generate a full animated, single element, bars loader
@@ -3458,7 +3458,7 @@
  * 		);
  * }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Generate a full animated, single element, circle loader
@@ -3476,7 +3476,7 @@
  *
  * @TODO finish documentation
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Generate a full animated, single element, couch-potato style loader
@@ -3494,7 +3494,7 @@
  * 		\@include s-loader-couch-potato();
  * }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Generate a full animated, single element, flip ball style loader
@@ -3511,7 +3511,7 @@
  * 		\@include s-loader-flip-ball();
  * }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Generate a long shadow effect like [this](https://www.google.ch/search?q=long+shadow&espv=2&biw=2560&bih=1316&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjjne6x49LPAhVBHRQKHat8AW8Q_AUIBigB)
@@ -3536,7 +3536,7 @@
  * 		);
  * }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Create side lines around an item
@@ -3558,7 +3558,7 @@
  * 		);
  * }
  *
- * @author 			Olivier Bossel <olivier.bossel@gmail.com>
+ * @author 			Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
  */
 /**
  * Setup
@@ -3629,10 +3629,7 @@
 .gr-0, .gr-1, .gr-2, .gr-3, .gr-4, .gr-5, .gr-6, .gr-7, .gr-8, .gr-9, .gr-10, .gr-11, .gr-12 {
   display: inline-block;
   min-height: 1px;
-  line-height: 1;
   float: left;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   vertical-align: top;
   padding-right: 10px;
@@ -3643,9 +3640,6 @@
   display: table-cell;
   width: 1px;
   white-space: nowrap !important;
-  line-height: 1;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding-right: 10px;
   padding-left: 10px;
@@ -3654,9 +3648,6 @@
 .gr-grow {
   display: table-cell;
   width: 99999px;
-  line-height: 1;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding-right: 10px;
   padding-left: 10px;
@@ -3697,7 +3688,7 @@
 }
 
 #gridle-settings {
-  content: '{ "version" : "3.0.0", "states" : { "default":{ "name" : "default", "min-width" : null, "max-width" : null, "query" : null, "classes" : true, "context" : "12", "column-width" : null, "gutter-width" : "20px", "gutter-height" : "20px", "gutter-top" : "10px", "gutter-right" : "10px", "gutter-bottom" : "10px", "gutter-left" : "10px", "direction" : "ltr", "dir-attribute" : false, "name-multiplicator" : "1", "states-classes" : false, "classes-prefix" : null, "_" : true }} }';
+  content: '{ "version" : "3.0.1", "states" : { "default":{ "name" : "default", "min-width" : null, "max-width" : null, "query" : null, "classes" : true, "context" : "12", "column-width" : null, "gutter-width" : "20px", "gutter-height" : "20px", "gutter-top" : "10px", "gutter-right" : "10px", "gutter-bottom" : "10px", "gutter-left" : "10px", "direction" : "ltr", "dir-attribute" : false, "name-multiplicator" : "1", "states-classes" : false, "classes-prefix" : null, "_" : true }} }';
 }
 
 /**
@@ -3715,7 +3706,7 @@
 	 * }
 	 * </style>
 	 * <div class="gridle-styleguide .container">
-	 *   <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-1"> .gr-1 </div> </div>   <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-2"> .gr-2 </div> </div>   <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-3"> .gr-3 </div> </div>   <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-4"> .gr-4 </div> </div>   <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-5"> .gr-5 </div> </div>   <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-6"> .gr-6 </div> </div>   <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-7"> .gr-7 </div> </div>   <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-8"> .gr-8 </div> </div>   <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-9"> .gr-9 </div> </div>   <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-10"> .gr-10 </div> </div>   <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-11"> .gr-11 </div> </div>   <div class="gridle-styleguide row row-debug"> <div class="gridle-styleguide gr-12"> .gr-12 </div> </div> 
+	 *  <div class="gridle-styleguide row row-debug"><div class="gridle-styleguide gr-1">.gr-1</div></div> <div class="gridle-styleguide row row-debug"><div class="gridle-styleguide gr-2">.gr-2</div></div> <div class="gridle-styleguide row row-debug"><div class="gridle-styleguide gr-3">.gr-3</div></div> <div class="gridle-styleguide row row-debug"><div class="gridle-styleguide gr-4">.gr-4</div></div> <div class="gridle-styleguide row row-debug"><div class="gridle-styleguide gr-5">.gr-5</div></div> <div class="gridle-styleguide row row-debug"><div class="gridle-styleguide gr-6">.gr-6</div></div> <div class="gridle-styleguide row row-debug"><div class="gridle-styleguide gr-7">.gr-7</div></div> <div class="gridle-styleguide row row-debug"><div class="gridle-styleguide gr-8">.gr-8</div></div> <div class="gridle-styleguide row row-debug"><div class="gridle-styleguide gr-9">.gr-9</div></div> <div class="gridle-styleguide row row-debug"><div class="gridle-styleguide gr-10">.gr-10</div></div> <div class="gridle-styleguide row row-debug"><div class="gridle-styleguide gr-11">.gr-11</div></div> <div class="gridle-styleguide row row-debug"><div class="gridle-styleguide gr-12">.gr-12</div></div>
 	 * </div>
 	 */
 .gr-0 {
@@ -4067,10 +4058,6 @@ body {
   width: 100vw;
   margin-left: 50% !important;
   margin-right: 0 !important;
-  -webkit-transform: translateX(-50%);
-  -moz-transition: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  -o-transform: translateX(-50%);
   transform: translateX(-50%);
 }
 

@@ -1,337 +1,96 @@
-const _get = require('lodash/get');
-const _set = require('lodash/set');
-const _groupBy = require('lodash/groupBy');
-const _extend = require('lodash/extend');
-const __express = require('express');
-const __expressHandlebars = require('express-handlebars');
-const __basicAuth = require('basic-auth-connect');
-const __path = require('path');
-const __fs = require('fs');
-const __open = require('open');
-const __docblockParser = require('coffeekraken-docblock-parser');
-const __renderStyleguideDisplay = require('./app/styleguide/renderDisplay');
-const __marked = require('marked');
-const __config = require('./app/config');
-const __carpenterApi = require('../dist/index');
-const __readdirRecursive = require('fs-readdir-recursive');
-const __handlebarsHelpers = require('./app/handlebarHelpers');
-const __glob = require('glob-all');
-const _size = require('lodash/size');
-const __md5 = require('md5');
+const _extend = require('lodash/extend')
+const __express = require('express')
+const __expressHandlebars = require('express-handlebars')
+const __basicAuth = require('basic-auth-connect')
+const __config = require('./app/config')
+
+const nodeModilesImagesMiddleware = require('./app/middlewares/nodeModulesImages')
+const packageJsonMiddleware = require('./app/middlewares/packageJson')
+const cleanRequestMiddleware = require('./app/middlewares/cleanRequest')
+const docThreeMiddleware = require('./app/middlewares/docThree')
+const styleguideMiddleware = require('./app/middlewares/styleguides')
+
+const styleguidesController = require('./app/controllers/styleguide')
+const documentationController = require('./app/controllers/documentation')
 
 module.exports = function(config) {
 
 	// creating the app
-	const app = __express();
+	const app = __express()
 
 	// extend config
-	_extend(__config, config);
+	_extend(__config, config)
 
-	// index
+	// save config in locals
+	app.use((req, res, next) => {
+		res.locals.config = config
+		next()
+	})
+
+	// index redirection
 	if (config.index) {
 		app.get('/', function (req, res) {
-			res.redirect(config.index);
-		});
+			res.redirect(config.index)
+		})
 	}
 
 	// handlebars
 	app.engine('handlebars', __expressHandlebars({
-		layoutsDir : __dirname + '/views/layouts',
+		layoutsDir : __dirname + '/app/views/layouts',
 		defaultLayout : 'main'
-	}));
-	app.set('views',__dirname + '/views');
-	app.set('view engine', 'handlebars');
+	}))
+	app.set('views',__dirname + '/app/views')
+	app.set('view engine', 'handlebars')
 
 	// if need auth
 	if (config.auth && config.auth.username && config.auth.password) {
-		app.use(__basicAuth(config.auth.username, config.auth.password));
+		app.use(__basicAuth(config.auth.username, config.auth.password))
 	}
 
 	// static files
-	app.use('/assets', __express.static(__dirname + '/assets'));
-
-	// static files
-	app.use((req, res, next) => {
-		if (req.url === '/') {
-			next();
-			return;
-		}
-
-		// handle images in node packages
-		switch (__path.extname(req.url).toLowerCase()) {
-			case '.jpg':
-			case '.png':
-			case '.jpeg':
-			case '.gif':
-				if (req.url.match(/node_modules\//)) {
-					const fromRootUrl = req.url.replace(/documentation\/|styleguide\//,'');
-					if (__fs.existsSync(__path.resolve('.'+fromRootUrl)	)) {
-						return res.sendFile(__path.resolve('.'+fromRootUrl));
-					}
-				}
-			break;
-		}
-
-		// send real files
-		if (__fs.existsSync(process.env.PWD + req.url)) {
-			return res.sendFile(process.env.PWD + req.url);
-		} else if (__fs.existsSync(__path.resolve(__dirname + '/../') + req.url)) {
-			// console.log('serve', __path.resolve(__dirname + '/../') + req.url);
-			return res.sendFile(__path.resolve(__dirname + '/../') + req.url);
-		}
-		next();
-	});
-
-	// package json
-	app.use((req, res, next) => {
-
-		let packageJson;
-		// load package.json
-		if (__fs.existsSync(process.env.PWD + '/package.json')) {
-			packageJson = require(process.env.PWD + '/package.json');
-			if (packageJson.contributors) {
-				packageJson.contributors = packageJson.contributors.map((contributor) => {
-					contributor.gravatar = `https://www.gravatar.com/avatar/${__md5(contributor.email)}`;
-					return contributor;
-				});
-			}
-			// attach packageJson to req
-			req.packageJson = packageJson;
-		}
-		// next
-		next();
-	});
+	app.use('/assets', __express.static(__dirname + '/assets'))
 
 	// loop on configuration files to serve them from the project directory
 	if (config.styleguide && config.styleguide.files.length) {
 		config.styleguide.files.forEach(function(file) {
 			app.get('/' + file, function(req, res) {
-				res.sendFile(process.env.PWD + req.url);
-			});
-		});
+				res.sendFile(process.env.PWD + req.url)
+			})
+		})
 	}
 	Object.keys(config.express.static).forEach(function(folderPath) {
-		const mapToPath = config.express.static[folderPath];
-		app.use(folderPath, __express.static(mapToPath));
-	});
+		const mapToPath = config.express.static[folderPath]
+		app.use(folderPath, __express.static(mapToPath))
+	})
 	if (config.logo) {
 		app.get('/' + config.logo, function(req, res) {
-			res.sendFile(process.env.PWD + req.url);
-		});
+			res.sendFile(process.env.PWD + req.url)
+		})
 	}
 
-	app.use(function(req, res, next) {
-		// exclude .map files
-		if (req.url.match('favicon.ico')) return res.end();
-		if (req.url.match('.js.map')) return res.end();
-		next();
-	});
+	// static files
+	app.use(nodeModilesImagesMiddleware)
 
-	// grab the needed files
-	let docThree = {};
-	app.use(function(req, res, next) {
-		if ( ! config.documentation || ! config.documentation.files.length) {
-			next();
-			return;
-		}
-		docThree = {};
-		docFiles = __glob.sync([].concat(config.documentation.files));
-		docFiles.forEach((docFilePath, i) => {
-			// variables
-			const dirname = __path.dirname(docFilePath),
-					basename = __path.basename(docFilePath),
-					dirnameDot = dirname.replace(/\//g,'.');
-			let value = _get(docThree, dirnameDot);
-			if (dirnameDot === '.') {
-				docThree[basename] = {
-					filename : basename,
-					name : basename.slice(0, -3),
-					dirname,
-					path : docFilePath,
-					active : req.url.indexOf(docFilePath) !== -1
-				};
-				return;
-			}
-			if ( ! value) {
-				_set(docThree, dirnameDot, {});
-				value = _get(docThree, dirnameDot);
-			}
-			value[basename] = {
-				filename : basename,
-				name : basename.slice(0, -3),
-				dirname,
-				path : docFilePath,
-				active : req.url.indexOf(docFilePath) !== -1
-			};
-		});
-		// console.log(docThree);
-		next();
+	// package json
+	app.use(packageJsonMiddleware)
 
-	});
-	// grab styleguides
-	let allStyleguides = {};
-	app.use(function(req, res, next) {
-		allStyleguides = {};
-		if ( ! config.styleguide || ! config.styleguide.files.length) {
-			next();
-			return;
-		}
-		// parse dobclock
-		const styleguideFiles = [].concat(config.styleguide.files).map(function(file) {
-			return process.env.PWD + '/' + file;
-		});
-		let styleguideDocBlocksString = __carpenterApi.styleguide.extractFromFile(styleguideFiles);
+	// clean request like favicon.ico, .map.js, etc...
+	app.use(cleanRequestMiddleware)
 
-		const json = __docblockParser({
-			tags : {
-				'@name' : function(name, args, data) {
-					data[name] = __marked(args[0]);
-				},
-				'@see' : function(name, args, data) {
-					data[name] = args[0];
-				},
-				'@body' : function(name, args, data) {
-					data[name] = __marked(args[0]);
-				},
-				'@styleguide' : function(name, args, data) {
-					data[name] = args[0];
-				},
-				'@display' : function(name, args, data) {
-					data[name] = args[0] || 'default';
-				},
-				'@color' : function(name, args, data) {
-					data[name] = args[0];
-				},
-				'@font-family' : function(name, args, data) { data[name] = args[0]; },
-				'@font-style' : function(name, args, data) { data[name] = args[0]; },
-				'@font-weight' : function(name, args, data) { data[name] = args[0]; }
-			}
-		}).parse(styleguideDocBlocksString);
+	// build the docThree saved in res.locals.docThree
+	app.use(docThreeMiddleware)
 
-		// filter styleguide items
-		styleguideJson = json.filter((tag) => {
-			return (tag.styleguide);
-		});
-		// group by
-		styleguideJson.forEach(function(item) {
-			// prepare display
-			item._html = __renderStyleguideDisplay(item.display || 'editor', item);
-			// split item paths
-			const paths = item.styleguide.split('/').map(function(i) {
-				return i.trim();
-			}).join('.');
-			let current = _get(allStyleguides, paths);
-			if ( ! current) current = [];
-			current.push(item);
-			_set(allStyleguides, paths, current);
-		});
-
-		next();
-	});
+	// grab styleguides and set the res.locals.allStyleguide
+	app.use(styleguideMiddleware)
 
 	// styleguide route
-	app.get(/\/styleguide\/.*/, function (req, res) {
-		// filter styleguide to display depending on the url
-
-		const path = decodeURIComponent(req.originalUrl.replace('/styleguide/',''));
-
-		const toDisplay = _get(allStyleguides, path.replace('/','.'));
-
-		let styleguidesToDisplay = {};
-
-		if (toDisplay) {
-			_set(styleguidesToDisplay, path.replace('/','.'), toDisplay);
-		} else {
-			styleguidesToDisplay = allStyleguides;
-		}
-
-		const allStyleguidesSortedKeys = Object.keys(allStyleguides);
-		allStyleguidesSortedKeys.sort();
-
-		// if (req.params.styleguide) {
-		// 	// allStyleguides[req.params.styleguide].active = true;
-		// 	styleguidesToDisplay[req.params.styleguide] = allStyleguides[req.params.styleguide];
-		// } else {
-		// 	styleguidesToDisplay = allStyleguides;
-		// }
-
-		const viewData = {
-			helpers : __handlebarsHelpers,
-			request : req,
-			title : config.title,
-			logo : config.logo,
-			url : req.url,
-			packageJson : req.packageJson
-		};
-		if (allStyleguides && _size(allStyleguides)) {
-			viewData.styleguide = {
-				getSortedItems : (path) => {
-					const root = _get(allStyleguides, path);
-					return Object.keys(root).sort();
-				},
-				all : allStyleguides,
-				allSortedKeys : allStyleguidesSortedKeys,
-				toDisplay : styleguidesToDisplay
-			};
-		}
-		if (_size(docThree)) {
-			viewData.documentation = {
-				three : docThree
-			}
-		}
-
-		// render the page
-		res.render('styleguide', viewData);
-	});
+	app.get(/\/styleguide\/.*/, styleguidesController)
 
 	// documentation route
-	app.get(/documentation\/.+/, function (req, res) {
-		const docFilePath = req.url.replace(/^\/documentation\//,'');
-
-		// read the markdown content
-		let content = __fs.readFileSync(docFilePath,'utf8');
-		// console.log(content);
-		// process content
-		// content = content.replace(/```([a-zA-Z]+)\n/g,'<s-codemirror id="$1" language="$1">');
-		// content = content.replace(/```/g, '</s-codemirror>');
-
-		const renderer = new __marked.Renderer();
-		renderer.image = function(href, title, text) {
-			return `
-				<img tabindex="0" src="${href}" title="${title}" alt="${text}" />
-				<img src="${href}" title="${title}" alt="${text}" class="img-fullscreen" />
-			`;
-		};
-		let markdown = __marked(content, {
-			renderer
-		});
-
-		const viewData = {
-			helpers : __handlebarsHelpers,
-			request : req,
-			title : config.title,
-			logo : config.logo,
-			url : req.url,
-			packageJson : req.packageJson
-		};
-		if (allStyleguides && _size(allStyleguides)) {
-			viewData.styleguide = {
-				all : allStyleguides
-			};
-		}
-		if (_size(docThree)) {
-			viewData.documentation = {
-				three : docThree,
-				content : markdown
-			}
-		}
-
-		// render the page
-		res.render('documentation', viewData);
-	});
+	app.get(/documentation\/.+/, documentationController)
 
 	// start demo server
 	app.listen(config.port, function () {
-		console.log('Carpenter : up and running on port ' + config.port + '!');
-	});
+		console.log('Carpenter : up and running on port ' + config.port + '!')
+	})
 }

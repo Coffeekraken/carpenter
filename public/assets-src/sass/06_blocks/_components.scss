@@ -1,0 +1,24 @@
+.components {
+
+	.h1 {
+		background-color:s-color(title, -lighten 10%);
+		// background-image:url('../img/header-bkg-grey.png');
+		background-blend-mode: luminosity;
+		background-repeat:no-repeat;
+		background-size:cover;
+		color: white;
+		border-bottom:1px solid s-color(border);
+		margin:s-space(bigger) * -1;
+		margin-bottom: s-space(bigger);
+		padding-bottom:s-space(bigger);
+		padding:s-space(bigger);
+	}
+
+	iframe {
+		border: solid 10px darken(white, 1%);
+	}
+
+	.tabs {
+		margin-top: s-rem(-2px);
+	}
+}

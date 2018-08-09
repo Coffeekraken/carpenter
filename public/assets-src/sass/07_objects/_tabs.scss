@@ -1,0 +1,29 @@
+.tabs {
+	display: flex;
+
+}
+	.tabs__item {
+		flex:1;
+		list-style: none;
+		background: darken(white,1%);
+
+		a {
+			display: block;
+			padding: s-lnf(padding-horizontal) s-lnf(padding-vertical);
+			text-decoration: none;
+			border-bottom: 3px solid darken(white,1%);
+
+			&:hover,
+			&.active {
+				border-bottom: 3px solid s-color(primary);
+			}
+		}
+	}
+
+	.tabs__content {
+		display: none;
+
+		&.active {
+			display: block;
+		}
+	}

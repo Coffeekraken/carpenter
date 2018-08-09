@@ -28,6 +28,13 @@
 			<div class="gr-grow" style="font-size:11px">
 				<select is="s-select" name="search" onchange="document.location.href = this.value">
 					<option value="/">Search...</option>
+					<optgroup label="Components">
+						{{#eachSorted components.three}}
+							{{#eachSorted this.value}}
+								<option value="/components/{{../key}}/{{key}}">{{../key}}/{{key}}</option>
+							{{/eachSorted}}
+						{{/eachSorted}}
+					</optgroup>
 					<optgroup label="Styleguide">
 						{{#eachSorted styleguide.all}}
 							{{#eachSorted this.value}}
@@ -123,9 +130,43 @@
 			</div>
 		</div>
 	</div>
-	<div color="primary" class="sidebar">
+	<div class="sidebar">
+		{{#if components.three}}
+			<a href="#sidebar-components" save-state="localStorage" toggle class="h6 sidebar__separator bkg-primary" is="s-activate" id="sidebar-components">
+				<s-ripple></s-ripple>
+				Components
+				<i class="fa fa-caret-down pull-right"></i>
+				<i class="fa fa-caret-up pull-right"></i>
+			</a>
+			<ul class="list list--menu m-b">
+				{{#eachSorted components.three}}
+					<li class="list__item">
+						<a href="components-{{key}}"
+							class="list__item--toggle"
+							is="s-activate"
+							id="components-{{key}}"
+							save-state="localStorage" toggle>
+							{{{key}}}
+							<i class="fa fa-plus pull-right" style="font-size:8px;"></i>
+							<i class="fa fa-minus pull-right" style="font-size:8px;"></i>
+							<s-ripple></s-ripple>
+						</a>
+						<ul class="list list--submenu">
+							{{#eachSorted this.value}}
+								<li class="list__item">
+									<a href="/components/{{../key}}/{{key}}">
+										{{{key}}}
+										<s-ripple></s-ripple>
+									</a>
+								</li>
+							{{/eachSorted}}
+						</ul>
+					</li>
+				{{/eachSorted}}
+			</ul>
+		{{/if}}
 		{{#if styleguide.all}}
-			<a href="#sidebar-styleguide" save-state="localStorage" toggle="true" history="false" class="h6 sidebar__separator bkg-primary" is="s-activate" id="sidebar-styleguide">
+			<a href="#sidebar-styleguide" save-state="localStorage" toggle class="h6 sidebar__separator bkg-primary" is="s-activate" id="sidebar-styleguide">
 				<s-ripple></s-ripple>
 				Styleguide
 				<i class="fa fa-caret-down pull-right"></i>

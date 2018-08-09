@@ -2,6 +2,7 @@ const __fs = require('fs')
 const __marked = require('marked')
 const __handlebarsHelpers = require('../views/handlebarHelpers')
 const _size = require('lodash/size')
+const __prepareViewData = require('../utils/prepareViewData')
 
 module.exports = function documentationController(req, res) {
 
@@ -21,25 +22,10 @@ module.exports = function documentationController(req, res) {
 			renderer
 		})
 
-		const viewData = {
-			helpers : __handlebarsHelpers,
-			request : req,
-			title : res.locals.config.title,
-			logo : res.locals.config.logo,
-			url : req.url,
-			packageJson : res.locals.packageJson
-		}
-		if (res.locals.allStyleguides && _size(res.locals.allStyleguides)) {
-			viewData.styleguide = {
-				all : res.locals.allStyleguides
-			}
-		}
-		if (_size(res.locals.docThree)) {
-			viewData.documentation = {
-				three : res.locals.docThree,
-				content : markdown
-			}
-		}
+		const viewData = __prepareViewData(req, res)
+
+		// add the current documentation content to the viewData
+		viewData.documentation.content = markdown
 
 		// render the page
 		res.render('documentation', viewData)

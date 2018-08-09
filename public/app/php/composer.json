@@ -1,0 +1,14 @@
+{
+    "name": "olivierbossel/php",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Olivier Bossel",
+            "email": "olivier.bossel@gmail.com"
+        }
+    ],
+    "require": {
+        "philo/laravel-blade": "3.*",
+        "twig/twig": "^2.0"
+    }
+}

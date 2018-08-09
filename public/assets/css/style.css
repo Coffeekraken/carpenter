@@ -7045,6 +7045,27 @@ html, body {
  * A block can contain other blocks or objects and does not have to relay on his ancestors
  * to be properly displayed.
  */
+.components .h1 {
+  background-color: #414f55;
+  background-blend-mode: luminosity;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  border-bottom: 1px solid #e5e9ea;
+  margin: -3rem;
+  margin-bottom: 3rem;
+  padding-bottom: 3rem;
+  padding: 3rem;
+}
+
+.components iframe {
+  border: solid 10px #fcfcfc;
+}
+
+.components .tabs {
+  margin-top: -0.14286rem;
+}
+
 @keyframes dialog-overlay-in {
   from {
     opacity: 0;
@@ -8730,9 +8751,9 @@ button {
  */
 .list--submenu > .list__item > a {
   display: block;
-  padding: 5px 25px;
+  padding: 10px 25px;
   color: #848e91;
-  font-size: 0.7em;
+  font-size: 0.8em;
   text-decoration: none;
 }
 
@@ -8779,7 +8800,7 @@ button {
 
 .list--three > .list__item > a {
   display: block;
-  padding: 8px 10px;
+  padding: 10px 10px;
   color: #848e91;
   font-size: 0.8em;
   text-decoration: none;
@@ -9838,6 +9859,35 @@ select[is="s-select"][color="secondary"] + .s-select .s-select__search-result,
 .s-select--secondary .s-select__search-result {
   background: #2b3438;
   color: white;
+}
+
+.tabs {
+  display: flex;
+}
+
+.tabs__item {
+  flex: 1;
+  list-style: none;
+  background: #fcfcfc;
+}
+
+.tabs__item a {
+  display: block;
+  padding: 0.8em 1.4em;
+  text-decoration: none;
+  border-bottom: 3px solid #fcfcfc;
+}
+
+.tabs__item a:hover, .tabs__item a.active {
+  border-bottom: 3px solid #f2bc2b;
+}
+
+.tabs__content {
+  display: none;
+}
+
+.tabs__content.active {
+  display: block;
 }
 
 /**

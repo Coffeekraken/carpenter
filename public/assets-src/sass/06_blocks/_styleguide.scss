@@ -12,16 +12,16 @@
 		color: white;
 		border-bottom:1px solid s-color(border);
 		margin:s-space(bigger) * -1;
-		margin-bottom: -6rem;
+		margin-bottom: 0;
 		padding-bottom:s-space(bigger);
-		padding:s-space(bigger);
+		padding:s-space(medium) s-space(bigger);
 	}
 
 	.h2 {
 		border-top:30px solid darken(white,1%);
 		padding-top:6rem;
 		margin-bottom:2rem;
-		margin-top:6rem;
+		margin-top:0;
 		margin-left:s-space(bigger) * -1;
 		margin-right:s-space(bigger) * -1;
 		padding-left:s-space(bigger);

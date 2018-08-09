@@ -7055,7 +7055,7 @@ html, body {
   margin: -3rem;
   margin-bottom: 3rem;
   padding-bottom: 3rem;
-  padding: 3rem;
+  padding: 1.4rem 3rem;
 }
 
 .components iframe {
@@ -8110,16 +8110,16 @@ s-interactive-demo s-codemirror {
   color: white;
   border-bottom: 1px solid #e5e9ea;
   margin: -3rem;
-  margin-bottom: -6rem;
+  margin-bottom: 0;
   padding-bottom: 3rem;
-  padding: 3rem;
+  padding: 1.4rem 3rem;
 }
 
 .styleguide .h2 {
   border-top: 30px solid #fcfcfc;
   padding-top: 6rem;
   margin-bottom: 2rem;
-  margin-top: 6rem;
+  margin-top: 0;
   margin-left: -3rem;
   margin-right: -3rem;
   padding-left: 3rem;

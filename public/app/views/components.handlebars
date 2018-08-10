@@ -12,13 +12,26 @@
 		{{/if}}
 
 		{{#if components.viewContent}}
-			<a href="#component-view-content" class="toggle-code" is="s-activate" toggle>
+			<a href="#component-view-content" class="toggle-code" is="s-activate" save-state toggle>
 				<i class="fa fa-code"></i> Show/hide view source code
 			</a>
-			<div class="components__view-data m-b-big" id="component-view-content">
+			<div class="components__view-data" id="component-view-content">
 				<pre>
 					<code class="lang-html">
 						{{ components.viewContent }}
+					</code>
+				</pre>
+			</div>
+		{{/if}}
+
+		{{#if components.schemaJsonContent}}
+			<a href="#component-schema-json-content" class="toggle-code" is="s-activate" save-state toggle>
+				<i class="fa fa-code"></i> Show/hide JSON schema
+			</a>
+			<div class="components__schema-json" id="component-schema-json-content">
+				<pre>
+					<code class="lang-json">
+						{{ components.schemaJsonContent }}
 					</code>
 				</pre>
 			</div>

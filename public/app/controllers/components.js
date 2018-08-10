@@ -1,8 +1,5 @@
 const __path = require('path')
 const __fs = require('fs')
-const _get = require('lodash/get')
-const _set = require('lodash/set')
-const _size = require('lodash/size')
 const __handlebarsHelpers = require('../views/handlebarHelpers')
 const __prepareViewData = require('../utils/prepareViewData')
 const __execPhp = require('exec-php')
@@ -45,22 +42,27 @@ module.exports = function componentsController(req, res) {
 		readmeFilePath = absoluteFileName + '.md'
 	}
 
+	// check if a schema.json exist
+	let schemaJsonFilePath
+	if (__fs.existsSync(absoluteFileName + '.schema.json')) {
+		schemaJsonFilePath = absoluteFileName + '.schema.json'
+	}
+
 	// check if has a data in js format
 	let dataJsFilePath
+	let dataJsFilePathes = []
 	if (__fs.existsSync(absoluteFileName + '.data.js')) {
 		dataJsFilePath = absoluteFileName + '.data.js'
+		dataJsFilePathes = [dataJsFilePath]
 	}
-	let dataJsFilePathes = [dataJsFilePath]
+
 	dataJsFilePathes = dataJsFilePathes.concat(__glob.sync(absoluteFileName+'.*.data.js'))
 
 	// preparing viewData
 	const viewData = __prepareViewData(req, res)
 
 	// title
-	viewData.components.title = _capitalize(dirName).replace('-',' ')
-		.replace('_',' ')
-		.replace('.',' ')
-
+	viewData.components.title = __handlebarsHelpers.cleanTitle(dirName)
 	// init components stack
 	viewData.components.components = []
 
@@ -79,6 +81,11 @@ module.exports = function componentsController(req, res) {
 		})
 	}
 
+	// set the schemaJsonContent if schemaJsonFilePath exist
+	if (schemaJsonFilePath) {
+		viewData.components.schemaJsonContent = __fs.readFileSync(schemaJsonFilePath, 'utf8')
+	}
+
 	// pass the files to inject
 	viewData.components.inject = {
 		styles: res.locals.config.components.inject.filter(function(file) { return file.substr(-4) === '.css' }).map(function(file) { return "'/"+file+"'"; }),
@@ -90,21 +97,30 @@ module.exports = function componentsController(req, res) {
 		viewData.components.viewContent = __fs.readFileSync(viewFilePath, 'utf8')
 	}
 
+	// make sure we have the .cache folder
+	const viewsCacheAbsolutePath = __path.resolve(process.env.PWD + '/' + res.locals.config.components.viewsRootPath + '/.cache')
+	if ( ! __fs.existsSync(viewsCacheAbsolutePath)) {
+		// create the folder
+		__fs.mkdirSync(viewsCacheAbsolutePath)
+		// create the .gitignore and .gitkeep files
+		__fs.appendFileSync(viewsCacheAbsolutePath + '/.gitignore', "*\n!.gitkeep")
+		__fs.appendFileSync(viewsCacheAbsolutePath + '/.gitkeep', "")
+	}
+
 	// loop on each data files
 	let compiledCount = 0
 	dataJsFilePathes.forEach((dataJsFilePath) => {
 
+		// init empty component
+		// where the data will be populated
 		const component = {}
 
 		// set the js data content and the title
 		if (dataJsFilePath) {
+			// read the data file
 			component.dataContent = __fs.readFileSync(dataJsFilePath, 'utf8')
-
-			component.title = __path.basename(dataJsFilePath)
-				.replace('.data.js','')
-				.replace('-',' ')
-				.replace('_',' ')
-				.replace('.',' ')
+			// build a title from the dataJsFilePath
+			component.title = __handlebarsHelpers.cleanTitle(__path.basename(dataJsFilePath))
 		}
 
 		// compile the view with his data if needed

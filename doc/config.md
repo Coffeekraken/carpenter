@@ -32,6 +32,25 @@ module.exports = {
 		}
 	},
 
+	// components settings
+	components: {
+
+		// some files to inject inside the preview iframe
+		inject: [
+			'public/assets/css/style.css',
+			'public/assets/js/app.js'
+		],
+
+		// root views path
+		viewsRootPath: 'app/views',
+
+		// glob patterns of views
+		// (relative to viewsRootPath)
+		files: [
+			'**/*.{blade.php,twig}'
+		]
+	},
+
 	// documentation settings
 	documentation : {
 

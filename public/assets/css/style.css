@@ -6934,7 +6934,7 @@ html, body {
  */
 .sidebar {
   padding-top: 50px;
-  width: 250px;
+  width: 200px;
   float: left;
   min-height: 100vh;
   padding-bottom: 3rem;
@@ -7005,12 +7005,12 @@ html, body {
  * Content
  */
 .content {
-  width: calc(100% - 250px + 15px);
+  width: calc(100% - 200px + 15px);
   height: calc(100% - 50px);
   overflow-y: auto;
   padding: 3rem;
   position: fixed;
-  left: 250px;
+  left: 200px;
   top: 50px;
 }
 
@@ -7071,11 +7071,13 @@ html, body {
   background: #f7f7f7;
 }
 
+.components .components__schema-json,
 .components .components__data-content,
 .components .components__view-data {
   display: none;
 }
 
+.components .components__schema-json.active,
 .components .components__data-content.active,
 .components .components__view-data.active {
   display: block;

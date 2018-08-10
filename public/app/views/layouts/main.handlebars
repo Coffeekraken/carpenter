@@ -32,7 +32,7 @@
 						<optgroup label="Components">
 							{{#eachSorted components.three}}
 								{{#eachSorted this.value}}
-									<option value="/components/{{../key}}/{{key}}">{{../key}}/{{key}}</option>
+									<option value="/components/{{../key}}/{{key}}">{{cleanTitle ../key}}/{{cleanTitle key}}</option>
 								{{/eachSorted}}
 							{{/eachSorted}}
 						</optgroup>
@@ -41,7 +41,7 @@
 						<optgroup label="Styleguide">
 							{{#eachSorted styleguide.all}}
 								{{#eachSorted this.value}}
-									<option value="/styleguide/{{../key}}/{{key}}">{{../key}}/{{key}}</option>
+									<option value="/styleguide/{{../key}}/{{key}}">{{cleanTitle ../key}}/{{cleanTitle key}}</option>
 								{{/eachSorted}}
 							{{/eachSorted}}
 						</optgroup>
@@ -161,7 +161,7 @@
 							{{#eachSorted this.value}}
 								<li class="list__item">
 									<a href="/components/{{../key}}/{{key}}">
-										{{{key}}}
+										{{{cleanTitle key}}}
 										<s-ripple></s-ripple>
 									</a>
 								</li>

@@ -23,6 +23,9 @@ Powerful tool that provide a nice web interface to display your website stylegui
 2. Aggregate markdown documentations
 	- Tell Carpenter where to look for markdown files, it take care of displaying them nicely
 	- Aggregate all the useful documentations in one interface
+3. Document your twig/blade components
+	- Compile your twig/blade templates
+	- Support data files to compile your templates with
 
 ## Install
 
@@ -37,16 +40,26 @@ Here's a simple example:
 
 ```js
 module.exports = {
-	title : 'My Cool Website',
-	styleguide : {
-		files : [
+	title: 'My Cool Website',
+	styleguide: {
+		files: [
 			'dist/css/styleguide.css'
 		]
 	},
-	documentation : {
-		files : [
+	documentation: {
+		files: [
 			'node_modules/coffeekraken-s-*/**/*.md',
 			'README.md'
+		]
+	},
+	components: {
+		inject: [
+			'dist/css/style.css',
+			'dist/js/app.js'
+		],
+		viewsRootPath: 'app/views',
+		files: [
+			'**/*.{twig,blade.php}'
 		]
 	}
 }

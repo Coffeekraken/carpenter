@@ -12,12 +12,10 @@ body {
  * Sidebar
  */
 .sidebar {
-	// height:calc(100vh - 50px);
 	padding-top:50px;
-	width:250px;
+	width:200px;
 	float:left;
 	min-height:100vh;
-	// overflow-y:auto;
 	padding-bottom : s-space(bigger);
 	background: darken(white,1%);
 
@@ -80,14 +78,14 @@ body {
  * Content
  */
 .content {
-	width:calc(100% - 250px + 15px);
+	width:calc(100% - 200px + 15px);
 	height:calc(100% - 50px);
 	overflow-y: auto;
 	padding: s-space(bigger);
 	// background:darken(white, 1%);
 	// border-left:10px solid darken(white, 1%);
 	position:fixed;
-	left: 250px; top:50px;
+	left: 200px; top:50px;
 }
 
 /**

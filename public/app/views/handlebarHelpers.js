@@ -1,5 +1,6 @@
 const flattenkeys = require('flattenkeys')
 const _uniq = require('lodash/uniq')
+const _capitalize = require('lodash/capitalize')
 
 // const __md5 = require('md5');
 let path = '';
@@ -99,6 +100,13 @@ exports.eachSorted = (context, options) => {
 		ret = ret + options.fn({key: key, value: context[key]})
 	})
 	return ret
+}
+
+exports.cleanTitle = (title) => {
+	return _capitalize(title).replace('.data.js','')
+				.replace('-',' ')
+				.replace('_',' ')
+				.replace('.',' ')
 }
 
 /**

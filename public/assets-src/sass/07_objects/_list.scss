@@ -72,7 +72,8 @@
 			@include s-font(
 				$size : .8em,
 				$decoration : none,
-				$color : s-color(text)
+				$color : s-color(text),
+				$transform: capitalize
 			);
 			&:hover {
 				background:darken(white, 1%);

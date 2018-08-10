@@ -33,12 +33,14 @@ module.exports = {
 		// some files to inject inside the preview iframe
 		inject: [
 			'public/assets/css/style.css',
+			'public/assets/js/app.js'
 		],
 
 		// root views path
 		viewsRootPath: 'app/views',
 
-		// glob patterns of views (relative to viewsRootPath)
+		// glob patterns of views
+		// (relative to viewsRootPath)
 		files: [
 			'**/*.{blade.php,twig}'
 		]
@@ -65,7 +67,8 @@ module.exports = {
 
 		// source styleguide files
 		files : [
-			'public/assets/css/style.css'
+			'public/assets/css/style.css',
+			'public/assets/js/app.js'
 		],
 
 		// additionnal displays files to load

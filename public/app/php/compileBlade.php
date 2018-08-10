@@ -5,7 +5,7 @@ use Philo\Blade\Blade;
 
 function compile($view, $data, $absoluteViewsPath) {
 	$views = $absoluteViewsPath;
-	$cache = $absoluteViewsPath . '/cache';
+	$cache = $absoluteViewsPath . '/.cache';
 	$blade = new Blade($views, $cache);
 	return $blade->view()->make($view, $data)->render();
 	// return $absoluteViewsPath;

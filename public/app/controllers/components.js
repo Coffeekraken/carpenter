@@ -8,6 +8,8 @@ const __prepareViewData = require('../utils/prepareViewData')
 const __execPhp = require('exec-php')
 const __htmlspecialchars = require('htmlspecialchars')
 const __marked = require('marked')
+const _capitalize = require('lodash/capitalize')
+const __glob = require('glob-all')
 
 module.exports = function componentsController(req, res) {
 
@@ -43,22 +45,26 @@ module.exports = function componentsController(req, res) {
 		readmeFilePath = absoluteFileName + '.md'
 	}
 
-	// check if a data file exist
-	let dataFilePath
-	if (__fs.existsSync(absoluteFileName + '.data.json')) {
-		dataFilePath = absoluteFileName + '.data.json'
+	// check if has a data in js format
+	let dataJsFilePath
+	if (__fs.existsSync(absoluteFileName + '.data.js')) {
+		dataJsFilePath = absoluteFileName + '.data.js'
 	}
+	let dataJsFilePathes = [dataJsFilePath]
+	dataJsFilePathes = dataJsFilePathes.concat(__glob.sync(absoluteFileName+'.*.data.js'))
 
 	// preparing viewData
 	const viewData = __prepareViewData(req, res)
 
 	// title
-	viewData.components.title = dirName
+	viewData.components.title = _capitalize(dirName).replace('-',' ')
+		.replace('_',' ')
+		.replace('.',' ')
 
-	// set some viewData
-	if (viewFilePath) {
-		viewData.components.viewContent = __fs.readFileSync(viewFilePath, 'utf8')
-	}
+	// init components stack
+	viewData.components.components = []
+
+	// readme
 	if (readmeFilePath) {
 		// compile markdown to html
 		const renderer = new __marked.Renderer()
@@ -72,9 +78,6 @@ module.exports = function componentsController(req, res) {
 			renderer
 		})
 	}
-	if (dataFilePath) {
-		viewData.components.dataContent = __fs.readFileSync(dataFilePath, 'utf8')
-	}
 
 	// pass the files to inject
 	viewData.components.inject = {
@@ -82,34 +85,78 @@ module.exports = function componentsController(req, res) {
 		scripts: res.locals.config.components.inject.filter(function(file) { return file.substr(-3) === '.js' }).map(function(file) { return "'/"+file+"'"; })
 	}
 
-	// compile the view with his data if needed
+	// set some viewData
 	if (viewFilePath) {
+		viewData.components.viewContent = __fs.readFileSync(viewFilePath, 'utf8')
+	}
 
-		// load and parse data
-		let data = {};
-		if (dataFilePath) {
-			data = JSON.parse(__fs.readFileSync(dataFilePath, 'utf8'))
+	// loop on each data files
+	let compiledCount = 0
+	dataJsFilePathes.forEach((dataJsFilePath) => {
+
+		const component = {}
+
+		// set the js data content and the title
+		if (dataJsFilePath) {
+			component.dataContent = __fs.readFileSync(dataJsFilePath, 'utf8')
+
+			component.title = __path.basename(dataJsFilePath)
+				.replace('.data.js','')
+				.replace('-',' ')
+				.replace('_',' ')
+				.replace('.',' ')
 		}
 
-		// check which template language is used
-		if (viewFilePath.match(/\.blade\.php$/)) {
-			__execPhp(__dirname + '/../php/compileBlade.php', __dirname + '/../php/bin/php', (error, php, outprint) => {
-				const result = php.compile(viewPath, data, __path.resolve(process.env.PWD + '/' + res.locals.config.components.viewsRootPath), function(err, result, output, printed) {
-					// set the compiled content in the viewData
-					viewData.components.result = __htmlspecialchars(result)
-					// render the page
-					res.render('components', viewData)
-				})
-			})
-		} else if (viewFilePath.match(/\.twig$/)) {
-			__execPhp(__dirname + '/../php/compileTwig.php', __dirname + '/../php/bin/php', (error, php, outprint) => {
-				const result = php.compile(viewPath+'.twig', data, __path.resolve(process.env.PWD + '/' + res.locals.config.components.viewsRootPath), function(err, result, output, printed) {
-					// set the compiled content in the viewData
-					viewData.components.result = __htmlspecialchars(result)
-					// render the page
-					res.render('components', viewData)
-				})
-			})
+		// compile the view with his data if needed
+		if (viewFilePath) {
+
+			// load and parse data
+			let data = {};
+			if (dataJsFilePath) {
+				data = require(dataJsFilePath)
+			}
+
+			// check which template language is used
+			if (viewFilePath.match(/\.blade\.php$/)) {
+				((comp) => {
+					__execPhp(__dirname + '/../php/compileBlade.php', __dirname + '/../php/bin/php', (error, php, outprint) => {
+						const result = php.compile(viewPath, data, __path.resolve(process.env.PWD + '/' + res.locals.config.components.viewsRootPath), function(err, result, output, printed) {
+							// set the compiled content in the viewData
+							comp.result = __htmlspecialchars(result)
+							// update the compiled count variable
+							compiledCount++
+							// renderView if all compiled
+							if (compiledCount >= dataJsFilePathes.length) {
+								renderView(viewData)
+							}
+						})
+					})
+				})(component)
+			} else if (viewFilePath.match(/\.twig$/)) {
+				((comp) => {
+					__execPhp(__dirname + '/../php/compileTwig.php', __dirname + '/../php/bin/php', (error, php, outprint) => {
+						const result = php.compile(viewPath+'.twig', data, __path.resolve(process.env.PWD + '/' + res.locals.config.components.viewsRootPath), function(err, result, output, printed) {
+							// set the compiled content in the viewData
+							comp.result = __htmlspecialchars(result)
+							// update the compiled count variable
+							compiledCount++
+							// renderView if all compiled
+							if (compiledCount >= dataJsFilePathes.length) {
+								renderView(viewData)
+							}
+						})
+					})
+				})(component)
+			}
 		}
+
+		// add the component inside the components stack
+		viewData.components.components.push(component)
+
+	})
+
+	const renderView = (viewData) => {
+		// render the page
+		res.render('components', viewData)
 	}
 }

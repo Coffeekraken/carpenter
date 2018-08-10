@@ -28,23 +28,29 @@
 			<div class="gr-grow" style="font-size:11px">
 				<select is="s-select" name="search" onchange="document.location.href = this.value">
 					<option value="/">Search...</option>
-					<optgroup label="Components">
-						{{#eachSorted components.three}}
-							{{#eachSorted this.value}}
-								<option value="/components/{{../key}}/{{key}}">{{../key}}/{{key}}</option>
+					{{#if components.three}}
+						<optgroup label="Components">
+							{{#eachSorted components.three}}
+								{{#eachSorted this.value}}
+									<option value="/components/{{../key}}/{{key}}">{{../key}}/{{key}}</option>
+								{{/eachSorted}}
 							{{/eachSorted}}
-						{{/eachSorted}}
-					</optgroup>
-					<optgroup label="Styleguide">
-						{{#eachSorted styleguide.all}}
-							{{#eachSorted this.value}}
-								<option value="/styleguide/{{../key}}/{{key}}">{{../key}}/{{key}}</option>
+						</optgroup>
+					{{/if}}
+					{{#if styleguide.all}}
+						<optgroup label="Styleguide">
+							{{#eachSorted styleguide.all}}
+								{{#eachSorted this.value}}
+									<option value="/styleguide/{{../key}}/{{key}}">{{../key}}/{{key}}</option>
+								{{/eachSorted}}
 							{{/eachSorted}}
-						{{/eachSorted}}
-					</optgroup>
-					<optgroup label="documentation">
-						{{{optionsMenu documentation.three request.url}}}
-					</optgroup>
+						</optgroup>
+					{{/if}}
+					{{#if documentation.three}}
+						<optgroup label="documentation">
+							{{{optionsMenu documentation.three request.url}}}
+						</optgroup>
+					{{/if}}
 				</select>
 			</div>
 			<div class="gr-adapt">

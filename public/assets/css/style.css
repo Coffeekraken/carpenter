@@ -7045,25 +7045,40 @@ html, body {
  * A block can contain other blocks or objects and does not have to relay on his ancestors
  * to be properly displayed.
  */
-.components .h1 {
-  background-color: #414f55;
-  background-blend-mode: luminosity;
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: white;
-  border-bottom: 1px solid #e5e9ea;
-  margin: -3rem;
-  margin-bottom: 3rem;
-  padding-bottom: 3rem;
-  padding: 1.4rem 3rem;
-}
-
 .components iframe {
   border: solid 10px #fcfcfc;
+  margin-bottom: -0.14286rem;
 }
 
 .components .tabs {
   margin-top: -0.14286rem;
+}
+
+.components .components__separator {
+  background: #fcfcfc;
+  height: 2.14286rem;
+  margin: 3rem -3rem;
+}
+
+.components .toggle-code {
+  padding: 1rem;
+  text-decoration: none;
+  display: block;
+  background: #fcfcfc;
+}
+
+.components .toggle-code:hover {
+  background: #f7f7f7;
+}
+
+.components .components__data-content,
+.components .components__view-data {
+  display: none;
+}
+
+.components .components__data-content.active,
+.components .components__view-data.active {
+  display: block;
 }
 
 @keyframes dialog-overlay-in {
@@ -8755,6 +8770,7 @@ button {
   color: #848e91;
   font-size: 0.8em;
   text-decoration: none;
+  text-transform: capitalize;
 }
 
 .list--submenu > .list__item > a:hover {
@@ -8898,7 +8914,7 @@ pre[class*="language-"] {
   color: #e9eded;
   text-shadow: none;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 13px;
   font-family: 'Office Code Pro Medium', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   direction: ltr;
   text-align: left;

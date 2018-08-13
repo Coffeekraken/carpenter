@@ -39,6 +39,9 @@ module.exports = {
 		// root views path
 		viewsRootPath: 'app/views',
 
+
+		phpBootstrapPath: 'public/app/php/bootstrap.php',
+
 		// glob patterns of views
 		// (relative to viewsRootPath)
 		files: [

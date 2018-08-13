@@ -1,6 +1,7 @@
 const flattenkeys = require('flattenkeys')
 const _uniq = require('lodash/uniq')
 const _capitalize = require('lodash/capitalize')
+const htmlspecialchars = require('htmlspecialchars')
 
 // const __md5 = require('md5');
 let path = '';
@@ -107,6 +108,14 @@ exports.cleanTitle = (title) => {
 				.replace('-',' ')
 				.replace('_',' ')
 				.replace('.',' ')
+}
+
+exports.sanitizeAttribute = (string) => {
+	return string.replace(/\./g,'-')
+}
+
+exports.htmlspecialchars = (string) => {
+	return htmlspecialchars(string)
 }
 
 /**

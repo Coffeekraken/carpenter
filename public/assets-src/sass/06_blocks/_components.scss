@@ -36,4 +36,29 @@
 			display: block;
 		}
 	}
+
+	img {
+		&:not(.img-fullscreen)[tabindex] {
+			max-width:500px;
+			max-height:500px;
+			border:solid 4px s-color(primary);
+			cursor: pointer;
+			outline: none;
+			@include s-transition(fast);
+		}
+
+		&:focus + .img-fullscreen {
+			display: block;
+		}
+	}
+	.img-fullscreen {
+		position:fixed;
+		z-index:999;
+		top:0; left:s-rem(40px);
+		width:calc(100% - 40px); height:100%;
+		background: s-color(secondary, -opacity .8);
+		object-fit: scale-down;
+		cursor: pointer;
+		display:none;
+	}
 }

@@ -6934,11 +6934,17 @@ html, body {
  */
 .sidebar {
   padding-top: 50px;
-  width: 200px;
+  width: 250px;
   float: left;
   min-height: 100vh;
   padding-bottom: 3rem;
   background: #fcfcfc;
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  position: relative;
+  z-index: 1;
+  transform: translateX(-15rem);
+  box-shadow: rgba(0, 0, 0, 0.2) 0 20px 30px;
 }
 
 .sidebar .list--menu,
@@ -6949,6 +6955,10 @@ html, body {
 .sidebar .active + .list--menu,
 .sidebar .active + .list--three {
   display: block;
+}
+
+.sidebar:hover {
+  transform: translateX(0);
 }
 
 .sidebar__header {
@@ -6987,7 +6997,7 @@ html, body {
   height: 50px;
   position: fixed;
   width: 100%;
-  z-index: 1;
+  z-index: 20;
   padding: 0 0 0 10px;
 }
 
@@ -7005,13 +7015,13 @@ html, body {
  * Content
  */
 .content {
-  width: calc(100% - 200px + 15px);
+  width: calc(100% - 40px + 15px);
+  left: 2.85714rem;
+  top: 50px;
   height: calc(100% - 50px);
   overflow-y: auto;
   padding: 3rem;
   position: fixed;
-  left: 200px;
-  top: 50px;
 }
 
 /**
@@ -7081,6 +7091,33 @@ html, body {
 .components .components__data-content.active,
 .components .components__view-data.active {
   display: block;
+}
+
+.components img:not(.img-fullscreen)[tabindex] {
+  max-width: 500px;
+  max-height: 500px;
+  border: solid 4px #f2bc2b;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+}
+
+.components img:focus + .img-fullscreen {
+  display: block;
+}
+
+.components .img-fullscreen {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 2.85714rem;
+  width: calc(100% - 40px);
+  height: 100%;
+  background: rgba(43, 52, 56, 0.8);
+  object-fit: scale-down;
+  cursor: pointer;
+  display: none;
 }
 
 @keyframes dialog-overlay-in {

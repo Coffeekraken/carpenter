@@ -1,20 +1,37 @@
 <?php
 
-require 'vendor/autoload.php';
-use Philo\Blade\Blade;
-
-function compile($view, $data, $absoluteViewsPath) {
+function compile($view, $data, $absoluteViewsPath, $absolutePhpBootstrapPath) {
+	// prepare data to pass it to the template engine
+	$data = json_decode(json_encode($data), FALSE);
+	$data = (array) $data;
+	// load the project environment if
+	// the config.phpBootstrapPath is set
+	if (@$absolutePhpBootstrapPath) {
+		require($absolutePhpBootstrapPath);
+	}
+	// bootstrap
+	require_once 'bootstrap.php';
+	// render blade usin thorin
+	// return Thorin::render_blade($view, $data);
+	// set
 	$views = $absoluteViewsPath;
 	$cache = $absoluteViewsPath . '/.cache';
-	$blade = new Blade($views, $cache);
+	$blade = new Philo\Blade\Blade($views, $cache);
 	return $blade->view()->make($view, $data)->render();
-	// return $absoluteViewsPath;
 }
 
+// print compile('components/back-to-top/back-to-top',
+// 	[
+// 		"label" => "hello world"
+// 	],
+// 	'/Users/olivierbossel/data/web/ploom/brandsite-template/app/views',
+// 	'/Users/olivierbossel/data/web/ploom/brandsite-template/app/bootstrap.php'
+// );
 
-// print compile('atoms/button/button', [
-// 	"label" => "Plop World"
-// ], '/Users/olivierbossel/data/web/coffeekraken/carpenter/app/views');
-
-
-// print compile('atoms/button/button', null, '/Users/olivierbossel/data/web/coffeekraken/carpenter/app/views');
+// print compile('atoms/button/button',
+// 	[
+// 		"label" => "hello world"
+// 	],
+// 	'/Users/olivierbossel/data/web/coffeekraken/carpenter/app/views',
+// 	null
+// );

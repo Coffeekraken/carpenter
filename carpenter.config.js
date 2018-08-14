@@ -33,13 +33,13 @@ module.exports = {
 		// some files to inject inside the preview iframe
 		inject: [
 			'public/assets/css/style.css',
-			'public/assets/js/app.js'
+			'public/assets/js/app.js',
 		],
 
 		// root views path
 		viewsRootPath: 'app/views',
 
-
+		// file to include in the compile environment
 		phpBootstrapPath: 'public/app/php/bootstrap.php',
 
 		// glob patterns of views

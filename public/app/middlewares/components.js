@@ -28,12 +28,26 @@ module.exports = function componentsMiddleware(req, res, next) {
 		return __path.resolve(res.locals.config.components.viewsRootPath + '/' + file)
 	})
 
-	const files = __glob.sync(componentsFiles).map((file) => {
+	let files = __glob.sync(componentsFiles).map((file) => {
 		const p = __path.resolve(file
 						 .replace(process.env.PWD, '')
 						 .replace(res.locals.config.components.viewsRootPath, '')
 			   ).replace(/^\//,'')
 		return p
+	})
+
+
+	files = files.filter((file) => {
+		const splits = file.split('/')
+		const basename = splits.pop()
+		const pathname = splits[splits.length-1]
+		const absoluteFilePath = __path.resolve(
+			res.locals.config.components.viewsRootPath,
+			splits.join('/'),
+			pathname + '.data.js'
+		)
+		if ( ! __fs.existsSync(absoluteFilePath)) return false
+		return true
 	})
 
 	const splitedFiles = files.map((file) => {

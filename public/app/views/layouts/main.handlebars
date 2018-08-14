@@ -161,7 +161,8 @@
 							{{#eachSorted this.value}}
 								<li class="list__item">
 									<a href="/components/{{../key}}/{{key}}">
-										<span>
+										{{{cleanTitle key}}}
+										<span class="pull-right" style="position:relative; left:13px">
 											{{#if this.value.metas.status}}
 												{{#ifCond this.value.metas.status '===' 'start'}}
 													<i class="c-error fa fa-battery-empty"></i>
@@ -174,7 +175,6 @@
 												{{/ifCond}}
 											{{/if}}
 										</span>
-										{{{cleanTitle key}}}
 										<s-ripple></s-ripple>
 									</a>
 								</li>

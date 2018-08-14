@@ -201,7 +201,6 @@ module.exports = class ComponentModel {
 									this._variants[filename] = {}
 								}
 								this._variants[filename].view = result
-
 								// update the compiled count variable
 								compiledCount++
 								// renderView if all compiled

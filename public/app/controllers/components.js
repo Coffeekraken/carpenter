@@ -31,9 +31,6 @@ module.exports = function componentsController(req, res) {
 		// preparing viewData
 		const viewData = __prepareViewData(req, res)
 
-		// title
-		// viewData.components.title = __handlebarsHelpers.cleanTitle(dirName)
-
 		// pass the files to inject
 		viewData.components.inject = {
 			styles: res.locals.config.components.inject.filter(function(file) { return file.substr(-4) === '.css' }).map(function(file) { return "'/"+file+"'"; }),
@@ -56,6 +53,19 @@ module.exports = function componentsController(req, res) {
 		viewData.components.variants = component.variants
 		viewData.components.metas = component.metas
 
+		// // save compiled if needed
+		// if (res.locals.config.components.saveCompiled) {
+		// 	for (let filename in component.variants) {
+		// 		// __fs.writeFileSync()
+		// 		const filePath = __path.resolve(
+		// 			absoluteViewsPath,
+		// 			path,
+		// 			filename
+		// 		)
+		// 		__fs.writeFileSync(filePath.replace('.data.js','.html'), component.variants[filename].view)
+		// 	}
+		// }
+
 		res.render('components', viewData)
 
 	})
@@ -69,10 +79,8 @@ module.exports = function componentsController(req, res) {
 		})
 
 		socket.watcher = __fs.watch(absoluteViewPath, (event, filename) => {
-
 			const component = new ComponentModel(viewPath, absoluteViewsPath, absolutePhpBootstrapPath)
 			component.onReady(() => {
-
 				socket.emit('component:update', {
 					viewContent: component.viewContent,
 					readmeContent: component.readmeContent,

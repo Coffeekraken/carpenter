@@ -120,6 +120,7 @@
     "md5": "^2.2.1",
     "open": "0.0.5",
     "prismjs": "^1.6.0",
+    "require-text": "^0.0.1",
     "webcomponents.js": "^0.7.23"
   }
 }

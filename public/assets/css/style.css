@@ -7273,11 +7273,10 @@ html, body {
 
 .documentation .img-fullscreen {
   position: fixed;
-  z-index: 10;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%) translateZ(0);
-  width: 100%;
+  z-index: 999;
+  top: 0;
+  left: 2.85714rem;
+  width: calc(100% - 40px);
   height: 100%;
   background: rgba(43, 52, 56, 0.8);
   object-fit: scale-down;

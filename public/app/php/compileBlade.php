@@ -11,9 +11,7 @@ function compile($view, $data, $absoluteViewsPath, $absolutePhpBootstrapPath) {
 	}
 	// bootstrap
 	require_once 'bootstrap.php';
-	// render blade usin thorin
-	// return Thorin::render_blade($view, $data);
-	// set
+	// render the view using blade
 	$views = $absoluteViewsPath;
 	$cache = $absoluteViewsPath . '/.cache';
 	$blade = new Philo\Blade\Blade($views, $cache);

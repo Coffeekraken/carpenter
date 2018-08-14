@@ -3,5 +3,5 @@ module.exports = {
   type: "default",
   title: "This is a cool button",
   target: null,
-  label: "Click me! Twig"
+  label: "Click me!"
 }

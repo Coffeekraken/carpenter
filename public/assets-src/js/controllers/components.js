@@ -1,9 +1,6 @@
 import __socketio from 'socket.io-client'
 import __prism from 'prismjs'
 import __htmlspecialchars from 'htmlspecialchars'
-import __iframeResizer from 'iframe-resizer'
-
-window.iframeResizer = __iframeResizer
 
 if (document.querySelector('section.components')) {
 	const io = __socketio('http://localhost:3334')

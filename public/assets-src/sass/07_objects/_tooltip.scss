@@ -3,5 +3,6 @@
 	$colors : default primary secondary
 );
 .tooltip {
+	z-index: 10;
 	white-space: nowrap;
 }

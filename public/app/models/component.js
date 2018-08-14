@@ -28,7 +28,11 @@ module.exports = class ComponentModel {
 		// get the schemaJson content
 		this._schemaJsonContent = this._getSchemaJsonContent()
 
+		// variants
 		this._variants = {}
+
+		// metas
+		this._metas = this._getMetas()
 
 		// get the data files
 		this._data = this._getData()
@@ -104,6 +108,21 @@ module.exports = class ComponentModel {
 			return __fs.readFileSync(schemaJsonFilePath, 'utf8')
 		}
 
+		// no schemaJson so return false
+		return false
+	}
+
+	_getMetas () {
+		// check if a schema.json exist
+		let metasJsFilePath
+		if (__fs.existsSync(this._absoluteFileName + '.metas.js')) {
+			metasJsFilePath = this._absoluteFileName + '.metas.js'
+		}
+		// set the schemaJsonContent if metasJsFilePath exist
+		if (metasJsFilePath) {
+			delete require.cache[metasJsFilePath]
+			return require(metasJsFilePath)
+		}
 		// no schemaJson so return false
 		return false
 	}
@@ -195,7 +214,11 @@ module.exports = class ComponentModel {
 				} else if (this._templateEngine === 'twig') {
 					((_dataFilePath) => {
 						__execPhp(__dirname + '/../php/compileTwig.php', __dirname + '/../php/bin/php', (error, php, outprint) => {
-							const result = php.compile(this._viewPath + '.twig', this._data[__path.basename(_dataFilePath)].data, this._absoluteViewsPath, (err, result, output, printed) => {
+							const result = php.compile(this._viewPath + '.twig',
+													   this._data[__path.basename(_dataFilePath)].data,
+													   this._absoluteViewsPath,
+													   this._absolutePhpBootstrapPath,
+							(err, result, output, printed) => {
 								const filename = __path.basename(_dataFilePath)
 								if (!this._variants[filename]) {
 									this._variants[filename] = {}
@@ -212,22 +235,6 @@ module.exports = class ComponentModel {
 						})
 					})(dataJsFilePath)
 				}
-				// else if (viewFilePath.match(/\.twig$/)) {
-				// 	((comp) => {
-				// 		__execPhp(__dirname + '/../php/compileTwig.php', __dirname + '/../php/bin/php', (error, php, outprint) => {
-				// 			const result = php.compile(viewPath+'.twig', data, __path.resolve(process.env.PWD + '/' + res.locals.config.components.viewsRootPath), function(err, result, output, printed) {
-				// 				// set the compiled content in the viewData
-				// 				comp.result = __htmlspecialchars(result)
-				// 				// update the compiled count variable
-				// 				compiledCount++
-				// 				// renderView if all compiled
-				// 				if (compiledCount >= dataJsFilePathes.length) {
-				// 					renderView(viewData)
-				// 				}
-				// 			})
-				// 		})
-				// 	})(component)
-				// }
 			})
 		})
 	}
@@ -246,6 +253,10 @@ module.exports = class ComponentModel {
 
 	get variants () {
 		return this._variants
+	}
+
+	get metas () {
+		return this._metas
 	}
 
 	get data () {

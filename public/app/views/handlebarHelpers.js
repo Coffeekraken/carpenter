@@ -1,7 +1,8 @@
-const flattenkeys = require('flattenkeys')
+const __flattenkeys = require('flattenkeys')
 const _uniq = require('lodash/uniq')
 const _capitalize = require('lodash/capitalize')
-const htmlspecialchars = require('htmlspecialchars')
+const __htmlspecialchars = require('htmlspecialchars')
+const __gravatarUrl = require('gravatar-url')
 
 // const __md5 = require('md5');
 let path = '';
@@ -79,7 +80,7 @@ exports.optionsMenu = (three, currentUrl) => {
 	// prepare three
 	const newThree = Object.assign({}, three);
 
-	let paths = flattenkeys(newThree);
+	let paths = __flattenkeys(newThree);
 	paths = paths.map((item) => {
 		const it = item.split('.');
 		it.pop();
@@ -115,12 +116,40 @@ exports.sanitizeAttribute = (string) => {
 }
 
 exports.htmlspecialchars = (string) => {
-	return htmlspecialchars(string)
+	return __htmlspecialchars(string)
+}
+
+exports.ifCond = function (v1, operator, v2, options) {
+
+    switch (operator) {
+        case '==':
+            return (v1 == v2) ? options.fn(this) : options.inverse(this);
+        case '===':
+            return (v1 === v2) ? options.fn(this) : options.inverse(this);
+        case '!=':
+            return (v1 != v2) ? options.fn(this) : options.inverse(this);
+        case '!==':
+            return (v1 !== v2) ? options.fn(this) : options.inverse(this);
+        case '<':
+            return (v1 < v2) ? options.fn(this) : options.inverse(this);
+        case '<=':
+            return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+        case '>':
+            return (v1 > v2) ? options.fn(this) : options.inverse(this);
+        case '>=':
+            return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+        case '&&':
+            return (v1 && v2) ? options.fn(this) : options.inverse(this);
+        case '||':
+            return (v1 || v2) ? options.fn(this) : options.inverse(this);
+        default:
+            return options.inverse(this);
+    }
 }
 
 /**
  * Gravatar
  */
-// exports.gravatarUrl = (email) => {
-// 	return `https://www.gravatar.com/avatar/${__md5(email)}`;
-// }
+exports.gravatarUrl = (email) => {
+	return __gravatarUrl(email);
+}

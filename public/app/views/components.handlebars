@@ -11,6 +11,61 @@
 			</h1>
 		{{/if}}
 
+
+		{{#if components.metas.todo}}
+			<h2 class="h2 m-b">Todo</h2>
+			<ul class="ul m-b-big">
+				{{#each components.metas.todo}}
+					<li class="li">{{ this }}</li>
+				{{/each}}
+			</ul>
+		{{/if}}
+
+		<div class="components__metas">
+			<div class="row row-align-middle">
+				<div class="gr-adapt">
+					<div class="components__metas-item component__metas-item--status">
+						{{#if components.metas.status}}
+							Status
+							{{#ifCond components.metas.status '===' 'start'}}
+								<span class="relative">
+									<i class="c-error fa fa-battery-empty"></i>
+									<span class="tooltip tooltip--secondary">Start</span>
+								</span>
+							{{/ifCond}}
+							{{#ifCond components.metas.status '===' 'in-progress'}}
+								<span class="relative">
+									<i class="c-warning fa fa-battery-half"></i>
+									<span class="tooltip tooltip--secondary">In progress</span>
+								</span>
+							{{/ifCond}}
+							{{#ifCond components.metas.status '===' 'ready'}}
+								<span class="relative">
+									<i class="c-success fa fa-battery-full"></i>
+									<span class="tooltip tooltip--secondary">Ready</span>
+								</span>
+							{{/ifCond}}
+						{{/if}}
+					</div>
+				</div>
+				<div class="gr-grow"></div>
+				<div class="gr-adapt">
+					<div class="components__metas-item component__metas-item--contributors">
+						{{#each components.metas.contributors}}
+							<figure class="gravatar relative" style="font-size:2em">
+								<a href="mailto:{{ this.email }}">
+									<img src="{{gravatarUrl this.email }}" class="gravatar__img" title="{{this.name}}" alt="{{this.name}}" />
+								</a>
+								<div class="tooltip tooltip--secondary" style="font-size:.5em">
+									{{this.name}}
+								</div>
+							</figure>
+						{{/each}}
+					</div>
+				</div>
+			</div>
+		</div>
+
 		{{#if components.viewContent}}
 			<a href="#component-view-content" class="toggle-code" is="s-activate" save-state toggle>
 				<i class="fa fa-code"></i> Show/hide view source code

@@ -17,12 +17,12 @@ module.exports = function componentsController(req, res) {
 
 	const path = decodeURIComponent(req.url.replace('/components/',''))
 	const absoluteViewsPath = __path.resolve(
-		process.env.PWD + '/' + res.locals.config.components.viewsRootPath
+		res.locals.config.components.viewsRootPath
 	)
 	const viewPath = path + '/' + path.split('/').pop()
 	const absoluteViewPath = absoluteViewsPath + '/' + path
 	const absolutePhpBootstrapPath = __path.resolve(
-		process.env.PWD + '/' + res.locals.config.components.phpBootstrapPath
+		res.locals.config.components.phpBootstrapPath
 	)
 
 	const component = new ComponentModel(viewPath, absoluteViewsPath, absolutePhpBootstrapPath)
@@ -41,7 +41,7 @@ module.exports = function componentsController(req, res) {
 		}
 
 		// make sure we have the .cache folder
-		const viewsCacheAbsolutePath = __path.resolve(process.env.PWD + '/' + res.locals.config.components.viewsRootPath + '/.cache')
+		const viewsCacheAbsolutePath = __path.resolve(res.locals.config.components.viewsRootPath + '/.cache')
 		if ( ! __fs.existsSync(viewsCacheAbsolutePath)) {
 			// create the folder
 			__fs.mkdirSync(viewsCacheAbsolutePath)
@@ -54,6 +54,7 @@ module.exports = function componentsController(req, res) {
 		viewData.components.readmeContent = component.readmeContent
 		viewData.components.schemaJsonContent = component.schemaJsonContent
 		viewData.components.variants = component.variants
+		viewData.components.metas = component.metas
 
 		res.render('components', viewData)
 
@@ -69,7 +70,7 @@ module.exports = function componentsController(req, res) {
 
 		socket.watcher = __fs.watch(absoluteViewPath, (event, filename) => {
 
-			const component = new ComponentModel(viewPath, absoluteViewsPath)
+			const component = new ComponentModel(viewPath, absoluteViewsPath, absolutePhpBootstrapPath)
 			component.onReady(() => {
 
 				socket.emit('component:update', {

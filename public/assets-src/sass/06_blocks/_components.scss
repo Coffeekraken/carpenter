@@ -27,6 +27,18 @@
 		}
 	}
 
+	.components__metas {
+		padding: s-space(default);
+		border-top: 1px solid s-color(border);
+		border-bottom: 1px solid s-color(border);
+	}
+		.components__metas-item {
+			display: inline-block
+		}
+		.component__metas-item--contributors {
+			white-space: nowrap;
+		}
+
 	.components__schema-json,
 	.components__data-content,
 	.components__view-data {

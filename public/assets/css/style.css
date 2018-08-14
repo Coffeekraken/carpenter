@@ -7081,6 +7081,20 @@ html, body {
   background: #f7f7f7;
 }
 
+.components .components__metas {
+  padding: 1rem;
+  border-top: 1px solid #e5e9ea;
+  border-bottom: 1px solid #e5e9ea;
+}
+
+.components .components__metas-item {
+  display: inline-block;
+}
+
+.components .component__metas-item--contributors {
+  white-space: nowrap;
+}
+
 .components .components__schema-json,
 .components .components__data-content,
 .components .components__view-data {
@@ -8738,6 +8752,18 @@ button {
   width: 100%;
   height: 0;
   padding-bottom: 30%;
+}
+
+.gravatar {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+}
+
+.gravatar__img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 
 /**
@@ -11516,6 +11542,7 @@ select[is="s-select"][color="secondary"] + .s-select .s-select__search-result,
 }
 
 .tooltip {
+  z-index: 10;
   white-space: nowrap;
 }
 

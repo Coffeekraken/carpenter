@@ -73,6 +73,7 @@
     "coffeekraken-scripts-stack": "^1.0.1",
     "exec-php": "^0.0.4",
     "git-changelog": "^1.1.2",
+    "gravatar-url": "^2.0.0",
     "htmlspecialchars": "^1.0.5",
     "iframe-resizer": "^3.6.1",
     "imagemin-cli": "^3.0.0",

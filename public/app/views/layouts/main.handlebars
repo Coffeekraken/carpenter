@@ -161,6 +161,19 @@
 							{{#eachSorted this.value}}
 								<li class="list__item">
 									<a href="/components/{{../key}}/{{key}}">
+										<span>
+											{{#if this.value.metas.status}}
+												{{#ifCond this.value.metas.status '===' 'start'}}
+													<i class="c-error fa fa-battery-empty"></i>
+												{{/ifCond}}
+												{{#ifCond this.value.metas.status '===' 'in-progress'}}
+													<i class="c-warning fa fa-battery-half"></i>
+												{{/ifCond}}
+												{{#ifCond this.value.metas.status '===' 'ready'}}
+													<i class="c-success fa fa-battery-full"></i>
+												{{/ifCond}}
+											{{/if}}
+										</span>
 										{{{cleanTitle key}}}
 										<s-ripple></s-ripple>
 									</a>

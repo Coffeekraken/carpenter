@@ -27,6 +27,25 @@ module.exports = {
 		}
 	},
 
+	// components settings
+	components: {
+
+		// some files to inject inside the preview iframe
+		inject: [
+			'public/assets/css/style.css',
+			'public/assets/js/app.js',
+		],
+
+		// root views path
+		viewsRootPath: 'app/views',
+
+		// file to include in the compile environment
+		phpBootstrapPath: 'public/app/php/bootstrap.php',
+
+		// set if need to save the compiled views in html format
+		saveCompiled: false
+	},
+
 	// documentation settings
 	documentation : {
 
@@ -48,7 +67,8 @@ module.exports = {
 
 		// source styleguide files
 		files : [
-			'public/assets/css/style.css'
+			'public/assets/css/style.css',
+			'public/assets/js/app.js'
 		],
 
 		// additionnal displays files to load

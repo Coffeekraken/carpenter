@@ -1,0 +1,6 @@
+<h1 class="h1 m-b">{{ title }}</h1>
+{% if online == true %}
+    <p class="p m-b">{{ body }}</p>
+{% endif %}
+
+{% include 'atoms/button-twig/button-twig.twig' with button %}

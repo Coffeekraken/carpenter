@@ -1,0 +1,16 @@
+{
+  "title": "Back to top",
+  "description": "Allow the user to go back directly to the top of the page",
+  "type": "object",
+  "properties": {
+    "label": {
+      "title": "Label",
+      "description": "The label to display on hover",
+      "type": "string"
+    },
+    "section": {
+      "$ref": "../partials/section.schema.json"
+    }
+  },
+  "required": ["label", "section"]
+}

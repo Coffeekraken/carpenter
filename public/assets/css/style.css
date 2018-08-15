@@ -6939,6 +6939,12 @@ html, body {
   min-height: 100vh;
   padding-bottom: 3rem;
   background: #fcfcfc;
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  position: relative;
+  z-index: 1;
+  transform: translateX(-15rem);
+  box-shadow: rgba(0, 0, 0, 0.2) 0 20px 30px;
 }
 
 .sidebar .list--menu,
@@ -6949,6 +6955,10 @@ html, body {
 .sidebar .active + .list--menu,
 .sidebar .active + .list--three {
   display: block;
+}
+
+.sidebar:hover {
+  transform: translateX(0);
 }
 
 .sidebar__header {
@@ -6987,7 +6997,7 @@ html, body {
   height: 50px;
   position: fixed;
   width: 100%;
-  z-index: 1;
+  z-index: 20;
   padding: 0 0 0 10px;
 }
 
@@ -7005,13 +7015,13 @@ html, body {
  * Content
  */
 .content {
-  width: calc(100% - 250px + 15px);
+  width: calc(100% - 40px + 15px);
+  left: 2.85714rem;
+  top: 50px;
   height: calc(100% - 50px);
   overflow-y: auto;
   padding: 3rem;
   position: fixed;
-  left: 250px;
-  top: 50px;
 }
 
 /**
@@ -7045,6 +7055,85 @@ html, body {
  * A block can contain other blocks or objects and does not have to relay on his ancestors
  * to be properly displayed.
  */
+.components iframe {
+  border: solid 10px #fcfcfc;
+  margin-bottom: -0.14286rem;
+}
+
+.components .tabs {
+  margin-top: -0.14286rem;
+}
+
+.components .components__separator {
+  background: #fcfcfc;
+  height: 2.14286rem;
+  margin: 3rem -3rem;
+}
+
+.components .toggle-code {
+  padding: 1rem;
+  text-decoration: none;
+  display: block;
+  background: #fcfcfc;
+}
+
+.components .toggle-code:hover {
+  background: #f7f7f7;
+}
+
+.components .components__metas {
+  padding: 1rem;
+  border-top: 1px solid #e5e9ea;
+  border-bottom: 1px solid #e5e9ea;
+}
+
+.components .components__metas-item {
+  display: inline-block;
+}
+
+.components .component__metas-item--contributors {
+  white-space: nowrap;
+}
+
+.components .components__schema-json,
+.components .components__data-content,
+.components .components__view-data {
+  display: none;
+}
+
+.components .components__schema-json.active,
+.components .components__data-content.active,
+.components .components__view-data.active {
+  display: block;
+}
+
+.components img:not(.img-fullscreen)[tabindex] {
+  max-width: 500px;
+  max-height: 500px;
+  border: solid 4px #f2bc2b;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+}
+
+.components img:focus + .img-fullscreen {
+  display: block;
+}
+
+.components .img-fullscreen {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 2.85714rem;
+  width: calc(100% - 40px);
+  height: 100%;
+  background: rgba(43, 52, 56, 0.8);
+  object-fit: scale-down;
+  cursor: pointer;
+  display: none;
+}
+
 @keyframes dialog-overlay-in {
   from {
     opacity: 0;
@@ -7184,11 +7273,10 @@ html, body {
 
 .documentation .img-fullscreen {
   position: fixed;
-  z-index: 10;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%) translateZ(0);
-  width: 100%;
+  z-index: 999;
+  top: 0;
+  left: 2.85714rem;
+  width: calc(100% - 40px);
   height: 100%;
   background: rgba(43, 52, 56, 0.8);
   object-fit: scale-down;
@@ -8089,16 +8177,16 @@ s-interactive-demo s-codemirror {
   color: white;
   border-bottom: 1px solid #e5e9ea;
   margin: -3rem;
-  margin-bottom: -6rem;
+  margin-bottom: 0;
   padding-bottom: 3rem;
-  padding: 3rem;
+  padding: 1.4rem 3rem;
 }
 
 .styleguide .h2 {
   border-top: 30px solid #fcfcfc;
   padding-top: 6rem;
   margin-bottom: 2rem;
-  margin-top: 6rem;
+  margin-top: 0;
   margin-left: -3rem;
   margin-right: -3rem;
   padding-left: 3rem;
@@ -8665,6 +8753,18 @@ button {
   padding-bottom: 30%;
 }
 
+.gravatar {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+}
+
+.gravatar__img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
 /**
  * Lists
  */
@@ -8730,10 +8830,11 @@ button {
  */
 .list--submenu > .list__item > a {
   display: block;
-  padding: 5px 25px;
+  padding: 10px 25px;
   color: #848e91;
-  font-size: 0.7em;
+  font-size: 0.8em;
   text-decoration: none;
+  text-transform: capitalize;
 }
 
 .list--submenu > .list__item > a:hover {
@@ -8779,7 +8880,7 @@ button {
 
 .list--three > .list__item > a {
   display: block;
-  padding: 8px 10px;
+  padding: 10px 10px;
   color: #848e91;
   font-size: 0.8em;
   text-decoration: none;
@@ -8877,7 +8978,7 @@ pre[class*="language-"] {
   color: #e9eded;
   text-shadow: none;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 13px;
   font-family: 'Office Code Pro Medium', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   direction: ltr;
   text-align: left;
@@ -9838,6 +9939,35 @@ select[is="s-select"][color="secondary"] + .s-select .s-select__search-result,
 .s-select--secondary .s-select__search-result {
   background: #2b3438;
   color: white;
+}
+
+.tabs {
+  display: flex;
+}
+
+.tabs__item {
+  flex: 1;
+  list-style: none;
+  background: #fcfcfc;
+}
+
+.tabs__item a {
+  display: block;
+  padding: 0.8em 1.4em;
+  text-decoration: none;
+  border-bottom: 3px solid #fcfcfc;
+}
+
+.tabs__item a:hover, .tabs__item a.active {
+  border-bottom: 3px solid #f2bc2b;
+}
+
+.tabs__content {
+  display: none;
+}
+
+.tabs__content.active {
+  display: block;
 }
 
 /**
@@ -11411,6 +11541,7 @@ select[is="s-select"][color="secondary"] + .s-select .s-select__search-result,
 }
 
 .tooltip {
+  z-index: 10;
   white-space: nowrap;
 }
 

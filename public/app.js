@@ -9,9 +9,11 @@ const packageJsonMiddleware = require('./app/middlewares/packageJson')
 const cleanRequestMiddleware = require('./app/middlewares/cleanRequest')
 const docThreeMiddleware = require('./app/middlewares/docThree')
 const styleguideMiddleware = require('./app/middlewares/styleguides')
+const componentsMiddleware = require('./app/middlewares/components')
 
 const styleguidesController = require('./app/controllers/styleguide')
 const documentationController = require('./app/controllers/documentation')
+const componentsController = require('./app/controllers/components')
 
 module.exports = function(config) {
 
@@ -83,11 +85,17 @@ module.exports = function(config) {
 	// grab styleguides and set the res.locals.allStyleguide
 	app.use(styleguideMiddleware)
 
+	// grab components and set the res.locals.components
+	app.use(componentsMiddleware)
+
 	// styleguide route
 	app.get(/\/styleguide\/.*/, styleguidesController)
 
 	// documentation route
 	app.get(/documentation\/.+/, documentationController)
+
+	// components route
+	app.get(/components\/.+/, componentsController)
 
 	// start demo server
 	app.listen(config.port, function () {

@@ -58219,7 +58219,7 @@ var _htmlspecialchars2 = _interopRequireDefault(_htmlspecialchars);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 if (document.querySelector('section.components')) {
-	var io = (0, _socket2.default)('http://localhost:3334');
+	var io = (0, _socket2.default)('http://localhost:' + (window.carpenter.port + 1));
 	io.on('component:update', function (data) {
 
 		// get all the references in the html

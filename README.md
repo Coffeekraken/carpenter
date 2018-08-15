@@ -58,9 +58,8 @@ module.exports = {
 			'dist/js/app.js'
 		],
 		viewsRootPath: 'app/views',
-		files: [
-			'**/*.{twig,blade.php}'
-		]
+		phpBootstrapPath: 'app/bootstrap.php',
+		saveCompiled: false
 	}
 }
 ```

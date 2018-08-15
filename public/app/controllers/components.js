@@ -53,18 +53,17 @@ module.exports = function componentsController(req, res) {
 		viewData.components.variants = component.variants
 		viewData.components.metas = component.metas
 
-		// // save compiled if needed
-		// if (res.locals.config.components.saveCompiled) {
-		// 	for (let filename in component.variants) {
-		// 		// __fs.writeFileSync()
-		// 		const filePath = __path.resolve(
-		// 			absoluteViewsPath,
-		// 			path,
-		// 			filename
-		// 		)
-		// 		__fs.writeFileSync(filePath.replace('.data.js','.html'), component.variants[filename].view)
-		// 	}
-		// }
+		// save compiled if needed
+		if (res.locals.config.components.saveCompiled) {
+			for (let filename in component.variants) {
+				const filePath = __path.resolve(
+					absoluteViewsPath,
+					path,
+					filename
+				)
+				__fs.writeFileSync(filePath.replace('.data.js','.html'), component.variants[filename].view)
+			}
+		}
 
 		res.render('components', viewData)
 
@@ -79,8 +78,24 @@ module.exports = function componentsController(req, res) {
 		})
 
 		socket.watcher = __fs.watch(absoluteViewPath, (event, filename) => {
+
+			if (filename.match(/\.html/)) return
+
 			const component = new ComponentModel(viewPath, absoluteViewsPath, absolutePhpBootstrapPath)
 			component.onReady(() => {
+
+				// save compiled if needed
+				if (res.locals.config.components.saveCompiled) {
+					for (let filename in component.variants) {
+						const filePath = __path.resolve(
+							absoluteViewsPath,
+							path,
+							filename
+						)
+						__fs.writeFileSync(filePath.replace('.data.js','.html'), component.variants[filename].view)
+					}
+				}
+
 				socket.emit('component:update', {
 					viewContent: component.viewContent,
 					readmeContent: component.readmeContent,

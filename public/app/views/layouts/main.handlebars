@@ -162,16 +162,16 @@
 								<li class="list__item">
 									<a href="/components/{{../key}}/{{key}}">
 										{{{cleanTitle key}}}
-										<span class="pull-right" style="position:relative; left:13px">
+										<span class="pull-right" style="position:relative; left:10px; top: -2px">
 											{{#if this.value.metas.status}}
 												{{#ifCond this.value.metas.status '===' 'start'}}
-													<i class="c-error fa fa-battery-empty"></i>
+													<i class="c-error fa fa-circle" style="font-size:8px"></i>
 												{{/ifCond}}
 												{{#ifCond this.value.metas.status '===' 'in-progress'}}
-													<i class="c-warning fa fa-battery-half"></i>
+													<i class="c-warning fa fa-circle" style="font-size:8px"></i>
 												{{/ifCond}}
 												{{#ifCond this.value.metas.status '===' 'ready'}}
-													<i class="c-success fa fa-battery-full"></i>
+													<i class="c-success fa fa-circle" style="font-size:8px"></i>
 												{{/ifCond}}
 											{{/if}}
 										</span>
@@ -255,7 +255,11 @@
 
 	</section>
 
+	<script>
+		window.carpenter = {
+			port: {{ port }}
+		};
+	</script>
 	<script src="/assets/js/app.js"></script>
-
 </body>
 </html>

@@ -1,11 +1,23 @@
 # Components
 
 Carpenter comes with a useful way to document your **twig/blade** components.
+
+## Folder structure
+
+In order to work well, the component feature need a two-level folder structure. Here's some sample:
+
+- `atoms/button` : OK
+- `atoms/small/button` : ERROR
+- `molecules/login` : OK
+- etc...
+
+## Exemple
+
 Here's an exemple with a simple `button` component:
 
 ### `app/views/button/button.blade.php`
 
-```php
+```html
 <a class="btn btn--{{ $color or 'default' }} btn--{{ $type or 'default' }}"
 	title="{{ $title }}"
 	target="{{ $target or '_self' }}"

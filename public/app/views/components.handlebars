@@ -26,22 +26,22 @@
 				<div class="gr-adapt">
 					<div class="components__metas-item component__metas-item--status">
 						{{#if components.metas.status}}
-							Status
+							Status&nbsp;
 							{{#ifCond components.metas.status '===' 'start'}}
 								<span class="relative">
-									<i class="c-error fa fa-battery-empty"></i>
+									<i class="c-error fa fa-circle"></i>
 									<span class="tooltip tooltip--secondary">Start</span>
 								</span>
 							{{/ifCond}}
 							{{#ifCond components.metas.status '===' 'in-progress'}}
 								<span class="relative">
-									<i class="c-warning fa fa-battery-half"></i>
+									<i class="c-warning fa fa-circle"></i>
 									<span class="tooltip tooltip--secondary">In progress</span>
 								</span>
 							{{/ifCond}}
 							{{#ifCond components.metas.status '===' 'ready'}}
 								<span class="relative">
-									<i class="c-success fa fa-battery-full"></i>
+									<i class="c-success fa fa-circle"></i>
 									<span class="tooltip tooltip--secondary">Ready</span>
 								</span>
 							{{/ifCond}}
@@ -104,18 +104,25 @@
 
 			<h2 class="h2 m-b t-capitalize">{{this.value.title}}</h2>
 
-			<iframe width="100%" height="1" srcdoc="
-				{{{ htmlspecialchars this.value.view }}}
-				{{#each ../components.inject.styles}}
-					<link rel=&quot;stylesheet&quot; href={{{this}}} />
-				{{/each}}
-				{{#each ../components.inject.scripts}}
-					<script src={{{this}}}></script>
-				{{/each}}
-				<style>
-					body { padding: 20px; }
-				</style>
-			" onload="resizeIframe(this)" id="view-variant-{{sanitizeAttribute this.key}}"></iframe>
+			<iframe width="100%"
+				height="{{../components.metas.height}}"
+				srcdoc="
+					{{{ htmlspecialchars this.value.view }}}
+					{{#each ../components.inject.styles}}
+						<link rel=&quot;stylesheet&quot; href={{{this}}} />
+					{{/each}}
+					{{#each ../components.inject.scripts}}
+						<script src={{{this}}}></script>
+					{{/each}}
+					<style>
+						body {
+							padding: 20px;
+						}
+					</style>
+				"
+				onload="resizeIframe(this)"
+				id="view-variant-{{sanitizeAttribute this.key}}"
+			></iframe>
 
 			{{#if this.value.dataContent}}
 				<a href="#components-data-{{sanitizeAttribute this.key}}" class="toggle-code" is="s-activate" save-state toggle>

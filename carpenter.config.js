@@ -42,11 +42,8 @@ module.exports = {
 		// file to include in the compile environment
 		phpBootstrapPath: 'public/app/php/bootstrap.php',
 
-		// glob patterns of views
-		// (relative to viewsRootPath)
-		files: [
-			'**/*.{blade.php,twig}'
-		]
+		// set if need to save the compiled views in html format
+		saveCompiled: false
 	},
 
 	// documentation settings

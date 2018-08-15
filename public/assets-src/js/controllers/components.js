@@ -3,7 +3,7 @@ import __prism from 'prismjs'
 import __htmlspecialchars from 'htmlspecialchars'
 
 if (document.querySelector('section.components')) {
-	const io = __socketio('http://localhost:3334')
+	const io = __socketio(`http://localhost:${window.carpenter.port + 1}`)
 	io.on('component:update', (data) => {
 
 		// get all the references in the html

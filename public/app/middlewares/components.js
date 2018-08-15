@@ -19,12 +19,7 @@ Handlebars.registerHelper("debug", function(optionalValue) {
 
 module.exports = function componentsMiddleware(req, res, next) {
 
-	if ( ! res.locals.config.components || ! res.locals.config.components.files.length) {
-		next();
-		return;
-	}
-
-	const componentsFiles = [].concat(res.locals.config.components.files).map(function(file) {
+	const componentsFiles = ['*/*/*.{blade.php,twig}'].map(function(file) {
 		return __path.resolve(res.locals.config.components.viewsRootPath + '/' + file)
 	})
 

@@ -1,9 +1,13 @@
 const expressApp = require('express')
 const server = require('http').Server(expressApp)
 const io = require('socket.io')(server)
+const config = require('../config')
 
-server.listen(3334, function(){
-	console.log('Carpenter : socket listening on port 3334');
-});
+setTimeout(() => {
+	const port = config.port + 1
+	server.listen(port, function(){
+		console.log(`Carpenter : socket listening on port ${port}`);
+	});
+}, 100);
 
 module.exports = io

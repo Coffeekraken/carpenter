@@ -48,18 +48,20 @@ module.exports = {
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum dapibus felis at sollicitudin efficitur. Vivamus risus nunc, vulputate imperdiet viverra eu, gravida eget arcu. Quisque sollicitudin euismod lorem, vitae varius mi vestibulum non. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis condimentum nibh vel mi condimentum rhoncus. Etiam sed ante a tortor lacinia porttitor. Donec vestibulum porta dignissim. Mauris ut tellus massa.
 ```
 
-## Data files `.data.js`
+## Data files `.data.js|yml`
 
 Each component can have **one or more** data file. By default, the data file is names like so:
 
 ```
 {component-name}.data.js
+{component-name}.data.yml
 ```
 
 But you can create more than one data file by following this pattern:
 
 ```
 {component-name}.{something}.data.js
+{component-name}.{something}.data.yml
 ```
 
 By doing this, you can have multiple "state" of your component documented easily.

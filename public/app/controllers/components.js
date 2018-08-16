@@ -1,5 +1,6 @@
 const __path = require('path')
 const __fs = require('fs')
+const __nodeWatch = require('node-watch')
 const __handlebarsHelpers = require('../views/handlebarHelpers')
 const __prepareViewData = require('../utils/prepareViewData')
 const __execPhp = require('exec-php')
@@ -77,7 +78,17 @@ module.exports = function componentsController(req, res) {
 			}
 		})
 
-		socket.watcher = __fs.watch(absoluteViewPath, (event, filename) => {
+		// build watchStack
+		const watchStack = [absoluteViewPath]
+		res.locals.config.components.inject.forEach((filename) => {
+			watchStack.push(__path.resolve(
+				process.env.PWD,
+				filename
+			))
+		})
+
+		// socket.watcher = __fs.watch(absoluteViewPath, (event, filename) => {
+		socket.watcher = __nodeWatch(watchStack, (event, filename) => {
 
 			if (filename.match(/\.html/)) return
 

@@ -1,8 +1,30 @@
 import __socketio from 'socket.io-client'
 import __prism from 'prismjs'
 import __htmlspecialchars from 'htmlspecialchars'
+import __interactjs from 'interactjs'
+
+function resizeIframe(iframe) {
+	iframe.style.height = '1px'
+	if (iframe.contentWindow) {
+		iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 40 + 'px';
+	}
+}
 
 if (document.querySelector('section.components')) {
+
+	// resizable iframe
+	[].forEach.call(document.querySelectorAll('.components__iframe-wrapper'), (item) => {
+		__interactjs(item).resizable({
+			edges: { top: false, right: true, bottom: false, left: false },
+			inertia: true
+		}).on('resizemove', function (event) {
+			event.preventDefault()
+			var target = event.target
+			target.style.width  = event.rect.width + 'px';
+			resizeIframe(target.querySelector('iframe'))
+		})
+	})
+
 	const io = __socketio(`http://localhost:${window.carpenter.port + 1}`)
 	io.on('component:update', (data) => {
 
@@ -48,9 +70,7 @@ if (document.querySelector('section.components')) {
 			newIframeElm.style.height = viewVariantElm.offsetHeight + 'px'
 			newIframeElm.onload = function() {
 				setTimeout(() => {
-					if (this.contentWindow) {
-						this.style.height = this.contentWindow.document.body.scrollHeight + 20 + 'px';
-					}
+					resizeIframe(this)
 				}, 500)
 			}
 			// append it to the HTML
@@ -72,7 +92,7 @@ if (document.querySelector('section.components')) {
 			// update the data of the current variant
 			dataVariantElm.innerHTML = `<code class="lang-js">${value.dataContent}</code>`
 		}
-
+		// relaunch prism to highlight all the code parts
 		__prism.highlightAll();
 
 	})

@@ -171,7 +171,7 @@
 				</a>
 				<div class="components__data-content" id="components-data-{{sanitizeAttribute this.key}}">
 					<pre id="data-variant-{{sanitizeAttribute this.key}}">
-						<code class="lang-js">
+						<code class="lang-{{ this.value.language }}">
 							{{{ this.value.dataContent }}}
 						</code>
 					</pre>

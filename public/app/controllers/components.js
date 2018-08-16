@@ -62,7 +62,7 @@ module.exports = function componentsController(req, res) {
 					path,
 					filename
 				)
-				__fs.writeFileSync(filePath.replace('.data.js','.html'), component.variants[filename].view)
+				__fs.writeFileSync(filePath.replace('.data.js','.html').replace('.data.yml','.html'), component.variants[filename].view)
 			}
 		}
 
@@ -103,7 +103,7 @@ module.exports = function componentsController(req, res) {
 							path,
 							filename
 						)
-						__fs.writeFileSync(filePath.replace('.data.js','.html'), component.variants[filename].view)
+						__fs.writeFileSync(filePath.replace('.data.js','.html').replace('.data.yml','.html'), component.variants[filename].view)
 					}
 				}
 

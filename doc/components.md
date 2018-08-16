@@ -48,7 +48,7 @@ module.exports = {
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum dapibus felis at sollicitudin efficitur. Vivamus risus nunc, vulputate imperdiet viverra eu, gravida eget arcu. Quisque sollicitudin euismod lorem, vitae varius mi vestibulum non. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis condimentum nibh vel mi condimentum rhoncus. Etiam sed ante a tortor lacinia porttitor. Donec vestibulum porta dignissim. Mauris ut tellus massa.
 ```
 
-## Data files
+## Data files `.data.js`
 
 Each component can have **one or more** data file. By default, the data file is names like so:
 
@@ -63,3 +63,25 @@ But you can create more than one data file by following this pattern:
 ```
 
 By doing this, you can have multiple "state" of your component documented easily.
+
+## Markdown file `.md`
+
+Each component can have 1 markdown file called `{component-name}.md`. Using this file, you can document your component more deeply if needed.
+
+## Metas file `.metas.js`
+
+This file is used to specify some metas data like some todos, the status of the component, etc... Here's the full metas file references:
+
+```js
+module.exports = {
+	status: 'in-progress', // start, in-progress, ready
+	todo: [
+		'Something cool to do'
+	],
+	contributors: [{
+		name: 'Olivier Bossel',
+		email: 'olivier.bossel@gmail.com'
+	}],
+	height: null // specify the height to apply to the preview iframe
+}
+```

@@ -8,7 +8,7 @@ module.exports = function prepareViewData(req, res) {
 		request : req,
 		title : res.locals.config.title,
 		logo : res.locals.config.logo,
-		port : res.locals.config.port,
+		config: res.locals.config,
 		url : req.url,
 		packageJson : res.locals.packageJson
 	}

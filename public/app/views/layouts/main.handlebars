@@ -256,9 +256,7 @@
 	</section>
 
 	<script>
-		window.carpenter = {
-			port: {{ port }}
-		};
+		window.carpenter = {{{ stringify config }}};
 	</script>
 	<script src="/assets/js/app.js"></script>
 </body>

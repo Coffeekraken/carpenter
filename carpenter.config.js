@@ -45,9 +45,10 @@ module.exports = {
 		// set if need to save the compiled views in html format
 		saveCompiled: false,
 
+		// set the widths or each states used to resize the preview iframe
 		states: {
-			mobile: 340,
-			tablet: 580,
+			mobile: 620,
+			tablet: 1000,
 			desktop: null
 		}
 	},

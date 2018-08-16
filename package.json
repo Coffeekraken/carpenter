@@ -1,6 +1,6 @@
 {
   "name": "coffeekraken-carpenter",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Powerful tool that provide a nice web interface to display your website styleguide and modules/plugins documentations in one place.",
   "main": "dist/index.js",
   "homepage": "http://coffeekraken.io",

@@ -104,25 +104,41 @@
 
 			<h2 class="h2 m-b t-capitalize">{{this.value.title}}</h2>
 
-			<iframe width="100%"
-				height="{{../components.metas.height}}"
-				srcdoc="
-					{{{ htmlspecialchars this.value.view }}}
-					{{#each ../components.inject.styles}}
-						<link rel=&quot;stylesheet&quot; href={{{this}}} />
-					{{/each}}
-					{{#each ../components.inject.scripts}}
-						<script src={{{this}}}></script>
-					{{/each}}
-					<style>
-						body {
-							padding: 20px;
-						}
-					</style>
-				"
-				onload="resizeIframe(this)"
-				id="view-variant-{{sanitizeAttribute this.key}}"
-			></iframe>
+			<div class="components__iframe-wrapper"
+				id="view-variant-{{sanitizeAttribute this.key}}-iframe-wrapper"
+			>
+				<iframe width="100%"
+					height="{{#if ../components.metas.height}}
+							{{../components.metas.heightm}}
+						{{else}}
+							1
+						{{/if}}
+					"
+					srcdoc="
+						{{{ htmlspecialchars this.value.view }}}
+						{{#each ../components.inject.styles}}
+							<link rel=&quot;stylesheet&quot; href={{{this}}} />
+						{{/each}}
+						{{#each ../components.inject.scripts}}
+							<script src={{{this}}}></script>
+						{{/each}}
+						<style>
+							body {
+								padding: 20px;
+							}
+						</style>
+					"
+					onload="resizeIframe(this)"
+					id="view-variant-{{sanitizeAttribute this.key}}"
+				></iframe>
+				<a href="#view-variant-{{sanitizeAttribute this.key}}-iframe-wrapper"
+					class="components__iframe-wrapper-fullscreen"
+					is="s-activate"
+					toggle
+				>
+					<i class="fa fa-arrows-alt"></i>
+				</a>
+			</div>
 
 			{{#if this.value.dataContent}}
 				<a href="#components-data-{{sanitizeAttribute this.key}}" class="toggle-code" is="s-activate" save-state toggle>

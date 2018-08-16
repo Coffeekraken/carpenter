@@ -7057,17 +7057,8 @@ html, body {
  */
 .components iframe {
   border: solid 10px #fcfcfc;
+  border-right: solid 10px #f2f2f2;
   margin-bottom: -0.14286rem;
-}
-
-.components .tabs {
-  margin-top: -0.14286rem;
-}
-
-.components .components__separator {
-  background: #fcfcfc;
-  height: 2.14286rem;
-  margin: 3rem -3rem;
 }
 
 .components .toggle-code {
@@ -7079,32 +7070,6 @@ html, body {
 
 .components .toggle-code:hover {
   background: #f7f7f7;
-}
-
-.components .components__metas {
-  padding: 1rem;
-  border-top: 1px solid #e5e9ea;
-  border-bottom: 1px solid #e5e9ea;
-}
-
-.components .components__metas-item {
-  display: inline-block;
-}
-
-.components .component__metas-item--contributors {
-  white-space: nowrap;
-}
-
-.components .components__schema-json,
-.components .components__data-content,
-.components .components__view-data {
-  display: none;
-}
-
-.components .components__schema-json.active,
-.components .components__data-content.active,
-.components .components__view-data.active {
-  display: block;
 }
 
 .components img:not(.img-fullscreen)[tabindex] {
@@ -7132,6 +7097,62 @@ html, body {
   object-fit: scale-down;
   cursor: pointer;
   display: none;
+}
+
+.components__separator {
+  background: #fcfcfc;
+  height: 2.14286rem;
+  margin: 3rem -3rem;
+}
+
+.components__metas {
+  padding: 1rem;
+  border-top: 1px solid #e5e9ea;
+  border-bottom: 1px solid #e5e9ea;
+}
+
+.components__metas-item {
+  display: inline-block;
+}
+
+.component__metas-item--contributors {
+  white-space: nowrap;
+}
+
+.components__schema-json,
+.components__data-content,
+.components__view-data {
+  display: none;
+}
+
+.components__schema-json.active,
+.components__data-content.active,
+.components__view-data.active {
+  display: block;
+}
+
+.components__iframe-wrapper {
+  position: relative;
+  background: white;
+}
+
+.components__iframe-wrapper.active {
+  position: fixed;
+  top: 3.57143rem;
+  left: 2.85714rem;
+  width: calc(100vw - 40px);
+  height: calc(100vh - 50px);
+  z-index: 1;
+}
+
+.components__iframe-wrapper.active iframe {
+  height: 100% !important;
+}
+
+.components__iframe-wrapper-fullscreen {
+  position: absolute;
+  bottom: 1.42857rem;
+  right: 1.42857rem;
 }
 
 @keyframes dialog-overlay-in {

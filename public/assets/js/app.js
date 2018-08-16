@@ -65418,7 +65418,11 @@ if (document.querySelector('section.components')) {
 	[].forEach.call(document.querySelectorAll('.components__iframe-wrapper'), function (item) {
 		(0, _interactjs2.default)(item).resizable({
 			edges: { top: false, right: true, bottom: false, left: false },
-			inertia: true
+			inertia: true,
+			// minimum size
+			restrictSize: {
+				min: { width: 100 }
+			}
 		}).on('resizemove', function (event) {
 			event.preventDefault();
 			var target = event.target;

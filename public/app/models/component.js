@@ -5,6 +5,7 @@ const __glob = require('glob-all')
 const __execPhp = require('exec-php')
 const __htmlspecialchars = require('htmlspecialchars')
 const __handlebarHelpers = require('../views/handlebarHelpers')
+const __jsYaml = require('js-yaml')
 
 module.exports = class ComponentModel {
 
@@ -128,37 +129,53 @@ module.exports = class ComponentModel {
 	}
 
 	_getDataFilePathes () {
-		let dataJsFilePath
-		let dataJsFilePathes = []
+		let dataFilePath
+		let dataFilePathes = []
 		if (__fs.existsSync(this._absoluteFileName + '.data.js')) {
-			dataJsFilePath = this._absoluteFileName + '.data.js'
-			dataJsFilePathes = [dataJsFilePath]
+			dataFilePath = this._absoluteFileName + '.data.js'
+			dataFilePathes = [dataFilePath]
+		} else if (__fs.existsSync(this._absoluteFileName + '.data.yml')) {
+			dataFilePath = this._absoluteFileName + '.data.yml'
+			dataFilePathes = [dataFilePath]
 		}
-		return dataJsFilePathes.concat(__glob.sync(this._absoluteFileName+'.*.data.js'))
-
+		dataFilePathes = dataFilePathes.concat(__glob.sync(this._absoluteFileName+'.*.data.js'))
+		dataFilePathes = dataFilePathes.concat(__glob.sync(this._absoluteFileName+'.*.data.yml'))
+		return dataFilePathes
 	}
 
 	_getData () {
 		// check if has a data in js format
-		const dataJsFilePathes = this._getDataFilePathes()
+		const dataFilePathes = this._getDataFilePathes()
 
 		// loop on each data files
 		const data = {}
-		dataJsFilePathes.forEach((dataJsFilePath) => {
+		dataFilePathes.forEach((dataFilePath) => {
 			// get the filename
-			const filename = dataJsFilePath.split('/').pop()
-			// read the data file
-			delete require.cache[dataJsFilePath]
-			data[filename] = {
-				content: __fs.readFileSync(dataJsFilePath, 'utf8'),
-				data: require(dataJsFilePath)
+			const filename = dataFilePath.split('/').pop()
+			if (filename.match(/\.js/)) {
+				// read the data file
+				delete require.cache[dataFilePath]
+				data[filename] = {
+					content: __fs.readFileSync(dataFilePath, 'utf8'),
+					data: require(dataFilePath)
+				}
+			} else if (filename.match(/\.yml/)) {
+				data[filename] = {
+					content: __fs.readFileSync(dataFilePath, 'utf8'),
+					data: __jsYaml.safeLoad(__fs.readFileSync(dataFilePath, 'utf8'))
+				}
 			}
 			if (!this._variants[filename]) {
 				this._variants[filename] = {}
 			}
-			this._variants[filename].data = require(dataJsFilePath)
-			this._variants[filename].dataContent = __fs.readFileSync(dataJsFilePath, 'utf8')
+			if (filename.match(/\.js/)) {
+				this._variants[filename].data = require(dataFilePath)
+			} else if (filename.match(/\.yml/)) {
+				this._variants[filename].data = __jsYaml.safeLoad(__fs.readFileSync(dataFilePath, 'utf8'))
+			}
+			this._variants[filename].dataContent = __fs.readFileSync(dataFilePath, 'utf8')
 			this._variants[filename].title = __handlebarHelpers.cleanTitle(filename)
+			this._variants[filename].language = (filename.match(/\.yml/)) ? 'yaml' : 'js'
 		})
 
 		// return the data stack
@@ -173,7 +190,7 @@ module.exports = class ComponentModel {
 			const _this = this
 
 			// get all the files pathes
-			const dataJsFilePathes = this._getDataFilePathes()
+			const dataFilePathes = this._getDataFilePathes()
 
 			// init stack
 			const compiledStack = {}
@@ -182,7 +199,7 @@ module.exports = class ComponentModel {
 			let compiledCount = 0
 
 			// loop on each data js file pathes
-			dataJsFilePathes.forEach((dataJsFilePath) => {
+			dataFilePathes.forEach((dataFilePath) => {
 
 				// check which template language is used
 				if (this._templateEngine === 'blade') {
@@ -204,12 +221,12 @@ module.exports = class ComponentModel {
 								// update the compiled count variable
 								compiledCount++
 								// renderView if all compiled
-								if (compiledCount >= dataJsFilePathes.length) {
+								if (compiledCount >= dataFilePathes.length) {
 									resolve(compiledStack)
 								}
 							})
 						})
-					})(dataJsFilePath)
+					})(dataFilePath)
 				} else if (this._templateEngine === 'twig') {
 					((_dataFilePath) => {
 						__execPhp(__dirname + '/../php/compileTwig.php', __dirname + '/../php/bin/php', (error, php, outprint) => {
@@ -227,12 +244,12 @@ module.exports = class ComponentModel {
 								// update the compiled count variable
 								compiledCount++
 								// renderView if all compiled
-								if (compiledCount >= dataJsFilePathes.length) {
+								if (compiledCount >= dataFilePathes.length) {
 									resolve(compiledStack)
 								}
 							})
 						})
-					})(dataJsFilePath)
+					})(dataFilePath)
 				}
 			})
 		})

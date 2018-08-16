@@ -106,6 +106,7 @@ exports.eachSorted = (context, options) => {
 
 exports.cleanTitle = (title) => {
 	return _capitalize(title).replace('.data.js','')
+				.replace('.data.yml','')
 				.replace('-',' ')
 				.replace('_',' ')
 				.replace('.',' ')

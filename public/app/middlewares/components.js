@@ -36,12 +36,17 @@ module.exports = function componentsMiddleware(req, res, next) {
 		const splits = file.split('/')
 		const basename = splits.pop()
 		const pathname = splits[splits.length-1]
-		const absoluteFilePath = __path.resolve(
+		const absoluteJsFilePath = __path.resolve(
 			res.locals.config.components.viewsRootPath,
 			splits.join('/'),
 			pathname + '.data.js'
 		)
-		if ( ! __fs.existsSync(absoluteFilePath)) return false
+		const absoluteYmlFilePath = __path.resolve(
+			res.locals.config.components.viewsRootPath,
+			splits.join('/'),
+			pathname + '.data.yml'
+		)
+		if ( ! __fs.existsSync(absoluteJsFilePath) && ! __fs.existsSync(absoluteYmlFilePath)) return false
 		return true
 	})
 

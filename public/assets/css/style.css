@@ -7136,7 +7136,7 @@ html, body {
   background: white;
 }
 
-.components__iframe-wrapper.active {
+.components__iframe-wrapper.fullscreen {
   position: fixed;
   top: 3.57143rem;
   left: 2.85714rem;
@@ -7145,14 +7145,47 @@ html, body {
   z-index: 1;
 }
 
-.components__iframe-wrapper.active iframe {
+.components__iframe-wrapper.fullscreen:after {
+  display: block;
+  content: '';
+  width: 100vw;
+  height: 100vh;
+  background: rgba(43, 52, 56, 0.8);
+  left: 100%;
+  top: 0;
+  position: absolute;
+}
+
+.components__iframe-wrapper.fullscreen iframe {
   height: 100% !important;
 }
 
-.components__iframe-wrapper-fullscreen {
+.components__iframe-wrapper:hover .components__iframe-wrapper-actions {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.components__iframe-wrapper-actions {
   position: absolute;
-  bottom: 1.42857rem;
+  bottom: 1.78571rem;
   right: 1.42857rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+}
+
+.components__iframe-wrapper-action {
+  background: #848e91;
+  padding: 0.35714rem 0.57143rem;
+  color: white;
+  font-size: .7em;
+  text-decoration: none;
+  position: relative;
+}
+
+.components__iframe-wrapper-action:hover {
+  background-color: #2b3438;
 }
 
 @keyframes dialog-overlay-in {

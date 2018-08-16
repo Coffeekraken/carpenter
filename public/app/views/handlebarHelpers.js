@@ -153,3 +153,10 @@ exports.ifCond = function (v1, operator, v2, options) {
 exports.gravatarUrl = (email) => {
 	return __gravatarUrl(email);
 }
+
+/**
+ * Stringify JSON
+ */
+exports.stringify = (json) => {
+	return JSON.stringify(json)
+}

@@ -43,7 +43,13 @@ module.exports = {
 		phpBootstrapPath: 'public/app/php/bootstrap.php',
 
 		// set if need to save the compiled views in html format
-		saveCompiled: false
+		saveCompiled: false,
+
+		states: {
+			mobile: 340,
+			tablet: 580,
+			desktop: null
+		}
 	},
 
 	// documentation settings

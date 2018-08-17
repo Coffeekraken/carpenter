@@ -48,6 +48,7 @@ module.exports = function componentsController(req, res) {
 			__fs.appendFileSync(viewsCacheAbsolutePath + '/.gitkeep', "")
 		}
 
+		viewData.components.title = component.title
 		viewData.components.viewContent = component.viewContent
 		viewData.components.readmeContent = component.readmeContent
 		viewData.components.schemaJsonContent = component.schemaJsonContent
@@ -108,6 +109,7 @@ module.exports = function componentsController(req, res) {
 				}
 
 				socket.emit('component:update', {
+					title: component.title,
 					viewContent: component.viewContent,
 					readmeContent: component.readmeContent,
 					schemaJsonContent: component.schemaJsonContent,

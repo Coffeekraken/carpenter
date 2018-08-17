@@ -2084,6 +2084,12 @@ coffeekraken-s-dialog-component@^1.0.1:
   dependencies:
     coffeekraken-sugar "^1.0.0"
 
+coffeekraken-s-dropdown-component@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/coffeekraken-s-dropdown-component/-/coffeekraken-s-dropdown-component-1.0.2.tgz#f3314ca785da4d9b4da36b1bd94d59515ec24032"
+  dependencies:
+    coffeekraken-sugar "^1.0.5"
+
 coffeekraken-s-form-component@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/coffeekraken-s-form-component/-/coffeekraken-s-form-component-1.0.3.tgz#fac49eb15857d746a454cef772325fe55446a443"

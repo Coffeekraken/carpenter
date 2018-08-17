@@ -20,6 +20,9 @@ module.exports = class ComponentModel {
 		this._absolutePhpBootstrapPath = absolutePhpBootstrapPath
 		this._templateEngine; // store the template engine that we need to use to compile the view
 
+		// title
+		this._title = __path.basename(this._viewPath)
+
 		// get the view content
 		this._viewContent = this._getViewContent()
 
@@ -253,6 +256,10 @@ module.exports = class ComponentModel {
 				}
 			})
 		})
+	}
+
+	get title () {
+		return this._title
 	}
 
 	get viewContent () {

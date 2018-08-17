@@ -3,5 +3,6 @@ module.exports = {
   type: "default",
   title: "This is a cool button",
   target: null,
-  label: "Click me!"
+  label: "Click me!",
+  url: "/components/atoms/button"
 }

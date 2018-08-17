@@ -1,76 +1,145 @@
-<section class="row components">
-	<div class="gr-12">
+<section class="components">
+
+	<div class="components__topbar">
+		<div class="components__topbar-item components__topbar-item--title">
+			<h1 class="h5">{{cleanTitle components.title}}</h1>
+		</div>
+		{{#if components.variants}}
+			<div class="components__topbar-item">
+				<div class="dropdown">
+					<a class="components__tab"
+						href="javascript:void(0)"
+					>
+						Render <i class="fa fa-angle-down"></i>
+					</a>
+					<ul class="dropdown__menu">
+						{{#eachSorted components.variants}}
+							<li class="dropdown__item">
+								<a href="#components-render-{{sanitizeAttribute this.key }}"
+									is="s-activate"
+									group="components"
+									save-state
+									class="active"
+								>
+									{{ this.value.title }}
+								</a>
+							</li>
+						{{/eachSorted}}
+					</ul>
+				</div>
+			</div>
+		{{/if}}
+		{{#if components.readmeContent}}
+			<div class="components__topbar-item">
+				<a class="components__tab"
+					href="#components-readme"
+					is="s-activate"
+					group="components"
+					save-state
+				>
+					Readme
+				</a>
+			</div>
+		{{/if}}
+		{{#if components.schemaJsonContent}}
+			<div class="components__topbar-item">
+				<a class="components__tab"
+					href="#components-view"
+					is="s-activate"
+					group="components"
+					save-state
+				>
+					View
+				</a>
+			</div>
+		{{/if}}
+		{{#if components.schemaJsonContent}}
+			<div class="components__topbar-item">
+				<a class="components__tab"
+					href="#components-schema-json"
+					is="s-activate"
+					group="components"
+					save-state
+				>
+					Schema.json
+				</a>
+			</div>
+		{{/if}}
+		{{#if components.metas.todo}}
+			<div class="components__topbar-item">
+				<a class="components__tab"
+					href="#components-todo"
+					is="s-activate"
+					group="components"
+					save-state
+				>
+					Todo ({{ components.metas.todo.length }})
+				</a>
+			</div>
+		{{/if}}
+
+		<div class="components__topbar-item components__topbar-item--grow"></div>
+
+		{{#each components.metas.contributors}}
+			<div class="components__topbar-item components__topbar-item--contributors">
+				<figure class="gravatar relative" style="font-size:1.5em">
+					<a href="mailto:{{ this.email }}">
+						<img src="{{gravatarUrl this.email }}" class="gravatar__img" title="{{this.name}}" alt="{{this.name}}" />
+					</a>
+					<div class="tooltip tooltip--b tooltip--secondary" style="font-size:.5em">
+						{{this.name}}
+					</div>
+				</figure>
+			</div>
+		{{/each}}
+
+		{{#if components.metas.status}}
+			<div class="components__topbar-item components__topbar-item--status">
+				Status&nbsp;
+				{{#ifCond components.metas.status '===' 'start'}}
+					<span class="relative">
+						<i class="c-error fa fa-circle"></i>
+						<span class="tooltip tooltip--br tooltip--secondary">Start</span>
+					</span>
+				{{/ifCond}}
+				{{#ifCond components.metas.status '===' 'in-progress'}}
+					<span class="relative">
+						<i class="c-warning fa fa-circle"></i>
+						<span class="tooltip tooltip--br tooltip--secondary">In progress</span>
+					</span>
+				{{/ifCond}}
+				{{#ifCond components.metas.status '===' 'ready'}}
+					<span class="relative">
+						<i class="c-success fa fa-circle"></i>
+						<span class="tooltip tooltip--br tooltip--secondary">Ready</span>
+					</span>
+				{{/ifCond}}
+			</div>
+		{{/if}}
+	</div>
+
+	<div class="components__content">
 
 		{{#if components.readmeContent}}
-			<div class="tf vr m-b-big" id="readme-content">
+			<div class="components__tab-content tf vr p-bigger" id="components-readme">
 				{{{ components.readmeContent }}}
 			</div>
-		{{else}}
-			<h1 class="h1 m-b">
-				{{components.title}}
-			</h1>
 		{{/if}}
 
 
 		{{#if components.metas.todo}}
-			<h2 class="h2 m-b">Todo</h2>
-			<ul class="ul m-b-big">
-				{{#each components.metas.todo}}
-					<li class="li">{{ this }}</li>
-				{{/each}}
-			</ul>
+			<div class="components__tab-content p-bigger" id="components-todo">
+				<h2 class="h2 m-b">Todo</h2>
+				<ul class="ul m-b-big">
+					{{#each components.metas.todo}}
+						<li class="li">{{ this }}</li>
+					{{/each}}
+				</ul>
+			</div>
 		{{/if}}
 
-		<div class="components__metas">
-			<div class="row row-align-middle">
-				<div class="gr-adapt">
-					<div class="components__metas-item component__metas-item--status">
-						{{#if components.metas.status}}
-							Status&nbsp;
-							{{#ifCond components.metas.status '===' 'start'}}
-								<span class="relative">
-									<i class="c-error fa fa-circle"></i>
-									<span class="tooltip tooltip--secondary">Start</span>
-								</span>
-							{{/ifCond}}
-							{{#ifCond components.metas.status '===' 'in-progress'}}
-								<span class="relative">
-									<i class="c-warning fa fa-circle"></i>
-									<span class="tooltip tooltip--secondary">In progress</span>
-								</span>
-							{{/ifCond}}
-							{{#ifCond components.metas.status '===' 'ready'}}
-								<span class="relative">
-									<i class="c-success fa fa-circle"></i>
-									<span class="tooltip tooltip--secondary">Ready</span>
-								</span>
-							{{/ifCond}}
-						{{/if}}
-					</div>
-				</div>
-				<div class="gr-grow"></div>
-				<div class="gr-adapt">
-					<div class="components__metas-item component__metas-item--contributors">
-						{{#each components.metas.contributors}}
-							<figure class="gravatar relative" style="font-size:2em">
-								<a href="mailto:{{ this.email }}">
-									<img src="{{gravatarUrl this.email }}" class="gravatar__img" title="{{this.name}}" alt="{{this.name}}" />
-								</a>
-								<div class="tooltip tooltip--secondary" style="font-size:.5em">
-									{{this.name}}
-								</div>
-							</figure>
-						{{/each}}
-					</div>
-				</div>
-			</div>
-		</div>
-
 		{{#if components.viewContent}}
-			<a href="#component-view-content" class="toggle-code" is="s-activate" save-state toggle>
-				<i class="fa fa-code"></i> Show/hide view source code
-			</a>
-			<div class="components__view-data" id="component-view-content">
+			<div class="components__tab-content p-bigger" id="components-view">
 				<pre id="view-content">
 					<code class="lang-html">
 						{{ components.viewContent }}
@@ -80,10 +149,7 @@
 		{{/if}}
 
 		{{#if components.schemaJsonContent}}
-			<a href="#component-schema-json-content" class="toggle-code" is="s-activate" save-state toggle>
-				<i class="fa fa-code"></i> Show/hide JSON schema
-			</a>
-			<div class="components__schema-json" id="component-schema-json-content">
+			<div class="components__tab-content p-bigger" id="components-schema-json">
 				<pre id="schema-json-content">
 					<code class="lang-json">
 						{{ components.schemaJsonContent }}
@@ -92,91 +158,63 @@
 			</div>
 		{{/if}}
 
-		<script>
-			function resizeIframe(obj) {
-				obj.style.height = '1px';
-				obj.style.height = obj.contentWindow.document.body.scrollHeight + 40 + 'px';
-			}
-		</script>
-
 		{{#eachSorted components.variants}}
 
-			<div class="components__separator"></div>
+			<div class="components__tab-content components__tab-content--render" id="components-render-{{sanitizeAttribute this.key }}">
+				<div class="components__iframe-wrapper"
+					id="view-variant-{{sanitizeAttribute this.key}}-iframe-wrapper"
+				>
+					<iframe width="100%" height="100%"
+						srcdoc="
+							{{{ htmlspecialchars this.value.view }}}
+							{{#each ../components.inject.styles}}
+								<link rel=&quot;stylesheet&quot; href={{{this}}} />
+							{{/each}}
+							{{#each ../components.inject.scripts}}
+								<script src={{{this}}}></script>
+							{{/each}}
+							<style>
+								body {
+									padding: 20px;
+								}
+							</style>
+						"
+						id="view-variant-{{sanitizeAttribute this.key}}"
+					></iframe>
 
-			<h2 class="h2 m-b t-capitalize">{{this.value.title}}</h2>
-
-			<div class="components__iframe-wrapper"
-				id="view-variant-{{sanitizeAttribute this.key}}-iframe-wrapper"
-			>
-				<iframe width="100%"
-					height="{{#if ../components.metas.height}}
-							{{../components.metas.height}}
-						{{else}}
-							1
+					<div class="components__iframe-wrapper-actions">
+						{{#if ../config.components.states}}
+							{{#each ../config.components.states}}
+								<a class="components__iframe-wrapper-action"
+									set-iframe-width="{{this}}"
+									href="#"
+									title="{{ @key }}"
+								>
+									<i class="fa fa-{{ @key }}"></i>
+									<span class="tooltip tooltip--secondary">
+										{{ @key }}
+									</span>
+								</a>
+							{{/each}}
 						{{/if}}
-					"
-					srcdoc="
-						{{{ htmlspecialchars this.value.view }}}
-						{{#each ../components.inject.styles}}
-							<link rel=&quot;stylesheet&quot; href={{{this}}} />
-						{{/each}}
-						{{#each ../components.inject.scripts}}
-							<script src={{{this}}}></script>
-						{{/each}}
-						<style>
-							body {
-								padding: 20px;
-							}
-						</style>
-					"
-					onload="resizeIframe(this)"
-					id="view-variant-{{sanitizeAttribute this.key}}"
-				></iframe>
-
-				<div class="components__iframe-wrapper-actions">
-					{{#if ../config.components.states}}
-						{{#each ../config.components.states}}
-							<a class="components__iframe-wrapper-action"
-								href="#"
-								onclick="
-									document.querySelector('#view-variant-{{sanitizeAttribute ../this.key}}-iframe-wrapper').style.width = {{#if this}}'{{this}}px'{{else}}null{{/if}};
-									resizeIframe(document.querySelector('#view-variant-{{sanitizeAttribute ../this.key}}'));
-								"
-								title="{{ @key }}"
-							>
-								<i class="fa fa-{{ @key }}"></i>
-								<span class="tooltip tooltip--secondary">
-									{{ @key }}
-								</span>
-							</a>
-						{{/each}}
-					{{/if}}
-					<a href="#view-variant-{{sanitizeAttribute this.key}}-iframe-wrapper"
-						class="components__iframe-wrapper-action"
-						is="s-activate"
-						active-class="fullscreen"
-						toggle
-					>
-						<i class="fa fa-arrows-alt"></i>
-						<span class="tooltip tooltip--secondary">
-							fullscreen
-						</span>
-					</a>
+					</div>
 				</div>
+
+				{{#if this.value.dataContent}}
+					<div class="components__data-wrapper" id="components-data-wrapper-{{sanitizeAttribute this.key}}">
+						<div class="components__data-wrapper-toggle">
+							<i class="fa fa-database"></i>
+						</div>
+						<div class="components__data-wrapper-content">
+							<pre id="data-variant-{{sanitizeAttribute this.key}}">
+								<code class="lang-{{ this.value.language }}">
+									{{{ this.value.dataContent }}}
+								</code>
+							</pre>
+						</div>
+					</div>
+				{{/if}}
 			</div>
-
-			{{#if this.value.dataContent}}
-				<a href="#components-data-{{sanitizeAttribute this.key}}" class="toggle-code" is="s-activate" save-state toggle>
-					<i class="fa fa-code"></i> Show/hide view data
-				</a>
-				<div class="components__data-content" id="components-data-{{sanitizeAttribute this.key}}">
-					<pre id="data-variant-{{sanitizeAttribute this.key}}">
-						<code class="lang-{{ this.value.language }}">
-							{{{ this.value.dataContent }}}
-						</code>
-					</pre>
-				</div>
-			{{/if}}
 		{{/eachSorted}}
 	</div>
 </section>

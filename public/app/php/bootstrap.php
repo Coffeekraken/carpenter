@@ -1,6 +1,8 @@
 <?php
 
-define('T_VIEWS_PATH', __DIR__ . '/../../../app/views');
-define('T_CACHE_PATH', __DIR__ . '/../../../app/cache');
+// define(TWIG_NAMESPACES, [
+// 	[$absoluteViewsPath . '/atoms', 'atoms'],
+// 	[$absoluteViewsPath . '/molecules', 'molecules']
+// ]);
 
 require_once 'vendor/autoload.php';

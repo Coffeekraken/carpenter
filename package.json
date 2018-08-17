@@ -90,6 +90,7 @@
     "coffeekraken-s-button-component": "^1.0.0",
     "coffeekraken-s-codemirror-component": "^1.0.1",
     "coffeekraken-s-dialog-component": "^1.0.1",
+    "coffeekraken-s-dropdown-component": "^1.0.2",
     "coffeekraken-s-form-component": "^1.0.3",
     "coffeekraken-s-interactive-demo-component": "^1.0.1",
     "coffeekraken-s-ripple-component": "^1.0.1",

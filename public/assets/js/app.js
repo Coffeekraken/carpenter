@@ -56553,6 +56553,62 @@ Prism.languages.scss['atrule'].inside.rest = Prism.languages.scss;
 
 /***/ }),
 
+/***/ "./node_modules/prismjs/components/prism-yaml.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/prismjs/components/prism-yaml.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+Prism.languages.yaml = {
+	'scalar': {
+		pattern: /([\-:]\s*(?:![^\s]+)?[ \t]*[|>])[ \t]*(?:((?:\r?\n|\r)[ \t]+)[^\r\n]+(?:\2[^\r\n]+)*)/,
+		lookbehind: true,
+		alias: 'string'
+	},
+	'comment': /#.*/,
+	'key': {
+		pattern: /(\s*(?:^|[:\-,[{\r\n?])[ \t]*(?:![^\s]+)?[ \t]*)[^\r\n{[\]},#\s]+?(?=\s*:\s)/,
+		lookbehind: true,
+		alias: 'atrule'
+	},
+	'directive': {
+		pattern: /(^[ \t]*)%.+/m,
+		lookbehind: true,
+		alias: 'important'
+	},
+	'datetime': {
+		pattern: /([:\-,[{]\s*(?:![^\s]+)?[ \t]*)(?:\d{4}-\d\d?-\d\d?(?:[tT]|[ \t]+)\d\d?:\d{2}:\d{2}(?:\.\d*)?[ \t]*(?:Z|[-+]\d\d?(?::\d{2})?)?|\d{4}-\d{2}-\d{2}|\d\d?:\d{2}(?::\d{2}(?:\.\d*)?)?)(?=[ \t]*(?:$|,|]|}))/m,
+		lookbehind: true,
+		alias: 'number'
+	},
+	'boolean': {
+		pattern: /([:\-,[{]\s*(?:![^\s]+)?[ \t]*)(?:true|false)[ \t]*(?=$|,|]|})/im,
+		lookbehind: true,
+		alias: 'important'
+	},
+	'null': {
+		pattern: /([:\-,[{]\s*(?:![^\s]+)?[ \t]*)(?:null|~)[ \t]*(?=$|,|]|})/im,
+		lookbehind: true,
+		alias: 'important'
+	},
+	'string': {
+		pattern: /([:\-,[{]\s*(?:![^\s]+)?[ \t]*)("|')(?:(?!\2)[^\\\r\n]|\\.)*\2(?=[ \t]*(?:$|,|]|}))/m,
+		lookbehind: true,
+		greedy: true
+	},
+	'number': {
+		pattern: /([:\-,[{]\s*(?:![^\s]+)?[ \t]*)[+-]?(?:0x[\da-f]+|0o[0-7]+|(?:\d+\.?\d*|\.?\d+)(?:e[+-]?\d+)?|\.inf|\.nan)[ \t]*(?=$|,|]|})/im,
+		lookbehind: true
+	},
+	'tag': /![^\s]+/,
+	'important': /[&*][\w]+/,
+	'punctuation': /---|[:[\]{}\-,|>?]|\.\.\./
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js":
 /*!*****************************************************************************************!*\
   !*** ./node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js ***!
@@ -65405,17 +65461,34 @@ var _interactjs2 = _interopRequireDefault(_interactjs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function resizeIframe(iframe) {
-	iframe.style.height = '1px';
-	if (iframe.contentWindow) {
-		iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 40 + 'px';
-	}
-}
+// function resizeIframe(iframe) {
+// 	iframe.style.height = '1px'
+// 	if (iframe.contentWindow) {
+// 		iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 40 + 'px';
+// 	}
+// }
 
 if (document.querySelector('section.components')) {
 
 	// resizable iframe
 	[].forEach.call(document.querySelectorAll('.components__iframe-wrapper'), function (item) {
+		// restore iframe width if exist in localStorage
+		var restoreIframeWidth = localStorage.getItem('components-iframe-width');
+		if (restoreIframeWidth) {
+			item.style.width = restoreIframeWidth + 'px';
+		}
+
+		// handle the set-iframe-width elements
+		[].forEach.call(item.querySelectorAll('[set-iframe-width]'), function (setIframeWidthElm) {
+			setIframeWidthElm.addEventListener('click', function (e) {
+				var width = e.currentTarget.getAttribute('set-iframe-width');
+				item.style.width = width ? width + 'px' : null;
+				// save in local storage
+				localStorage.setItem('components-iframe-width', width);
+			});
+		});
+
+		// allow resizing the iframe
 		(0, _interactjs2.default)(item).resizable({
 			edges: { top: false, right: true, bottom: false, left: false },
 			inertia: true,
@@ -65427,8 +65500,20 @@ if (document.querySelector('section.components')) {
 			event.preventDefault();
 			var target = event.target;
 			target.style.width = event.rect.width + 'px';
-			resizeIframe(target.querySelector('iframe'));
+			// save in local storage
+			localStorage.setItem('components-iframe-width', event.rect.width);
 		});
+	});[].forEach.call(document.querySelectorAll('.components__iframe-wrapper iframe'), function (iframe) {
+		iframe.onload = function () {
+			// handle click on links inside the iframe
+			iframe.contentWindow.document.body.addEventListener('click', function (e) {
+				var href = e.target.getAttribute('href');
+				if (href) {
+					e.preventDefault();
+					document.location.href = href;
+				}
+			});
+		};
 	});
 
 	var io = (0, _socket2.default)('http://localhost:' + (window.carpenter.port + 1));
@@ -65474,13 +65559,7 @@ if (document.querySelector('section.components')) {
 			newIframeElm.setAttribute('id', viewVariantElm.id);
 			newIframeElm.setAttribute('onload', 'resizeIframe(this)');
 			newIframeElm.style.height = viewVariantElm.offsetHeight + 'px';
-			newIframeElm.onload = function () {
-				var _this = this;
 
-				setTimeout(function () {
-					resizeIframe(_this);
-				}, 500);
-			};
 			// append it to the HTML
 			viewVariantElm.parentNode.insertBefore(newIframeElm, viewVariantElm);
 			// update the elements
@@ -65516,6 +65595,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 __webpack_require__(/*! prismjs/components/prism-scss */ "./node_modules/prismjs/components/prism-scss.js");
 __webpack_require__(/*! prismjs/components/prism-json */ "./node_modules/prismjs/components/prism-json.js");
+__webpack_require__(/*! prismjs/components/prism-yaml */ "./node_modules/prismjs/components/prism-yaml.js");
 __webpack_require__(/*! prismjs/plugins/normalize-whitespace/prism-normalize-whitespace */ "./node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js");
 _prismjs2.default.highlightAll();
 

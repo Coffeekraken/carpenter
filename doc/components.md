@@ -87,3 +87,14 @@ module.exports = {
 	height: null // specify the height to apply to the preview iframe
 }
 ```
+
+## Twig namespaces
+
+It's possible to set the twig namespaces by setting the `TWIG_NAMESPACES` constant like so:
+
+```php
+define('TWIG_NAMESPACES', [
+	['path', 'namespace'],
+	['/path/to/namespace/atoms','atoms']
+])
+```

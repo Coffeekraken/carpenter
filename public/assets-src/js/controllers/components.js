@@ -3,17 +3,34 @@ import __prism from 'prismjs'
 import __htmlspecialchars from 'htmlspecialchars'
 import __interactjs from 'interactjs'
 
-function resizeIframe(iframe) {
-	iframe.style.height = '1px'
-	if (iframe.contentWindow) {
-		iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 40 + 'px';
-	}
-}
+// function resizeIframe(iframe) {
+// 	iframe.style.height = '1px'
+// 	if (iframe.contentWindow) {
+// 		iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 40 + 'px';
+// 	}
+// }
 
 if (document.querySelector('section.components')) {
 
 	// resizable iframe
 	[].forEach.call(document.querySelectorAll('.components__iframe-wrapper'), (item) => {
+		// restore iframe width if exist in localStorage
+		const restoreIframeWidth = localStorage.getItem('components-iframe-width')
+		if (restoreIframeWidth) {
+			item.style.width = restoreIframeWidth + 'px'
+		}
+
+		// handle the set-iframe-width elements
+		[].forEach.call(item.querySelectorAll('[set-iframe-width]'), (setIframeWidthElm) => {
+			setIframeWidthElm.addEventListener('click', (e) => {
+				const width = e.currentTarget.getAttribute('set-iframe-width')
+				item.style.width = (width) ? width + 'px' : null
+				// save in local storage
+				localStorage.setItem('components-iframe-width', width)
+			})
+		})
+
+		// allow resizing the iframe
 		__interactjs(item).resizable({
 			edges: { top: false, right: true, bottom: false, left: false },
 			inertia: true,
@@ -25,8 +42,22 @@ if (document.querySelector('section.components')) {
 			event.preventDefault()
 			var target = event.target
 			target.style.width  = event.rect.width + 'px';
-			resizeIframe(target.querySelector('iframe'))
+			// save in local storage
+			localStorage.setItem('components-iframe-width', event.rect.width)
 		})
+	})
+
+	;[].forEach.call(document.querySelectorAll('.components__iframe-wrapper iframe'), (iframe) => {
+		iframe.onload = () => {
+			// handle click on links inside the iframe
+			iframe.contentWindow.document.body.addEventListener('click', (e) => {
+				const href = e.target.getAttribute('href')
+				if (href) {
+					e.preventDefault()
+					document.location.href = href
+				}
+			})
+		}
 	})
 
 	const io = __socketio(`http://localhost:${window.carpenter.port + 1}`)
@@ -72,11 +103,7 @@ if (document.querySelector('section.components')) {
 			newIframeElm.setAttribute('id', viewVariantElm.id)
 			newIframeElm.setAttribute('onload', 'resizeIframe(this)')
 			newIframeElm.style.height = viewVariantElm.offsetHeight + 'px'
-			newIframeElm.onload = function() {
-				setTimeout(() => {
-					resizeIframe(this)
-				}, 500)
-			}
+
 			// append it to the HTML
 			viewVariantElm.parentNode.insertBefore(newIframeElm, viewVariantElm)
 			// update the elements

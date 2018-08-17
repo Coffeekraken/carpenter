@@ -1,0 +1,14 @@
+.badge {
+	font-size: .5em;
+	color: white;
+	display:inline-block;
+	width: 2em; height:2em;
+	text-align: center;
+	line-height: 1.85em;
+	border-radius: 50%;
+}
+	@each $colorName, $color in s-setting('colors') {
+		.badge--#{$colorName} {
+			background-color: s-color($colorName);
+		}
+	}

@@ -92,6 +92,7 @@ body {
 	top:50px;
 	height:calc(100% - 50px);
 	overflow-y: auto;
+	overflow-x: hidden;
 	padding: s-space(bigger);
 	position:fixed;
 }

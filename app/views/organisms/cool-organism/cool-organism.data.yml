@@ -7,4 +7,4 @@ button:
     title: This is a cool button
     target: null
     label: Click me!
-    href: https://google.com
+    url: /components/atoms/button

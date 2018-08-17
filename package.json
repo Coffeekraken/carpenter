@@ -1,6 +1,6 @@
 {
   "name": "coffeekraken-carpenter",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Powerful tool that provide a nice web interface to display your website styleguide and modules/plugins documentations in one place.",
   "main": "dist/index.js",
   "homepage": "http://coffeekraken.io",
@@ -90,6 +90,7 @@
     "coffeekraken-s-button-component": "^1.0.0",
     "coffeekraken-s-codemirror-component": "^1.0.1",
     "coffeekraken-s-dialog-component": "^1.0.1",
+    "coffeekraken-s-dropdown-component": "^1.0.2",
     "coffeekraken-s-form-component": "^1.0.3",
     "coffeekraken-s-interactive-demo-component": "^1.0.1",
     "coffeekraken-s-ripple-component": "^1.0.1",

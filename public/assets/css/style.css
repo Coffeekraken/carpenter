@@ -7020,6 +7020,7 @@ html, body {
   top: 50px;
   height: calc(100% - 50px);
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 3rem;
   position: fixed;
 }
@@ -7055,10 +7056,12 @@ html, body {
  * A block can contain other blocks or objects and does not have to relay on his ancestors
  * to be properly displayed.
  */
+.components {
+  margin: -3rem;
+}
+
 .components iframe {
-  border: solid 10px #fcfcfc;
   border-right: solid 10px #f2f2f2;
-  margin-bottom: -0.14286rem;
 }
 
 .components .toggle-code {
@@ -7099,65 +7102,19 @@ html, body {
   display: none;
 }
 
-.components__separator {
-  background: #fcfcfc;
-  height: 2.14286rem;
-  margin: 3rem -3rem;
-}
-
-.components__metas {
-  padding: 1rem;
-  border-top: 1px solid #e5e9ea;
-  border-bottom: 1px solid #e5e9ea;
-}
-
-.components__metas-item {
-  display: inline-block;
-}
-
-.component__metas-item--contributors {
-  white-space: nowrap;
-}
-
-.components__schema-json,
-.components__data-content,
-.components__view-data {
+.components + .footer {
   display: none;
 }
 
-.components__schema-json.active,
-.components__data-content.active,
-.components__view-data.active {
-  display: block;
+.components__content {
+  margin-top: 3.57143rem;
 }
 
 .components__iframe-wrapper {
   position: relative;
   background: white;
-}
-
-.components__iframe-wrapper.fullscreen {
-  position: fixed;
-  top: 3.57143rem;
-  left: 2.85714rem;
-  width: calc(100vw - 40px);
-  height: calc(100vh - 50px);
-  z-index: 1;
-}
-
-.components__iframe-wrapper.fullscreen:after {
-  display: block;
-  content: '';
-  width: 100vw;
-  height: 100vh;
-  background: rgba(43, 52, 56, 0.8);
-  left: 100%;
-  top: 0;
-  position: absolute;
-}
-
-.components__iframe-wrapper.fullscreen iframe {
-  height: 100% !important;
+  width: 100%;
+  height: calc(100vh - 103px);
 }
 
 .components__iframe-wrapper:hover .components__iframe-wrapper-actions {
@@ -7167,8 +7124,8 @@ html, body {
 
 .components__iframe-wrapper-actions {
   position: absolute;
-  bottom: 1.78571rem;
-  right: 1.42857rem;
+  bottom: 1.42857rem;
+  right: 2.14286rem;
   opacity: 0;
   pointer-events: none;
   transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
@@ -7186,6 +7143,106 @@ html, body {
 
 .components__iframe-wrapper-action:hover {
   background-color: #2b3438;
+}
+
+.components__data-wrapper {
+  position: absolute;
+  top: 50px;
+  left: calc(100% - 15px);
+  width: 33vw;
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+}
+
+.components__data-wrapper:hover {
+  left: 67%;
+}
+
+.components__data-wrapper-toggle {
+  width: 2.85714rem;
+  height: 2.85714rem;
+  position: absolute;
+  top: 0;
+  right: 100%;
+  background-color: #f2bc2b;
+  text-align: center;
+  line-height: 2.85714rem;
+  color: white;
+}
+
+.components__data-wrapper-content {
+  height: calc(100vh - 100px);
+  background-color: #848e91;
+}
+
+.components__data-wrapper-content pre {
+  height: 100%;
+}
+
+.components__tab {
+  display: inline-block;
+  height: 3.57143rem;
+  line-height: 3.57143rem;
+  text-decoration: none;
+  padding: 0 1rem;
+}
+
+.components__tab:hover, .components__tab.active {
+  font-weight: bold;
+  border-bottom: 2px solid #f2bc2b;
+}
+
+.components__tab-content {
+  display: none;
+}
+
+.components__tab-content.active {
+  display: block;
+}
+
+.components__tab-content--render {
+  background: #f7f7f7;
+}
+
+.components__topbar {
+  position: fixed;
+  top: 3.57143rem;
+  left: 2.85714rem;
+  z-index: 1;
+  border-bottom: 1px solid #e5e9ea;
+  width: calc(100% - 40px);
+  height: 3.57143rem;
+  background: white;
+  display: flex;
+  align-items: center;
+}
+
+.components__topbar-item {
+  flex: 0;
+  white-space: nowrap;
+}
+
+.components__topbar-item--title {
+  padding: 0 1rem;
+  text-transform: capitalize;
+  border-right: 1px solid #e5e9ea;
+}
+
+.components__topbar-item--grow {
+  flex: 1;
+}
+
+.components__topbar-item--contributors {
+  white-space: nowrap;
+}
+
+.components__topbar-item--contributors .gravatar {
+  margin-left: 0.6rem;
+}
+
+.components__topbar-item--status {
+  padding: 0 1rem;
+  white-space: nowrap;
 }
 
 @keyframes dialog-overlay-in {
@@ -8279,6 +8336,61 @@ s-interactive-demo s-codemirror {
  * All the objects styling.
  * An object response to the same rules has the blocks, unless they cannot contain any other objects or blocks.
  */
+.badge {
+  font-size: .5em;
+  color: white;
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  text-align: center;
+  line-height: 1.85em;
+  border-radius: 50%;
+}
+
+.badge--default {
+  background-color: #848e91;
+}
+
+.badge--title {
+  background-color: #2b3438;
+}
+
+.badge--text {
+  background-color: #848e91;
+}
+
+.badge--link {
+  background-color: #f2bc2b;
+}
+
+.badge--primary {
+  background-color: #f2bc2b;
+}
+
+.badge--secondary {
+  background-color: #2b3438;
+}
+
+.badge--success {
+  background-color: #5cb85c;
+}
+
+.badge--warning {
+  background-color: #f0ad4e;
+}
+
+.badge--error {
+  background-color: #d9534f;
+}
+
+.badge--info {
+  background-color: #2199e8;
+}
+
+.badge--border {
+  background-color: #e5e9ea;
+}
+
 /**
  * Buttons
  */
@@ -8805,6 +8917,305 @@ button {
   width: 100%;
   height: 0;
   padding-bottom: 30%;
+}
+
+/**
+ * This file provide the mixins to generate dropdown classes
+ */
+.dropdown__menu {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 100%;
+  pointer-events: none;
+}
+
+.dropdown:hover .dropdown__menu, .dropdown.active .dropdown__menu, .dropdown[active] .dropdown__menu, .dropdown:active .dropdown__menu, .dropdown.dropdown--active .dropdown__menu {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: all;
+}
+
+/**
+ * Print out the bare and style dropdown css
+ * Classes generated:
+ * - `.dropdown`
+ * - `.dropdown--up`
+ * - `.dropdown--right`
+ * - `.dropdown__menu`
+ * - `.dropdown__item`
+ * - `.dropdown.active, .dropdown:active, .dropdown[active], .dropdown--active, .dropdown:hover`
+ * @param 	{List<Color>} 		[$color=default primary secondary] 		The colors to generate
+ */
+/**
+ * Print out the bare dropdown css
+ * Classes generated:
+ * - `.dropdown`
+ * - `.dropdown--up`
+ * - `.dropdown--right`
+ * - `.dropdown__menu`
+ * - `.dropdown__item`
+ * - `.dropdown.active, .dropdown:active, .dropdown[active], .dropdown--active, .dropdown:hover`
+ */
+/**
+ * Print out the style dropdown css
+ * Classes generated:
+ * - `.dropdown`
+ * - `.dropdown__menu`
+ * - `.dropdown__item`
+ * - `.dropdown.active, .dropdown:active, .dropdown[active], .dropdown--active, .dropdown:hover`
+ * @param 	{List<Color>} 		[$color=default primary secondary] 		The colors to generate
+ */
+/**
+		 * @name 	```.dropdown```
+		 * Provide a nice dropdown component
+		 * @styleguide 		Atoms / Dropdown
+		 * @example 	html
+		 * <div style="display:inline-block" class="dropdown">
+		 * 	<a>Display dropdown</a>
+		 * 	<ul class="dropdown__menu">
+		 *  	<li class="dropdown__item">
+		 *   		<a href="#" title="...">
+		 *   			Item 1
+		 *   		</a>
+		 *  	</li>
+		 *  	<li class="dropdown__item">
+		 *   		<a href="#" title="...">
+		 *   			Item 2
+		 *   		</a>
+		 *  	</li>
+		 *  	<li class="dropdown__item">
+		 *   		<a href="#" title="...">
+		 *   			Item 3
+		 *   		</a>
+		 *  	</li>
+		 *  </ul>
+		 * </div>
+		 */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  /**
+			 * @name 	```.dropdown--right```
+			 * Provide a nice dropdown component aligned to the right
+			 * @styleguide 		Atoms / Dropdown
+			 * @example 	html
+			 * <div style="display:inline-block" class="dropdown dropdown--right">
+			 * 	<a>Display right dropdown</a>
+			 * 	<ul class="dropdown__menu">
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 1
+			 *   		</a>
+			 *  	</li>
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 2
+			 *   		</a>
+			 *  	</li>
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 3
+			 *   		</a>
+			 *  	</li>
+			 *  </ul>
+			 * </div>
+			 */
+  /**
+			 * @name 	```.dropdown--up```
+			 * Provide a nice dropup component
+			 * @styleguide 		Atoms / Dropdown
+			 * @example 	html
+			 * <div style="display:inline-block" class="dropdown dropdown--up">
+			 * 	<a>Display dropup</a>
+			 * 	<ul class="dropdown__menu">
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 1
+			 *   		</a>
+			 *  	</li>
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 2
+			 *   		</a>
+			 *  	</li>
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 3
+			 *   		</a>
+			 *  	</li>
+			 *  </ul>
+			 * </div>
+			 */
+}
+
+.dropdown:hover, .dropdown.active, .dropdown[active], .dropdown:active, .dropdown.dropdown--active {
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown__menu, .dropdown.active .dropdown__menu, .dropdown[active] .dropdown__menu, .dropdown:active .dropdown__menu, .dropdown.dropdown--active .dropdown__menu {
+  top: 100%;
+}
+
+.dropdown.dropdown--right .dropdown__menu {
+  left: auto;
+  right: 0;
+}
+
+.dropdown.dropdown--up .dropdown__menu {
+  top: auto;
+  bottom: 100%;
+}
+
+.dropdown.dropdown--up:hover .dropdown__menu, .dropdown.dropdown--up.active .dropdown__menu, .dropdown.dropdown--up[active] .dropdown__menu, .dropdown.dropdown--up:active .dropdown__menu, .dropdown.dropdown--up.dropdown--active .dropdown__menu {
+  top: auto;
+  bottom: 100%;
+}
+
+.dropdown__item {
+  white-space: nowrap;
+}
+
+.dropdown__item > a {
+  display: block;
+}
+
+.dropdown:hover .dropdown__menu, .dropdown.active .dropdown__menu, .dropdown[active] .dropdown__menu, .dropdown:active .dropdown__menu, .dropdown.dropdown--active .dropdown__menu {
+  transform: translateY(0);
+}
+
+.dropdown.dropdown--up .dropdown__menu {
+  transform: translateY(-1em);
+}
+
+.dropdown.dropdown--up:hover .dropdown__menu, .dropdown.dropdown--up.active .dropdown__menu, .dropdown.dropdown--up[active] .dropdown__menu, .dropdown.dropdown--up:active .dropdown__menu, .dropdown.dropdown--up.dropdown--active .dropdown__menu {
+  transform: translateY(0);
+}
+
+.dropdown__menu {
+  background: #848e91;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 4px 6px;
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  overflow: hidden;
+  transform: translateY(1em);
+}
+
+.dropdown__item {
+  border-top: solid 1px rgba(132, 142, 145, 0.2);
+  transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+  background-color: white;
+  left: 0;
+  position: relative;
+  color: #848e91;
+  transition: left 0.1s ease-in-out 0s, outline-color 0s linear 0s;
+  outline-color: black;
+}
+
+.dropdown__item:hover, .dropdown__item.active, .dropdown__item[active], .dropdown__item:active, .dropdown__item.dropdown--active {
+  left: 5px;
+}
+
+.dropdown__item > a {
+  padding: 0.8em 1.4em;
+  color: #848e91;
+  display: block;
+  width: 100%;
+}
+
+/**
+			 * @name 	<span class="c-default">Default</span> ```.dropdown--default```
+			 * Provide a nice dropdown default component
+			 * @styleguide 		Atoms / Dropdown
+			 * @example 	html
+			 * <div style="display:inline-block" class="dropdown dropdown--default">
+			 * 	<a>Display default dropdown</a>
+			 * 	<ul class="dropdown__menu">
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 1
+			 *   		</a>
+			 *  	</li>
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 2
+			 *   		</a>
+			 *  	</li>
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 3
+			 *   		</a>
+			 *  	</li>
+			 *  </ul>
+			 * </div>
+			 */
+.dropdown--default .dropdown__menu {
+  background-color: #848e91;
+}
+
+/**
+			 * @name 	<span class="c-primary">Primary</span> ```.dropdown--primary```
+			 * Provide a nice dropdown primary component
+			 * @styleguide 		Atoms / Dropdown
+			 * @example 	html
+			 * <div style="display:inline-block" class="dropdown dropdown--primary">
+			 * 	<a>Display primary dropdown</a>
+			 * 	<ul class="dropdown__menu">
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 1
+			 *   		</a>
+			 *  	</li>
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 2
+			 *   		</a>
+			 *  	</li>
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 3
+			 *   		</a>
+			 *  	</li>
+			 *  </ul>
+			 * </div>
+			 */
+.dropdown--primary .dropdown__menu {
+  background-color: #f2bc2b;
+}
+
+/**
+			 * @name 	<span class="c-secondary">Secondary</span> ```.dropdown--secondary```
+			 * Provide a nice dropdown secondary component
+			 * @styleguide 		Atoms / Dropdown
+			 * @example 	html
+			 * <div style="display:inline-block" class="dropdown dropdown--secondary">
+			 * 	<a>Display secondary dropdown</a>
+			 * 	<ul class="dropdown__menu">
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 1
+			 *   		</a>
+			 *  	</li>
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 2
+			 *   		</a>
+			 *  	</li>
+			 *  	<li class="dropdown__item">
+			 *   		<a href="#" title="...">
+			 *   			Item 3
+			 *   		</a>
+			 *  	</li>
+			 *  </ul>
+			 * </div>
+			 */
+.dropdown--secondary .dropdown__menu {
+  background-color: #2b3438;
+}
+
+.dropdown a {
+  text-decoration: none;
 }
 
 .gravatar {

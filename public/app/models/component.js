@@ -6,6 +6,7 @@ const __execPhp = require('exec-php')
 const __htmlspecialchars = require('htmlspecialchars')
 const __handlebarHelpers = require('../views/handlebarHelpers')
 const __jsYaml = require('js-yaml')
+const __jsonSchemaRefParser = require('json-schema-ref-parser')
 
 module.exports = class ComponentModel {
 
@@ -30,7 +31,9 @@ module.exports = class ComponentModel {
 		this._readmeContent = this._getReadmeContent()
 
 		// get the schemaJson content
-		this._schemaJsonContent = this._getSchemaJsonContent()
+		this._schemaJsonContentPromimse = this._getSchemaJsonContent().then((schema) => {
+			this._schemaJsonContent = JSON.stringify(schema, null, 2)
+		})
 
 		// variants
 		this._variants = {}
@@ -49,7 +52,8 @@ module.exports = class ComponentModel {
 
 	onReady (cb) {
 		Promise.all([
-			this._compiledContentPromise
+			this._compiledContentPromise,
+			this._schemaJsonContentPromimse
 		]).then(() => {
 			cb()
 		})
@@ -101,19 +105,28 @@ module.exports = class ComponentModel {
 	}
 
 	_getSchemaJsonContent () {
-		// check if a schema.json exist
-		let schemaJsonFilePath
-		if (__fs.existsSync(this._absoluteFileName + '.schema.json')) {
-			schemaJsonFilePath = this._absoluteFileName + '.schema.json'
-		}
+		return new Promise((resolve, reject) => {
+			// check if a schema.json exist
+			let schemaJsonFilePath
+			if (__fs.existsSync(this._absoluteFileName + '.schema.json')) {
+				schemaJsonFilePath = this._absoluteFileName + '.schema.json'
+			}
 
-		// set the schemaJsonContent if schemaJsonFilePath exist
-		if (schemaJsonFilePath) {
-			return __fs.readFileSync(schemaJsonFilePath, 'utf8')
-		}
-
-		// no schemaJson so return false
-		return false
+			// set the schemaJsonContent if schemaJsonFilePath exist
+			if (schemaJsonFilePath) {
+				// const schema = JSON.parse(__fs.readFileSync(schemaJsonFilePath, 'utf8'))
+				try {
+					resolve(__jsonSchemaRefParser.dereference(schemaJsonFilePath).catch((e) => {
+						console.log(e)
+					}))
+				} catch(e) {
+					resolve()
+				}
+			} else {
+				// no schemaJson so return false
+				resolve()
+			}
+		})
 	}
 
 	_getMetas () {

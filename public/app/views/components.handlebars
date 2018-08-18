@@ -2,7 +2,28 @@
 
 	<div class="components__topbar">
 		<div class="components__topbar-item components__topbar-item--title">
-			<h1 class="h5">{{cleanTitle components.title}}</h1>
+			<h1 class="h5">
+				{{cleanTitle components.title}}
+
+				{{#ifCond components.metas.status '===' 'start'}}
+					<span class="relative s-default m-l-small" style="top:-2px">
+						<i class="c-error fa fa-circle"></i>
+						<span class="tooltip tooltip--b tooltip--secondary">Start</span>
+					</span>
+				{{/ifCond}}
+				{{#ifCond components.metas.status '===' 'in-progress'}}
+					<span class="relative s-default m-l-small" style="top:-2px">
+						<i class="c-warning fa fa-circle"></i>
+						<span class="tooltip tooltip--b tooltip--secondary">In progress</span>
+					</span>
+				{{/ifCond}}
+				{{#ifCond components.metas.status '===' 'ready'}}
+					<span class="relative s-default m-l-small" style="top:-2px">
+						<i class="c-success fa fa-circle"></i>
+						<span class="tooltip tooltip--b tooltip--secondary">Ready</span>
+					</span>
+				{{/ifCond}}
+			</h1>
 		</div>
 		{{#if components.variants}}
 			<div class="components__topbar-item">
@@ -86,42 +107,18 @@
 					<a href="mailto:{{ this.email }}">
 						<img src="{{gravatarUrl this.email }}" class="gravatar__img" title="{{this.name}}" alt="{{this.name}}" />
 					</a>
-					<div class="tooltip tooltip--b tooltip--secondary" style="font-size:.5em">
+					<div class="tooltip tooltip--br tooltip--secondary" style="font-size:.5em; position:relative; right:0px;">
 						{{this.name}}
 					</div>
 				</figure>
 			</div>
 		{{/each}}
-
-		{{#if components.metas.status}}
-			<div class="components__topbar-item components__topbar-item--status">
-				Status&nbsp;
-				{{#ifCond components.metas.status '===' 'start'}}
-					<span class="relative">
-						<i class="c-error fa fa-circle"></i>
-						<span class="tooltip tooltip--br tooltip--secondary">Start</span>
-					</span>
-				{{/ifCond}}
-				{{#ifCond components.metas.status '===' 'in-progress'}}
-					<span class="relative">
-						<i class="c-warning fa fa-circle"></i>
-						<span class="tooltip tooltip--br tooltip--secondary">In progress</span>
-					</span>
-				{{/ifCond}}
-				{{#ifCond components.metas.status '===' 'ready'}}
-					<span class="relative">
-						<i class="c-success fa fa-circle"></i>
-						<span class="tooltip tooltip--br tooltip--secondary">Ready</span>
-					</span>
-				{{/ifCond}}
-			</div>
-		{{/if}}
 	</div>
 
 	<div class="components__content">
 
 		{{#if components.readmeContent}}
-			<div class="components__tab-content tf vr p-bigger" id="components-readme">
+			<div class="components__tab-content components__tab-content--readme tf vr p-bigger" id="components-readme">
 				{{{ components.readmeContent }}}
 			</div>
 		{{/if}}

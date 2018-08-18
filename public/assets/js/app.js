@@ -65508,7 +65508,7 @@ if (document.querySelector('section.components')) {
 			// handle click on links inside the iframe
 			iframe.contentWindow.document.body.addEventListener('click', function (e) {
 				var href = e.target.getAttribute('href');
-				if (href) {
+				if (href && href.match(/\components\//)) {
 					e.preventDefault();
 					document.location.href = href;
 				}
@@ -65522,7 +65522,7 @@ if (document.querySelector('section.components')) {
 		// get all the references in the html
 		var viewContentElm = document.querySelector('#view-content');
 		var schemaJsonContentElm = document.querySelector('#schema-json-content');
-		var readmeContentElm = document.querySelector('#readme-content');
+		var readmeContentElm = document.querySelector('#components-readme');
 
 		// update these elements
 		if (viewContentElm) viewContentElm.innerHTML = '<code class="lang-html">' + (0, _htmlspecialchars2.default)(data.viewContent) + '</code>';

@@ -52,7 +52,7 @@ if (document.querySelector('section.components')) {
 			// handle click on links inside the iframe
 			iframe.contentWindow.document.body.addEventListener('click', (e) => {
 				const href = e.target.getAttribute('href')
-				if (href) {
+				if (href && href.match(/\components\//)) {
 					e.preventDefault()
 					document.location.href = href
 				}
@@ -66,7 +66,7 @@ if (document.querySelector('section.components')) {
 		// get all the references in the html
 		const viewContentElm = document.querySelector('#view-content')
 		const schemaJsonContentElm = document.querySelector('#schema-json-content')
-		const readmeContentElm = document.querySelector('#readme-content')
+		const readmeContentElm = document.querySelector('#components-readme')
 
 		// update these elements
 		if (viewContentElm) viewContentElm.innerHTML = `<code class="lang-html">${__htmlspecialchars(data.viewContent)}</code>`

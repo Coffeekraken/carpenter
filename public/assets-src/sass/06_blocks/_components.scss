@@ -86,9 +86,11 @@
 		top: 50px; left: calc(100% - 15px);
 		width: 33vw;
 		@include s-transition(fast);
+		@include s-depth(0);
 
 		&:hover {
 			left: 67%;
+			@include s-depth(10);
 		}
 	}
 		.components__data-wrapper-toggle {
@@ -133,6 +135,9 @@
 		.components__tab-content--render {
 			background: darken(white, 3%);
 		}
+		.components__tab-content--readme {
+			max-width: s-rem(900px);
+		}
 
 	.components__topbar {
 		position: fixed;
@@ -154,6 +159,7 @@
 			padding: 0 s-space(default);
 			text-transform: capitalize;
 			border-right: 1px solid s-color(border);
+			white-space: nowrap;
 		}
 		.components__topbar-item--grow {
 			flex: 1;
@@ -162,7 +168,7 @@
 			white-space: nowrap;
 
 			.gravatar {
-				margin-left: s-space(small);
+				margin-right: s-space(small);
 			}
 
 		}

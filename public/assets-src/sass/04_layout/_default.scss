@@ -22,7 +22,7 @@ body {
 	position: relative;
 	z-index: 1;
 	transform: translateX(s-rem(-210px));
-	@include s-depth(10);
+	@include s-depth(1);
 
 	.list--menu,
 	.list--three {

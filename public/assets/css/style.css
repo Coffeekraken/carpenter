@@ -6944,7 +6944,7 @@ html, body {
   position: relative;
   z-index: 1;
   transform: translateX(-15rem);
-  box-shadow: rgba(0, 0, 0, 0.2) 0 20px 30px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 2px 3px;
 }
 
 .sidebar .list--menu,
@@ -7152,10 +7152,12 @@ html, body {
   width: 33vw;
   transition: all 0.1s ease-in-out 0s, outline-color 0s linear 0s;
   outline-color: black;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0px 0px;
 }
 
 .components__data-wrapper:hover {
   left: 67%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 20px 30px;
 }
 
 .components__data-wrapper-toggle {
@@ -7204,6 +7206,10 @@ html, body {
   background: #f7f7f7;
 }
 
+.components__tab-content--readme {
+  max-width: 64.28571rem;
+}
+
 .components__topbar {
   position: fixed;
   top: 3.57143rem;
@@ -7226,6 +7232,7 @@ html, body {
   padding: 0 1rem;
   text-transform: capitalize;
   border-right: 1px solid #e5e9ea;
+  white-space: nowrap;
 }
 
 .components__topbar-item--grow {
@@ -7237,7 +7244,7 @@ html, body {
 }
 
 .components__topbar-item--contributors .gravatar {
-  margin-left: 0.6rem;
+  margin-right: 0.6rem;
 }
 
 .components__topbar-item--status {

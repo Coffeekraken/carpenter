@@ -65508,7 +65508,7 @@ if (document.querySelector('section.components')) {
 			// handle click on links inside the iframe
 			iframe.contentWindow.document.body.addEventListener('click', function (e) {
 				var href = e.target.getAttribute('href');
-				if (href && href.match(/\components\//)) {
+				if (href && href.match(/\/components\//)) {
 					e.preventDefault();
 					document.location.href = href;
 				}

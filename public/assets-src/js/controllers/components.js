@@ -52,7 +52,7 @@ if (document.querySelector('section.components')) {
 			// handle click on links inside the iframe
 			iframe.contentWindow.document.body.addEventListener('click', (e) => {
 				const href = e.target.getAttribute('href')
-				if (href && href.match(/\components\//)) {
+				if (href && href.match(/\/components\//)) {
 					e.preventDefault()
 					document.location.href = href
 				}

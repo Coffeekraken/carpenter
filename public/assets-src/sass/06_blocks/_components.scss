@@ -53,6 +53,7 @@
 		background: white;
 		width: 100%;
 		height: calc(100vh - 103px);
+		max-width: 100%;
 
 		&:hover {
 			.components__iframe-wrapper-actions {

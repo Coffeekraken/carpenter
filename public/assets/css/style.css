@@ -7115,6 +7115,7 @@ html, body {
   background: white;
   width: 100%;
   height: calc(100vh - 103px);
+  max-width: 100%;
 }
 
 .components__iframe-wrapper:hover .components__iframe-wrapper-actions {
@@ -8344,17 +8345,19 @@ s-interactive-demo s-codemirror {
  * An object response to the same rules has the blocks, unless they cannot contain any other objects or blocks.
  */
 .badge {
-  font-size: .5em;
+  font-size: 1em;
   color: white;
   display: inline-block;
   width: 2em;
   height: 2em;
   text-align: center;
-  line-height: 1.85em;
+  line-height: 2em;
   border-radius: 50%;
+  transform: scale(0.7, 0.7);
+  font-weight: bold;
 }
 
-.badge--default {
+.badge {
   background-color: #848e91;
 }
 

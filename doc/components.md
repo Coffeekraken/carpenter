@@ -2,6 +2,24 @@
 
 Carpenter comes with a useful way to document your **twig/blade** components.
 
+## Config
+
+Here's how to configure carpenter to use the components feature:
+
+```js
+module.exports = {
+	components: {
+		inject: [
+			'dist/css/style.css',
+			'dist/js/app.js'
+		],
+		viewsRootPath: 'app/views',
+		phpBootstrapPath: 'app/bootstrap.php',
+		saveCompiled: false
+	}
+}
+```
+
 ## Folder structure
 
 In order to work well, the component feature need a two-level folder structure. Here's some sample:
@@ -83,8 +101,7 @@ module.exports = {
 	contributors: [{
 		name: 'Olivier Bossel',
 		email: 'olivier.bossel@gmail.com'
-	}],
-	height: null // specify the height to apply to the preview iframe
+	}]
 }
 ```
 

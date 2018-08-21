@@ -60,7 +60,7 @@ if (document.querySelector('section.components')) {
 		}
 	})
 
-	const io = __socketio(`http://localhost:${window.carpenter.port + 1}`)
+	const io = __socketio(`${document.location.protocol}//${document.location.hostname}:${window.carpenter.port + 1}`)
 	io.on('component:update', (data) => {
 
 		// get all the references in the html

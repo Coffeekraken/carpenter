@@ -34,7 +34,7 @@
     "dist:js": "babel src -d dist",
     "start": "coffeekraken-scripts-stack -i start -i assets -i dist",
     "test": "coffeekraken-testing-stack",
-    "carpenter": "./bin/coffeekraken-carpenter",
+    "carpenter": "./bin/coffeekraken-carpenter --config carpenter-demo.config.js",
     "changelog": "git-changelog --version_name $npm_package_version  --app_name $npm_package_name --intro \"$npm_package_description\" --logo \".resources/coffeekraken-logo.jpg\""
   },
   "keywords": [

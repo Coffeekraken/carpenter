@@ -25,17 +25,17 @@ function compile($view, $data, $absoluteViewsPath, $absolutePhpBootstrapPath) {
 }
 
 
-print compile('organisms/cool-organism/cool-organism.twig', [
-	"body" => "Plop World",
-	"title" => "Hello World",
-	"button" => [
-		"url" => "/",
-		"title" => "Hello",
-		"label" => "World",
-		"target" => null
-	]
-], '/Users/olivierbossel/data/web/coffeekraken/carpenter/app/views',
-null);
+// print compile('organisms/cool-organism/cool-organism.twig', [
+// 	"body" => "Plop World",
+// 	"title" => "Hello World",
+// 	"button" => [
+// 		"url" => "/",
+// 		"title" => "Hello",
+// 		"label" => "World",
+// 		"target" => null
+// 	]
+// ], '/Users/olivierbossel/data/web/coffeekraken/carpenter/app/views',
+// null);
 
 
 // print compile('atoms/button/button', null, '/Users/olivierbossel/data/web/coffeekraken/carpenter/app/views');

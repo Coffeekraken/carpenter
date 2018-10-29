@@ -9,7 +9,6 @@
     ],
     "require": {
         "philo/laravel-blade": "3.*",
-        "twig/twig": "^2.0",
-        "dwarvesforge/thorin": "^1.0"
+        "twig/twig": "^2.0"
     }
 }

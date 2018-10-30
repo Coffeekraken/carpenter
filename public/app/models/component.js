@@ -141,7 +141,7 @@ module.exports = class ComponentModel {
 			try {
 				return require(metasJsFilePath)
 			} catch(e) {
-				console.log(e);
+				console.log(e)
 			}
 		}
 		// no schemaJson so return false
@@ -181,12 +181,16 @@ module.exports = class ComponentModel {
 						data: require(dataFilePath)
 					}
 				} catch(e) {
-					console.log(e);
+					console.log(e)
 				}
 			} else if (filename.match(/\.yml/)) {
-				data[filename] = {
-					content: __fs.readFileSync(dataFilePath, 'utf8'),
-					data: __jsYaml.safeLoad(__fs.readFileSync(dataFilePath, 'utf8'))
+				try {
+					data[filename] = {
+						content: __fs.readFileSync(dataFilePath, 'utf8'),
+						data: __jsYaml.safeLoad(__fs.readFileSync(dataFilePath, 'utf8'))
+					}
+				} catch(e) {
+					console.log(e)
 				}
 			}
 			if (!this._variants[filename]) {

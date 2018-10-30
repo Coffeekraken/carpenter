@@ -70,6 +70,8 @@
 			@include s-transition(fast);
 		}
 			.components__iframe-wrapper-action {
+				display: inline-block;
+				float:left;
 				background: s-color(default);
 				padding: s-rem(5px) s-rem(8px);
 				color: white;

@@ -6195,7 +6195,7 @@ body {
 .h1,
 .tf h1 {
   font-size: 3.5em;
-  line-height: 1.5;
+  line-height: 1.2;
 }
 
 /**
@@ -6211,7 +6211,7 @@ body {
 .h2,
 .tf h2 {
   font-size: 3em;
-  line-height: 1.5;
+  line-height: 1.2;
 }
 
 /**
@@ -6227,7 +6227,7 @@ body {
 .h3,
 .tf h3 {
   font-size: 2.5em;
-  line-height: 1.5;
+  line-height: 1.2;
 }
 
 /**
@@ -6243,7 +6243,7 @@ body {
 .h4,
 .tf h4 {
   font-size: 2em;
-  line-height: 1.5;
+  line-height: 1.2;
 }
 
 /**
@@ -6259,7 +6259,7 @@ body {
 .h5,
 .tf h5 {
   font-size: 1.5em;
-  line-height: 1.5;
+  line-height: 1.2;
 }
 
 /**
@@ -6275,7 +6275,7 @@ body {
 .h6,
 .tf h6 {
   font-size: 1em;
-  line-height: 1.5;
+  line-height: 1.2;
 }
 
 h1.vr,
@@ -7134,6 +7134,8 @@ html, body {
 }
 
 .components__iframe-wrapper-action {
+  display: inline-block;
+  float: left;
   background: #848e91;
   padding: 0.35714rem 0.57143rem;
   color: white;
@@ -10571,7 +10573,7 @@ select[is="s-select"][color="secondary"] + .s-select .s-select__search-result,
 			 */
 .tooltip--tl {
   transform-origin: 0 calc(100% + 0.5em);
-  left: -.5em;
+  left: 0;
   bottom: calc(100% + 1em);
   top: auto;
   right: auto;
@@ -10590,7 +10592,7 @@ select[is="s-select"][color="secondary"] + .s-select .s-select__search-result,
 			 */
 .tooltip--tr {
   transform-origin: 100% 100%;
-  right: -.5em;
+  right: 0;
   bottom: calc(100% + 1em);
   left: auto;
   top: auto;
@@ -10609,7 +10611,7 @@ select[is="s-select"][color="secondary"] + .s-select .s-select__search-result,
 			 */
 .tooltip--l {
   transform-origin: calc(100% + 0.5em) 50%;
-  right: calc(100% + 0.5em);
+  right: calc(100% + 1em);
   top: 50%;
   left: auto;
   bottom: auto;
@@ -10649,7 +10651,7 @@ select[is="s-select"][color="secondary"] + .s-select .s-select__search-result,
 			 */
 .tooltip--bl {
   transform-origin: 1em -1em;
-  left: -.5em;
+  left: 0;
   top: calc(100% + 1em);
   bottom: auto;
   right: auto;
@@ -10688,7 +10690,7 @@ select[is="s-select"][color="secondary"] + .s-select .s-select__search-result,
 			 */
 .tooltip--br {
   transform-origin: calc(100% - 1em) -1em;
-  right: -.5em;
+  right: 0;
   top: calc(100% + 1em);
   left: auto;
   bottom: auto;

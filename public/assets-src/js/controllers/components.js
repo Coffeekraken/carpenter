@@ -20,11 +20,17 @@ if (document.querySelector('section.components')) {
 			item.style.width = restoreIframeWidth + 'px'
 		}
 
+		const iframeWidthIndicatorElm = item.querySelector('[iframe-width-indicator]')
+		setTimeout(() => {
+			iframeWidthIndicatorElm.innerHTML = item.offsetWidth + 'px'
+		});
+
 		// handle the set-iframe-width elements
 		[].forEach.call(item.querySelectorAll('[set-iframe-width]'), (setIframeWidthElm) => {
 			setIframeWidthElm.addEventListener('click', (e) => {
 				const width = e.currentTarget.getAttribute('set-iframe-width')
 				item.style.width = (width) ? width + 'px' : null
+				iframeWidthIndicatorElm.innerHTML = item.offsetWidth + 'px'
 				// save in local storage
 				localStorage.setItem('components-iframe-width', width)
 			})
@@ -42,6 +48,7 @@ if (document.querySelector('section.components')) {
 			event.preventDefault()
 			var target = event.target
 			target.style.width  = event.rect.width + 'px';
+			iframeWidthIndicatorElm.innerHTML = Math.round(event.rect.width) + 'px';
 			// save in local storage
 			localStorage.setItem('components-iframe-width', event.rect.width)
 		})

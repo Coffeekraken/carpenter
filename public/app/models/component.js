@@ -138,7 +138,11 @@ module.exports = class ComponentModel {
 		// set the schemaJsonContent if metasJsFilePath exist
 		if (metasJsFilePath) {
 			delete require.cache[metasJsFilePath]
-			return require(metasJsFilePath)
+			try {
+				return require(metasJsFilePath)
+			} catch(e) {
+				console.log(e);
+			}
 		}
 		// no schemaJson so return false
 		return false
@@ -169,11 +173,15 @@ module.exports = class ComponentModel {
 			// get the filename
 			const filename = dataFilePath.split('/').pop()
 			if (filename.match(/\.js/)) {
-				// read the data file
-				delete require.cache[dataFilePath]
-				data[filename] = {
-					content: __fs.readFileSync(dataFilePath, 'utf8'),
-					data: require(dataFilePath)
+				try {
+					// read the data file
+					delete require.cache[dataFilePath]
+					data[filename] = {
+						content: __fs.readFileSync(dataFilePath, 'utf8'),
+						data: require(dataFilePath)
+					}
+				} catch(e) {
+					console.log(e);
 				}
 			} else if (filename.match(/\.yml/)) {
 				data[filename] = {
@@ -185,7 +193,11 @@ module.exports = class ComponentModel {
 				this._variants[filename] = {}
 			}
 			if (filename.match(/\.js/)) {
-				this._variants[filename].data = require(dataFilePath)
+				try {
+					this._variants[filename].data = require(dataFilePath)
+				} catch(e) {
+					console.log(e);
+				}
 			} else if (filename.match(/\.yml/)) {
 				this._variants[filename].data = __jsYaml.safeLoad(__fs.readFileSync(dataFilePath, 'utf8'))
 			}

@@ -121,7 +121,6 @@
     "material-prism-theme": "^0.1.0",
     "md5": "^2.2.1",
     "node-watch": "^0.5.8",
-    "open": "0.0.5",
     "prismjs": "^1.6.0",
     "require-text": "^0.0.1",
     "socket.io": "^2.1.1",

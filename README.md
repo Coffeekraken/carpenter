@@ -2,7 +2,7 @@
 
 # Carpenter <img src="/.resources/coffeekraken-logo.jpg" height="25px" />
 
-Powerful tool that provide a nice web interface to display your website styleguide and modules/plugins documentations in one place.
+<p class="lead">Powerful tool that provide a nice web interface to display your website styleguide and modules/plugins documentations in one place.</p>
 
 > Carpenter is like a architect plan for your website
 
